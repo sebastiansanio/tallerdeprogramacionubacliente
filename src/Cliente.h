@@ -6,6 +6,7 @@ using namespace std;
 #include "ParserCliente.h"
 #include <SolarSockets/SolarSockets++.h>
 #include <string>
+#include <stdlib.h>
 
 class Cliente : public ssPPClient
 {
