@@ -16,9 +16,12 @@ void Cliente::onDataArrival(string Data){
 }
 
 void Cliente::enviarOperacion(){
+
 	system("cls");
+
 	string idOperacion;
 	list<string>* operandos=new list<string>();
+
 	//Selección de Operacion
 	cout<<"Ingrese el id de la operacion:"<<endl;
 	cout<<"		S ----> Suma"<<endl;
@@ -26,11 +29,14 @@ void Cliente::enviarOperacion(){
 	cout<<"		M ----> Multiplicación"<<endl;
 	cout<<"		D ----> División"<<endl;
 	cin>>idOperacion;
+	//Para pasar a mayuscula
 	idOperacion=toupper(idOperacion[0]);
+
 	while((idOperacion!="S")or(idOperacion!="R")or(idOperacion!="M")or(idOperacion!="D")){
 		cout<<"Ingrese una operacion valida"<<endl;
 		cin>>idOperacion;
 	}
+
 	string nombreOperando;
 	string valorOperando;
 	string respuesta;
@@ -41,21 +47,23 @@ void Cliente::enviarOperacion(){
 		case ('R'):nombreOperando="res";respuesta="S";break;
 		case ('M'):nombreOperando="mul";respuesta="S";break;
 		case ('D'):respuesta="N";
-						list<string>::iterator i;
-						i=operandos->begin();
-						cout<<"Ingrese dividendo:"<<endl;
-						cin>>valorOperando;
-						operandos->insert(i,"dividendo");
-						i++;
-						operandos->insert(i,valorOperando);
-						cout<<"Ingrese divisor:"<<endl;
-						cin>>valorOperando;
-						operandos->insert(i,"divisor");
-						i++;
-						operandos->insert(i,valorOperando);
-						break;
+					list<string>::iterator i;
+					i=operandos->begin();
+					cout<<"Ingrese dividendo:"<<endl;
+					cin>>valorOperando;
+					operandos->insert(i,"dividendo");
+					i++;
+					operandos->insert(i,valorOperando);
+					cout<<"Ingrese divisor:"<<endl;
+					cin>>valorOperando;
+					operandos->insert(i,"divisor");
+					i++;
+					operandos->insert(i,valorOperando);
+					break;
 	}
-	while ((respuesta=="S")or(respuesta=="s")){
+
+	//Lectura de operandos en caso que no se haya elegido una division
+	while ((respuesta=="S")){
 		list<string>::iterator i;
 		i=operandos->begin();
 		cout<<"Ingresar operando"<<endl;
@@ -68,9 +76,12 @@ void Cliente::enviarOperacion(){
 		while((respuesta!="S")or(respuesta!="s")or(respuesta!="n")or(respuesta!="N")){
 			cout<<"Desea ingresar otro operando? S/N"<<endl;
 			cin>>respuesta;
+			respuesta=toupper(respuesta[0]);
 		}
 		i++;
 	}
+
+	//Generacion y envio de xml
 	string xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
 	Send(xml);
 	cout<<"Mensaje enviado al Servidor"<<endl;
