@@ -10,6 +10,8 @@ ParserCliente::ParserCliente(string xml){
 }
 
 string ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
+
+
 	return "";
 }
 
