@@ -16,7 +16,7 @@ void Cliente::onDataArrival(string Data){
 
 void Cliente::enviarOperacion(){
 
-	system("cls");
+	system("clear");
 
 	string idOperacion;
 	list<string>* operandos=new list<string>();
@@ -72,7 +72,7 @@ void Cliente::enviarOperacion(){
 		operandos->insert(i,valorOperando);
 		cout<<"Desea ingresar otro operando? S/N"<<endl;
 		cin>>respuesta;
-		while((respuesta!="S")or(respuesta!="s")or(respuesta!="n")or(respuesta!="N")){
+		while((respuesta!="S")and(respuesta!="s")and(respuesta!="n")and(respuesta!="N")){
 			cout<<"Desea ingresar otro operando? S/N"<<endl;
 			cin>>respuesta;
 			respuesta=toupper(respuesta[0]);
