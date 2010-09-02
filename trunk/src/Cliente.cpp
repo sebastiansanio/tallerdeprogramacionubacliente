@@ -1,4 +1,5 @@
 #include "Cliente.h"
+#include <ctype.h>
 
 Cliente::Cliente() {
 	this->parserResultado=new ParserResultadoCliente();
@@ -25,7 +26,8 @@ void Cliente::enviarOperacion(){
 	cout<<"		M ----> Multiplicación"<<endl;
 	cout<<"		D ----> División"<<endl;
 	cin>>idOperacion;
-	while((idOperacion!="S")or(idOperacion!="R")or(idOperacion!="M")or(idOperacion!="D")or(idOperacion!="s")or(idOperacion!="r")or(idOperacion!="m")or(idOperacion!="d")){
+	idOperacion=toupper(idOperacion[0]);
+	while((idOperacion!="S")or(idOperacion!="R")or(idOperacion!="M")or(idOperacion!="D")){
 		cout<<"Ingrese una operacion valida"<<endl;
 		cin>>idOperacion;
 	}
@@ -35,10 +37,10 @@ void Cliente::enviarOperacion(){
 
 	//Ingreso de operandos
 	switch(idOperacion[0]){
-		case ('S','s'):{nombreOperando="sum";break;respuesta="S";}
-		case ('R','r'):{nombreOperando="res";break;respuesta="S";}
-		case ('M','m'):{nombreOperando="mul";break;respuesta="S";}
-		case ('D','d'):{respuesta="N";
+		case ('S'):nombreOperando="sum";respuesta="S";break;
+		case ('R'):nombreOperando="res";respuesta="S";break;
+		case ('M'):nombreOperando="mul";respuesta="S";break;
+		case ('D'):respuesta="N";
 						list<string>::iterator i;
 						i=operandos->begin();
 						cout<<"Ingrese dividendo:"<<endl;
@@ -51,7 +53,7 @@ void Cliente::enviarOperacion(){
 						operandos->insert(i,"divisor");
 						i++;
 						operandos->insert(i,valorOperando);
-						}
+						break;
 	}
 	while ((respuesta=="S")or(respuesta=="s")){
 		list<string>::iterator i;
