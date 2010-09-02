@@ -7,6 +7,7 @@ using namespace std;
 #include <SolarSockets/SolarSockets++.h>
 #include <string>
 #include <stdlib.h>
+#include <ctype.h>
 
 class Cliente : public ssPPClient
 {

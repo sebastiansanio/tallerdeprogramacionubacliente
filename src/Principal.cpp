@@ -2,15 +2,17 @@ using namespace std;
 #include <string>
 #include <stdlib.h>
 #include <SolarSockets/SolarSockets++.h>
-#include <iostream>
+#include <ctype.h>
 #include "Cliente.h"
 
 int main(){
+
 	Cliente* cliente=new Cliente();
 	string server;
 	int port;
 	bool conectado=false;
 	bool salir=false;
+
 	//Para conectarse con un servidor deseado por el usuario
 	while((!conectado)or(salir)){
 		system("cls");
@@ -24,7 +26,8 @@ int main(){
 			cout<<"Error al conectar"<<endl;
 			cout<<"Desea salir? S/N"<<endl;
 			cin>>respuesta;
-			salir=((respuesta=="S")or(respuesta=="s"));
+			respuesta=toupper(respuesta[0]);
+			salir=((respuesta=="S"));
 		}
 	}
 	bool seguir=conectado;
