@@ -3,15 +3,45 @@
 Cliente::Cliente() {
 	this->parserResultado=new ParserResultadoCliente();
 	this->parser= new ParserCliente();
+
+	//creamos el socket
+	descriptorSocket=socket(AF_INET,SOCK_STREAM,0);
+	if(descriptorSocket==-1){
+		cout<<"Mal creado socket"<<endl;
+	}
+	else{
+		cout<<"Socket bien creado"<<endl;
+	}
+
+	//info del server
+	estructuraDeDireccion.sin_family=AF_INET;//para lo de family QUE SEA LOCAL
+	estructuraDeDireccion.sin_port=htons(PORT);
+	estructuraDeDireccion.sin_addr.s_addr=INADDR_ANY;//INADDR_ANY coloca nuestra direccion IP automaticamente
+
+	for(int i=0;i<8;i++){
+			estructuraDeDireccion.sin_zero[i]=0;}
 }
 
-void Cliente::onConnect(){
-	cout<<"Conectado Correctamente"<<endl;
+void Cliente::conectar(){
+	socklen_t length=sizeof(sockaddr);
+
+	//Conectar
+	int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
+	if(valorConectar==-1){
+		cout<<"Mal conectado"<<endl;
+	}else{
+		cout<<"Conectado"<<endl;
+	}
 }
 
-void Cliente::onDataArrival(string Data){
-	cout<<"Decodificando Respuesta..."<<endl;
-	this->parserResultado->DecodificaResultado(Data);
+void Cliente::enviar(char data[]){
+	size_t leng=sizeof(char[MAXBYTES]);
+	int valorSend=send(descriptorSocket,data,leng,0);
+	if(valorSend==-1){
+		cout<<"Mal enviado"<<endl;
+	}else{
+		cout<<"Se envio info"<<endl;
+	}
 }
 
 void Cliente::enviarOperacion(){
@@ -81,8 +111,8 @@ void Cliente::enviarOperacion(){
 	}
 
 	//Generacion y envio de xml
-	string xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
-	Send(xml);
+	char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
+	enviar(xml);
 	cout<<"Mensaje enviado al Servidor"<<endl;
 }
 

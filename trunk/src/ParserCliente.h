@@ -9,7 +9,7 @@ class ParserCliente {
 public:
 	ParserCliente();
 	ParserCliente(string Xml);
-	string getXmlDeOperacion(string idOperacion, list<string>* operandos);
+	char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	virtual ~ParserCliente();
 };
 
