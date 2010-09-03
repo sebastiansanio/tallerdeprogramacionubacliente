@@ -1,23 +1,34 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
+#define PORT 5434
+#define MAXBYTES 3000000
+
 using namespace std;
 #include "ParserResultadoCliente.h"
 #include "ParserCliente.h"
-#include <SolarSockets/SolarSockets++.h>
 #include <string>
-#include <stdlib.h>
 #include <ctype.h>
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <arpa/inet.h>
 
-class Cliente : public ssPPClient
-{
+class Cliente{
 private:
 	ParserResultadoCliente* parserResultado;
 	ParserCliente* parser;
+	sockaddr_in estructuraDeDireccion;
+	int descriptorSocket;
 public:
 	Cliente();
-	virtual void onConnect();
-	virtual void onDataArrival(string Data);
+	virtual void conectar();
+	virtual void enviar(char data[]);
 	virtual void enviarOperacion();
 	virtual ~Cliente();
 };
