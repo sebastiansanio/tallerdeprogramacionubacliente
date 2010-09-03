@@ -36,7 +36,8 @@ void Cliente::conectar(){
 
 void Cliente::enviar(char data[]){
 	size_t leng=sizeof(char[MAXBYTES]);
-	int valorSend=send(descriptorSocket,data,leng,0);
+	socklen_t length=sizeof(sockaddr);
+	int valorSend=sendto(descriptorSocket,data,leng,0,(struct sockaddr*)&estructuraDeDireccion,length);
 	if(valorSend==-1){
 		cout<<"Mal enviado"<<endl;
 	}else{
