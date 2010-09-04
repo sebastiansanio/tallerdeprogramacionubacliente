@@ -7,10 +7,7 @@ Cliente::Cliente() {
 	//creamos el socket
 	descriptorSocket=socket(AF_INET,SOCK_STREAM,0);
 	if(descriptorSocket==-1){
-		cout<<"Mal creado socket"<<endl;
-	}
-	else{
-		cout<<"Socket bien creado"<<endl;
+		cout<<"Mal creado socket del cliente"<<endl;
 	}
 
 	//info del server
@@ -29,8 +26,6 @@ void Cliente::conectar(){
 	int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
 	if(valorConectar==-1){
 		cout<<"Mal conectado"<<endl;
-	}else{
-		cout<<"Conectado"<<endl;
 	}
 	fcntl(descriptorSocket, F_SETFL, O_NONBLOCK);
 }
@@ -40,9 +35,7 @@ void Cliente::enviar(char data[]){
 	socklen_t length=sizeof(sockaddr);
 	int valorSend=send(descriptorSocket,data,leng,0);
 	if(valorSend==-1){
-		cout<<"Mal enviado"<<endl;
-	}else{
-		cout<<"Se envio info"<<endl;
+		cout<<"Mal enviado al servidor"<<endl;
 	}
 }
 

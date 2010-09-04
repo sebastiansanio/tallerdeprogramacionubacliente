@@ -11,9 +11,9 @@ void prueba(Cliente* cliente){
 	cliente->enviar(data);
 	sleep(1);
 	cliente->recibir();
+	sleep(1);
 	char data2[MAXBYTES]="si llego";
 	cliente->enviar(data2);
-	cout<<"Pasa el enviar"<<endl;
 	sleep(1);
 }
 
