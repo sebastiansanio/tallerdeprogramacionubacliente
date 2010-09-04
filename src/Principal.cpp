@@ -6,9 +6,7 @@ using namespace std;
 #include "Cliente.h"
 #include <unistd.h>
 
-void prueba(){
-	Cliente* cliente= new Cliente();
-	cliente->conectar();
+void prueba(Cliente* cliente){
 	char data[MAXBYTES]="Holaaaaaaaaaaaaaaaaa vamossssssssss que andaaaa";
 	cliente->enviar(data);
 	sleep(1);
@@ -20,33 +18,10 @@ void prueba(){
 }
 
 int main(){
-
-//	Cliente* cliente=new Cliente();
-	string server;
-	int port;
-	bool conectado=true;
-	bool salir=false;
-
-//	//Para conectarse con un servidor deseado por el usuario
-//	while((!conectado)or(salir)){
-//		system("clear");
-//		string respuesta;
-//		cout<<"Ingrese servidor"<<endl;
-//		cin>>server;
-//		cout<<"Ingrese Puerto"<<endl;
-//		cin>>port;
-//		conectado=cliente->Connect(server,port);
-//		sleep(10);
-//		if(!(conectado)){
-//			cout<<"Error al conectar"<<endl;
-//			cout<<"Desea salir? S/N"<<endl;
-//			cin>>respuesta;
-//			respuesta=toupper(respuesta[0]);
-//			salir=((respuesta=="S"));
-//		}
-//	}
-	bool seguir=conectado;
-	//Si se logro conectar empieza la interacción usuario - cliente - servidor
+	Cliente* cliente= new Cliente();
+	cliente->conectar();
+	bool seguir=true;
+	//empieza la interacción usuario - cliente - servidor
 	while(seguir){
 		system("clear");
 		cout<<"Elija la opción deseada:"<<endl;
@@ -63,7 +38,7 @@ int main(){
 		switch(respuesta[0]){
 			case '1':break;
 			case '2':break;
-			case '3':prueba();break;
+			case '3':prueba(cliente);break;
 			case '0': seguir=false; break;
 		}
 	}
