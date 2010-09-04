@@ -56,6 +56,7 @@ int main(){
 	cliente->conectar();
 	char data[MAXBYTES]="Holaaaaaaaaaaaaaaaaa vamossssssssss que andaaaa";
 	cliente->enviar(data);
-	cout<<"paso el enviar"<<endl;
+	sleep(1);
+	cliente->recibir();
 	return 0;
 }

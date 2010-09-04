@@ -32,19 +32,13 @@ void Cliente::conectar(){
 	}else{
 		cout<<"Conectado"<<endl;
 	}
+	fcntl(descriptorSocket, F_SETFL, O_NONBLOCK);
 }
 
 void Cliente::enviar(char data[]){
 	size_t leng=sizeof(char[MAXBYTES]);
 	socklen_t length=sizeof(sockaddr);
 	int valorSend=send(descriptorSocket,data,leng,0);
-	ssize_t valorRecive=recv(this->descriptorSocket,&data,leng,0);
-	if(valorRecive==-1){
-		cout<<"Mal recibido"<<endl;
-	}else{
-		data[valorRecive]='\0';
-		cout<<data<<endl;
-	}
 	if(valorSend==-1){
 		cout<<"Mal enviado"<<endl;
 	}else{
@@ -123,7 +117,17 @@ void Cliente::enviarOperacion(){
 	enviar(xml);
 	cout<<"Mensaje enviado al Servidor"<<endl;
 }
-
+void Cliente::recibir(){
+	char data[MAXBYTES];
+	socklen_t leng=sizeof(data);
+	ssize_t valorRecive=recv(this->descriptorSocket,&data,leng,0);
+	if(valorRecive==-1){
+		cout<<"Mal recibido"<<endl;
+	}else{
+		data[valorRecive]='\0';
+		cout<<data<<endl;
+	}
+}
 Cliente::~Cliente() {
 	delete this->parser;
 	delete this->parserResultado;

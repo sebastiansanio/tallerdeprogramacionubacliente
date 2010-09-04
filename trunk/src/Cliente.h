@@ -18,6 +18,7 @@ using namespace std;
 #include <netdb.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 
 class Cliente{
 private:
@@ -27,9 +28,10 @@ private:
 	int descriptorSocket;
 public:
 	Cliente();
-	virtual void conectar();
-	virtual void enviar(char data[]);
-	virtual void enviarOperacion();
+	void conectar();
+	void enviar(char data[]);
+	void enviarOperacion();
+	void recibir();
 	virtual ~Cliente();
 };
 
