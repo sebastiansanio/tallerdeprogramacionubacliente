@@ -58,5 +58,8 @@ int main(){
 	cliente->enviar(data);
 	sleep(1);
 	cliente->recibir();
+	sleep(1);
+	char data2[MAXBYTES]="si llego";
+	cliente->enviar(data2);
 	return 0;
 }
