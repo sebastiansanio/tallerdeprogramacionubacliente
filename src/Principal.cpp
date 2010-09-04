@@ -6,14 +6,27 @@ using namespace std;
 #include "Cliente.h"
 #include <unistd.h>
 
+void prueba(){
+	Cliente* cliente= new Cliente();
+	cliente->conectar();
+	char data[MAXBYTES]="Holaaaaaaaaaaaaaaaaa vamossssssssss que andaaaa";
+	cliente->enviar(data);
+	sleep(1);
+	cliente->recibir();
+	char data2[MAXBYTES]="si llego";
+	cliente->enviar(data2);
+	cout<<"Pasa el enviar"<<endl;
+	sleep(1);
+}
+
 int main(){
 
 //	Cliente* cliente=new Cliente();
-//	string server;
-//	int port;
-//	bool conectado=false;
-//	bool salir=false;
-//
+	string server;
+	int port;
+	bool conectado=true;
+	bool salir=false;
+
 //	//Para conectarse con un servidor deseado por el usuario
 //	while((!conectado)or(salir)){
 //		system("clear");
@@ -32,34 +45,27 @@ int main(){
 //			salir=((respuesta=="S"));
 //		}
 //	}
-//	bool seguir=conectado;
-//	//Si se logro conectar empieza la interacción usuario - cliente - servidor
-//	while(seguir){
-//		system("clear");
-//		cout<<"Elija la opción deseada:"<<endl;
-//		cout<<"1 - Ingresar operacion"<<endl;
-//		cout<<"2 - Levantar archivo de operaciones"<<endl;
-//		cout<<"0 - Salir"<<endl;
-//		string respuesta;
-//		cin>>respuesta;
-//		while((respuesta!="1")and(respuesta!="2")and(respuesta!="0")){
-//				cout<<"Ingrese una opción valida"<<endl;
-//				cin>>respuesta;
-//		}
-//		switch(respuesta[0]){
-//			case '1':cliente->enviarOperacion(); break;
-//			case '2':break;
-//			case '0': seguir=false; break;
-//		}
-//	}
-	Cliente* cliente= new Cliente();
-	cliente->conectar();
-	char data[MAXBYTES]="Holaaaaaaaaaaaaaaaaa vamossssssssss que andaaaa";
-	cliente->enviar(data);
-	sleep(1);
-	cliente->recibir();
-	sleep(1);
-	char data2[MAXBYTES]="si llego";
-	cliente->enviar(data2);
+	bool seguir=conectado;
+	//Si se logro conectar empieza la interacción usuario - cliente - servidor
+	while(seguir){
+		system("clear");
+		cout<<"Elija la opción deseada:"<<endl;
+		cout<<"1 - Ingresar operacion"<<endl;
+		cout<<"2 - Levantar archivo de operaciones"<<endl;
+		cout<<"3 - Entrar a la prueba"<<endl;
+		cout<<"0 - Salir"<<endl;
+		string respuesta;
+		cin>>respuesta;
+		while((respuesta!="1")and(respuesta!="2")and(respuesta!="0")and(respuesta!="3")){
+				cout<<"Ingrese una opción valida"<<endl;
+				cin>>respuesta;
+		}
+		switch(respuesta[0]){
+			case '1':break;
+			case '2':break;
+			case '3':prueba();break;
+			case '0': seguir=false; break;
+		}
+	}
 	return 0;
 }

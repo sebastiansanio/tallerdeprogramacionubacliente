@@ -2,7 +2,7 @@
 #define CLIENTE_H_
 
 #define PORT 5434
-#define MAXBYTES 3000000
+#define MAXBYTES 300
 
 using namespace std;
 #include "ParserResultadoCliente.h"
