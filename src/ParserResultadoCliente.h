@@ -7,7 +7,7 @@ using namespace std;
 class ParserResultadoCliente {
 public:
 	ParserResultadoCliente();
-	void DecodificaResultado(string xml);
+	void DecodificaResultado(char* xml);
 	virtual ~ParserResultadoCliente();
 };
 

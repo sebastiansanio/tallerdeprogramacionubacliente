@@ -12,7 +12,7 @@ ParserResultadoCliente::ParserResultadoCliente() {
 
 }
 
-void ParserResultadoCliente::DecodificaResultado(string xml){}
+void ParserResultadoCliente::DecodificaResultado(char* xml){}
 
 ParserResultadoCliente::~ParserResultadoCliente() {
 	// TODO Auto-generated destructor stub
