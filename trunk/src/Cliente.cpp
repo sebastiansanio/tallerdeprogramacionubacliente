@@ -56,9 +56,10 @@ void Cliente::enviarOperacion(){
 	//Para pasar a mayuscula
 	idOperacion=toupper(idOperacion[0]);
 
-	while((idOperacion!="S")or(idOperacion!="R")or(idOperacion!="M")or(idOperacion!="D")){
+	while((idOperacion!="S")and(idOperacion!="R")and(idOperacion!="M")and(idOperacion!="D")){
 		cout<<"Ingrese una operacion valida"<<endl;
 		cin>>idOperacion;
+		idOperacion=toupper(idOperacion[0]);
 	}
 
 	string nombreOperando;
@@ -88,23 +89,19 @@ void Cliente::enviarOperacion(){
 
 	//Lectura de operandos en caso que no se haya elegido una division
 	while ((respuesta=="S")){
-		list<string>::iterator i;
-		i=operandos->begin();
 		cout<<"Ingresar operando"<<endl;
 		cin>>valorOperando;
-		operandos->insert(i,nombreOperando);
-		i++;
-		operandos->insert(i,valorOperando);
+		operandos->push_back(nombreOperando);
+		operandos->push_back(valorOperando);
 		cout<<"Desea ingresar otro operando? S/N"<<endl;
 		cin>>respuesta;
-		while((respuesta!="S")and(respuesta!="s")and(respuesta!="n")and(respuesta!="N")){
+		respuesta=toupper(respuesta[0]);
+		while((respuesta!="S")and(respuesta!="N")){
 			cout<<"Desea ingresar otro operando? S/N"<<endl;
 			cin>>respuesta;
 			respuesta=toupper(respuesta[0]);
 		}
-		i++;
 	}
-
 	//Generacion y envio de xml
 	char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
 	enviar(xml);

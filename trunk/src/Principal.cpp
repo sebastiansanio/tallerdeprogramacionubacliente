@@ -36,11 +36,12 @@ int main(){
 				cin>>respuesta;
 		}
 		switch(respuesta[0]){
-			case '1':break;
+			case '1':cliente->enviarOperacion();break;
 			case '2':break;
 			case '3':prueba(cliente);break;
 			case '0': seguir=false; break;
 		}
 	}
+	delete cliente;
 	return 0;
 }
