@@ -37,7 +37,13 @@ int main(){
 		}
 		switch(respuesta[0]){
 			case '1':cliente->enviarOperacion();break;
-			case '2':break;
+			case '2':{
+				string nombreArchivo;
+				cout<<"Ingrese el nombre del archivo"<<endl;
+				cin>>nombreArchivo;
+				cliente->enviarArchivoOperaciones(nombreArchivo);
+			}
+				break;
 			case '3':prueba(cliente);break;
 			case '0': seguir=false; break;
 		}

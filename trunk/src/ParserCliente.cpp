@@ -5,7 +5,7 @@ ParserCliente::ParserCliente() {
 
 }
 
-ParserCliente::ParserCliente(string xml){
+ParserCliente::ParserCliente(char* xml){
 
 }
 
