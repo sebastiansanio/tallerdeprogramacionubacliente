@@ -10,6 +10,7 @@ using namespace std;
 class ParserCliente {
 private:
 	ifstream* archivo;
+	bool fallido;
 public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);

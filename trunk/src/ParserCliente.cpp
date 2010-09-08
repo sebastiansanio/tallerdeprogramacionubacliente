@@ -7,10 +7,26 @@ ParserCliente::ParserCliente() {
 
 ParserCliente::ParserCliente(const char* archivoXml){
 	this->archivo = new ifstream(archivoXml);
+	string* cadena = new string;
+	if(this->archivo->good()){
+		this->fallido=false;
+	} else {
+		this->fallido=true;
+	}
+	std::getline(*(this->archivo),*cadena);
+	if((cadena->compare("<pedido>"))!=0)this->fallido=true;
+	delete cadena;
 }
 
 const char* ParserCliente::getSiguienteOperacion(){
+	if(this->fallido=true){
+		return "";
+	}
+	string cadena = new string;
 
+	if(this->fallido=true){
+			return "";
+	}
 }
 
 const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
@@ -30,4 +46,5 @@ const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* o
 
 ParserCliente::~ParserCliente() {
 	this->archivo->close();
+	delete this->archivo;
 }
