@@ -111,11 +111,11 @@ void Cliente::enviarOperacion(){
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	const char* nombreArchivoString = nombreArchivo.c_str();
 	ParserCliente* parserArchivo= new ParserCliente(nombreArchivoString);
-	const char* xml = parserArchivo->getSiguienteOperacion();
-	while(strcmp(xml,"")!=0){
-		enviar((char*)xml);
-		xml = parserArchivo->getSiguienteOperacion();
-	}
+//	const char* xml = parserArchivo->getSiguienteOperacion();
+//	while(strcmp(xml,"")!=0){
+//		enviar((char*)xml);
+//		xml = parserArchivo->getSiguienteOperacion();
+//	}
 	delete parserArchivo;
 }
 
