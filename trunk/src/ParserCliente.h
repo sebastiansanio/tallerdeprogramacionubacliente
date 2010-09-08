@@ -10,12 +10,17 @@ using namespace std;
 class ParserCliente {
 private:
 	ifstream* archivo;
+
+	ofstream* archivoerrores;
+
 	bool fallido;
+
 public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);
 	const char* getSiguienteOperacion();
 	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
+	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 };
 

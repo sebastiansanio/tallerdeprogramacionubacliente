@@ -7,6 +7,7 @@ ParserCliente::ParserCliente() {
 
 ParserCliente::ParserCliente(const char* archivoXml){
 	this->archivo = new ifstream(archivoXml);
+
 	string* cadena = new string;
 	if(this->archivo->good()){
 		this->fallido=false;
@@ -18,16 +19,19 @@ ParserCliente::ParserCliente(const char* archivoXml){
 	delete cadena;
 }
 
+
+
 const char* ParserCliente::getSiguienteOperacion(){
 	if(this->fallido=true){
 		return "";
 	}
-	string cadena = new string;
+	string* cadena = new string;
 
 	if(this->fallido=true){
 			return "";
 	}
 }
+
 
 const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
 	string* aEnviar = new string;
@@ -44,7 +48,29 @@ const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* o
 	return (aEnviar->c_str());
 }
 
+void ParserCliente::registrarError(string idOperacion, list<string>* mensajesError) {
+	(*this->archivoerrores).open("errores.err", ios::out | ios::app);
+	(*this->archivoerrores) << "<respuesta>" << endl;
+	(*this->archivoerrores) << "\t<operacion id=\"" << idOperacion << "\"/>" << endl;
+	(*this->archivoerrores) << "\t<errores>" << endl;
+	list<string>::const_iterator iterador;
+	iterador = mensajesError->begin();
+	while(iterador!=mensajesError->end()){
+		//La lista tiene primero el tipo de error y luego sigue el mensaje, pueden haber varios
+		(*this->archivoerrores) << "\t\t<error tipo=\"" << (*iterador) << "\">" << endl;
+		iterador++;
+		(*this->archivoerrores) << "\t\t" << (*iterador) << endl;
+		iterador++;
+		(*this->archivoerrores) << "\t\t</error>" << endl;
+	}
+	(*this->archivoerrores) << "\t</errores>" << endl;
+	(*this->archivoerrores) << "</respuesta>" << endl;
+
+	(*this->archivoerrores).close();
+}
+
 ParserCliente::~ParserCliente() {
 	this->archivo->close();
 	delete this->archivo;
+	delete this->archivoerrores;
 }
