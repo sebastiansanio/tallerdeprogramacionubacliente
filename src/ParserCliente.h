@@ -13,8 +13,8 @@ private:
 public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);
-	char* getSiguienteOperacion();
-	char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
+	const char* getSiguienteOperacion();
+	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	virtual ~ParserCliente();
 };
 

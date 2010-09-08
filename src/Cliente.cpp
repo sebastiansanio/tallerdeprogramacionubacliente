@@ -103,17 +103,17 @@ void Cliente::enviarOperacion(){
 		}
 	}
 	//Generacion y envio de xml
-	char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
-	enviar(xml);
+	const char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
+	enviar((char*)xml);
 	cout<<"Mensaje enviado al Servidor"<<endl;
 }
 
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	const char* nombreArchivoString = nombreArchivo.c_str();
 	ParserCliente* parserArchivo= new ParserCliente(nombreArchivoString);
-	char* xml = parserArchivo->getSiguienteOperacion();
+	const char* xml = parserArchivo->getSiguienteOperacion();
 	while(strcmp(xml,"")!=0){
-		enviar(xml);
+		enviar((char*)xml);
 		xml = parserArchivo->getSiguienteOperacion();
 	}
 	delete parserArchivo;
