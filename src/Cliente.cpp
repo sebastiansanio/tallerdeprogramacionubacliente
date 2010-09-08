@@ -107,6 +107,13 @@ void Cliente::enviarOperacion(){
 	enviar(xml);
 	cout<<"Mensaje enviado al Servidor"<<endl;
 }
+
+void Cliente::enviarArchivoOperaciones(string nombreArchivo){
+	const char* nombreArchivoString = nombreArchivo.c_str();
+	//ParserCliente parserArchivo= new ParserCliente();
+	//delete parserArchivo;
+}
+
 void Cliente::recibir(){
 	char data[MAXBYTES];
 	socklen_t leng=sizeof(data);

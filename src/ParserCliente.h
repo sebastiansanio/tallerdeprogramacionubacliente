@@ -8,7 +8,7 @@ using namespace std;
 class ParserCliente {
 public:
 	ParserCliente();
-	ParserCliente(string Xml);
+	ParserCliente(char* Xml);
 	char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	virtual ~ParserCliente();
 };
