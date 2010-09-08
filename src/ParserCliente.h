@@ -4,11 +4,16 @@
 using namespace std;
 #include <string>
 #include <list>
+#include <iostream>
+#include <fstream>
 
 class ParserCliente {
+private:
+	ifstream* archivo;
 public:
 	ParserCliente();
-	ParserCliente(char* Xml);
+	ParserCliente(const char* archivoXml);
+	char* getSiguienteOperacion();
 	char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	virtual ~ParserCliente();
 };

@@ -5,9 +5,10 @@ ParserCliente::ParserCliente() {
 
 }
 
-ParserCliente::ParserCliente(char* xml){
-
+ParserCliente::ParserCliente(const char* archivoXml){
+	this->archivo = new ifstream(archivoXml);
 }
+
 
 char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
 	char* aEnviar=new char[300];
@@ -15,5 +16,5 @@ char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operand
 }
 
 ParserCliente::~ParserCliente() {
-	// TODO Auto-generated destructor stub
+	this->archivo->close();
 }
