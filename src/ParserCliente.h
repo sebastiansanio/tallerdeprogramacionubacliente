@@ -19,7 +19,10 @@ public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);
 	const char* getSiguienteOperacion();
+	bool comprobarSintaxis();
+	bool comprobarTag(string* cadenaArchivo,string* cadenaNodo);
 	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
+	void errorSintaxis(string* cadenaArchivo,string* cadenaNodo);
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 	void construirGrafo();
