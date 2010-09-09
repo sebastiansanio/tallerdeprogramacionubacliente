@@ -6,14 +6,14 @@ using namespace std;
 #include <list>
 #include <iostream>
 #include <fstream>
+#include "Grafo.h"
 
 class ParserCliente {
 private:
 	ifstream* archivo;
-
 	ofstream* archivoerrores;
-
 	bool fallido;
+	Grafo* grafoTags;
 
 public:
 	ParserCliente();
@@ -22,6 +22,8 @@ public:
 	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
+	void construirGrafo();
+	string devolverUnPedido();
 };
 
 #endif /* PARSERCLIENTE_H_ */
