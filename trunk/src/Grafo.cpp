@@ -11,11 +11,12 @@ void Grafo::agregarNodo(Nodo* unNodo){
 Nodo* Grafo::getNodoPorClave(int clave){
 	list<Nodo*>::iterator iterador=this->nodos->begin();
 	while(iterador!=this->nodos->end()){
-		if((*iterator)->getClave==clave){
-			return *iterator;
+		if((*iterador)->getClave()==clave){
+			return *iterador;
 		}
-		iterator++;
+		iterador++;
 	}
+	return NULL;
 }
 
 Grafo::~Grafo() {

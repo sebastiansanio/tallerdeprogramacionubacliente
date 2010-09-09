@@ -1,7 +1,7 @@
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
-#define PORT 5434
+#define PORT 54340
 #define MAXBYTES 300
 
 using namespace std;
