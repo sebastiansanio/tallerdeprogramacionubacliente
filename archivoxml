@@ -1,0 +1,5 @@
+<pedido>
+	<operacion id=”idOperacion”/>
+	<parametros>
+		<parametro nombre=”X”>
+		ValorX
