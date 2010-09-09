@@ -42,14 +42,10 @@ void ParserCliente::construirGrafo(){
 }
 
 const char* ParserCliente::getSiguienteOperacion(){
-	if(this->fallido=true){
+	if(this->fallido==true){
 		return "";
 	}
 	string* cadena = new string;
-
-	if(this->fallido=true){
-			return "";
-	}
 }
 
 
