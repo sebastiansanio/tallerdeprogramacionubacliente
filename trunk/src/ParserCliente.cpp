@@ -23,28 +23,22 @@ ParserCliente::ParserCliente(const char* archivoXml){
 
 void ParserCliente::construirGrafo(){
 	this->grafoTags = new Grafo();
-	Nodo* pedido = new Nodo(0,"pedido");
-	Nodo* operacion = new Nodo(1,"operacion");
-	Nodo* parametros = new Nodo(2,"parametros");
-	Nodo* parametro = new Nodo(3,"parametro");
-	Nodo* finparametro = new Nodo(4,"/parametro");
-	Nodo* finparametros = new Nodo(5,"/parametros");
-	Nodo* finpedido = new Nodo(6,"/pedido");
-	pedido->agregarHijo(operacion);
-	operacion->agregarHijo(parametros);
-	parametros->agregarHijo(parametro);
-	parametro->agregarHijo(finparametro);
-	finparametro->agregarHijo(parametro);
-	finparametro->agregarHijo(finparametros);
-	finparametros->agregarHijo(finpedido);
-
-	this->grafoTags->agregarNodo(pedido);
-	this->grafoTags->agregarNodo(operacion);
-	this->grafoTags->agregarNodo(parametros);
-	this->grafoTags->agregarNodo(parametro);
-	this->grafoTags->agregarNodo(finparametro);
-	this->grafoTags->agregarNodo(finparametros);
-	this->grafoTags->agregarNodo(finpedido);
+	this->grafoTags->agregarNodo(new Nodo(0,"<pedido>"));
+	this->grafoTags->agregarNodo(new Nodo(1,"<operacion id=\"\"/>"));
+	this->grafoTags->agregarNodo(new Nodo(2,"<parametros>"));
+	this->grafoTags->agregarNodo(new Nodo(3,"<parametro nombre=\"\">"));
+	this->grafoTags->agregarNodo(new Nodo(4,"valor"));
+	this->grafoTags->agregarNodo(new Nodo(5,"</parametro>"));
+	this->grafoTags->agregarNodo(new Nodo(6,"</parametros>"));
+	this->grafoTags->agregarNodo(new Nodo(7,"</pedido>"));
+	this->grafoTags->agregarArista(0,1);
+	this->grafoTags->agregarArista(1,2);
+	this->grafoTags->agregarArista(2,3);
+	this->grafoTags->agregarArista(3,4);
+	this->grafoTags->agregarArista(4,5);
+	this->grafoTags->agregarArista(5,3);
+	this->grafoTags->agregarArista(5,6);
+	this->grafoTags->agregarArista(6,7);
 }
 
 const char* ParserCliente::getSiguienteOperacion(){

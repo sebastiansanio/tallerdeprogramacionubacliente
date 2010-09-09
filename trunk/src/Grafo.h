@@ -10,6 +10,7 @@ public:
 	Grafo();
 	void agregarNodo(Nodo* unNodo);
 	Nodo* getNodoPorClave(int clave);
+	bool agregarArista(int claveDesde,int claveHasta);
 	virtual ~Grafo();
 };
 

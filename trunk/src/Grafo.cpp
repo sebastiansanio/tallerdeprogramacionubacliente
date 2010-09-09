@@ -19,6 +19,16 @@ Nodo* Grafo::getNodoPorClave(int clave){
 	return NULL;
 }
 
+bool Grafo::agregarArista(int claveDesde, int claveHasta){
+	Nodo* nodoDesde = this->getNodoPorClave(claveDesde);
+	Nodo* nodoHasta = this->getNodoPorClave(claveHasta);
+	if((nodoDesde==NULL) or (nodoHasta==NULL)){
+		return false;
+	}
+	nodoDesde->agregarHijo(nodoHasta);
+	return true;
+}
+
 Grafo::~Grafo() {
 	delete this->nodos;
 }
