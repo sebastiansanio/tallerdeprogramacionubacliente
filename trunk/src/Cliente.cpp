@@ -111,19 +111,14 @@ void Cliente::enviarOperacion(){
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	const char* nombreArchivoString = nombreArchivo.c_str();
 	ParserCliente* parserArchivo= new ParserCliente(nombreArchivoString);
-
+	if((parserArchivo->comprobarSintaxis())==false){
+		cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
+	}
 	char* xml = (char*)parserArchivo->getSiguienteOperacion();
 		while(strcmp(xml,"")!=0){
 			enviar(xml);
 			xml = (char*)parserArchivo->getSiguienteOperacion();
 	}
-
-//	const char* xml = parserArchivo->getSiguienteOperacion();
-//	while(strcmp(xml,"")!=0){
-//		enviar((char*)xml);
-//		xml = parserArchivo->getSiguienteOperacion();
-//	}
-
 	delete parserArchivo;
 }
 
