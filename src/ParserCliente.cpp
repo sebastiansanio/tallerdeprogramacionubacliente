@@ -7,18 +7,67 @@ ParserCliente::ParserCliente() {
 
 ParserCliente::ParserCliente(const char* archivoXml){
 	this->archivo = new ifstream(archivoXml);
-	//this->archivo->open(archivoXml, ios::in);
-	this->construirGrafo();
-	string* cadena = new string;
 	if(this->archivo->good()){
 		this->fallido=false;
 	} else {
 		this->fallido=true;
 	}
-	std::getline(*(this->archivo),*cadena);
-	if((cadena->compare("<pedido>"))!=0)
-		this->fallido=true;
-	delete cadena;
+}
+
+bool ParserCliente::comprobarSintaxis(){
+	string* cadenaArchivo;
+	string cadenaNodo;
+	this->construirGrafo();
+	list<Nodo*>* nodosActuales = (this->grafoTags->getNodoPorClave(0))->getNodosHijos();
+	while(true){
+		std::getline(*(this->archivo),*cadenaArchivo);
+		list<Nodo*>::iterator iterador;
+		iterador = nodosActuales->begin();
+		while(iterador!=nodosActuales->end()){
+			cadenaNodo=(*iterador)->getValor();
+			if(this->comprobarTag(cadenaArchivo,&cadenaNodo)){
+				break;
+			}
+			iterador++;
+		}
+		if(iterador!=nodosActuales->end()){
+			//this->errorSintaxis(cadenaArchivo,&cadenaNodo);
+			return false;
+		}
+		//Si no llegó al final de la lista es porque encontró el tag correcto y el iterador está parado en este
+		nodosActuales = (*iterador)->getNodosHijos();
+		//Si no tiene nodos hijos es porque se recorrió todo el grafo y la sintaxis está bien
+		if(nodosActuales->empty()){
+			return true;
+		}
+	}
+}
+
+bool ParserCliente::comprobarTag(string* cadenaArchivo,string* cadenaNodo){
+	string bufferCadenaArchivo(*cadenaArchivo);
+	string bufferCadenaNodo(*cadenaNodo);
+	//saco lo que se encuentra entre los tag
+	int ini = (int)bufferCadenaArchivo.find("<");
+	int fin = (int)bufferCadenaArchivo.rfind(">");
+	bufferCadenaArchivo = bufferCadenaArchivo.substr(ini+1,fin-ini-1);
+	ini = (int)bufferCadenaNodo.find("<");
+	fin = (int)bufferCadenaNodo.rfind(">");
+	bufferCadenaNodo = bufferCadenaNodo.substr(ini+1,fin-ini-1);
+	//comparo el nombre del tag
+	int espacioArchivo = (int)bufferCadenaArchivo.find(" ");
+	int espacioNodo = (int)bufferCadenaNodo.find(" ");
+	if(bufferCadenaArchivo.compare(0,espacioArchivo,bufferCadenaNodo,0,espacioNodo)!=0){
+		return false;
+	}
+	//comparo el atributo (funciona para un solo atributo)
+	bufferCadenaArchivo = bufferCadenaArchivo.substr(0,bufferCadenaArchivo.find("="));
+	bufferCadenaNodo = bufferCadenaNodo.substr(0,bufferCadenaNodo.find("="));
+	espacioArchivo = (int)bufferCadenaArchivo.rfind(" ");
+	espacioNodo = (int)bufferCadenaNodo.rfind(" ");
+	if(bufferCadenaArchivo.compare(espacioArchivo+1,bufferCadenaArchivo.size()-espacioArchivo-1,bufferCadenaNodo,espacioNodo+1,bufferCadenaNodo.size()-espacioNodo-1)!=0){
+		return false;
+	}
+	return true;
 }
 
 void ParserCliente::construirGrafo(){
