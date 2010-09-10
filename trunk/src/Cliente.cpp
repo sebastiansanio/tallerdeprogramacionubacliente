@@ -76,14 +76,14 @@ void Cliente::enviarOperacion(){
 					i=operandos->begin();
 					cout<<"Ingrese dividendo:"<<endl;
 					cin>>valorOperando;
-					operandos->insert(i,"dividendo");
+					i=operandos->insert(i,"dividendo");
 					i++;
-					operandos->insert(i,valorOperando);
+					i=operandos->insert(i,valorOperando);
 					cout<<"Ingrese divisor:"<<endl;
 					cin>>valorOperando;
-					operandos->insert(i,"divisor");
+					i=operandos->insert(i,"divisor");
 					i++;
-					operandos->insert(i,valorOperando);
+					i=operandos->insert(i,valorOperando);
 					break;
 	}
 
