@@ -36,7 +36,7 @@ int main(){
 				cin>>respuesta;
 		}
 		switch(respuesta[0]){
-			case '1':cliente->enviarOperacion();break;
+			case '1':cliente->interactuarConUsuarioYservidor();break;
 			case '2':{
 				string nombreArchivo;
 				cout<<"Ingrese el nombre del archivo"<<endl;
