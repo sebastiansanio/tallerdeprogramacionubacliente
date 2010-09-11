@@ -31,7 +31,7 @@ public:
 	Cliente();
 	void conectar();
 	void enviar(char data[]);
-	void enviarOperacion();
+	void interactuarConUsuarioYservidor();
 	void enviarArchivoOperaciones(string nombreArchivo);
 	void recibir();
 	virtual ~Cliente();

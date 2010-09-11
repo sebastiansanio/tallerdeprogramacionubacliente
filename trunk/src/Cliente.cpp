@@ -8,6 +8,7 @@ Cliente::Cliente() {
 	descriptorSocket=socket(AF_INET,SOCK_STREAM,0);
 	if(descriptorSocket==-1){
 		cout<<"Mal creado socket del cliente"<<endl;
+		exit(0);
 	}
 
 	//info del server
@@ -26,6 +27,7 @@ void Cliente::conectar(){
 	int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
 	if(valorConectar==-1){
 		cout<<"Mal conectado"<<endl;
+		exit(0);
 	}
 	fcntl(descriptorSocket, F_SETFL, O_NONBLOCK);
 }
@@ -39,7 +41,7 @@ void Cliente::enviar(char data[]){
 	}
 }
 
-void Cliente::enviarOperacion(){
+void Cliente::interactuarConUsuarioYservidor(){
 
 	system("clear");
 
@@ -101,7 +103,13 @@ void Cliente::enviarOperacion(){
 	//Generacion y envio de xml
 	const char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
 	enviar((char*)xml);
+	system("clear");
 	cout<<"Mensaje enviado al Servidor"<<endl;
+	cout<<endl;
+	cout<<"Esperando Respuesta"<<endl;
+	sleep(3);
+	this->recibir();
+	sleep(5);
 }
 
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
