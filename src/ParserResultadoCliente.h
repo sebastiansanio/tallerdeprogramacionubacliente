@@ -3,13 +3,15 @@
 
 using namespace std;
 #include <string>
-#include <string.h>
-
+#include <fstream>
 class ParserResultadoCliente {
+private:
+	ofstream* archivoResultado;
 public:
 	ParserResultadoCliente();
 	void DecodificaResultado(char* xml);
 	virtual ~ParserResultadoCliente();
+	void registrarResultado(char* xml);
 };
 
 #endif /* PARSERRESULTADOCLIENTE_H_ */
