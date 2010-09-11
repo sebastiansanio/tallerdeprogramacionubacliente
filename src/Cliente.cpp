@@ -72,18 +72,14 @@ void Cliente::enviarOperacion(){
 		case ('R'):nombreOperando="res";respuesta="S";break;
 		case ('M'):nombreOperando="mul";respuesta="S";break;
 		case ('D'):respuesta="N";
-					list<string>::iterator i;
-					i=operandos->begin();
 					cout<<"Ingrese dividendo:"<<endl;
 					cin>>valorOperando;
-					i=operandos->insert(i,"dividendo");
-					i++;
-					i=operandos->insert(i,valorOperando);
+					operandos->push_back("dividendo");
+					operandos->push_back(valorOperando);
 					cout<<"Ingrese divisor:"<<endl;
 					cin>>valorOperando;
-					i=operandos->insert(i,"divisor");
-					i++;
-					i=operandos->insert(i,valorOperando);
+					operandos->push_back("divisor");
+					operandos->push_back(valorOperando);
 					break;
 	}
 
@@ -114,11 +110,11 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	if((parserArchivo->comprobarSintaxis())==false){
 		cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
 	}
-	char* xml = (char*)parserArchivo->getSiguienteOperacion();
-		while(strcmp(xml,"")!=0){
-			enviar(xml);
-			xml = (char*)parserArchivo->getSiguienteOperacion();
-	}
+//	char* xml = (char*)parserArchivo->getSiguienteOperacion();
+//		while(strcmp(xml,"")!=0){
+//			enviar(xml);
+//			xml = (char*)parserArchivo->getSiguienteOperacion();
+//	}
 	delete parserArchivo;
 }
 

@@ -500,6 +500,7 @@
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.238021582" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.100972061" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
+<option id="gnu.cpp.link.option.libs.739002997" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.603643194" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
