@@ -107,6 +107,7 @@ void Cliente::interactuarConUsuarioYservidor(){
 	cout<<"Mensaje enviado al Servidor"<<endl;
 	cout<<endl;
 	cout<<"Esperando Respuesta"<<endl;
+	cout<<endl;
 	sleep(3);
 	this->recibir();
 	sleep(5);
