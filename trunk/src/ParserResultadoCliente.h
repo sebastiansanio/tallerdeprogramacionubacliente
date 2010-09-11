@@ -3,6 +3,7 @@
 
 using namespace std;
 #include <string>
+#include <string.h>
 
 class ParserResultadoCliente {
 public:

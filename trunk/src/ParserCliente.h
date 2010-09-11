@@ -13,6 +13,7 @@ private:
 	ifstream* archivo;
 	ofstream* archivoerrores;
 	bool fallido;
+	bool tieneArchivo;
 	Grafo* grafoTags;
 
 public:
@@ -22,7 +23,6 @@ public:
 	bool comprobarSintaxis();
 	bool comprobarTag(string* cadenaArchivo,string* cadenaNodo);
 	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
-	void errorSintaxis(string* cadenaArchivo,string* cadenaNodo);
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 	void construirGrafo();

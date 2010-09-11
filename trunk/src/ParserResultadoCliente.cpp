@@ -12,7 +12,12 @@ ParserResultadoCliente::ParserResultadoCliente() {
 
 }
 
-void ParserResultadoCliente::DecodificaResultado(char* xml){}
+void ParserResultadoCliente::DecodificaResultado(char* xml){
+	char* tagActual = strtok(xml,"<>");
+
+
+
+}
 
 ParserResultadoCliente::~ParserResultadoCliente() {
 	// TODO Auto-generated destructor stub
