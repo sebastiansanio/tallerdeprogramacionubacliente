@@ -34,7 +34,6 @@ void Cliente::conectar(){
 
 void Cliente::enviar(char data[]){
 	size_t leng=sizeof(char[MAXBYTES]);
-	socklen_t length=sizeof(sockaddr);
 	int valorSend=send(descriptorSocket,data,leng,0);
 	if(valorSend==-1){
 		cout<<"Mal enviado al servidor"<<endl;
@@ -134,7 +133,7 @@ void Cliente::recibir(){
 		cout<<"Mal recibido"<<endl;
 	}else{
 		cout<<"Lo recibido es"<<endl;
-//		data[valorRecive]='\0';
+		data[valorRecive]='\0';
 		cout<<data<<endl;
 	}
 }
