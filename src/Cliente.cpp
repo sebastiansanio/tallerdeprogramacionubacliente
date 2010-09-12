@@ -108,7 +108,6 @@ void Cliente::interactuarConUsuarioYservidor(){
 	cout<<endl;
 	cout<<"Esperando Respuesta"<<endl;
 	cout<<endl;
-	sleep(3);
 	this->recibir();
 	sleep(5);
 }
@@ -128,13 +127,14 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 }
 
 void Cliente::recibir(){
-	char data[MAXBYTES];
-	socklen_t leng=sizeof(data);
-	ssize_t valorRecive=recv(this->descriptorSocket,&data,leng,0);
+	char* data=new char[MAXBYTES];
+	socklen_t leng=sizeof(char[MAXBYTES]);
+	ssize_t valorRecive=recv(this->descriptorSocket,data,leng,0);
 	if(valorRecive==-1){
 		cout<<"Mal recibido"<<endl;
 	}else{
-		data[valorRecive]='\0';
+		cout<<"Lo recibido es"<<endl;
+//		data[valorRecive]='\0';
 		cout<<data<<endl;
 	}
 }
