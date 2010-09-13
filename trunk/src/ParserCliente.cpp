@@ -2,6 +2,7 @@
 
 ParserCliente::ParserCliente() {
 	tieneArchivo=false;
+	tieneArchivoErrores=false;
 }
 
 ParserCliente::ParserCliente(const char* archivoXml){
@@ -11,6 +12,12 @@ ParserCliente::ParserCliente(const char* archivoXml){
 		tieneArchivo=true;
 	} else {
 		this->fallido=true;
+	}
+	this->archivoerrores = new ofstream("errores.err", ios::out | ios::app);
+	if(this->archivoerrores->good()){
+			tieneArchivoErrores=true;
+	} else {
+		tieneArchivoErrores=false;
 	}
 }
 
@@ -164,7 +171,7 @@ void ParserCliente::construirGrafo(){
 	this->grafoTags->agregarNodo(new Nodo(6,"</parametro>"));
 	this->grafoTags->agregarNodo(new Nodo(7,"</parametros>"));
 	this->grafoTags->agregarNodo(new Nodo(8,"</pedido>"));
-	this->grafoTags->agregarNodo(new Nodo(9,""));
+	this->grafoTags->agregarNodo(new Nodo(9,"eof"));
 	this->grafoTags->agregarArista(0,1);
 	this->grafoTags->agregarArista(1,2);
 	this->grafoTags->agregarArista(2,3);
@@ -202,7 +209,6 @@ const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* o
 }
 
 void ParserCliente::registrarError(string idOperacion, list<string>* mensajesError) {
-	(this->archivoerrores) = new ofstream("errores.err", ios::out | ios::app);
 	(*this->archivoerrores) << "<respuesta>" << endl;
 	(*this->archivoerrores) << "\t<operacion id=\"" << idOperacion << "\"/>" << endl;
 	(*this->archivoerrores) << "\t<errores>" << endl;
@@ -218,7 +224,6 @@ void ParserCliente::registrarError(string idOperacion, list<string>* mensajesErr
 	}
 	(*this->archivoerrores) << "\t</errores>" << endl;
 	(*this->archivoerrores) << "</respuesta>" << endl;
-	(*this->archivoerrores).close();
 }
 
 string ParserCliente::devolverUnPedido(){
@@ -249,6 +254,9 @@ ParserCliente::~ParserCliente() {
 		this->archivo->close();
 		delete this->archivo;
 	}
-	delete this->archivoerrores;
+	if(this->tieneArchivoErrores){
+		(*this->archivoerrores).close();
+		delete this->archivoerrores;
+	}
 	delete this->grafoTags;
 }

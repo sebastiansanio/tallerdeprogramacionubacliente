@@ -14,6 +14,7 @@ private:
 	ofstream* archivoerrores;
 	bool fallido;
 	bool tieneArchivo;
+	bool tieneArchivoErrores;
 	Grafo* grafoTags;
 
 public:
