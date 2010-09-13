@@ -108,7 +108,6 @@ void Cliente::interactuarConUsuarioYservidor(){
 	cout<<"Esperando Respuesta"<<endl;
 	cout<<endl;
 	this->recibir();
-	sleep(5);
 }
 
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
@@ -116,12 +115,20 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	ParserCliente* parserArchivo= new ParserCliente(nombreArchivoString);
 	if((parserArchivo->comprobarSintaxis())==false){
 		cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
+	} else {
+		char* xml = (char*)parserArchivo->getSiguienteOperacion();
+		while(strcmp(xml,"")!=0){
+			enviar(xml);
+			system("clear");
+			cout<<"Mensaje enviado al Servidor"<<endl;
+			cout<<endl;
+			cout<<"Esperando Respuesta"<<endl;
+			cout<<endl;
+			this->recibir();
+			xml = (char*)parserArchivo->getSiguienteOperacion();
+		}
 	}
-//	char* xml = (char*)parserArchivo->getSiguienteOperacion();
-//		while(strcmp(xml,"")!=0){
-//			enviar(xml);
-//			xml = (char*)parserArchivo->getSiguienteOperacion();
-//	}
+
 	delete parserArchivo;
 }
 
@@ -136,6 +143,7 @@ void Cliente::recibir(){
 		data[valorRecive]='\0';
 		cout<<data<<endl;
 	}
+	sleep(5);
 }
 Cliente::~Cliente() {
 	delete this->parser;
