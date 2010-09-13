@@ -117,6 +117,7 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	int numeroOperacion=1;
 	if((parserArchivo->comprobarSintaxis())==false){
 		cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
+		sleep(2);
 	} else {
 		char* xml = (char*)parserArchivo->getSiguienteOperacion();
 		while(strcmp(xml,"")!=0){
