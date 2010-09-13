@@ -37,6 +37,8 @@ bool ParserCliente::comprobarSintaxis(){
 		listaErrores->push_back("S");
 		listaErrores->push_back(error);
 		this->registrarError(operacionid,listaErrores);
+		cout<<error<<endl;
+		sleep(3);
 		return false;
 		}
 	this->construirGrafo();
