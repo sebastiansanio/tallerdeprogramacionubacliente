@@ -16,6 +16,7 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 
 	char* buffer = strtok(xml,"<>");
 	buffer = strtok(NULL,"<>");
+	string operacion = buffer;
 	buffer = strtok(NULL,"<>");
 	string tipo;
 	char* palabraclave;
@@ -24,17 +25,19 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 	if (strcmp(buffer, "<resultados>") == 0) {
 		tipo = "El resultado de: ";
 		palabraclave = "nombre";
-		this->registrarResultado(xml,"resultados");
+		this->registrarResultado(xml,operacion,"resultados","resultados");
 	} else {
 		tipo = "El error fue de tipo: ";
 		palabraclave = "tipo";
-		this->registrarResultado(xml,"errores.err");
+		this->registrarResultado(xml,operacion,"errores","errores.err");
 	}
+
 	/*
-	char* buffer = strtok(xml,"<>");
+	//Reinicio el buffer para imprimir por pantalla los errores o resultados
+	buffer = strtok(xml,"<>");
 	buffer = strtok(NULL,"<>");
 	buffer = strtok(NULL,"<>");
-	*/
+
 	while (buffer != NULL) {
 		if (strcmp(buffer, palabraclave) == 0) {
 			buffer = strtok(NULL, "\t <>=\"");
@@ -43,25 +46,27 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 			cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
-
 	}
-
+	*/
 }
 
-void ParserResultadoCliente::registrarResultado(char xml [], const char* archivo){
+void ParserResultadoCliente::registrarResultado(char xml [],string operacion, string tipo, const char* archivo){
 	(this->archivoResultado) = new ofstream(archivo, ios::out | ios::app);
 	string lineaActual = xml;
-	(*this->archivoResultado) << lineaActual << endl;
-	while(lineaActual != ""){
-		//Falta como pasar el xml [] al archivo de forma correcta
-		//lo que esta aca esta mal, escribe todo mal tabulado y ademas
-		//continua donde habia quedado el xml cuando lo pasan por parametro
-		//porque el strtok elimina a medida q avanza, asi que hay q tener cuidado
-		cout<<lineaActual<<endl; // CAMBIAR
-		lineaActual = strtok(NULL, "<>"); // CAMBIAR
-		*this->archivoResultado << lineaActual << endl; // CAMBIAR
-
+	*this->archivoResultado << "<respuesta>" << endl;
+	*this->archivoResultado << "\t<" << operacion << ">" << endl;
+	*this->archivoResultado << "\t\t<" << tipo << ">" << endl;
+	lineaActual = strtok(NULL, "<>\t\n");
+	while (lineaActual != "/resultados") {
+		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
+		lineaActual = strtok(NULL, "<>\t\n");
+		*this->archivoResultado << "\t\t\t" << lineaActual << endl;
+		lineaActual = strtok(NULL, "<>\t\n");
+		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
+		lineaActual = strtok(NULL, "<>\t\n");
 	}
+	*this->archivoResultado << "\t\t</" << tipo << ">" << endl;
+	*this->archivoResultado << "</respuesta>" << endl;
 	this->archivoResultado->close();
 
 }

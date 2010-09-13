@@ -15,7 +15,7 @@ public:
 	ParserResultadoCliente();
 	void DecodificaResultado(char* xml);
 	virtual ~ParserResultadoCliente();
-	void registrarResultado(char* xml, const char* archivo);
+	void registrarResultado(char xml [],string operacion, string tipo, const char* archivo);
 };
 
 #endif /* PARSERRESULTADOCLIENTE_H_ */
