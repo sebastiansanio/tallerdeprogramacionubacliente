@@ -12,6 +12,7 @@ class ParserCliente {
 private:
 	ifstream* archivo;
 	ofstream* archivoerrores;
+	string* pathArchivo;
 	bool fallido;
 	bool tieneArchivo;
 	bool tieneArchivoErrores;

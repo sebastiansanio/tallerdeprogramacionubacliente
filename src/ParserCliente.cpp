@@ -6,7 +6,8 @@ ParserCliente::ParserCliente() {
 }
 
 ParserCliente::ParserCliente(const char* archivoXml){
-	this->archivo = new ifstream(archivoXml);
+	pathArchivo = new string(archivoXml);
+	this->archivo = new ifstream(pathArchivo->c_str());
 	if(this->archivo->good()){
 		this->fallido=false;
 		tieneArchivo=true;
@@ -22,9 +23,6 @@ ParserCliente::ParserCliente(const char* archivoXml){
 }
 
 bool ParserCliente::comprobarSintaxis(){
-	if(this->fallido){
-		//ver que hacer cuando hay un error al abrir el archivo
-	}
 	string* cadenaArchivo = new string;
 	//Para el error
 	string operacionid("");
@@ -34,6 +32,13 @@ bool ParserCliente::comprobarSintaxis(){
 	int contadorLinea=0;
 	string cadenaNodo;
 	bool tagCorrecto;
+	if(this->fallido){
+		error="Hay un error al abrir el archivo";
+		listaErrores->push_back("S");
+		listaErrores->push_back(error);
+		this->registrarError(operacionid,listaErrores);
+		return false;
+		}
 	this->construirGrafo();
 	list<Nodo*>* nodosActuales = (this->grafoTags->getNodoPorClave(0))->getNodosHijos();
 	while(true){
@@ -46,6 +51,9 @@ bool ParserCliente::comprobarSintaxis(){
 			while(iterador!=nodosActuales->end()){
 				cadenaNodo=(*iterador)->getValor();
 				if(cadenaNodo.compare("eof")==0){
+					//Lo vuelvo al principio
+					this->archivo->close();
+					this->archivo->open(pathArchivo->c_str());
 					return true;
 				}
 				iterador++;
@@ -78,6 +86,9 @@ bool ParserCliente::comprobarSintaxis(){
 		//Si no llegó al final de la lista es porque encontró el tag correcto y el iterador está parado en este
 		//Si no tiene nodos hijos es porque se recorrió todo el grafo y la sintaxis está bien
 		if(nodosActuales->empty()){
+			//Lo vuelvo al principio
+			this->archivo->close();
+			this->archivo->open(pathArchivo->c_str());
 			return true;
 		}
 	}
@@ -190,6 +201,25 @@ const char* ParserCliente::getSiguienteOperacion(){
 		return "";
 	}
 	string* cadena = new string;
+	string* buffer = new string;
+	string pedidoApertura("<pedido>");
+	string pedidoCierre("</pedido>");
+	bool tagAbierto=false;
+	while(this->archivo->eof()==false){
+		std::getline(*(this->archivo),*cadena);
+		if(comprobarTag(cadena,&pedidoApertura)){
+			tagAbierto=true;
+		}
+		if(comprobarTag(cadena,&pedidoCierre)){
+					tagAbierto=false;
+					(*buffer)+=(*cadena);
+					break;
+		}
+		if(tagAbierto){
+			(*buffer)+=(*cadena)+"\n";
+		}
+	}
+	return buffer->c_str();
 }
 
 
