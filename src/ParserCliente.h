@@ -28,6 +28,7 @@ public:
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 	void construirGrafo();
+	bool huboErrorAlAbrirArchivo();
 	string devolverUnPedido();
 };
 

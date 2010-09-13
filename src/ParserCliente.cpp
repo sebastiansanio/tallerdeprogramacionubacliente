@@ -22,6 +22,10 @@ ParserCliente::ParserCliente(const char* archivoXml){
 	}
 }
 
+bool ParserCliente::huboErrorAlAbrirArchivo(){
+	return this->fallido;
+}
+
 bool ParserCliente::comprobarSintaxis(){
 	string* cadenaArchivo = new string;
 	//Para el error
@@ -37,8 +41,6 @@ bool ParserCliente::comprobarSintaxis(){
 		listaErrores->push_back("S");
 		listaErrores->push_back(error);
 		this->registrarError(operacionid,listaErrores);
-		cout<<error<<endl;
-		sleep(3);
 		return false;
 		}
 	this->construirGrafo();

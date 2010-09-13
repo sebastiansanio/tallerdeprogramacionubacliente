@@ -116,8 +116,12 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 	ParserCliente* parserArchivo= new ParserCliente(nombreArchivoString);
 	int numeroOperacion=1;
 	if((parserArchivo->comprobarSintaxis())==false){
-		cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
-		sleep(2);
+		if(parserArchivo->huboErrorAlAbrirArchivo()){
+			cout<<"Hubo un error al abrir el archivo, compuebe el nombre o dirección del mismo"<<endl;
+			sleep(2);
+		}else{
+			cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
+			sleep(2);}
 	} else {
 		char* xml = (char*)parserArchivo->getSiguienteOperacion();
 		while(strcmp(xml,"")!=0){
