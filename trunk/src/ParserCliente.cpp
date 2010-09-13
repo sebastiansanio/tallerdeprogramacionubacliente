@@ -217,7 +217,7 @@ const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* o
 }
 
 void ParserCliente::registrarError(string idOperacion, list<string>* mensajesError) {
-	(*this->archivoerrores).open("errores.err", ios::out | ios::app);
+	(this->archivoerrores) = new ofstream("errores.err", ios::out | ios::app);
 	(*this->archivoerrores) << "<respuesta>" << endl;
 	(*this->archivoerrores) << "\t<operacion id=\"" << idOperacion << "\"/>" << endl;
 	(*this->archivoerrores) << "\t<errores>" << endl;
