@@ -1,8 +1,11 @@
 <pedido>
-<operacion id=”idOperacion”/>
+<operacion id="SA"/>
 <parametros>
-<parametro nombre=”X”>
+<parametro nombre="X">
 ValorX
-<parametro>
+</parametro>
+<parametro nombre="X">
+ValorX
+</parametro>
 </parametros>
-<pedido>
+</pedido>

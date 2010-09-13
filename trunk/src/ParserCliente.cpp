@@ -31,10 +31,8 @@ bool ParserCliente::comprobarSintaxis(){
 	list<Nodo*>* nodosActuales = (this->grafoTags->getNodoPorClave(0))->getNodosHijos();
 	while(true){
 		std::getline(*(this->archivo),*cadenaArchivo);
-		//*(this->archivo)>>(*cadenaArchivo);
 		//Si termino el archivo me fijo si estoy en el eof del grafo
 		contadorLinea++;
-		cout<<contadorLinea<<endl;
 		list<Nodo*>::iterator iterador;
 		iterador = nodosActuales->begin();
 		if(this->archivo->eof()==true){
@@ -50,44 +48,31 @@ bool ParserCliente::comprobarSintaxis(){
 		tagCorrecto=false;
 		while((iterador!=nodosActuales->end()) and (!tagCorrecto)){
 			cadenaNodo=(*iterador)->getValor();
-			cout<<"pruebo cadena del nodo y el archivo"<<endl;
-			cout<<*cadenaArchivo<<endl;
-			cout<<cadenaNodo<<endl;
-			cout<<"pruebo cadena del nodo y el archivo"<<endl;
 			if(this->comprobarTag(cadenaArchivo,&cadenaNodo)){
 				tagCorrecto=true;
 			} else {
 				iterador++;
 			}
 		}
-		cout<<"tag correcto"<<endl;
-		cout<<tagCorrecto<<endl;
-		cout<<"tag correcto"<<endl;
 		if(!tagCorrecto){
 			error+=("La linea ");
 			sprintf(contador,"%d",contadorLinea);
 			error+=contador;
-			error+="muestra: ";
+			error+=" muestra: ";
 			error+=*cadenaArchivo;
 			error+=" debe mostrar: ";
 			error+=cadenaNodo;
+			listaErrores->push_back("S");
 			listaErrores->push_back(error);
 			this->registrarError(operacionid,listaErrores);
 			return false;
 		}
-		cout<<"probando cadena nodo"<<endl;
-		cout<<cadenaNodo<<endl;
-		cout<<"probando cadena nodo"<<endl;
 		nodosActuales = (*iterador)->getNodosHijos();
 		//Si no llegó al final de la lista es porque encontró el tag correcto y el iterador está parado en este
 		//Si no tiene nodos hijos es porque se recorrió todo el grafo y la sintaxis está bien
 		if(nodosActuales->empty()){
 			return true;
 		}
-		cout<<"probando cadena nodo e hijo"<<endl;
-		cout<<cadenaNodo<<endl;
-		cout<<nodosActuales->front()->getValor()<<endl;
-		cout<<"probando cadena nodo e hijo"<<endl;
 	}
 }
 
@@ -233,7 +218,6 @@ void ParserCliente::registrarError(string idOperacion, list<string>* mensajesErr
 	}
 	(*this->archivoerrores) << "\t</errores>" << endl;
 	(*this->archivoerrores) << "</respuesta>" << endl;
-
 	(*this->archivoerrores).close();
 }
 
