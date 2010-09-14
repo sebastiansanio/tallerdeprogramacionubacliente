@@ -14,40 +14,43 @@ ParserResultadoCliente::ParserResultadoCliente() {
 
 void ParserResultadoCliente::DecodificaResultado(char xml []){
 
-	char* buffer = strtok(xml,"<>");
-	buffer = strtok(NULL,"<>");
+	char xmlAux[MAXBYTES];
+	char xmlAux2[MAXBYTES];
+	for(int i=0;i<MAXBYTES;i++){xmlAux[i]=xml[i];xmlAux2[i]=xml[i];}
+	char* buffer = strtok(xml,"\n\t<>");
+	buffer = strtok(NULL,"\n\t<>");
 	string operacion = buffer;
-	buffer = strtok(NULL,"<>");
+	buffer = strtok(NULL,"\n\t<>");
 	string tipo;
 	char* palabraclave;
 
 	//Registro el resultado en el archivo correspondiente
-	if (strcmp(buffer, "<resultados>") == 0) {
-		tipo = "El resultado de: ";
+	if (strcmp(buffer, "resultados") == 0) {
+		tipo = "El resultado de ";
 		palabraclave = "nombre";
-		this->registrarResultado(xml,operacion,"resultados","resultados");
+		this->registrarResultado(xmlAux,operacion,"resultados","resultados");
 	} else {
-		tipo = "El error fue de tipo: ";
+		tipo = "El error de tipo ";
 		palabraclave = "tipo";
-		this->registrarResultado(xml,operacion,"errores","errores.err");
+		this->registrarResultado(xmlAux,operacion,"errores","errores.err");
 	}
 
-	/*
+
 	//Reinicio el buffer para imprimir por pantalla los errores o resultados
-	buffer = strtok(xml,"<>");
+	buffer = strtok(xmlAux2,"<>");
 	buffer = strtok(NULL,"<>");
 	buffer = strtok(NULL,"<>");
 
 	while (buffer != NULL) {
 		if (strcmp(buffer, palabraclave) == 0) {
 			buffer = strtok(NULL, "\t <>=\"");
-			cout << tipo << buffer << " es ";
-			buffer = strtok(NULL, "<>\t");
+			cout << tipo << buffer << " es: ";
+			buffer = strtok(NULL, ">\n\t");
 			cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
-	*/
+
 }
 
 void ParserResultadoCliente::registrarResultado(char xml [],string operacion, string tipo, const char* archivo){
@@ -57,7 +60,8 @@ void ParserResultadoCliente::registrarResultado(char xml [],string operacion, st
 	*this->archivoResultado << "\t<" << operacion << ">" << endl;
 	*this->archivoResultado << "\t\t<" << tipo << ">" << endl;
 	lineaActual = strtok(NULL, "<>\t\n");
-	while (lineaActual != "/resultados") {
+	string auxiliar="/" + tipo;
+	while (lineaActual != auxiliar) {
 		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
 		*this->archivoResultado << "\t\t\t" << lineaActual << endl;

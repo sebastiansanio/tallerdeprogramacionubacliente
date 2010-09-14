@@ -1,6 +1,9 @@
 #ifndef PARSERRESULTADOCLIENTE_H_
 #define PARSERRESULTADOCLIENTE_H_
 
+#define PORT 54340
+#define MAXBYTES 3000
+
 using namespace std;
 #include <string>
 #include <fstream>
