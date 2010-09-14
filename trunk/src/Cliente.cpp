@@ -27,7 +27,7 @@ void Cliente::conectar(){
 	int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
 	if(valorConectar==-1){
 		cout<<"Mal conectado"<<endl;
-		//exit(0);
+		exit(0);
 	}
 	fcntl(descriptorSocket, F_SETFL, O_NONBLOCK);
 }
