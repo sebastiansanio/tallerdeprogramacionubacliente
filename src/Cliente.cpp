@@ -148,9 +148,10 @@ void Cliente::recibir(){
 	if(valorRecive==-1){
 		cout<<"Mal recibido"<<endl;
 	}else{
-		cout<<"Lo recibido es"<<endl;
-		data[valorRecive]='\0';
-		cout<<data<<endl;
+//		cout<<"Lo recibido es"<<endl;
+//		data[valorRecive]='\0';
+//		cout<<data<<endl;
+		this->parserResultado->DecodificaResultado(data);
 	}
 	sleep(3);
 }
