@@ -27,11 +27,11 @@ int main(){
 		cout<<"Elija la opción deseada:"<<endl;
 		cout<<"1 - Ingresar operacion"<<endl;
 		cout<<"2 - Levantar archivo de operaciones"<<endl;
-		cout<<"3 - Entrar a la prueba"<<endl;
+		//cout<<"3 - Entrar a la prueba"<<endl;
 		cout<<"0 - Salir"<<endl;
 		string respuesta;
 		cin>>respuesta;
-		while((respuesta!="1")and(respuesta!="2")and(respuesta!="0")and(respuesta!="3")){
+		while((respuesta!="1")and(respuesta!="2")and(respuesta!="0")){
 				cout<<"Ingrese una opción valida"<<endl;
 				cin>>respuesta;
 		}
@@ -44,7 +44,7 @@ int main(){
 				cliente->enviarArchivoOperaciones(nombreArchivo);
 			}
 				break;
-			case '3':prueba(cliente);break;
+			//case '3':prueba(cliente);break;
 			case '0': seguir=false; break;
 		}
 	}
