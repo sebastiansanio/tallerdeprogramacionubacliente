@@ -51,18 +51,18 @@ void ParserResultadoCliente::registrarResultado(char xml [],string operacion, st
 	string lineaActual = xml;
 	*this->archivoResultado << "<respuesta>" << endl;
 	*this->archivoResultado << "\t<" << operacion << ">" << endl;
-	*this->archivoResultado << "\t\t<" << tipo << ">" << endl;
+	*this->archivoResultado << "\t<" << tipo << ">" << endl;
 	lineaActual = strtok(NULL, "<>\t\n");
 	string auxiliar="/" + tipo;
 	while (lineaActual != auxiliar) {
-		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
+		*this->archivoResultado << "\t\t<" << lineaActual << ">" << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
-		*this->archivoResultado << "\t\t\t" << lineaActual << endl;
+		*this->archivoResultado << "\t\t" << lineaActual << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
-		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
+		*this->archivoResultado << "\t\t<" << lineaActual << ">" << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
 	}
-	*this->archivoResultado << "\t\t</" << tipo << ">" << endl;
+	*this->archivoResultado << "\t</" << tipo << ">" << endl;
 	*this->archivoResultado << "</respuesta>" << endl;
 	this->archivoResultado->close();
 

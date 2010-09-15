@@ -1,11 +1,11 @@
 <pedido>
-<operacion id="S"/>
-<parametros>
-<parametro nombre="sum">
-2
-</parametro>
-<parametro nombre="sum">
-5
-</parametro>
-</parametros>
+	<operacion id="S"/>
+		<parametros>
+			<parametro nombre="sum">
+			2
+			</parametro>
+			<parametro nombre="sum">
+			5
+			</parametro>
+		</parametros>
 </pedido>
