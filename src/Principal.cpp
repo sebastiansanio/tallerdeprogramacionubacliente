@@ -6,17 +6,6 @@ using namespace std;
 #include "Cliente.h"
 #include <unistd.h>
 
-void prueba(Cliente* cliente){
-	char data[MAXBYTES]="Holaaaaaaaaaaaaaaaaa vamossssssssss que andaaaa";
-	cliente->enviar(data);
-	sleep(1);
-	cliente->recibir();
-	sleep(1);
-	char data2[MAXBYTES]="si llego";
-	cliente->enviar(data2);
-	sleep(1);
-}
-
 int main(){
 	Cliente* cliente= new Cliente();
 	cliente->conectar();
