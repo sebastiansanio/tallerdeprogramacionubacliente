@@ -8,6 +8,8 @@ Cliente::Cliente() {
 	descriptorSocket=socket(AF_INET,SOCK_STREAM,0);
 	if(descriptorSocket==-1){
 		cout<<"Mal creado socket del cliente"<<endl;
+		cout<<"Se cerrará la aplicación"<<endl;
+		sleep(2);
 		exit(0);
 	}
 
@@ -27,14 +29,21 @@ void Cliente::conectar(){
 	int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
 	if(valorConectar==-1){
 		cout<<"Mal conectado"<<endl;
+		cout<<"Se cerrará la aplicación"<<endl;
+		sleep(2);
 		exit(0);
 	}
-	fcntl(descriptorSocket, F_SETFL, O_NONBLOCK);
 }
 
 void Cliente::enviar(char data[]){
 	size_t leng=sizeof(char[MAXBYTES]);
 	int valorSend=send(descriptorSocket,data,leng,0);
+	if(valorSend==0){
+		cout<<"Se desconecto el servidor.."<<endl;
+		cout<<"Se cerrará la aplicación"<<endl;
+		sleep(2);
+		exit(0);
+	}
 	if(valorSend==-1){
 		cout<<"Mal enviado al servidor"<<endl;
 	}
@@ -137,7 +146,6 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 			numeroOperacion++;
 		}
 	}
-
 	delete parserArchivo;
 }
 
@@ -145,6 +153,11 @@ void Cliente::recibir(){
 	char* data=new char[MAXBYTES];
 	socklen_t leng=sizeof(char[MAXBYTES]);
 	ssize_t valorRecive=recv(this->descriptorSocket,data,leng,0);
+	if(valorRecive==0){
+		cout<<"Se desconecto el servidor.."<<endl;
+		cout<<"Se cerrará la aplicación"<<endl;
+		exit(0);
+	}
 	if(valorRecive==-1){
 		cout<<"Mal recibido"<<endl;
 	}else{
