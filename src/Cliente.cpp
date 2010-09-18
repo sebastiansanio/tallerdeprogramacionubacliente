@@ -1,4 +1,5 @@
 #include "Cliente.h"
+#include <sstream>
 
 Cliente::Cliente() {
 	this->parserResultado=new ParserResultadoCliente();
@@ -35,18 +36,28 @@ void Cliente::conectar(){
 	}
 }
 
-void Cliente::enviar(char data[]){
-	size_t leng=sizeof(char[MAXBYTES]);
-	int valorSend=send(descriptorSocket,data,leng,0);
+void Cliente::enviar(char* data){
+	ostringstream sstream;
+	sstream << data;
+	string paraVerCuantoPesa = sstream.str();
+    unsigned int valorSend;
+    valorSend = send(this->descriptorSocket, data, paraVerCuantoPesa.size(), 0);
 	if(valorSend==0){
-		cout<<"Se desconecto el servidor.."<<endl;
-		cout<<"Se cerrará la aplicación"<<endl;
-		sleep(2);
-		exit(0);
+    	cout<<"Se desconecto el servidor.."<<endl;
+    	cout<<"Se cerrará la aplicación"<<endl;
+    	sleep(2);
+    	exit(0);
 	}
-	if(valorSend==-1){
-		cout<<"Mal enviado al servidor"<<endl;
-	}
+    if (valorSend == -1) { cout<<"Mal enviado"<<endl;}
+//    memset( (void*)data,'-',paraVerCuantoPesa.size());
+    delete data;
+    char* data2=new char[3];
+	data2[0]='e';
+	data2[1]='o';
+	data2[2]='f';
+	valorSend=send(this->descriptorSocket,data2,3,0);
+//	memset( (void*)data2,'-',3);
+	delete data2;
 }
 
 void Cliente::interactuarConUsuarioYservidor(){
@@ -109,14 +120,13 @@ void Cliente::interactuarConUsuarioYservidor(){
 		}
 	}
 	//Generacion y envio de xml
-	const char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
-	enviar((char*)xml);
+	char* xml=this->parser->getXmlDeOperacion(idOperacion,operandos);
+	enviar(xml);
 	system("clear");
 	cout<<"Mensaje enviado al Servidor"<<endl;
 	cout<<endl;
 	cout<<"Esperando Respuesta de la operación"<<endl;
 	cout<<endl;
-	sleep(1);
 	this->recibir();
 }
 
@@ -132,7 +142,7 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 			cout<<"Error de sintaxis, ver archivo \"errores.err\""<<endl;
 			sleep(2);}
 	} else {
-		char* xml = (char*)parserArchivo->getSiguienteOperacion();
+		char* xml = parserArchivo->getSiguienteOperacion();
 		while(strcmp(xml,"")!=0){
 			enviar(xml);
 			system("clear");
@@ -142,7 +152,7 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 			cout<<endl;
 			sleep(1);
 			this->recibir();
-			xml = (char*)parserArchivo->getSiguienteOperacion();
+			xml = parserArchivo->getSiguienteOperacion();
 			numeroOperacion++;
 		}
 	}
@@ -150,20 +160,56 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 }
 
 void Cliente::recibir(){
-	char* data=new char[MAXBYTES];
-	socklen_t leng=sizeof(char[MAXBYTES]);
-	ssize_t valorRecive=recv(this->descriptorSocket,data,leng,0);
-	if(valorRecive==0){
-		cout<<"Se desconecto el servidor.."<<endl;
-		cout<<"Se cerrará la aplicación"<<endl;
-		exit(0);
+	char* data=new char[MAXBYTESRECIBIDOS];
+//	memset( (void*)data,'-',MAXBYTESRECIBIDOS);
+	bool seguir=true;
+	ofstream* archivoResultado = new ofstream("recibido", ios::out);
+	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
+	ssize_t valorRecive;
+	while(seguir){
+		valorRecive=recv(this->descriptorSocket,data,leng,0);
+		if(valorRecive==0){
+       		cout<<"Se desconecto el servidor.."<<endl;
+       		cout<<"Se cerrará la aplicación"<<endl;
+       		sleep(2);
+       		exit(0);
+		}
+		if(valorRecive==-1){
+			cout<<"Mal recibido"<<endl;
+		}else{
+			//corroboro que los ultimos tres formen eof
+			if((data[valorRecive-1]=='f')and(data[valorRecive-2]=='o')and(data[valorRecive-3]=='e')){
+				seguir=false;
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+//				Para sacar el eof del archivo
+				string::iterator it=lineaActual.end();
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				*archivoResultado<<lineaActual;
+//				 memset((void*)data,'-',valorRecive);
+			}else{
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+				*archivoResultado<<lineaActual;
+//				memset((void*)data,'-',valorRecive);
+				delete data;
+				data=new char[MAXBYTESRECIBIDOS];
+			}
+		}
 	}
-	if(valorRecive==-1){
-		cout<<"Mal recibido"<<endl;
-	}else{
-		this->parserResultado->DecodificaResultado(data);
-	}
-	sleep(3);
+	delete data;
+	archivoResultado->close();
+	delete archivoResultado;
+//	this->parserResultado->DecodificaResultado(dataAux);
+	sleep(2);
+
 }
 Cliente::~Cliente() {
 	delete this->parser;
