@@ -201,7 +201,7 @@ void ParserCliente::construirGrafo(){
 	this->grafoTags->agregarArista(8,9);
 }
 
-const char* ParserCliente::getSiguienteOperacion(){
+char* ParserCliente::getSiguienteOperacion(){
 	if(this->fallido==true){
 		return "";
 	}
@@ -224,23 +224,28 @@ const char* ParserCliente::getSiguienteOperacion(){
 			(*buffer)+=(*cadena)+"\n";
 		}
 	}
-	return buffer->c_str();
+	char* data=new char[buffer->size()];
+	string aux=*buffer;
+	for(unsigned int i=0;i<buffer->size();i++){data[i]=aux[i];}
+	return data;
 }
 
 
-const char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
-	string* aEnviar = new string;
-	(*aEnviar)="<pedido>\n	<operacion id=\""+idOperacion+"\"/>\n	<parametros>\n";
+char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operandos){
+	string aEnviar;
+	(aEnviar)="<pedido>\n	<operacion id=\""+idOperacion+"\"/>\n	<parametros>\n";
 	list<string>::const_iterator iterador;
 	iterador=operandos->begin();
 	while(iterador!=operandos->end()){
-		(*aEnviar)+="		<parametro nombre=\""+(*iterador)+"\">\n";
+		(aEnviar)+="		<parametro nombre=\""+(*iterador)+"\">\n";
 		iterador++;
-		(*aEnviar)+="		"+(*iterador)+"\n		</parametro>\n";
+		(aEnviar)+="		"+(*iterador)+"\n		</parametro>\n";
 		iterador++;
 	}
-	(*aEnviar)+="	</parametros>\n</pedido>";
-	return (aEnviar->c_str());
+	(aEnviar)+="	</parametros>\n</pedido>";
+	char* data=new char[aEnviar.size()];
+	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
+	return (data);
 }
 
 void ParserCliente::registrarError(string idOperacion, list<string>* mensajesError) {
