@@ -21,10 +21,10 @@ private:
 public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);
-	const char* getSiguienteOperacion();
+	char* getSiguienteOperacion();
 	bool comprobarSintaxis();
 	bool comprobarTag(string* cadenaArchivo,string* cadenaNodo);
-	const char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
+	char* getXmlDeOperacion(string idOperacion, list<string>* operandos);
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 	void construirGrafo();
