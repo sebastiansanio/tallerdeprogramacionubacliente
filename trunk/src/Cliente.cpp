@@ -49,14 +49,13 @@ void Cliente::enviar(char* data){
     	exit(0);
 	}
     if (valorSend == -1) { cout<<"Mal enviado"<<endl;}
-//    memset( (void*)data,'-',paraVerCuantoPesa.size());
     delete data;
     char* data2=new char[3];
-	data2[0]='e';
+	memset((void*)data2,'\0',3);
+    data2[0]='e';
 	data2[1]='o';
 	data2[2]='f';
 	valorSend=send(this->descriptorSocket,data2,3,0);
-//	memset( (void*)data2,'-',3);
 	delete data2;
 }
 
@@ -161,7 +160,7 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 
 void Cliente::recibir(){
 	char* data=new char[MAXBYTESRECIBIDOS];
-//	memset( (void*)data,'-',MAXBYTESRECIBIDOS);
+	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 	bool seguir=true;
 	ofstream* archivoResultado = new ofstream("recibido", ios::out);
 	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
@@ -183,6 +182,7 @@ void Cliente::recibir(){
 				ostringstream sstream;
 				sstream << data;
 				string lineaActual = sstream.str();
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 //				Para sacar el eof del archivo
 				string::iterator it=lineaActual.end();
 				it--;
@@ -192,22 +192,35 @@ void Cliente::recibir(){
 				it--;
 				it=lineaActual.erase(it);
 				*archivoResultado<<lineaActual;
-//				 memset((void*)data,'-',valorRecive);
 			}else{
 				ostringstream sstream;
 				sstream << data;
 				string lineaActual = sstream.str();
 				*archivoResultado<<lineaActual;
-//				memset((void*)data,'-',valorRecive);
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 				delete data;
 				data=new char[MAXBYTESRECIBIDOS];
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 			}
 		}
 	}
 	delete data;
 	archivoResultado->close();
 	delete archivoResultado;
-//	this->parserResultado->DecodificaResultado(dataAux);
+	string recibido;
+	string *recibidoAux=new string;
+	ifstream* archivo=new ifstream("recibido");
+	while(!archivo->eof()){
+		std::getline(*archivo,*recibidoAux);
+		recibido+=*recibidoAux;
+		recibido+="\n";
+	}
+	char* dataAux=new char[recibido.size()];
+	memset(dataAux,'\0',recibido.size());
+	for(int i=0;i<recibido.size();i++) dataAux[i]=recibido[i];
+	this->parserResultado->DecodificaResultado(dataAux);
+	delete dataAux;
+	archivo->close();
 	sleep(2);
 
 }
