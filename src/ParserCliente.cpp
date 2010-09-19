@@ -224,6 +224,7 @@ char* ParserCliente::getSiguienteOperacion(){
 			(*buffer)+=(*cadena)+"\n";
 		}
 	}
+	if(buffer->size()==0) return "";
 	char* data=new char[buffer->size()];
 	string aux=*buffer;
 	for(unsigned int i=0;i<buffer->size();i++){data[i]=aux[i];}

@@ -1,4 +1,5 @@
 #include "ParserResultadoCliente.h"
+#include <sstream>
 
 ParserResultadoCliente::ParserResultadoCliente() {
 	// TODO Auto-generated constructor stub
@@ -7,9 +8,12 @@ ParserResultadoCliente::ParserResultadoCliente() {
 
 void ParserResultadoCliente::DecodificaResultado(char xml []){
 
-	char xmlAux[MAXBYTES];
-	char xmlAux2[MAXBYTES];
-	for(int i=0;i<MAXBYTES;i++){xmlAux[i]=xml[i];xmlAux2[i]=xml[i];}
+	ostringstream sstream;
+	sstream << xml;
+	string paraVerCuantoPesa = sstream.str();
+	char xmlAux[paraVerCuantoPesa.size()];
+	char xmlAux2[paraVerCuantoPesa.size()];
+	for(unsigned int i=0;i<paraVerCuantoPesa.size();i++){xmlAux[i]=xml[i];xmlAux2[i]=xml[i];}
 	char* buffer = strtok(xml,"\n\t<>");
 	buffer = strtok(NULL,"\n\t<>");
 	string operacion = buffer;
@@ -27,8 +31,6 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 		palabraclave = "tipo";
 		this->registrarResultado(xmlAux,operacion,"errores","errores.err");
 	}
-
-
 	//Reinicio el buffer para imprimir por pantalla los errores o resultados
 	buffer = strtok(xmlAux2,"<>");
 	buffer = strtok(NULL,"<>");
@@ -51,18 +53,18 @@ void ParserResultadoCliente::registrarResultado(char xml [],string operacion, st
 	string lineaActual = xml;
 	*this->archivoResultado << "<respuesta>" << endl;
 	*this->archivoResultado << "\t<" << operacion << ">" << endl;
-	*this->archivoResultado << "\t<" << tipo << ">" << endl;
+	*this->archivoResultado << "\t\t<" << tipo << ">" << endl;
 	lineaActual = strtok(NULL, "<>\t\n");
 	string auxiliar="/" + tipo;
 	while (lineaActual != auxiliar) {
-		*this->archivoResultado << "\t\t<" << lineaActual << ">" << endl;
+		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
-		*this->archivoResultado << "\t\t" << lineaActual << endl;
+		*this->archivoResultado << "\t\t\t" << lineaActual << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
-		*this->archivoResultado << "\t\t<" << lineaActual << ">" << endl;
+		*this->archivoResultado << "\t\t\t<" << lineaActual << ">" << endl;
 		lineaActual = strtok(NULL, "<>\t\n");
 	}
-	*this->archivoResultado << "\t</" << tipo << ">" << endl;
+	*this->archivoResultado << "\t\t</" << tipo << ">" << endl;
 	*this->archivoResultado << "</respuesta>" << endl;
 	this->archivoResultado->close();
 
