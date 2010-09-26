@@ -4,6 +4,7 @@
 using namespace std;
 #include "ParserResultadoCliente.h"
 #include "ParserCliente.h"
+#include "Pantalla.h"
 #include <string>
 #include <ctype.h>
 #include <iostream>
