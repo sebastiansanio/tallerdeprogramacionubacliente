@@ -12,10 +12,10 @@ Pantalla::Pantalla() {
 	pantalla=SDL_SetVideoMode(800,600,24,SDL_SWSURFACE);
 	sleep(2);
 	if (pantalla==0 or !(comprobarPantalla())) {
-	cerr << "Error al crear ventana" << endl;
-	cerr << SDL_GetError() << endl;
-	SDL_Quit();
-	exit(1);
+		cerr << "Error al crear ventana" << endl;
+		cerr << SDL_GetError() << endl;
+		SDL_Quit();
+		exit(1);
 	}
 }
 
