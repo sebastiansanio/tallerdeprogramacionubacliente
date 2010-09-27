@@ -12,7 +12,7 @@
 #include <fstream>
 #include "Pixel.h"
 #include "SDL/SDL.h"
-
+#include "SDL/SDL_video.h"
 using namespace std;
 
 class Pantalla {
