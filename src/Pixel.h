@@ -1,10 +1,3 @@
-/*
- * Pixel.h
- *
- *  Created on: 26/09/2010
- *      Author: damian
- */
-
 #ifndef PIXEL_H_
 #define PIXEL_H_
 
@@ -13,11 +6,14 @@ private:
 	char red;
 	char green;
 	char blue;
+	unsigned long int posX,posY;
 public:
-	Pixel(char red,char green,char blue);
+	Pixel(char red,char green,char blue,unsigned long int posX, unsigned long int posY);
 	char getRed();
 	char getGreen();
 	char getBlue();
+	unsigned long int getPosX();
+	unsigned long int getPosY();
 	virtual ~Pixel();
 };
 

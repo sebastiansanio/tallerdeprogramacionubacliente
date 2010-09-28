@@ -13,6 +13,7 @@
 #include "Pixel.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_video.h"
+#include <sstream>
 using namespace std;
 
 class Pantalla {
@@ -23,6 +24,7 @@ public:
 	bool comprobarPantalla();
 	void dibujarPixel(int x, int y,Pixel* pixel);
 	void actualizarPantalla(int x, int y, int w, int h);
+	void agregarArchivo(string path);
 	virtual ~Pantalla();
 };
 
