@@ -12,12 +12,13 @@ using namespace std;
 int main(){
 	Pantalla* pantalla=new Pantalla();
 	Pixel* pixel=new Pixel(100,200,255);
-    for(float t=0;t<6.29;t=t+0.001){
-    	int x= 400+280*cos(t);
-    	int y= 300+280*sin(t);
-    	pantalla->dibujarPixel(x,y,pixel);
-    }
-	pantalla->actualizarPantalla(0,0,0,0);
+//    for(float t=0;t<6.29;t=t+0.001){
+//    	int x= 400+280*cos(t);
+//    	int y= 300+280*sin(t);
+//    	pantalla->dibujarPixel(x,y,pixel);
+//    }
+//	pantalla->actualizarPantalla(0,0,0,0);
+	pantalla->agregarArchivo("sda");
 	sleep(4);
 	delete pixel;
 	delete pantalla;

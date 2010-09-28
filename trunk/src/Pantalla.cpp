@@ -2,7 +2,7 @@
 
 Pantalla::Pantalla() {
 	SDL_Init(SDL_INIT_VIDEO);
-	pantalla=SDL_SetVideoMode(800,600,24,SDL_SWSURFACE);
+	pantalla=SDL_SetVideoMode(1200,1200,24,SDL_SWSURFACE);
 	//Cuando termina el programa se cierra el SDL
 	atexit(SDL_Quit);
 	if (pantalla==0 or !(comprobarPantalla())) {
@@ -50,6 +50,29 @@ void Pantalla::actualizarPantalla(int x, int y, int w, int h){
 	SDL_UpdateRect(pantalla, x, y, w, h);
 }
 
+void Pantalla::agregarArchivo(string path){
+	string auxiliar;
+	int x=0;
+	int y=0;
+	ifstream* archivo=new ifstream("gioco1.bmp",ios::in | ios::binary);
+//		while(!archivo->eof()){
+//			std::getline(*archivo,auxiliar);
+//			for(int i=0;i<auxiliar.size();i+=3){
+//				Pixel *pixel=new Pixel(auxiliar[i],auxiliar[i+1],auxiliar[i+2]);
+//				this->dibujarPixel(x,y,pixel);
+//				x++;
+//			}
+//			y++;
+//		}
+	char* byte;
+	while(!archivo->eof()){
+		archivo->read(byte,3);
+		Pixel * pixel=new Pixel(byte[0],byte[1],byte[2]);
+		this->dibujarPixel(x,y,pixel);
+
+	}
+	this->actualizarPantalla(0,0,0,0);
+}
 Pantalla::~Pantalla() {
 	SDL_Quit();
 }
