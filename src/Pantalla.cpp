@@ -1,20 +1,13 @@
-/*
- * Pantalla.cpp
- *
- *  Created on: 26/09/2010
- *      Author: damian
- */
-
 #include "Pantalla.h"
 
 Pantalla::Pantalla() {
 	SDL_Init(SDL_INIT_VIDEO);
 	pantalla=SDL_SetVideoMode(800,600,24,SDL_SWSURFACE);
-	sleep(2);
+	//Cuando termina el programa se cierra el SDL
+	atexit(SDL_Quit);
 	if (pantalla==0 or !(comprobarPantalla())) {
 		cerr << "Error al crear ventana" << endl;
 		cerr << SDL_GetError() << endl;
-		SDL_Quit();
 		exit(1);
 	}
 }
@@ -28,6 +21,13 @@ bool Pantalla::comprobarPantalla(){
 }
 
 void Pantalla::dibujarPixel(int x, int y, Pixel* pixel){
+	//Si hay que bloquear la pantalla la bloquea, al final de la función la desbloquea
+	if ( SDL_MUSTLOCK(pantalla) ){
+		if ( SDL_LockSurface(pantalla) < 0 ){
+			return;
+		}
+	}
+
 	// p es un puntero al pixel que vamos a pintar
 	//pitch es la cantidad de bytes que ocupa una linea de la pantalla
 	Uint8 *p = (Uint8*)pantalla->pixels + (y*pantalla->pitch) + (x*(pantalla->format->BytesPerPixel));
@@ -41,12 +41,12 @@ void Pantalla::dibujarPixel(int x, int y, Pixel* pixel){
 		p[1]=(int)pixel->getGreen();
 		p[2]=(int)pixel->getRed();
 	}
+	if ( SDL_MUSTLOCK(pantalla) ){
+		SDL_UnlockSurface(pantalla);
+	}
 }
 
 void Pantalla::actualizarPantalla(int x, int y, int w, int h){
-	if ( SDL_MUSTLOCK(pantalla)){
-		SDL_UnlockSurface(pantalla);
-	}
 	SDL_UpdateRect(pantalla, x, y, w, h);
 }
 
