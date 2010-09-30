@@ -40,7 +40,7 @@ int main(){
 					int alto=600;
 					int ancho=800;
 					Pantalla* pantalla=new Pantalla(alto,ancho);
-					BitMap* bitmap=new BitMap("/home/gaston/workspace/TpTallerDeProgramacionICliente/quilmes.bmp");
+					BitMap* bitmap=new BitMap("quilmes.bmp");
 					if(bitmap->esUnaImagenCorrecta()){
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
 					}else{
