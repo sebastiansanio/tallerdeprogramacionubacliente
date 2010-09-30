@@ -98,12 +98,17 @@ bool BitMap::resizeTo(int alto, int ancho){
 		restox=0;
 		x=0;
 		for(unsigned int j=0;j<ancho;j++){
-			matrizAuxiliar[i][j]=this->matrizDePixeles[i][x];
+			matrizAuxiliar[i][j]=this->matrizDePixeles[y][x];
 			restox+=coeficienteAncho;
 			if(restox>=1){
 				x++;
 				restox-=1;
 			}
+		}
+		restoy+=coeficienteAlto;
+		if(restoy>=1){
+			y++;
+			restoy-=1;
 		}
 	}
 	this->informacionImagen->altoEnPixels=alto;
