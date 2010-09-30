@@ -10,17 +10,6 @@ using namespace std;
 #include "BitMap.h"
 
 int main(){
-	int alto=600;
-	int ancho=800;
-	Pantalla* pantalla=new Pantalla(alto,ancho);
-	BitMap* bitmap=new BitMap("/home/gaston/workspace/TpTallerDeProgramacionICliente/gioco1.bmp");
-	if(bitmap->esUnaImagenCorrecta()){
-		pantalla->dibujarBitMap((*bitmap));
-	}else{
-		cout<<"No es una imagen corecta"<<endl;
-	}
-	sleep(10);
-	delete pantalla;
 	Cliente* cliente= new Cliente();
 	cliente->conectar();
 	bool seguir=true;
@@ -48,13 +37,18 @@ int main(){
 			}
 				break;
 			case '3':{
-//				Pantalla* pantalla = new Pantalla();
-//				Pixel* pixel = new Pixel((char)100,(char)255,(char)255);
-//				pantalla->dibujarPixel(10,10,pixel);
-//				pantalla->actualizarPantalla(10,10,10,10);
-//				sleep(2);
-//				delete pantalla;
-				break;
+					int alto=600;
+					int ancho=800;
+					Pantalla* pantalla=new Pantalla(alto,ancho);
+					BitMap* bitmap=new BitMap("/home/gaston/workspace/TpTallerDeProgramacionICliente/gioco1.bmp");
+					if(bitmap->esUnaImagenCorrecta()){
+						pantalla->dibujarBitMap((*bitmap));
+					}else{
+						cout<<"No es una imagen corecta"<<endl;
+					}
+					sleep(10);
+					delete pantalla;
+					break;
 			}
 			case '0': seguir=false; break;
 		}
