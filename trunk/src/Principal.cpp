@@ -46,7 +46,17 @@ int main(){
 					}else{
 						cout<<"No es una imagen corecta"<<endl;
 					}
-					sleep(10);
+					SDL_Event evento;
+					bool terminar=false;
+					int i=0;
+					while(!terminar){
+						while(SDL_PollEvent(&evento)) {
+							if((evento.type == SDL_QUIT)){
+								terminar=true;
+								break;
+							}
+						}
+					}
 					delete pantalla;
 					break;
 			}
