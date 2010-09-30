@@ -54,7 +54,7 @@ void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 	SDL_Color** matrizDelBitmap=bitmap.getMatrizDeImagen();
 	for(unsigned int i=0;i<bitmap.getAlto();i++){
 		for(unsigned int j=0;j<bitmap.getAncho();j++){
-			this->dibujarPixel(i + x,j + y,&matrizDelBitmap[i][j]);
+			this->dibujarPixel(j + x,i + y,&matrizDelBitmap[i][j]);
 		}
 	}
 	this->actualizarPantalla(0,0,0,0);
