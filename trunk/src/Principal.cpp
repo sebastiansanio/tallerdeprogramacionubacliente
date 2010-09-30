@@ -40,7 +40,8 @@ int main(){
 					int alto=600;
 					int ancho=800;
 					Pantalla* pantalla=new Pantalla(alto,ancho);
-					BitMap* bitmap=new BitMap("quilmes.bmp");
+					BitMap* bitmap=new BitMap("hola.bmp");
+					bitmap->resizeTo(174,362);
 					if(bitmap->esUnaImagenCorrecta()){
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
 					}else{
@@ -48,7 +49,6 @@ int main(){
 					}
 					SDL_Event evento;
 					bool terminar=false;
-					int i=0;
 					while(!terminar){
 						while(SDL_PollEvent(&evento)) {
 							if((evento.type == SDL_QUIT)){
