@@ -24,7 +24,7 @@ public:
 	bool comprobarPantalla();
 	void dibujarPixel(int x, int y,SDL_Color* color);
 	void actualizarPantalla(int x, int y, int w, int h);
-	void dibujarBitMap(BitMap bitmap);
+	void dibujarBitMapDesdePos(BitMap bitmap,int x,int y);
 	virtual ~Pantalla();
 };
 
