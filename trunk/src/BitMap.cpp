@@ -35,8 +35,39 @@ BitMap::BitMap(string path) {
 			archivo.read((char *)&(this->informacionImagen->coloresImportantes),sizeof(this->informacionImagen->coloresImportantes));
     }
     if(this->esUnaImagenCorrecta()){
-    	//guardo la informacion de en una lista de pixeles
+    	this->matrizDePixeles=new SDL_Color*[this->informacionImagen->altoEnPixels];
+    	for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+    		this->matrizDePixeles[i]=new SDL_Color[this->informacionImagen->anchoEnPixels];
+    	}
+    }
+    //Corroboro los bytes de relleno
+    int resto = this->informacionImagen->anchoEnPixels % 4;
 
+    //Paso la informacion del archivo a la matriz
+    for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+    	for(unsigned int j=0; j<this->informacionImagen->anchoEnPixels;j++){
+    		char color[3]=" ";
+    		Uint8 rojo,verde,azul;
+    		archivo.read((char*)&color,3);
+    		rojo=(Uint8)color[2];
+    		verde=(Uint8)color[1];
+    		azul=(Uint8)color[0];
+    		//Corroboro que el color no sea 0 255 0, que es lo que usamos para transparencia
+    		if((rojo==0)and(verde==255)and(azul==0)){
+    			this->matrizDePixeles[i][j].r=(Uint8)0;
+    			this->matrizDePixeles[i][j].g=(Uint8)254;
+       			this->matrizDePixeles[i][j].b=(Uint8)0;
+    		}else{
+    			this->matrizDePixeles[i][j].r=rojo;
+    			this->matrizDePixeles[i][j].g=verde;
+    			this->matrizDePixeles[i][j].b=azul;
+    		}
+    	}
+//    	//Quito los bytes de relleno
+    	for(int i=0;i<resto;i++){
+    		char bytes;
+    		archivo.read(&bytes,1);
+    	}
     }
 }
 
@@ -48,6 +79,22 @@ bool BitMap::esUnaImagenCorrecta(){
 	return ((this->seLevantoBienElArchivo())and(this->informacionImagen->profundidadColor==24)and(this->informacionImagen->bm[0]=='B')and(this->informacionImagen->bm[1]='M')and(this->informacionImagen->tamanoEstructura>0)and(this->informacionImagen->tipoCompresion==0));
 }
 
+SDL_Color** BitMap::getMatrizDeImagen(){
+	return this->matrizDePixeles;
+}
+
+bool BitMap::resizeTo(int alto, int ancho){
+	//trata de cambiar el tamaño y devuelve true si lo logro hacer correctamente
+	return true;
+}
+
+unsigned int BitMap::getAlto(){
+	return this->informacionImagen->altoEnPixels;
+}
+
+unsigned int BitMap::getAncho(){
+	return this->informacionImagen->anchoEnPixels;
+}
 BitMap::~BitMap() {
 	delete this->informacionImagen;
 	if(this->esUnaImagenCorrecta()){

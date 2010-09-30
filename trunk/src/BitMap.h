@@ -8,7 +8,9 @@ using namespace std;
 #include <stdlib.h>
 #include <stdio.h>
 #include <fstream>
-#include "Pixel.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_video.h"
+#include "BitMap.h"
 
 typedef struct {
   char bm[2];
@@ -33,13 +35,17 @@ class BitMap {
 private:
 	informacionDelBMP* informacionImagen;
 	bool seLevantoCorrectamente;
-	list<Pixel>* matrizDePixeles;
+	SDL_Color** matrizDePixeles;
 	unsigned long int bytesEnAncho,bytesEnAlto;
 
 public:
 	BitMap(string path);
+	SDL_Color** getMatrizDeImagen();
+	bool resizeTo(int alto, int ancho);
 	bool seLevantoBienElArchivo();
-	bool esUnaImagenCorrecta();//Se refiere a: es un bmp y si es de profundidad 24 bits
+	bool esUnaImagenCorrecta();//Se refiere a: es un bmp, si es de profundidad 24 bits y si no tiene ningun tipo de compresion
+	unsigned int getAncho();//lo devuelve en pixels
+	unsigned int getAlto();//lo devuelve en pixels
 	virtual ~BitMap();
 };
 
