@@ -63,7 +63,7 @@ BitMap::BitMap(string path) {
     			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
     		}
     	}
-//    	//Quito los bytes de relleno
+    	//Quito los bytes de relleno
     	for(int i=0;i<resto;i++){
     		char bytes;
     		archivo.read(&bytes,1);
@@ -84,7 +84,32 @@ SDL_Color** BitMap::getMatrizDeImagen(){
 }
 
 bool BitMap::resizeTo(int alto, int ancho){
-	//trata de cambiar el tamaño y devuelve true si lo logro hacer correctamente
+	SDL_Color** matrizAuxiliar = new SDL_Color*[alto];
+	for(unsigned int i=0;i<alto;i++){
+		matrizAuxiliar[i]=new SDL_Color[ancho];
+	}
+	float restoy=0;
+	float restox=0;
+	float coeficienteAlto=((float)this->informacionImagen->altoEnPixels)/(float)alto;
+	float coeficienteAncho=((float)this->informacionImagen->anchoEnPixels)/(float)ancho;
+	unsigned int y=0;
+	unsigned int x=0;
+	for(unsigned int i=0;i<alto;i++){
+		restox=0;
+		x=0;
+		for(unsigned int j=0;j<ancho;j++){
+			matrizAuxiliar[i][j]=this->matrizDePixeles[i][x];
+			restox+=coeficienteAncho;
+			if(restox>=1){
+				x++;
+				restox-=1;
+			}
+		}
+	}
+	this->informacionImagen->altoEnPixels=alto;
+	this->informacionImagen->anchoEnPixels=ancho;
+	delete this->matrizDePixeles;
+	this->matrizDePixeles=matrizAuxiliar;
 	return true;
 }
 
