@@ -50,11 +50,11 @@ void Pantalla::actualizarPantalla(int x, int y, int w, int h){
 	SDL_UpdateRect(pantalla, x, y, w, h);
 }
 
-void Pantalla::dibujarBitMap(BitMap bitmap){
+void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 	SDL_Color** matrizDelBitmap=bitmap.getMatrizDeImagen();
 	for(unsigned int i=0;i<bitmap.getAlto();i++){
 		for(unsigned int j=0;j<bitmap.getAncho();j++){
-			this->dibujarPixel(i,j,&matrizDelBitmap[i][j]);
+			this->dibujarPixel(i + x,j + y,&matrizDelBitmap[i][j]);
 		}
 	}
 	this->actualizarPantalla(0,0,0,0);

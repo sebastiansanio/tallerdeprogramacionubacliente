@@ -40,9 +40,9 @@ int main(){
 					int alto=600;
 					int ancho=800;
 					Pantalla* pantalla=new Pantalla(alto,ancho);
-					BitMap* bitmap=new BitMap("/home/gaston/workspace/TpTallerDeProgramacionICliente/gioco1.bmp");
+					BitMap* bitmap=new BitMap("/home/gaston/workspace/TpTallerDeProgramacionICliente/hola.bmp");
 					if(bitmap->esUnaImagenCorrecta()){
-						pantalla->dibujarBitMap((*bitmap));
+						pantalla->dibujarBitMapDesdePos((*bitmap),220,300);
 					}else{
 						cout<<"No es una imagen corecta"<<endl;
 					}
