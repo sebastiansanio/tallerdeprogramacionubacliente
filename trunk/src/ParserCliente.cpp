@@ -8,7 +8,6 @@ ParserCliente::ParserCliente() {
 ParserCliente::ParserCliente(const char* archivoXml){
 	pathArchivo = new string(archivoXml);
 	this->archivo = new ifstream(pathArchivo->c_str());
-	cout<<*pathArchivo<<endl;
 	if(this->archivo->good()){
 		this->fallido=false;
 		tieneArchivo=true;
