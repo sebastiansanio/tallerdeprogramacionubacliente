@@ -10,21 +10,21 @@
 
 #include <iostream>
 #include <fstream>
-#include "Pixel.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_video.h"
 #include <sstream>
+#include "BitMap.h"
 using namespace std;
 
 class Pantalla {
 private:
 	SDL_Surface *pantalla;
 public:
-	Pantalla();
+	Pantalla(int alto, int ancho);
 	bool comprobarPantalla();
-	void dibujarPixel(int x, int y,Pixel* pixel);
+	void dibujarPixel(int x, int y,SDL_Color* color);
 	void actualizarPantalla(int x, int y, int w, int h);
-	void agregarArchivo(string path);
+	void dibujarBitMap(BitMap bitmap);
 	virtual ~Pantalla();
 };
 
