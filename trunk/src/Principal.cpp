@@ -41,7 +41,7 @@ int main(){
 					int ancho=800;
 					Pantalla* pantalla=new Pantalla(alto,ancho);
 					BitMap* bitmap=new BitMap("hola.bmp");
-					bitmap->resizeTo(348,362);
+					bitmap->resizeTo(300,400);
 					if(bitmap->esUnaImagenCorrecta()){
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
 					}else{
