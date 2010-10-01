@@ -124,48 +124,6 @@ bool BitMap::resizeTo(int alto, int ancho){
 			y++;
 		}
 	}
-//	if((coeficienteAlto<=1)and(coeficienteAncho<=1)){
-//		for(unsigned int i=0;i<alto;i++){
-//			restox=0;
-//			x=0;
-//			for(unsigned int j=0;j<ancho;j++){
-//				matrizAuxiliar[i][j]=this->matrizDePixeles[y][x];
-//				restox+=coeficienteAncho;
-//				if(restox>=1){
-//					x++;
-//					restox-=1;
-//				}
-//			}
-//			restoy+=coeficienteAlto;
-//			if(restoy>=1){
-//				y++;
-//				restoy-=1;
-//			}
-//		}
-//	}
-//	if((coeficienteAlto>1)and(coeficienteAncho>1)){
-//		restoy=0;
-//		y=0;
-//		cout<<"hola1"<<endl;
-//		for(unsigned int i=0;i<alto;i++){
-//			restox=0;
-//			x=0;
-//			for(unsigned int j=0;j<ancho;j++){
-//				matrizAuxiliar[i][j]=this->matrizDePixeles[y][x];
-//				restox+=coeficienteAncho;
-//				while(restox>=1){
-//					restox-=1;
-//					x++;
-//				}
-//			}
-//			restoy+=coeficienteAlto;
-//			while(restoy>1){
-//				restoy-=1;
-//				y++;
-//			}
-//		}
-//	}
-
 	this->informacionImagen->altoEnPixels=alto;
 	this->informacionImagen->anchoEnPixels=ancho;
 	delete this->matrizDePixeles;
