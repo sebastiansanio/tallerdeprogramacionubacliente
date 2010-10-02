@@ -32,6 +32,7 @@ public:
 	void interactuarConUsuarioYservidor();
 	void enviarArchivoOperaciones(string nombreArchivo);
 	void recibir();
+	string recibirArchivo();//Devuelve el path donde lo guardo
 	virtual ~Cliente();
 };
 
