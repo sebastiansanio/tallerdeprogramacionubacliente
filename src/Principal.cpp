@@ -39,9 +39,15 @@ int main(){
 			case '3':{
 					int alto=600;
 					int ancho=800;
+					ParserCliente *parser=new ParserCliente();
+					string idOperacion="B";
+					list<string>* operandos=new list<string>();
+					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+					cliente->enviar(xml);
+					string path=cliente->recibirArchivo();
 					Pantalla* pantalla=new Pantalla(alto,ancho);
-					BitMap* bitmap=new BitMap("hola.bmp");
-					bitmap->resizeTo(300,400);
+					BitMap* bitmap=new BitMap(path);
+					bitmap->resizeTo(alto,ancho);
 					if(bitmap->esUnaImagenCorrecta()){
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
 					}else{

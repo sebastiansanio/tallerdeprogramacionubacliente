@@ -224,6 +224,60 @@ void Cliente::recibir(){
 	sleep(2);
 
 }
+
+string Cliente::recibirArchivo(){
+	char* data=new char[MAXBYTESRECIBIDOS];
+	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+	bool seguir=true;
+	string path="/home/gaston/workspace/TpTallerDeProgramacionICliente/pantalla.bmp";
+	ofstream* archivoResultado = new ofstream(path.c_str(), fstream::out | fstream::binary);
+	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
+	ssize_t valorRecive;
+	while(seguir){
+		valorRecive=recv(this->descriptorSocket,data,leng,0);
+		if(valorRecive==0){
+       		cout<<"Se desconecto el servidor.."<<endl;
+       		cout<<"Se cerrará la aplicación"<<endl;
+       		sleep(2);
+       		exit(0);
+		}
+		if(valorRecive==-1){
+			cout<<"Mal recibido"<<endl;
+		}else{
+			//corroboro que los ultimos tres formen eof
+			if((data[valorRecive-1]=='f')and(data[valorRecive-2]=='o')and(data[valorRecive-3]=='e')){
+				seguir=false;
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+//				Para sacar el eof del archivo
+				string::iterator it=lineaActual.end();
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				const char* final=lineaActual.c_str();
+				archivoResultado->write(data,lineaActual.size());
+			}else{
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+				archivoResultado->write(data,lineaActual.size());
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+				delete data;
+				data=new char[MAXBYTESRECIBIDOS];
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+			}
+		}
+	}
+	delete data;
+	archivoResultado->close();
+	delete archivoResultado;
+	return path;
+}
 Cliente::~Cliente() {
 	delete this->parser;
 	delete this->parserResultado;
