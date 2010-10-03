@@ -47,8 +47,10 @@ int main(){
 					string path=cliente->recibirArchivo();
 					Pantalla* pantalla=new Pantalla(alto,ancho);
 					BitMap* bitmap=new BitMap(path);
-					bitmap->resizeTo(alto,ancho);
+					bool seCreo;
 					if(bitmap->esUnaImagenCorrecta()){
+						bitmap->resizeTo(alto,ancho);
+						seCreo=true;
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
 					}else{
 						cout<<"No es una imagen corecta"<<endl;
