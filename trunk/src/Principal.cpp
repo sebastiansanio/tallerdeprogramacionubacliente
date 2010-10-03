@@ -45,25 +45,28 @@ int main(){
 					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 					cliente->enviar(xml);
 					string path=cliente->recibirArchivo();
-					Pantalla* pantalla=new Pantalla(alto,ancho);
+					Pantalla* pantalla;
 					BitMap* bitmap=new BitMap(path);
-					bitmap->resizeTo(alto,ancho);
 					if(bitmap->esUnaImagenCorrecta()){
+						pantalla=new Pantalla(alto,ancho);
+						bitmap->resizeTo(alto,ancho);
 						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
+						SDL_Event evento;
+						bool terminar=false;
+						while(!terminar){
+							while(SDL_PollEvent(&evento)) {
+								if((evento.type == SDL_QUIT)){
+									terminar=true;
+									break;
+								}
+							}
+						}
+						delete bitmap;
+						delete pantalla;
 					}else{
 						cout<<"No es una imagen corecta"<<endl;
 					}
-					SDL_Event evento;
-					bool terminar=false;
-					while(!terminar){
-						while(SDL_PollEvent(&evento)) {
-							if((evento.type == SDL_QUIT)){
-								terminar=true;
-								break;
-							}
-						}
-					}
-					delete pantalla;
+					sleep(2);
 					break;
 			}
 			case '0': seguir=false; break;

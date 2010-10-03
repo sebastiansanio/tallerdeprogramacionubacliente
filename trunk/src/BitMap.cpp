@@ -39,36 +39,37 @@ BitMap::BitMap(string path) {
 		    	for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
 		    		this->matrizDePixeles[i]=new SDL_Color[this->informacionImagen->anchoEnPixels];
 		    	}
-		    }
-		    //Corroboro los bytes de relleno
-		    int resto = this->informacionImagen->anchoEnPixels % 4;
 
-		    //Paso la informacion del archivo a la matriz
-		    for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
-		    	for(unsigned int j=0; j<this->informacionImagen->anchoEnPixels;j++){
-		    		char color[3]=" ";
-		    		Uint8 rojo,verde,azul;
-		    		archivo.read((char*)&color,3);
-		    		rojo=(Uint8)color[2];
-		    		verde=(Uint8)color[1];
-		    		azul=(Uint8)color[0];
-		    		//Corroboro que el color no sea 0 255 0, que es lo que usamos para transparencia
-		    		if((rojo==0)and(verde==255)and(azul==0)){
-		    			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=(Uint8)0;
-		    			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=(Uint8)254;
-		       			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=(Uint8)0;
-		    		}else{
-		    			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=rojo;
-		    			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=verde;
-		    			this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
-		    		}
-		    	}
-		    	//Quito los bytes de relleno
-		    	for(int i=0;i<resto;i++){
-		    		char bytes;
-		    		archivo.read(&bytes,1);
-		    	}
-		    }
+		    //Corroboro los bytes de relleno
+		    	int resto = this->informacionImagen->anchoEnPixels % 4;
+
+				//Paso la informacion del archivo a la matriz
+				for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+					for(unsigned int j=0; j<this->informacionImagen->anchoEnPixels;j++){
+						char color[3]=" ";
+						Uint8 rojo,verde,azul;
+						archivo.read((char*)&color,3);
+						rojo=(Uint8)color[2];
+						verde=(Uint8)color[1];
+						azul=(Uint8)color[0];
+						//Corroboro que el color no sea 0 255 0, que es lo que usamos para transparencia
+						if((rojo==0)and(verde==255)and(azul==0)){
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=(Uint8)0;
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=(Uint8)254;
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=(Uint8)0;
+						}else{
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=rojo;
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=verde;
+							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
+						}
+					}
+					//Quito los bytes de relleno
+					for(int i=0;i<resto;i++){
+						char bytes;
+						archivo.read(&bytes,1);
+					}
+				}
+			}
     }
 
 }
