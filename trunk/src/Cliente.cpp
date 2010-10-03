@@ -247,25 +247,13 @@ string Cliente::recibirArchivo(){
 			//corroboro que los ultimos tres formen eof
 			if((data[valorRecive-1]=='f')and(data[valorRecive-2]=='o')and(data[valorRecive-3]=='e')){
 				seguir=false;
-				ostringstream sstream;
-				sstream << data;
-				string lineaActual = sstream.str();
+				int bytes=valorRecive - 3;
+				char* final=new char[bytes];
+				for(int i=0;i<(valorRecive-3);i++) final[i]=data[i];
+				archivoResultado->write(final,bytes);
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-//				Para sacar el eof del archivo
-				string::iterator it=lineaActual.end();
-				it--;
-				it=lineaActual.erase(it);
-				it--;
-				it=lineaActual.erase(it);
-				it--;
-				it=lineaActual.erase(it);
-				const char* final=lineaActual.c_str();
-				archivoResultado->write(data,lineaActual.size());
 			}else{
-				ostringstream sstream;
-				sstream << data;
-				string lineaActual = sstream.str();
-				archivoResultado->write(data,lineaActual.size());
+				archivoResultado->write(data,valorRecive);
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 				delete data;
 				data=new char[MAXBYTESRECIBIDOS];

@@ -18,7 +18,6 @@ BitMap::BitMap(string path) {
 			//la primera parte del archivo son los datos del bitmap, los cargo en la estructura
 			archivo.read((char *)&(this->informacionImagen->bm),2);
 			archivo.read((char *)&(this->informacionImagen->tamano),sizeof(this->informacionImagen->tamano));
-			cout<<this->informacionImagen->tamano<<endl;
 			archivo.read((char *)&(this->informacionImagen->reservado),sizeof(this->informacionImagen->reservado));
 			archivo.read((char *)&(this->informacionImagen->offset),sizeof(this->informacionImagen->offset));
 			archivo.read((char *)&(this->informacionImagen->tamanoMetadatos),sizeof(this->informacionImagen->tamanoMetadatos));
