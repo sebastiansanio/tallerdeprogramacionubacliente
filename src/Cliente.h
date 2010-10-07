@@ -18,6 +18,7 @@ using namespace std;
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <string.h>
+#include <sstream>
 
 class Cliente{
 private:
@@ -27,6 +28,7 @@ private:
 	int descriptorSocket;
 public:
 	Cliente();
+	Cliente(string archivoConfig);
 	void conectar();
 	void enviar(char data[]);
 	void interactuarConUsuarioYservidor();
