@@ -26,6 +26,7 @@ private:
 	ParserCliente* parser;
 	sockaddr_in estructuraDeDireccion;
 	int descriptorSocket;
+	list<string> * jugadores;
 public:
 	Cliente();
 	Cliente(string archivoConfig);
