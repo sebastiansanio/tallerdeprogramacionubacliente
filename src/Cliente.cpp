@@ -126,6 +126,7 @@ void Cliente::interactuarConUsuarioYservidor(){
 	cout<<"Esperando Respuesta de la operación"<<endl;
 	cout<<endl;
 	this->recibir();
+	sleep(2);
 }
 
 void Cliente::enviarArchivoOperaciones(string nombreArchivo){
@@ -148,8 +149,8 @@ void Cliente::enviarArchivoOperaciones(string nombreArchivo){
 			cout<<endl;
 			cout<<"Esperando Respuesta de la operación nº: "<<numeroOperacion<<endl;
 			cout<<endl;
-			sleep(1);
 			this->recibir();
+			sleep(2);
 			xml = parserArchivo->getSiguienteOperacion();
 			numeroOperacion++;
 		}
@@ -287,16 +288,10 @@ char* Cliente::recibirRespuesta(){
 
 }
 string Cliente::recibirArchivo(string path){
-	cout<<"ajñosajnasdj"<<endl;
 	char* data=new char[MAXBYTESRECIBIDOS];
-	cout<<"a"<<endl;
 	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-	cout<<"asd"<<endl;
 	bool seguir=true;
-	cout<<"asdasdadad"<<endl;
 	ofstream* archivoResultado = new ofstream(path.c_str(), fstream::out | fstream::binary);
-	cout<<"asdaº"<<endl;
-	if(archivoResultado->good()) cout<<"abrio bien"<<endl;
 	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
 	ssize_t valorRecive;
 	while(seguir){
@@ -327,7 +322,6 @@ string Cliente::recibirArchivo(string path){
 			}
 		}
 	}
-	cout<<"casi al final"<<endl;
 	delete []data;
 	archivoResultado->close();
 	delete archivoResultado;
