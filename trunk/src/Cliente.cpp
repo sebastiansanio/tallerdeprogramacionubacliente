@@ -1,5 +1,4 @@
 #include "Cliente.h"
-#include <sstream>
 
 Cliente::Cliente() {
 	this->parserResultado=new ParserResultadoCliente();

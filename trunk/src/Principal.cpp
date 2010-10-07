@@ -1,4 +1,5 @@
 using namespace std;
+#define PATH "/home/gaston/workspace/TpTallerDeProgramacionICliente/config.ini"
 #include <string>
 #include <stdlib.h>
 #include <SolarSockets/SolarSockets++.h>
@@ -11,6 +12,7 @@ using namespace std;
 
 int main(){
 	Cliente* cliente= new Cliente();
+//	Cliente * cliente=new Cliente(PATH); IRIA ESTEEEEEEE
 	cliente->conectar();
 	bool seguir=true;
 	//empieza la interacción usuario - cliente - servidor
@@ -28,7 +30,7 @@ int main(){
 				cin>>respuesta;
 		}
 		switch(respuesta[0]){
-			case '1':cliente->interactuarConUsuarioYservidor();break;
+			case '1':{cliente->interactuarConUsuarioYservidor();break;}
 			case '2':{
 				string nombreArchivo;
 				cout<<"Ingrese el nombre del archivo"<<endl;
@@ -40,7 +42,7 @@ int main(){
 					int alto=600;
 					int ancho=800;
 					ParserCliente *parser=new ParserCliente();
-					string idOperacion="B";
+					string idOperacion="E";
 					list<string>* operandos=new list<string>();
 					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 					cliente->enviar(xml);
