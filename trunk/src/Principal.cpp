@@ -46,19 +46,13 @@ int main(){
 					ParserResultadoCliente * parserResultado=new ParserResultadoCliente();
 
 					//Pido el escenario
-					cout<<"hola"<<endl;
 					string idOperacion="E";
 					list<string>* operandos=new list<string>();
 					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-					cout<<"ba"<<endl;
 					cliente->enviar(xml);
-					cout<<"ps"<<endl;
 					string path=cliente->recibirArchivo(ruta);
-					cout<<"ba1"<<endl;
 					BitMap* escenario=new BitMap(ruta);
 					delete operandos;
-					cout<<"hola2"<<endl;
-
 /*					//Pido los jugadores
 					string idOperacion="J";
 					list<string>* operandos=new list<string>();
@@ -102,7 +96,6 @@ int main(){
 						}
 					}
 					delete pantalla;
-					delete escenario;
 					break;
 			}
 			case '0': seguir=false; break;

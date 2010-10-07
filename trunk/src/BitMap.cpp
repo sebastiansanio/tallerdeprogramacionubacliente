@@ -144,7 +144,6 @@ unsigned int BitMap::getAncho(){
 }
 BitMap::~BitMap() {
 	delete this->informacionImagen;
-	cout<<"borro"<<endl;
 	if(this->esUnaImagenCorrecta()){
 		delete this->matrizDePixeles;
 	}
