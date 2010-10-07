@@ -39,8 +39,8 @@ int main(){
 			}
 				break;
 			case '3':{
-					int alto=600;
-					int ancho=800;
+					int alto=700;
+					int ancho=1358;
 					string ruta="/home/gaston/workspace/TpTallerDeProgramacionICliente/pantalla.bmp";
 					ParserCliente *parser=new ParserCliente();
 					ParserResultadoCliente * parserResultado=new ParserResultadoCliente();
@@ -50,8 +50,7 @@ int main(){
 					list<string>* operandos=new list<string>();
 					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 					cliente->enviar(xml);
-					string path=cliente->recibirArchivo(ruta);
-					BitMap* escenario=new BitMap(ruta);
+					BitMap* escenario=new BitMap(cliente->recibirArchivo(ruta));
 					delete operandos;
 /*					//Pido los jugadores
 					string idOperacion="J";
