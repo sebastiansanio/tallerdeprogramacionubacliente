@@ -2,13 +2,13 @@ using namespace std;
 #define PATH "/home/gaston/workspace/TpTallerDeProgramacionICliente/config.ini"
 #include <string>
 #include <stdlib.h>
-#include <SolarSockets/SolarSockets++.h>
 #include <ctype.h>
 #include "Cliente.h"
 #include <unistd.h>
 #include "Pantalla.h"
 #include "math.h"
 #include "BitMap.h"
+#include "ParserResultadoCliente.h"
 
 int main(){
 	Cliente* cliente= new Cliente();
@@ -41,19 +41,53 @@ int main(){
 			case '3':{
 					int alto=600;
 					int ancho=800;
+					string ruta="/home/gaston/workspace/TpTallerDeProgramacionICliente/pantalla.bmp";
 					ParserCliente *parser=new ParserCliente();
+					ParserResultadoCliente * parserResultado=new ParserResultadoCliente();
+
+					//Pido el escenario
+					cout<<"hola"<<endl;
 					string idOperacion="E";
 					list<string>* operandos=new list<string>();
 					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+					cout<<"ba"<<endl;
 					cliente->enviar(xml);
-					string path=cliente->recibirArchivo();
+					cout<<"ps"<<endl;
+					string path=cliente->recibirArchivo(ruta);
+					cout<<"ba1"<<endl;
+					BitMap* escenario=new BitMap(ruta);
+					delete operandos;
+					cout<<"hola2"<<endl;
+
+/*					//Pido los jugadores
+					string idOperacion="J";
+					list<string>* operandos=new list<string>();
+					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+					cliente->enviar(xml);
+					char * respuesta=cliente->recibirRespuesta();
+					list<string> * jugadores=parserResultado->getJugadores(respuesta);
+
+					//Pido cartas en juego
+					string idOperacion="C";
+					list<string>* operandos=new list<string>();
+					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+					cliente->enviar(xml);
+					char * respuesta=cliente->recibirRespuesta();
+					list<string> * cartas=parserResultado->getCartas(respuesta);
+
+					//Pido el poso acumulado
+					string idOperacion="P";
+					list<string>* operandos=new list<string>();
+					char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+					cliente->enviar(xml);
+					char * respuesta=cliente->recibirRespuesta();
+					string posoAcumulado=parserResultado->getPoso(respuesta);*/
+
+					//Empiezo a mostrar
 					Pantalla* pantalla=new Pantalla(alto,ancho);
-					BitMap* bitmap=new BitMap(path);
-					bool seCreo;
-					if(bitmap->esUnaImagenCorrecta()){
-						bitmap->resizeTo(alto,ancho);
-						seCreo=true;
-						pantalla->dibujarBitMapDesdePos((*bitmap),0,0);
+					if(escenario->esUnaImagenCorrecta()){
+						escenario->resizeTo(alto,ancho);
+						pantalla->dibujarBitMapDesdePos((*escenario),0,0);
 					}else{
 						cout<<"No es una imagen corecta"<<endl;
 					}
@@ -68,6 +102,7 @@ int main(){
 						}
 					}
 					delete pantalla;
+					delete escenario;
 					break;
 			}
 			case '0': seguir=false; break;

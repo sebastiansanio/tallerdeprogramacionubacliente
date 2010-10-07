@@ -1,5 +1,4 @@
 #include "ParserResultadoCliente.h"
-#include <sstream>
 
 ParserResultadoCliente::ParserResultadoCliente() {
 	// TODO Auto-generated constructor stub
