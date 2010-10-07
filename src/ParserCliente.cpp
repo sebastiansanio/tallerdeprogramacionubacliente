@@ -290,6 +290,7 @@ string ParserCliente::devolverUnPedido(){
 
 
 ParserCliente::~ParserCliente() {
+	delete pathArchivo;
 	if(this->tieneArchivo){
 		this->archivo->close();
 		delete this->archivo;

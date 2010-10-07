@@ -69,6 +69,7 @@ BitMap::BitMap(string path) {
 						archivo.read(&bytes,1);
 					}
 				}
+				archivo.close();
 			}
     }
 
@@ -143,6 +144,7 @@ unsigned int BitMap::getAncho(){
 }
 BitMap::~BitMap() {
 	delete this->informacionImagen;
+	cout<<"borro"<<endl;
 	if(this->esUnaImagenCorrecta()){
 		delete this->matrizDePixeles;
 	}

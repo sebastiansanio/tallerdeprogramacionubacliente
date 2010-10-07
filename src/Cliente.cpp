@@ -48,14 +48,14 @@ void Cliente::enviar(char* data){
     	exit(0);
 	}
     if (valorSend == -1) { cout<<"Mal enviado"<<endl;}
-    delete data;
+    delete []data;
     char* data2=new char[3];
 	memset((void*)data2,'\0',3);
     data2[0]='e';
 	data2[1]='o';
 	data2[2]='f';
 	valorSend=send(this->descriptorSocket,data2,3,0);
-	delete data2;
+	delete []data2;
 }
 
 void Cliente::interactuarConUsuarioYservidor(){
@@ -220,16 +220,83 @@ void Cliente::recibir(){
 	this->parserResultado->DecodificaResultado(dataAux);
 	delete dataAux;
 	archivo->close();
-	sleep(2);
 
 }
-
-string Cliente::recibirArchivo(){
+char* Cliente::recibirRespuesta(){
 	char* data=new char[MAXBYTESRECIBIDOS];
 	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 	bool seguir=true;
-	string path="/home/gaston/workspace/TpTallerDeProgramacionICliente/pantalla.bmp";
+	ofstream* archivoResultado = new ofstream("recibido", ios::out);
+	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
+	ssize_t valorRecive;
+	while(seguir){
+		valorRecive=recv(this->descriptorSocket,data,leng,0);
+		if(valorRecive==0){
+       		cout<<"Se desconecto el servidor.."<<endl;
+       		cout<<"Se cerrará la aplicación"<<endl;
+       		sleep(2);
+       		exit(0);
+		}
+		if(valorRecive==-1){
+			cout<<"Mal recibido"<<endl;
+		}else{
+			//corroboro que los ultimos tres formen eof
+			if((data[valorRecive-1]=='f')and(data[valorRecive-2]=='o')and(data[valorRecive-3]=='e')){
+				seguir=false;
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+				//Para sacar el eof del archivo
+				string::iterator it=lineaActual.end();
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				it--;
+				it=lineaActual.erase(it);
+				*archivoResultado<<lineaActual;
+			}else{
+				ostringstream sstream;
+				sstream << data;
+				string lineaActual = sstream.str();
+				*archivoResultado<<lineaActual;
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+				delete data;
+				data=new char[MAXBYTESRECIBIDOS];
+				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+			}
+		}
+	}
+	delete data;
+	archivoResultado->close();
+	delete archivoResultado;
+	string recibido;
+	string *recibidoAux=new string;
+	ifstream* archivo=new ifstream("recibido");
+	while(!archivo->eof()){
+		std::getline(*archivo,*recibidoAux);
+		recibido+=*recibidoAux;
+		recibido+="\n";
+	}
+	char* dataAux=new char[recibido.size()];
+	memset(dataAux,'\0',recibido.size());
+	for(int i=0;i<recibido.size();i++) dataAux[i]=recibido[i];
+	archivo->close();
+	return dataAux;
+
+}
+string Cliente::recibirArchivo(string path){
+	cout<<"ajñosajnasdj"<<endl;
+	char* data=new char[MAXBYTESRECIBIDOS];
+	cout<<"a"<<endl;
+	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+	cout<<"asd"<<endl;
+	bool seguir=true;
+	cout<<"asdasdadad"<<endl;
 	ofstream* archivoResultado = new ofstream(path.c_str(), fstream::out | fstream::binary);
+	cout<<"asdaº"<<endl;
+	if(archivoResultado->good()) cout<<"abrio bien"<<endl;
 	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
 	ssize_t valorRecive;
 	while(seguir){
@@ -254,13 +321,14 @@ string Cliente::recibirArchivo(){
 			}else{
 				archivoResultado->write(data,valorRecive);
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-				delete data;
+				delete []data;
 				data=new char[MAXBYTESRECIBIDOS];
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 			}
 		}
 	}
-	delete data;
+	cout<<"casi al final"<<endl;
+	delete []data;
 	archivoResultado->close();
 	delete archivoResultado;
 	return path;

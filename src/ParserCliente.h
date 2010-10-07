@@ -21,6 +21,7 @@ private:
 public:
 	ParserCliente();
 	ParserCliente(const char* archivoXml);
+	char* getXmlDePedidoImagenJugador(string nombreJugador);//seria con la operacion I
 	char* getSiguienteOperacion();
 	bool comprobarSintaxis();
 	bool comprobarTag(string* cadenaArchivo,string* cadenaNodo);
