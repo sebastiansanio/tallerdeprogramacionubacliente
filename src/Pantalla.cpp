@@ -60,5 +60,4 @@ void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 	this->actualizarPantalla(0,0,0,0);
 }
 Pantalla::~Pantalla() {
-	SDL_Quit();
 }

@@ -3,9 +3,12 @@
 ParserCliente::ParserCliente() {
 	tieneArchivo=false;
 	tieneArchivoErrores=false;
+	this->seCreoPath=false;
+	this->fallido=true;
 }
 
 ParserCliente::ParserCliente(const char* archivoXml){
+	this->seCreoPath=true;
 	pathArchivo = new string(archivoXml);
 	this->archivo = new ifstream(pathArchivo->c_str());
 	if(this->archivo->good()){
@@ -290,7 +293,7 @@ string ParserCliente::devolverUnPedido(){
 
 
 ParserCliente::~ParserCliente() {
-	delete pathArchivo;
+	if(this->seCreoPath)	delete pathArchivo;
 	if(this->tieneArchivo){
 		this->archivo->close();
 		delete this->archivo;
@@ -299,5 +302,5 @@ ParserCliente::~ParserCliente() {
 		(*this->archivoerrores).close();
 		delete this->archivoerrores;
 	}
-	if(!this->fallido) delete this->grafoTags;
+//	if(!this->fallido) delete this->grafoTags;
 }

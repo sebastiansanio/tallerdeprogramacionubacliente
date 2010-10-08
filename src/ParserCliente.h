@@ -16,6 +16,7 @@ private:
 	bool fallido;
 	bool tieneArchivo;
 	bool tieneArchivoErrores;
+	bool seCreoPath;
 	Grafo* grafoTags;
 
 public:
