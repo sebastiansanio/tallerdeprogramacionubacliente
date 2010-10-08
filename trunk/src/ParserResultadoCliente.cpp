@@ -66,10 +66,9 @@ void ParserResultadoCliente::registrarResultado(char xml [],string operacion, st
 	*this->archivoResultado << "\t\t</" << tipo << ">" << endl;
 	*this->archivoResultado << "</respuesta>" << endl;
 	this->archivoResultado->close();
+	delete this->archivoResultado;
 
 }
 
 ParserResultadoCliente::~ParserResultadoCliente() {
-	// TODO Auto-generated destructor stub
-	delete this->archivoResultado;
 }
