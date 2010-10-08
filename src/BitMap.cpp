@@ -130,7 +130,11 @@ bool BitMap::resizeTo(int alto, int ancho){
 	}
 	this->informacionImagen->altoEnPixels=alto;
 	this->informacionImagen->anchoEnPixels=ancho;
-	delete this->matrizDePixeles;
+	this->matrizDePixeles=new SDL_Color*[this->informacionImagen->altoEnPixels];
+	for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+		delete []this->matrizDePixeles[i];
+	}
+	delete []this->matrizDePixeles;
 	this->matrizDePixeles=matrizAuxiliar;
 	return true;
 }
@@ -145,6 +149,9 @@ unsigned int BitMap::getAncho(){
 BitMap::~BitMap() {
 	delete this->informacionImagen;
 	if(this->esUnaImagenCorrecta()){
-		delete this->matrizDePixeles;
+		for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+			delete []this->matrizDePixeles[i];
+		}
+		delete []this->matrizDePixeles;
 	}
 }
