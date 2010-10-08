@@ -1,11 +1,21 @@
 #include "Juego.h"
 
 Juego::Juego() {
-	this->pantalla = new Pantalla(ALTO,ANCHO);
-	this->cliente = new Cliente();
-	cliente->conectar();
 	this->parser=new ParserCliente();
 	this->parserResultado=new ParserResultadoCliente();
+//	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
+//	if(parserAux->comprobarSintaxis()){
+//		char * altoYancho=parserAux->getAltoYAnchoDeConfig();
+//		this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
+		this->pantalla = new Pantalla(ALTO,ANCHO);
+//		delete []altoYancho;
+//	}
+	//	int * puertoYIP=this->parserAux->getPuertoYIP();
+//	this->cliente=new Cliente(puertoYIP[0],puertoYIP[1]);
+	this->cliente = new Cliente();
+	cliente->conectar();
+//	delete parserAux;
+//	delete puertoYIP;
 }
 
 Juego::~Juego() {
@@ -43,7 +53,7 @@ void Juego::dibujarEscenario(){
 //	delete operandos;
 //	cliente->enviar(xml);
 //	char * respuesta=cliente->recibirRespuesta();
-//	list<string> * jugadores=parserResultado->getJugadores(respuesta);
+//	jugadores=parserResultado->getJugadores(respuesta);
 //}
 //
 //void Juego::pedirCartas(){
@@ -52,7 +62,7 @@ void Juego::dibujarEscenario(){
 //	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 //	cliente->enviar(xml);
 //	char * respuesta=cliente->recibirRespuesta();
-//	list<string> * cartas=parserResultado->getCartas(respuesta);
+//	cartas=parserResultado->getCartas(respuesta);
 //}
 //
 //void Juego::pedirPoso(){
@@ -61,7 +71,7 @@ void Juego::dibujarEscenario(){
 //	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 //	cliente->enviar(xml);
 //	char * respuesta=cliente->recibirRespuesta();
-//	string posoAcumulado=parserResultado->getPoso(respuesta);
+//	posoAcumulado=parserResultado->getPoso(respuesta);
 //}
 
 

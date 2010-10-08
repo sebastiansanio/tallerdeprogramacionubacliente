@@ -16,6 +16,9 @@ private:
 	Cliente* cliente;
 	ParserCliente* parser;
 	ParserResultadoCliente* parserResultado;
+	list<string> * jugadores;//Nombre de los jugadores conectados para que los dibuje
+	list<string> * cartas;//Las que salieron, valor y palo
+	string posoAcumulado;//Poso que esta acumulado
 public:
 	Juego();
 	void dibujarEscenario();
