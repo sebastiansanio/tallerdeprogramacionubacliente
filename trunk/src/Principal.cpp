@@ -41,7 +41,7 @@ int main(){
 			case '3':{
 					int alto=700;
 					int ancho=1358;
-					string ruta="/home/gaston/workspace/TpTallerDeProgramacionICliente/pantalla.bmp";
+					string ruta="pantalla.bmp";
 					ParserCliente *parser=new ParserCliente();
 					ParserResultadoCliente * parserResultado=new ParserResultadoCliente();
 
