@@ -55,71 +55,6 @@ void Cliente::enviar(char* data){
 	delete []data2;
 }
 
-//void Cliente::recibir(){
-//	char* data=new char[MAXBYTESRECIBIDOS];
-//	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-//	bool seguir=true;
-//	ofstream* archivoResultado = new ofstream("recibido", ios::out);
-//	socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
-//	ssize_t valorRecive;
-//	while(seguir){
-//		valorRecive=recv(this->descriptorSocket,data,leng,0);
-//		if(valorRecive==0){
-//       		cout<<"Se desconecto el servidor.."<<endl;
-//       		cout<<"Se cerrará la aplicación"<<endl;
-//       		sleep(2);
-//       		exit(0);
-//		}
-//		if(valorRecive==-1){
-//			cout<<"Mal recibido"<<endl;
-//		}else{
-//			//corroboro que los ultimos tres formen eof
-//			if((data[valorRecive-1]=='f')and(data[valorRecive-2]=='o')and(data[valorRecive-3]=='e')){
-//				seguir=false;
-//				ostringstream sstream;
-//				sstream << data;
-//				string lineaActual = sstream.str();
-//				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-////				Para sacar el eof del archivo
-//				string::iterator it=lineaActual.end();
-//				it--;
-//				it=lineaActual.erase(it);
-//				it--;
-//				it=lineaActual.erase(it);
-//				it--;
-//				it=lineaActual.erase(it);
-//				*archivoResultado<<lineaActual;
-//			}else{
-//				ostringstream sstream;
-//				sstream << data;
-//				string lineaActual = sstream.str();
-//				*archivoResultado<<lineaActual;
-//				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-//				delete data;
-//				data=new char[MAXBYTESRECIBIDOS];
-//				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-//			}
-//		}
-//	}
-//	delete data;
-//	archivoResultado->close();
-//	delete archivoResultado;
-//	string recibido;
-//	string *recibidoAux=new string;
-//	ifstream* archivo=new ifstream("recibido");
-//	while(!archivo->eof()){
-//		std::getline(*archivo,*recibidoAux);
-//		recibido+=*recibidoAux;
-//		recibido+="\n";
-//	}
-//	char* dataAux=new char[recibido.size()];
-//	memset(dataAux,'\0',recibido.size());
-//	for(int i=0;i<recibido.size();i++) dataAux[i]=recibido[i];
-//	this->parserResultado->DecodificaResultado(dataAux);
-//	delete dataAux;
-//	archivo->close();
-//}
-
 char* Cliente::recibirRespuesta(){
 	char* data=new char[MAXBYTESRECIBIDOS];
 	memset((void*)data,'\0',MAXBYTESRECIBIDOS);
@@ -160,13 +95,13 @@ char* Cliente::recibirRespuesta(){
 				string lineaActual = sstream.str();
 				*archivoResultado<<lineaActual;
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
-				delete data;
+				delete []data;
 				data=new char[MAXBYTESRECIBIDOS];
 				memset((void*)data,'\0',MAXBYTESRECIBIDOS);
 			}
 		}
 	}
-	delete data;
+	delete []data;
 	archivoResultado->close();
 	delete archivoResultado;
 	string recibido;

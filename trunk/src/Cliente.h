@@ -31,7 +31,6 @@ public:
 	Cliente(string archivoConfig);
 	void conectar();
 	void enviar(char data[]);
-	void recibir();
 	char * recibirRespuesta();
 	string recibirArchivo(string path);//Devuelve el path donde lo guardo
 	virtual ~Cliente();
