@@ -22,3 +22,11 @@
 		</parametro>
 	</resultados>
 </respuesta>
+<respuesta>
+	</operacion id="S"/>
+		<resultados>
+			<resultado nombre="sum">
+			4
+			</resultado>
+		</resultados>
+</respuesta>
