@@ -44,6 +44,7 @@ bool ParserCliente::comprobarSintaxis(){
 		listaErrores->push_back("S");
 		listaErrores->push_back(error);
 		this->registrarError(operacionid,listaErrores);
+		delete cadenaArchivo;
 		return false;
 		}
 	this->construirGrafo();
@@ -61,10 +62,12 @@ bool ParserCliente::comprobarSintaxis(){
 					//Lo vuelvo al principio
 					this->archivo->close();
 					this->archivo->open(pathArchivo->c_str());
+					delete cadenaArchivo;
 					return true;
 				}
 				iterador++;
 			}
+			delete cadenaArchivo;
 			return false;
 		}
 		tagCorrecto=false;
@@ -87,6 +90,7 @@ bool ParserCliente::comprobarSintaxis(){
 			listaErrores->push_back("S");
 			listaErrores->push_back(error);
 			this->registrarError(operacionid,listaErrores);
+			delete cadenaArchivo;
 			return false;
 		}
 		nodosActuales = (*iterador)->getNodosHijos();
@@ -96,6 +100,7 @@ bool ParserCliente::comprobarSintaxis(){
 			//Lo vuelvo al principio
 			this->archivo->close();
 			this->archivo->open(pathArchivo->c_str());
+			delete cadenaArchivo;
 			return true;
 		}
 	}
@@ -230,6 +235,8 @@ char* ParserCliente::getSiguienteOperacion(){
 	char* data=new char[buffer->size()];
 	string aux=*buffer;
 	for(unsigned int i=0;i<buffer->size();i++){data[i]=aux[i];}
+	delete cadena;
+	delete buffer;
 	return data;
 }
 
@@ -287,6 +294,7 @@ string ParserCliente::devolverUnPedido(){
 
 		pedidoCompleto  += (string)(lineaActual);
 	}
+
 	return pedidoCompleto;
 }
 
