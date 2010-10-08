@@ -2,9 +2,6 @@
 #define CLIENTE_H_
 
 using namespace std;
-#include "ParserResultadoCliente.h"
-#include "ParserCliente.h"
-#include "Pantalla.h"
 #include <string>
 #include <ctype.h>
 #include <iostream>
@@ -19,21 +16,21 @@ using namespace std;
 #include <fcntl.h>
 #include <string.h>
 #include <sstream>
+#include <string>
+#include <fstream>
+#include <ctype.h>
+#include <list>
+#include "ParserResultadoCliente.h"
 
 class Cliente{
 private:
-	ParserResultadoCliente* parserResultado;
-	ParserCliente* parser;
 	sockaddr_in estructuraDeDireccion;
 	int descriptorSocket;
-	list<string> * jugadores;
 public:
 	Cliente();
 	Cliente(string archivoConfig);
 	void conectar();
 	void enviar(char data[]);
-	void interactuarConUsuarioYservidor();
-	void enviarArchivoOperaciones(string nombreArchivo);
 	void recibir();
 	char * recibirRespuesta();
 	string recibirArchivo(string path);//Devuelve el path donde lo guardo

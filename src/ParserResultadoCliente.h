@@ -1,11 +1,10 @@
 #ifndef PARSERRESULTADOCLIENTE_H_
 #define PARSERRESULTADOCLIENTE_H_
 
+using namespace std;
 #define PORT 54340
 #define MAXBYTES 60000
 #define MAXBYTESRECIBIDOS 60000
-
-using namespace std;
 #include <string>
 #include <fstream>
 #include <string.h>
@@ -15,6 +14,7 @@ using namespace std;
 #include <stdlib.h>
 #include <ctype.h>
 #include <list>
+#include "Grafo.h"
 
 
 class ParserResultadoCliente {
