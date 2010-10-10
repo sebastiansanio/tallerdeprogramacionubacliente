@@ -47,6 +47,9 @@ bool ParserCliente::comprobarSintaxis(){
 		delete cadenaArchivo;
 		return false;
 		}
+	else {
+		cout << "soy feliz" << endl;
+	}
 	this->construirGrafo();
 	list<Nodo*>* nodosActuales = (this->grafoTags->getNodoPorClave(0))->getNodosHijos();
 	while(true){
@@ -276,28 +279,74 @@ void ParserCliente::registrarError(string idOperacion, list<string>* mensajesErr
 	(*this->archivoerrores) << "</respuesta>" << endl;
 }
 
-string ParserCliente::devolverUnPedido(){
-	char* lineaActual = new char;
-	string pedidoCompleto = "";
-	char* buffer;
-	list<string>* errores = new list<string>();
-	int numerofinpedido = 6;
-	int numerolinea;
-	Nodo* nodoAnterior = this->grafoTags->getNodoPorClave(0);
-	Nodo* nodoActual = nodoAnterior;
-	//Verifico si quedan lineas en el archivo y si se termino el pedido
-	while(((*this->archivo) >> (lineaActual)) && (nodoActual->getClave()!= numerofinpedido)){
-		//Aca va la logica con el grafo y las lineas del archivo
-		//Es como lo que esta en el ParserServidor
-		//buffer = strtok(lineaActual,"< >");
+int* ParserCliente::getAltoYAnchoDeConfig(){
+	string* cadenaArchivo = new string;
+	string xml = "";
+	while(this->archivo->eof()==false){
 
-
-		pedidoCompleto  += (string)(lineaActual);
+		std::getline(*(this->archivo),*cadenaArchivo);
+		xml += *cadenaArchivo;
 	}
-
-	return pedidoCompleto;
+	delete cadenaArchivo;
+	char* xmlAux = new char[xml.size()];
+	for(unsigned int i=0;i<xml.size();i++){xmlAux[i]=xml[i];}
+	char* buffer = strtok(xmlAux,"\n\t<>");
+	buffer = strtok(NULL, "<>");
+	buffer = strtok(NULL, "<>");
+	int* altoYancho = new int[2];
+	while (buffer != NULL) {
+		if (strcmp(buffer, "nombre") == 0) {
+			buffer = strtok(NULL, "\t <>=\"");
+			if(strcmp(buffer, "alto") == 0){
+				buffer = strtok(NULL, ">\n\t");
+				altoYancho[0] = atoi(buffer);
+			}
+			else if(strcmp(buffer,"ancho") == 0){
+				buffer = strtok(NULL, ">\n\t");
+				altoYancho[1] = atoi(buffer);
+			}
+			buffer = strtok(NULL, ">\n\t");
+			//cout << buffer << endl;
+		}
+		buffer = strtok(NULL, " \t<>=");
+	}
+	return altoYancho;
 }
+int* ParserCliente::getPuertoYIP(){
+	string* cadenaArchivo = new string;
+	string xml = "";
+	while (this->archivo->eof() == false) {
 
+		std::getline(*(this->archivo), *cadenaArchivo);
+		xml += *cadenaArchivo;
+	}
+	delete cadenaArchivo;
+	char* xmlAux = new char[xml.size()];
+	for (unsigned int i = 0; i < xml.size(); i++) {
+		xmlAux[i] = xml[i];
+	}
+	char* buffer = strtok(xmlAux, "\n\t<>");
+	buffer = strtok(NULL, "<>");
+	buffer = strtok(NULL, "<>");
+	int* puertoYIP = new int[2];
+	while (buffer != NULL) {
+		if (strcmp(buffer, "nombre") == 0) {
+			buffer = strtok(NULL, "\t <>=\"");
+			if (strcmp(buffer, "puerto") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				puertoYIP[0] = atoi(buffer);
+			} else if (strcmp(buffer, "ip") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				puertoYIP[1] = atoi(buffer);
+			}
+			buffer = strtok(NULL, ">\n\t");
+			//cout << buffer << endl;
+		}
+		buffer = strtok(NULL, " \t<>=");
+	}
+	return puertoYIP;
+
+}
 
 
 ParserCliente::~ParserCliente() {
