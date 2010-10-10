@@ -25,10 +25,11 @@ public:
 	void dibujarJugador(int x, int y, string path);
 	string pedirEscenario();
 	string pedirImagenJugador(string nombreJugador);
-	void pedirJugadores();
+	list<string>* pedirJugadores();
 	void pedirCartas();
 	void pedirCartasComunitarias();
 	void pedirPoso();
+	void actualizarPantalla();
 	virtual ~Juego();
 };
 

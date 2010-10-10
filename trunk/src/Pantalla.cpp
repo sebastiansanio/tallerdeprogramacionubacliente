@@ -57,7 +57,6 @@ void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 			this->dibujarPixel(j + x,i + y,&matrizDelBitmap[i][j]);
 		}
 	}
-	this->actualizarPantalla(0,0,0,0);
 }
 Pantalla::~Pantalla() {
 }

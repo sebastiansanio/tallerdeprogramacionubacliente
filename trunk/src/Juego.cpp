@@ -51,6 +51,10 @@ string Juego::pedirImagenJugador(string nombreJugador){
 	//Pido el escenario
 	string idOperacion="I";
 	list<string>* operandos=new list<string>();
+	list<string>::iterator it=operandos->begin();
+	it=operandos->insert(it,"jugador");
+	it++;
+	it=operandos->insert(it,nombreJugador);
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
@@ -80,7 +84,7 @@ void Juego::dibujarJugador(int x, int y, string path){
 }
 
 
-void Juego::pedirJugadores(){
+list<string>* Juego::pedirJugadores(){
 	string idOperacion="J";
 	list<string>* operandos=new list<string>();
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
@@ -88,6 +92,7 @@ void Juego::pedirJugadores(){
 	cliente->enviar(xml);
 	char * respuesta=cliente->recibirRespuesta();
 	jugadores=parserResultado->getJugadores(respuesta);
+	return jugadores;
 //	list<string>::iterator it;
 //	it = jugadores->begin();
 //	for(unsigned int i = 0; i < jugadores->size(); i++){
@@ -121,4 +126,8 @@ void Juego::pedirPoso(){
 	cliente->enviar(xml);
 	char * respuesta=cliente->recibirRespuesta();
 	posoAcumulado=parserResultado->getPoso(respuesta);
+}
+
+void Juego::actualizarPantalla(){
+	this->pantalla->actualizarPantalla(0,0,0,0);
 }
