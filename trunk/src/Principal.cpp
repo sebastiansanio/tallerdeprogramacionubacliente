@@ -8,8 +8,8 @@ using namespace std;
 
 int main(){
 	Juego* juego = new Juego();
-//	juego->pedirEscenario();
-//	juego->dibujarEscenario();
+	juego->pedirEscenario();
+	juego->dibujarEscenario();
 	juego->pedirCartas();
 	juego->pedirJugadores();
 	juego->pedirPoso();

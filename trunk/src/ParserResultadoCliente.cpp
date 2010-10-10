@@ -89,7 +89,7 @@ list<string> * ParserResultadoCliente::getJugadores(char xml[]){
 
 	//Registro el resultado en el archivo correspondiente
 	if (strcmp(buffer, "resultados") == 0) {
-		tipo = "El resultado de ";
+		tipo = "El nombre del jugador es: ";
 		palabraclave = "nombre";
 		this->registrarResultado(xmlAux, operacion, "resultados", "resultados");
 	} else {
@@ -107,7 +107,7 @@ list<string> * ParserResultadoCliente::getJugadores(char xml[]){
 	while (buffer != NULL) {
 		if (strcmp(buffer, palabraclave) == 0) {
 			buffer = strtok(NULL, "\t <>=\"");
-			cout << tipo << buffer << " es: ";
+			cout << tipo << buffer << " y su plata: ";
 			it = respuesta->insert(it, buffer);
 			it++;
 			buffer = strtok(NULL, ">\n\t");
@@ -140,7 +140,7 @@ list<string> * ParserResultadoCliente::getCartas(char xml[]) {
 
 	//Registro el resultado en el archivo correspondiente
 	if (strcmp(buffer, "resultados") == 0) {
-		tipo = "El resultado de ";
+		tipo = "El palo de la carta es: ";
 		palabraclave = "nombre";
 		this->registrarResultado(xmlAux, operacion, "resultados", "resultados");
 	} else {
@@ -158,7 +158,7 @@ list<string> * ParserResultadoCliente::getCartas(char xml[]) {
 	while (buffer != NULL) {
 		if (strcmp(buffer, palabraclave) == 0) {
 			buffer = strtok(NULL, "\t <>=\"");
-			cout << tipo << buffer << " es: ";
+			cout << tipo << buffer << " y el numero es: ";
 			it = respuesta->insert(it, buffer);
 			it++;
 			buffer = strtok(NULL, ">\n\t");
@@ -190,7 +190,7 @@ string ParserResultadoCliente::getPoso(char xml[]) {
 
 	//Registro el resultado en el archivo correspondiente
 	if (strcmp(buffer, "resultados") == 0) {
-		tipo = "El resultado de ";
+		tipo = "El ";
 		palabraclave = "nombre";
 		this->registrarResultado(xmlAux, operacion, "resultados", "resultados");
 	} else {
