@@ -8,11 +8,14 @@ using namespace std;
 
 int main(){
 	Juego* juego = new Juego();
-	juego->pedirEscenario();
-	juego->dibujarEscenario();
+	string path;
+	path=juego->pedirEscenario();
+	juego->dibujarEscenario(path);
 	juego->pedirCartas();
 	juego->pedirJugadores();
 	juego->pedirPoso();
+	path=juego->pedirImagenJugador("pepe");
+	juego->dibujarJugador(350,210,path);
 	//Empiezo a mostrar
 	SDL_Event evento;
 	bool terminar=false;

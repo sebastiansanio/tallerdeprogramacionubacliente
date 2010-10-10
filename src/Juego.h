@@ -21,8 +21,10 @@ private:
 	string posoAcumulado;//Poso que esta acumulado
 public:
 	Juego();
-	void dibujarEscenario();
-	void pedirEscenario();
+	void dibujarEscenario(string path);
+	void dibujarJugador(int x, int y, string path);
+	string pedirEscenario();
+	string pedirImagenJugador(string nombreJugador);
 	void pedirJugadores();
 	void pedirCartas();
 	void pedirCartasComunitarias();
