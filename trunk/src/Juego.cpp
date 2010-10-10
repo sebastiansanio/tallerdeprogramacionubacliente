@@ -7,7 +7,7 @@ Juego::Juego() {
 //	if(parserAux->comprobarSintaxis()){
 //		char * altoYancho=parserAux->getAltoYAnchoDeConfig();
 //		this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
-		this->pantalla = new Pantalla(ALTO,ANCHO);
+//		this->pantalla = new Pantalla(ALTO,ANCHO);
 //		delete []altoYancho;
 //	}
 	//	int * puertoYIP=this->parserAux->getPuertoYIP();
@@ -46,32 +46,38 @@ void Juego::dibujarEscenario(){
 	}
 }
 
-//void Juego::pedirJugadores(){
-//	string idOperacion="J";
-//	list<string>* operandos=new list<string>();
-//	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-//	delete operandos;
-//	cliente->enviar(xml);
-//	char * respuesta=cliente->recibirRespuesta();
+void Juego::pedirJugadores(){
+	string idOperacion="J";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	cout<<"hola"<<endl;
+	char * respuesta=cliente->recibirRespuesta();
+	cout<<"Jugadores"<<endl;
+	cout<<respuesta<<endl;
 //	jugadores=parserResultado->getJugadores(respuesta);
-//}
-//
-//void Juego::pedirCartas(){
-//	string idOperacion="C";
-//	list<string>* operandos=new list<string>();
-//	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-//	cliente->enviar(xml);
-//	char * respuesta=cliente->recibirRespuesta();
+}
+
+void Juego::pedirCartas(){
+	string idOperacion="C";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	cliente->enviar(xml);
+	cout<<"hola3"<<endl;
+	char * respuesta=cliente->recibirRespuesta();
+	cout<<"Cartas"<<endl;
 //	cartas=parserResultado->getCartas(respuesta);
-//}
-//
-//void Juego::pedirPoso(){
-//	string idOperacion="P";
-//	list<string>* operandos=new list<string>();
-//	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-//	cliente->enviar(xml);
-//	char * respuesta=cliente->recibirRespuesta();
+}
+
+void Juego::pedirPoso(){
+	string idOperacion="P";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	cliente->enviar(xml);
+	cout<<"hola2"<<endl;
+	char * respuesta=cliente->recibirRespuesta();
+	cout<<"Poso"<<endl;
+	cout<<respuesta<<endl;
 //	posoAcumulado=parserResultado->getPoso(respuesta);
-//}
-
-
+}
