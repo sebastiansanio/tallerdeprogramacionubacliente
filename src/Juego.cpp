@@ -46,15 +46,16 @@ string Juego::pedirEscenario(){
 	return PATHESCENARIO;
 }
 
-string Juego::pedirImagenJugador(string nombreJugador){
-	string ruta=nombreJugador + ".bmp";
+string Juego::pedirImagenJugador(Jugador * jugador){
+	string ruta=jugador->getNombre() + ".bmp";
+	jugador->setPath(ruta);
 	//Pido el escenario
 	string idOperacion="I";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
 	it=operandos->insert(it,"jugador");
 	it++;
-	it=operandos->insert(it,nombreJugador);
+	it=operandos->insert(it,jugador->getNombre());
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
@@ -73,8 +74,9 @@ void Juego::dibujarEscenario(string path){
 }
 
 
-void Juego::dibujarJugador(int x, int y, string path){
-	BitMap* jugador=new BitMap(path);
+void Juego::dibujarJugador(int x, int y, Jugador jugadorADibujar){
+	BitMap* jugador=new BitMap(jugadorADibujar.getPath());
+	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if(jugador->esUnaImagenCorrecta()){
 		jugador->resizeTo(100,100);
 		pantalla->dibujarBitMapDesdePos((*jugador),x,y);
@@ -84,22 +86,27 @@ void Juego::dibujarJugador(int x, int y, string path){
 }
 
 
-list<string>* Juego::pedirJugadores(){
+list<Jugador>* Juego::pedirJugadores(){
 	string idOperacion="J";
 	list<string>* operandos=new list<string>();
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
 	char * respuesta=cliente->recibirRespuesta();
-	jugadores=parserResultado->getJugadores(respuesta);
+	list<string>* jugadoresAux=parserResultado->getJugadores(respuesta);
+	list<string>::iterator it;
+	list <Jugador> * jugadores=new list<Jugador>();
+	list<Jugador>::iterator iterador=jugadores->begin();
+	it = jugadoresAux->begin();
+	for(unsigned int i = 0; i < jugadoresAux->size()/2; i++){
+		string nombre=(*it);
+		it++;
+		string plata=(*it);
+		it++;
+		iterador=jugadores->insert(iterador,Jugador("",nombre,plata));
+		iterador++;
+	}
 	return jugadores;
-//	list<string>::iterator it;
-//	it = jugadores->begin();
-//	for(unsigned int i = 0; i < jugadores->size(); i++){
-//		cout << *it << endl;
-//		it++;
-//	}
-
 }
 
 

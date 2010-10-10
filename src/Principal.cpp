@@ -12,19 +12,16 @@ int main(){
 	path=juego->pedirEscenario();
 	juego->dibujarEscenario(path);
 	juego->pedirCartas();
-	list<string>* jugadores=juego->pedirJugadores();
-	list<string> * jugadoresAux=new list<string>(*jugadores);
+	list<Jugador>* jugadores=juego->pedirJugadores();
 	juego->pedirPoso();
-	list<string>::iterator it=jugadoresAux->begin();
-	int x=100;
-	int y=100;
-	while(it!=jugadoresAux->end()){
-		path=juego->pedirImagenJugador(*it);
-		juego->dibujarJugador(x,y,path);
-		it++;
+	list<Jugador>::iterator it=jugadores->begin();
+	int x=220;
+	int y=220;
+	while(it!=jugadores->end()){
+		path=juego->pedirImagenJugador(&(*it));
+		juego->dibujarJugador(x,y,*it);
 		it++;
 		x+=100;
-		y+=100;
 	}
 	juego->actualizarPantalla();
 	//Empiezo a mostrar

@@ -9,6 +9,7 @@
 #include "Cliente.h"
 #include "ParserCliente.h"
 #include "ParserResultadoCliente.h"
+#include "Jugador.h"
 
 class Juego {
 private:
@@ -16,16 +17,16 @@ private:
 	Cliente* cliente;
 	ParserCliente* parser;
 	ParserResultadoCliente* parserResultado;
-	list<string> * jugadores;//Nombre de los jugadores conectados para que los dibuje
+	list<Jugador> * jugadores;//Nombre de los jugadores conectados para que los dibuje
 	list<string> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
 public:
 	Juego();
 	void dibujarEscenario(string path);
-	void dibujarJugador(int x, int y, string path);
+	void dibujarJugador(int x, int y, Jugador jugador);
 	string pedirEscenario();
-	string pedirImagenJugador(string nombreJugador);
-	list<string>* pedirJugadores();
+	string pedirImagenJugador(Jugador * jugador);
+	list<Jugador>* pedirJugadores();
 	void pedirCartas();
 	void pedirCartasComunitarias();
 	void pedirPoso();
