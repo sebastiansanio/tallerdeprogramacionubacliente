@@ -34,7 +34,7 @@ Juego::~Juego() {
 	delete parserResultado;
 }
 
-void Juego::pedirEscenario(){
+string Juego::pedirEscenario(){
 	string ruta=PATHESCENARIO;
 	//Pido el escenario
 	string idOperacion="E";
@@ -43,13 +43,37 @@ void Juego::pedirEscenario(){
 	delete operandos;
 	cliente->enviar(xml);
 	cliente->recibirArchivo(ruta);
+	return PATHESCENARIO;
 }
 
-void Juego::dibujarEscenario(){
-	BitMap* escenario=new BitMap(PATHESCENARIO);
+string Juego::pedirImagenJugador(string nombreJugador){
+	string ruta=nombreJugador + ".bmp";
+	//Pido el escenario
+	string idOperacion="I";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	cliente->recibirArchivo(ruta);
+	return ruta;
+}
+
+void Juego::dibujarEscenario(string path){
+	BitMap* escenario=new BitMap(path);
 	if(escenario->esUnaImagenCorrecta()){
 		escenario->resizeTo(ALTO,ANCHO);
 		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
+	}else{
+		cout<<"No es una imagen corecta"<<endl;
+	}
+}
+
+
+void Juego::dibujarJugador(int x, int y, string path){
+	BitMap* jugador=new BitMap(path);
+	if(jugador->esUnaImagenCorrecta()){
+		jugador->resizeTo(100,100);
+		pantalla->dibujarBitMapDesdePos((*jugador),x,y);
 	}else{
 		cout<<"No es una imagen corecta"<<endl;
 	}
