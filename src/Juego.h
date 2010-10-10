@@ -3,8 +3,8 @@
 
 #define PATHARCHIVOCONF "config.ini"
 #define PATHESCENARIO "pantalla.bmp"
-#define ANCHO 1280
-#define ALTO 768
+#define ANCHO 800
+#define ALTO 600
 #include "Pantalla.h"
 #include "Cliente.h"
 #include "ParserCliente.h"
@@ -25,6 +25,7 @@ public:
 	void pedirEscenario();
 	void pedirJugadores();
 	void pedirCartas();
+	void pedirCartasComunitarias();
 	void pedirPoso();
 	virtual ~Juego();
 };

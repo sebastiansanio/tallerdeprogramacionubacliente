@@ -7,6 +7,8 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include "Grafo.h"
+#include <sstream>
+#include <cstdlib>
 
 class ParserCliente {
 private:
@@ -30,8 +32,9 @@ public:
 	void registrarError(string idOperacion, list<string>* mensajesError);
 	virtual ~ParserCliente();
 	void construirGrafo();
+	int* getAltoYAnchoDeConfig();
+	int* getPuertoYIP();
 	bool huboErrorAlAbrirArchivo();
-	string devolverUnPedido();
 };
 
 #endif /* PARSERCLIENTE_H_ */

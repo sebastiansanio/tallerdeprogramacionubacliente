@@ -11,7 +11,7 @@ int main(){
 //	juego->pedirEscenario();
 //	juego->dibujarEscenario();
 	juego->pedirCartas();
-//	juego->pedirJugadores();
+	juego->pedirJugadores();
 	juego->pedirPoso();
 	//Empiezo a mostrar
 	SDL_Event evento;

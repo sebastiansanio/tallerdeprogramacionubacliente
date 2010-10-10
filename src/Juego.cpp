@@ -3,14 +3,23 @@
 Juego::Juego() {
 	this->parser=new ParserCliente();
 	this->parserResultado=new ParserResultadoCliente();
-//	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
-//	if(parserAux->comprobarSintaxis()){
-//		char * altoYancho=parserAux->getAltoYAnchoDeConfig();
-//		this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
-//		this->pantalla = new Pantalla(ALTO,ANCHO);
+	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
+	if(parserAux->comprobarSintaxis()){
+//		int* altoYancho=parserAux->getAltoYAnchoDeConfig();
+//		//this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
+//		//this->pantalla = new Pantalla(ALTO,ANCHO);
+//		cout << "alto y ancho" << endl;
+//		cout << altoYancho[0] << endl;
+//		cout << altoYancho[1] << endl;
 //		delete []altoYancho;
-//	}
-	//	int * puertoYIP=this->parserAux->getPuertoYIP();
+//		int* puertoYIP = parserAux->getPuertoYIP();
+//		cout << "puerto e ip" << endl;
+//		cout << puertoYIP[0] << endl;
+//		cout << puertoYIP[1] << endl;
+	}
+	else {
+		cout << "Sintaxis incorrecta" << endl;
+	}
 //	this->cliente=new Cliente(puertoYIP[0],puertoYIP[1]);
 	this->cliente = new Cliente();
 	cliente->conectar();
@@ -46,6 +55,7 @@ void Juego::dibujarEscenario(){
 	}
 }
 
+
 void Juego::pedirJugadores(){
 	string idOperacion="J";
 	list<string>* operandos=new list<string>();
@@ -55,9 +65,17 @@ void Juego::pedirJugadores(){
 	cout<<"hola"<<endl;
 	char * respuesta=cliente->recibirRespuesta();
 	cout<<"Jugadores"<<endl;
-	cout<<respuesta<<endl;
-//	jugadores=parserResultado->getJugadores(respuesta);
+	//cout<<respuesta<<endl;
+	jugadores=parserResultado->getJugadores(respuesta);
+	list<string>::iterator it;
+	it = jugadores->begin();
+	for(unsigned int i = 0; i < jugadores->size(); i++){
+		cout << *it << endl;
+		it++;
+	}
+
 }
+
 
 void Juego::pedirCartas(){
 	string idOperacion="C";
@@ -66,9 +84,17 @@ void Juego::pedirCartas(){
 	cliente->enviar(xml);
 	cout<<"hola3"<<endl;
 	char * respuesta=cliente->recibirRespuesta();
-	cout<<"Cartas"<<endl;
-//	cartas=parserResultado->getCartas(respuesta);
+	cout << "Cartas" << endl;
+	//cout << respuesta << endl;
+	cartas = parserResultado->getCartas(respuesta);
+	list<string>::iterator it;
+	it = cartas->begin();
+	for (unsigned int i = 0; i < cartas->size(); i++) {
+		cout << *it << endl;
+		it++;
+	}
 }
+
 
 void Juego::pedirPoso(){
 	string idOperacion="P";
@@ -78,6 +104,7 @@ void Juego::pedirPoso(){
 	cout<<"hola2"<<endl;
 	char * respuesta=cliente->recibirRespuesta();
 	cout<<"Poso"<<endl;
-	cout<<respuesta<<endl;
-//	posoAcumulado=parserResultado->getPoso(respuesta);
+	//cout<<respuesta<<endl;
+	posoAcumulado=parserResultado->getPoso(respuesta);
+	cout << posoAcumulado << endl;
 }
