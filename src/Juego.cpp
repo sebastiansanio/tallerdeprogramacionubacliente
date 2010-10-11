@@ -4,7 +4,7 @@ Juego::Juego() {
 	this->parser=new ParserCliente();
 	this->parserResultado=new ParserResultadoCliente();
 	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
-	this->pantalla = new Pantalla(ALTO,ANCHO);
+
 	if(parserAux->comprobarSintaxis()){
 //		int* altoYancho=parserAux->getAltoYAnchoDeConfig();
 //		//this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
@@ -18,23 +18,22 @@ Juego::Juego() {
 //		cout << puertoYIP[1] << endl;
 //		delete []puertoYIP;
 
-		informacionConfiguracion* infoconfig = parserAux->getInformacionConfig();
+		this->infoconfig = parserAux->getInformacionConfig();
 		cout << "alto y ancho" << endl;
-		cout << infoconfig->alto << endl;
-		cout << infoconfig->ancho << endl;
+		cout << this->infoconfig->alto << endl;
+		cout << this->infoconfig->ancho << endl;
+		this->pantalla = new Pantalla(this->infoconfig->alto, this->infoconfig->ancho);
 		cout << "puerto e ip" << endl;
-		cout << infoconfig->puerto << endl;
-		cout << infoconfig->ip << endl;
-		delete infoconfig;
+		cout << this->infoconfig->puerto << endl;
+		cout << this->infoconfig->ip << endl;
+		this->cliente=new Cliente(this->infoconfig->puerto, this->infoconfig->ip);
+		//this->cliente = new Cliente();
+		cliente->conectar();
 	}
 	else {
 		cout << "Sintaxis incorrecta" << endl;
 	}
-//	this->cliente=new Cliente(puertoYIP[0],puertoYIP[1]);
-	this->cliente = new Cliente();
-	cliente->conectar();
-//	delete parserAux;
-//	delete puertoYIP;
+	delete parserAux;
 }
 
 Juego::~Juego() {
@@ -42,6 +41,7 @@ Juego::~Juego() {
 	delete cliente;
 	delete parser;
 	delete parserResultado;
+	delete infoconfig;
 }
 
 string Juego::pedirEscenario(){
@@ -76,7 +76,7 @@ string Juego::pedirImagenJugador(Jugador * jugador){
 void Juego::dibujarEscenario(string path){
 	BitMap* escenario=new BitMap(path);
 	if(escenario->esUnaImagenCorrecta()){
-		escenario->resizeTo(ALTO,ANCHO);
+		escenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
 		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
 	}else{
 		cout<<"No es una imagen corecta"<<endl;
@@ -85,12 +85,31 @@ void Juego::dibujarEscenario(string path){
 
 
 void Juego::dibujarJugador(int x, int y, Jugador jugadorADibujar){
-	BitMap* jugador=new BitMap(jugadorADibujar.getPath());
+	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
-	if(jugador->esUnaImagenCorrecta()){
-		jugador->resizeTo(100,100);
-		pantalla->dibujarBitMapDesdePos((*jugador),x,y);
-	}else{
+	if (jugador->esUnaImagenCorrecta()) {
+		jugador->resizeTo(this->infoconfig->ancho / 10, this->infoconfig->ancho / 10);
+		if (jugadorADibujar.getId() == 1) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
+		} else if (jugadorADibujar.getId() == 2) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 5.4, this->infoconfig->alto / 3.2);
+		} else if (jugadorADibujar.getId() == 3) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 2.8, this->infoconfig->alto / 3.9);
+		} else if (jugadorADibujar.getId() == 4) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 1.5, this->infoconfig->alto / 3.9);
+		} else if (jugadorADibujar.getId() == 5) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
+		} else if (jugadorADibujar.getId() == 6) {
+			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+					this->infoconfig->ancho / 1.3, this->infoconfig->alto / 2);
+		}
+		//pantalla->dibujarBitMapDesdePos((*jugador),x,y);
+	} else {
 		cout<<"No es una imagen corecta"<<endl;
 	}
 }
@@ -113,7 +132,7 @@ list<Jugador>* Juego::pedirJugadores(){
 		it++;
 		string plata=(*it);
 		it++;
-		iterador=jugadores->insert(iterador,Jugador("",nombre,plata));
+		iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
 		iterador++;
 	}
 	return jugadores;

@@ -20,6 +20,7 @@ private:
 	list<Jugador> * jugadores;//Nombre de los jugadores conectados para que los dibuje
 	list<string> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
+	informacionConfiguracion* infoconfig;
 public:
 	Juego();
 	void dibujarEscenario(string path);

@@ -16,11 +16,13 @@ private:
 	string path;
 	string nombre;
 	string plata;
+	int id; //Para saber la posicion relativa en la pantalla
 public:
-	Jugador(string path, string nombre, string plata);
+	Jugador(string path, string nombre, string plata, int id);
 	string getNombre();
 	string getPlata();
 	string getPath();
+	int getId();
 	void setPath(string path);
 	virtual ~Jugador();
 };

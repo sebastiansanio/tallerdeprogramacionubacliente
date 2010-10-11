@@ -19,6 +19,28 @@ Cliente::Cliente() {
                         estructuraDeDireccion.sin_zero[i]=0;}
 }
 
+Cliente::Cliente(unsigned int puerto, string IP){
+	//creamos el socket
+	descriptorSocket = socket(AF_INET, SOCK_STREAM, 0);
+	if (descriptorSocket == -1) {
+		cout << "Mal creado socket del cliente" << endl;
+		cout << "Se cerrará la aplicación" << endl;
+		sleep(2);
+		exit(0);
+	}
+
+	//info del server
+	estructuraDeDireccion.sin_family = AF_INET;//para lo de family QUE SEA LOCAL
+	estructuraDeDireccion.sin_port = htons(puerto);
+	estructuraDeDireccion.sin_addr.s_addr = INADDR_ANY;//INADDR_ANY coloca nuestra direccion IP automaticamente
+
+	for (int i = 0; i < 8; i++) {
+		estructuraDeDireccion.sin_zero[i] = 0;
+	}
+
+
+}
+
 void Cliente::conectar(){
         socklen_t length=sizeof(sockaddr);
 
