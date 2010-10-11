@@ -58,5 +58,23 @@ void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 		}
 	}
 }
+
+void Pantalla::dibujarBitMapDesdePosCircular(BitMap bitmap,int x, int y){
+	SDL_Color** matrizDelBitmap=bitmap.getMatrizDeImagen();
+	double radioH=bitmap.getAlto()/2;
+	double radioV=bitmap.getAncho()/2;
+	double auxi;
+	double auxj;
+	for(unsigned int i=0;i<bitmap.getAlto();i++){
+		for(unsigned int j=0;j<bitmap.getAncho();j++){
+			auxi=i-radioH;
+			auxj=j-radioV;
+			if (((auxi*auxi)/(radioH*radioH)+(auxj*auxj)/(radioV*radioV))<=1){
+					this->dibujarPixel(j + x,i + y,&matrizDelBitmap[i][j]);
+			}
+		}
+	}
+}
+
 Pantalla::~Pantalla() {
 }
