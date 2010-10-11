@@ -26,7 +26,10 @@ int main(){
 		it2++;
 	}
 	juego->actualizarPantalla();
-
+	//Dibujamos los botones
+	juego->dibujarBoton("No Ir",1);
+	juego->dibujarBoton("Igualar",2);
+	juego->dibujarBoton("Subir el doble",3);
 	//Empiezo a mostrar
 	SDL_Event evento;
 	bool terminar=false;
