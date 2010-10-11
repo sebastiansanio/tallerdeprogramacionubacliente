@@ -6,22 +6,23 @@ Juego::Juego() {
 	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
 
 	if(parserAux->comprobarSintaxis()){
-//		int* altoYancho=parserAux->getAltoYAnchoDeConfig();
-//		//this->pantalla=new Pantalla(altoYancho[0],altoYancho[1]);
-//		cout << "alto y ancho" << endl;
-//		cout << altoYancho[0] << endl;
-//		cout << altoYancho[1] << endl;
-//		delete []altoYancho;
-//		string* puertoYIP = parserAux->getPuertoYIP();
-//		cout << "puerto e ip" << endl;
-//		cout << puertoYIP[0] << endl;
-//		cout << puertoYIP[1] << endl;
-//		delete []puertoYIP;
 
 		this->infoconfig = parserAux->getInformacionConfig();
 		cout << "alto y ancho" << endl;
 		cout << this->infoconfig->alto << endl;
 		cout << this->infoconfig->ancho << endl;
+
+		if(!this->verificarResolucion(this->infoconfig->alto,this->infoconfig->ancho)){
+			list<string>* mensajesError = new list<string>();
+			mensajesError->push_back("E");
+			string mensaje = "Resolucion invalida en el archivo config.ini";
+			mensajesError->push_back(mensaje);
+			parserAux->registrarError("G", mensajesError);
+			cout << mensaje << endl;
+			sleep(4);
+			exit(0);
+		}
+
 		this->pantalla = new Pantalla(this->infoconfig->alto, this->infoconfig->ancho);
 		cout << "puerto e ip" << endl;
 		cout << this->infoconfig->puerto << endl;
@@ -34,6 +35,14 @@ Juego::Juego() {
 		cout << "Sintaxis incorrecta" << endl;
 	}
 	delete parserAux;
+}
+
+bool Juego::verificarResolucion(unsigned int alto,unsigned  int ancho){
+	if((alto==480&&ancho==640) || (alto==600 && ancho==800) || (alto==768 && ancho==1024) || (alto==768 && ancho==1280))
+		return true;
+	else
+		return false;
+
 }
 
 Juego::~Juego() {
