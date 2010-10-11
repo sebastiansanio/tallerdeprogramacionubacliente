@@ -27,6 +27,7 @@ public:
 	void dibujarEscenario(string path);
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
+	void dibujarBoton(string textoBoton, int pos);
 	string pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
 	list<Jugador>* pedirJugadores();

@@ -215,6 +215,30 @@ list<Carta>* Juego::pedirCartas(){
 //	}
 }
 
+void Juego::dibujarBoton(string textoBoton, int pos){
+	BitMap* boton = new BitMap("quilmes.bmp");
+	if (boton->esUnaImagenCorrecta()) {
+		int tamImagenancho = this->infoconfig->ancho / 6.3;
+		int tamImagenalto = this->infoconfig->alto / 5;
+		int tamfuente = this->infoconfig->ancho / 42;
+		int factor = this->infoconfig->ancho / 100;
+		const char* texto = textoBoton.c_str();
+		boton->resizeTo(tamImagenalto, tamImagenancho);
+		if (pos == 1) {
+			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 2, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 2)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+		} else if (pos == 2) {
+			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 1.5, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.5)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+		} else if (pos == 3) {
+			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 1.18, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+		}
+	} else {
+		cout << "No es una imagen corecta" << endl;
+	}
+
+}
 
 void Juego::pedirPoso(){
 	string idOperacion="P";
