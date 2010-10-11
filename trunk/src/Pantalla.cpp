@@ -108,7 +108,7 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 	dest.w = rectangulo->w;
 	// Mostramos el texto por pantalla
 	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
-	SDL_Flip(pantalla);
+//	SDL_Flip(pantalla);
 }
 
 Pantalla::~Pantalla() {
