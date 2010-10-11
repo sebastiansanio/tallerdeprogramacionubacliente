@@ -120,9 +120,9 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 4) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
-					this->infoconfig->ancho / 1.5, this->infoconfig->alto / 3.9);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.5)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.5)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
+					this->infoconfig->ancho / 1.8, this->infoconfig->alto / 3.9);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 5) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
