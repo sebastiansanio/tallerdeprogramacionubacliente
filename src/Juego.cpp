@@ -96,16 +96,16 @@ void Juego::dibujarEscenario(string path){
 void Juego::dibujarJugador(Jugador jugadorADibujar){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	SDL_Color color;
-	color.r=24;
-	color.b=75;
-	color.g=150;
+	color.r=240;
+	color.b=55;
+	color.g=200;
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if (jugador->esUnaImagenCorrecta()) {
 		int tamImagen = this->infoconfig->ancho / 10;
 		jugador->resizeTo(tamImagen, tamImagen);
 		const char* nombre = jugadorADibujar.getNombre().c_str();
 		const char* plata = jugadorADibujar.getPlata().c_str();
-		int tamfuente = this->infoconfig->ancho / 56;
+		int tamfuente = this->infoconfig->ancho / 32.5;
 		int factor = this->infoconfig->alto / 110;
 		if (jugadorADibujar.getId() == 1) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
