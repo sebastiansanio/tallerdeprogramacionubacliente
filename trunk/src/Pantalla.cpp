@@ -5,6 +5,9 @@ Pantalla::Pantalla(int alto, int ancho) {
 	pantalla=SDL_SetVideoMode(ancho,alto,24,SDL_SWSURFACE);
 	//Cuando termina el programa se cierra el SDL
 	atexit(SDL_Quit);
+	if (TTF_Init() == 0) {
+			atexit(TTF_Quit);
+		}
 	if (pantalla==0 or !(comprobarPantalla())) {
 		cerr << "Error al crear ventana" << endl;
 		cerr << SDL_GetError() << endl;
@@ -74,6 +77,38 @@ void Pantalla::dibujarBitMapDesdePosCircular(BitMap bitmap,int x, int y){
 			}
 		}
 	}
+}
+
+void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente){
+
+// Cargamos la fuente que vamos a utilizar
+	TTF_Font *fuente;
+	fuente = TTF_OpenFont("browa.ttf", tamaniofuente);
+// Mostramos información acerca de la fuente cargada
+//	cout << "El tamaño de la fuente es " << TTF_FontHeight(fuente) << endl;
+//	cout << "El ascendente de la fuente es " << TTF_FontAscent(fuente) << endl;
+//	cout << "El descendente de la fuente es " << TTF_FontDescent(fuente)
+//			<< endl;
+//	cout << "La separación entre líneas es " << TTF_FontLineSkip(fuente)
+//			<< endl;
+//	int w, h;
+//	TTF_SizeUTF8(fuente, texto, &w, &h);
+//	cout << "El mensaje Hola Mundo ocupará " << w << " píxeles de ancho"
+//			<< " y " << h << " de alto." << endl;
+	SDL_Surface * rectangulo;
+	SDL_Color color;
+	color.r = 25;
+	color.g = 150;
+	color.b = 180;
+	rectangulo = TTF_RenderText_Blended(fuente, texto, color);
+	SDL_Rect dest;
+	dest.x = x;
+	dest.y = y;
+	dest.h = rectangulo->h;
+	dest.w = rectangulo->w;
+	// Mostramos el texto por pantalla
+	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
+	SDL_Flip(pantalla);
 }
 
 Pantalla::~Pantalla() {
