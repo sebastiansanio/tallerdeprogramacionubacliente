@@ -12,6 +12,7 @@
 #include <fstream>
 #include "SDL/SDL.h"
 #include "SDL/SDL_video.h"
+#include <SDL/SDL_ttf.h>
 #include <sstream>
 #include "BitMap.h"
 using namespace std;
@@ -26,6 +27,7 @@ public:
 	void actualizarPantalla(int x, int y, int w, int h);
 	void dibujarBitMapDesdePosCircular(BitMap bitmap,int x,int y);
 	void dibujarBitMapDesdePos(BitMap bitmap,int x,int y);
+	void escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente);
 	virtual ~Pantalla();
 };
 

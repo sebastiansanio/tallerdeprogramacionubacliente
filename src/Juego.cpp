@@ -89,9 +89,11 @@ void Juego::dibujarJugador(int x, int y, Jugador jugadorADibujar){
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if (jugador->esUnaImagenCorrecta()) {
 		jugador->resizeTo(this->infoconfig->ancho / 10, this->infoconfig->ancho / 10);
+		const char* nombre = jugadorADibujar.getNombre().c_str();
 		if (jugadorADibujar.getId() == 1) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
+			pantalla->escribirTextoDesdePos(nombre,50,50,20);
 		} else if (jugadorADibujar.getId() == 2) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 5.4, this->infoconfig->alto / 3.2);
