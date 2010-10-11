@@ -84,7 +84,7 @@ void Juego::dibujarEscenario(string path){
 }
 
 
-void Juego::dibujarJugador(int x, int y, Jugador jugadorADibujar){
+void Juego::dibujarJugador(Jugador jugadorADibujar){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if (jugador->esUnaImagenCorrecta()) {
@@ -152,17 +152,61 @@ list<Jugador>* Juego::pedirJugadores(){
 		iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
 		iterador++;
 	}
+	this->jugadores = jugadores;
 	return jugadores;
 }
 
+void Juego::dibujarCarta(Carta cartaADibujar){
+	//BitMap* carta = new BitMap(cartaADibujar.getPalo()+cartaADibujar.getNumero()+".bmp");
+	BitMap* carta = new BitMap("quilmes.bmp");
+	if (carta->esUnaImagenCorrecta()) {
+		int tamImagen = this->infoconfig->ancho / 22;
+		carta->resizeTo(2 * tamImagen, tamImagen);
+		int id = cartaADibujar.getId();
+		if (id == 1) {
+			pantalla->dibujarBitMapDesdePos(*carta,
+					this->infoconfig->ancho / 3.15, (this->infoconfig->alto / 2.3));
+		} else if (id == 2) {
+			pantalla->dibujarBitMapDesdePos(*carta,
+					this->infoconfig->ancho / 2.58, (this->infoconfig->alto / 2.3));
+		} else if (id == 3) {
+			pantalla->dibujarBitMapDesdePos(*carta,
+					this->infoconfig->ancho / 2.2, (this->infoconfig->alto / 2.3));
+		} else if (id == 4) {
+			pantalla->dibujarBitMapDesdePos(*carta,
+					this->infoconfig->ancho / 1.88, (this->infoconfig->alto / 2.3));
+		} else if (id == 5) {
+			pantalla->dibujarBitMapDesdePos(*carta,
+					this->infoconfig->ancho / 1.66, (this->infoconfig->alto / 2.3));
+		}
+	}else {
+		cout<<"No es una imagen corecta"<<endl;
+	}
 
-void Juego::pedirCartas(){
+}
+
+list<Carta>* Juego::pedirCartas(){
 	string idOperacion="C";
 	list<string>* operandos=new list<string>();
-	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
 	cliente->enviar(xml);
-	char * respuesta=cliente->recibirRespuesta();
-	cartas = parserResultado->getCartas(respuesta);
+	char * respuesta = cliente->recibirRespuesta();
+	list<string>* cartasAux = parserResultado->getCartas(respuesta);
+	list<string>::iterator it;
+	list<Carta> * cartas = new list<Carta> ();
+	list<Carta>::iterator iterador = cartas->begin();
+	it = cartasAux->begin();
+	for (unsigned int i = 0; i < cartasAux->size() / 2; i++) {
+		string palo = (*it);
+		it++;
+		string numero = (*it);
+		it++;
+		iterador = cartas->insert(iterador,
+				Carta("", palo, numero, i + 1));
+		iterador++;
+	}
+	this->cartas = cartas;
+	return cartas;
 //	list<string>::iterator it;
 //	it = cartas->begin();
 //	for (unsigned int i = 0; i < cartas->size(); i++) {

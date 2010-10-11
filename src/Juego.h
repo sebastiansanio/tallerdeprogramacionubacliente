@@ -10,6 +10,7 @@
 #include "ParserCliente.h"
 #include "ParserResultadoCliente.h"
 #include "Jugador.h"
+#include "Carta.h"
 
 class Juego {
 private:
@@ -18,17 +19,18 @@ private:
 	ParserCliente* parser;
 	ParserResultadoCliente* parserResultado;
 	list<Jugador> * jugadores;//Nombre de los jugadores conectados para que los dibuje
-	list<string> * cartas;//Las que salieron, valor y palo
+	list<Carta> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
 	informacionConfiguracion* infoconfig;
 public:
 	Juego();
 	void dibujarEscenario(string path);
-	void dibujarJugador(int x, int y, Jugador jugador);
+	void dibujarJugador(Jugador jugadorADibujar);
+	void dibujarCarta(Carta cartaADibujar);
 	string pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
 	list<Jugador>* pedirJugadores();
-	void pedirCartas();
+	list<Carta>* pedirCartas();
 	void pedirCartasComunitarias();
 	void pedirPoso();
 	void actualizarPantalla();

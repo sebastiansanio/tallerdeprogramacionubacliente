@@ -9,21 +9,24 @@ using namespace std;
 int main(){
 	Juego* juego = new Juego();
 	string path;
-	path=juego->pedirEscenario();
+	path = juego->pedirEscenario();
 	juego->dibujarEscenario(path);
-	juego->pedirCartas();
-	list<Jugador>* jugadores=juego->pedirJugadores();
+	list<Carta>* cartas = juego->pedirCartas();
+	list<Jugador>* jugadores = juego->pedirJugadores();
 	juego->pedirPoso();
-	list<Jugador>::iterator it=jugadores->begin();
-	int x=220;
-	int y=220;
-	while(it!=jugadores->end()){
-		path=juego->pedirImagenJugador(&(*it));
-		juego->dibujarJugador(x,y,*it);
+	list<Jugador>::iterator it = jugadores->begin();
+	while (it != jugadores->end()) {
+		path = juego->pedirImagenJugador(&(*it));
+		juego->dibujarJugador(*it);
 		it++;
-		x+=100;
+	}
+	list<Carta>::iterator it2 = cartas->begin();
+	while (it2 != cartas->end()) {
+		juego->dibujarCarta(*it2);
+		it2++;
 	}
 	juego->actualizarPantalla();
+
 	//Empiezo a mostrar
 	SDL_Event evento;
 	bool terminar=false;
