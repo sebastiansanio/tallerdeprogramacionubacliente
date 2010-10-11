@@ -88,27 +88,42 @@ void Juego::dibujarJugador(int x, int y, Jugador jugadorADibujar){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if (jugador->esUnaImagenCorrecta()) {
-		jugador->resizeTo(this->infoconfig->ancho / 10, this->infoconfig->ancho / 10);
+		int tamImagen = this->infoconfig->ancho / 10;
+		jugador->resizeTo(tamImagen, tamImagen);
 		const char* nombre = jugadorADibujar.getNombre().c_str();
+		const char* plata = jugadorADibujar.getPlata().c_str();
+		int tamfuente = this->infoconfig->ancho / 56;
+		int factor = this->infoconfig->alto / 110;
 		if (jugadorADibujar.getId() == 1) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
-			pantalla->escribirTextoDesdePos(nombre,50,50,20);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente );
 		} else if (jugadorADibujar.getId() == 2) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 5.4, this->infoconfig->alto / 3.2);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 3) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 2.8, this->infoconfig->alto / 3.9);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 4) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.5, this->infoconfig->alto / 3.9);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.5)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.5)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 5) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente );
 		} else if (jugadorADibujar.getId() == 6) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.3, this->infoconfig->alto / 2);
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente );
 		}
 		//pantalla->dibujarBitMapDesdePos((*jugador),x,y);
 	} else {
