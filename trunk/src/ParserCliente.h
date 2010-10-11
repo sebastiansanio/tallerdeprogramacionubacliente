@@ -10,6 +10,14 @@ using namespace std;
 #include <sstream>
 #include <cstdlib>
 
+typedef struct {
+	unsigned int alto;
+	unsigned int ancho;
+	unsigned int puerto;
+	string ip;
+
+}informacionConfiguracion;
+
 class ParserCliente {
 private:
 	ifstream* archivo;
@@ -33,7 +41,8 @@ public:
 	virtual ~ParserCliente();
 	void construirGrafo();
 	int* getAltoYAnchoDeConfig();
-	int* getPuertoYIP();
+	string* getPuertoYIP();
+	informacionConfiguracion* getInformacionConfig();
 	bool huboErrorAlAbrirArchivo();
 };
 
