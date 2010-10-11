@@ -128,13 +128,12 @@ bool BitMap::resizeTo(int alto, int ancho){
 			y++;
 		}
 	}
-	this->informacionImagen->altoEnPixels=alto;
-	this->informacionImagen->anchoEnPixels=ancho;
-	this->matrizDePixeles=new SDL_Color*[this->informacionImagen->altoEnPixels];
 	for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
 		delete []this->matrizDePixeles[i];
 	}
 	delete []this->matrizDePixeles;
+	this->informacionImagen->altoEnPixels=alto;
+	this->informacionImagen->anchoEnPixels=ancho;
 	this->matrizDePixeles=matrizAuxiliar;
 	return true;
 }
