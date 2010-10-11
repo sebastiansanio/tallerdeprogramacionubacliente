@@ -95,6 +95,10 @@ void Juego::dibujarEscenario(string path){
 
 void Juego::dibujarJugador(Jugador jugadorADibujar){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
+	SDL_Color color;
+	color.r=24;
+	color.b=75;
+	color.g=150;
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if (jugador->esUnaImagenCorrecta()) {
 		int tamImagen = this->infoconfig->ancho / 10;
@@ -106,33 +110,33 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 		if (jugadorADibujar.getId() == 1) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente, color );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 2) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 5.4, this->infoconfig->alto / 3.2);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente ,color);
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 5.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 3) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 2.8, this->infoconfig->alto / 3.9);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente ,color);
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente ,color);
 		} else if (jugadorADibujar.getId() == 4) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.8, this->infoconfig->alto / 3.9);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente,color );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.8)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 5) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente,color );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 6) {
 			pantalla->dibujarBitMapDesdePosCircular(*jugador,
 					this->infoconfig->ancho / 1.3, this->infoconfig->alto / 2);
-			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente );
-			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente );
+			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente,color );
+			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
 		}
 		//pantalla->dibujarBitMapDesdePos((*jugador),x,y);
 	} else {
@@ -219,7 +223,11 @@ list<Carta>* Juego::pedirCartas(){
 }
 
 void Juego::dibujarBoton(string textoBoton, int pos){
-	BitMap* boton = new BitMap("quilmes.bmp");
+	BitMap* boton = new BitMap("boton.bmp");
+	SDL_Color color;
+	color.r=255;
+	color.g=255;
+	color.b=255;
 	if (boton->esUnaImagenCorrecta()) {
 		int tamImagenancho = this->infoconfig->ancho / 7.0;
 		int tamImagenalto = this->infoconfig->alto / 5;
@@ -228,14 +236,14 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 		const char* texto = textoBoton.c_str();
 		boton->resizeTo(tamImagenalto, tamImagenancho);
 		if (pos == 1) {
-			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 2, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 2)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 2, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 2)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
 		} else if (pos == 2) {
-			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 1.5, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.5)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 1.5, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.5)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
 		} else if (pos == 3) {
-			pantalla->dibujarBitMapDesdePos(*boton, this->infoconfig->ancho / 1.18, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente);
+			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 1.18, (this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
 		}
 	} else {
 		cout << "No es una imagen corecta" << endl;
@@ -247,7 +255,11 @@ void Juego::dibujarPoso(){
 	int tamfuente = this->infoconfig->ancho / 28;
 	string pozo = "BOTE $: " + this->posoAcumulado;
 	const char* bote = pozo.c_str();
-	pantalla->escribirTextoDesdePos(bote, this->infoconfig->ancho / 2.5 ,(this->infoconfig->alto / 56) , tamfuente);
+	SDL_Color color;
+	color.r=255;
+	color.g=255;
+	color.b=255;
+	pantalla->escribirTextoDesdePos(bote, this->infoconfig->ancho / 2.5 ,(this->infoconfig->alto / 56) , tamfuente,color);
 
 }
 
