@@ -28,6 +28,7 @@ public:
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
 	void dibujarBoton(string textoBoton, int pos);
+	void dibujarPoso();
 	bool verificarResolucion(unsigned int alto,unsigned  int ancho);
 	string pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);

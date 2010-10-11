@@ -166,8 +166,8 @@ list<Jugador>* Juego::pedirJugadores(){
 }
 
 void Juego::dibujarCarta(Carta cartaADibujar){
-	//BitMap* carta = new BitMap(cartaADibujar.getPalo()+cartaADibujar.getNumero()+".bmp");
-	BitMap* carta = new BitMap("quilmes.bmp");
+	BitMap* carta = new BitMap(cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
+	//BitMap* carta = new BitMap("quilmes.bmp");
 	if (carta->esUnaImagenCorrecta()) {
 		int tamImagen = this->infoconfig->ancho / 22;
 		carta->resizeTo(2 * tamImagen, tamImagen);
@@ -246,6 +246,14 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 	} else {
 		cout << "No es una imagen corecta" << endl;
 	}
+
+}
+
+void Juego::dibujarPoso(){
+	int tamfuente = this->infoconfig->ancho / 28;
+	string pozo = "BOTE $: " + this->posoAcumulado;
+	const char* bote = pozo.c_str();
+	pantalla->escribirTextoDesdePos(bote, this->infoconfig->ancho / 2.5 ,(this->infoconfig->alto / 56) , tamfuente);
 
 }
 
