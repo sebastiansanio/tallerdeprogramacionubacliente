@@ -79,7 +79,7 @@ void Pantalla::dibujarBitMapDesdePosCircular(BitMap bitmap,int x, int y){
 	}
 }
 
-void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente){
+void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente,SDL_Color color){
 
 // Cargamos la fuente que vamos a utilizar
 	TTF_Font *fuente;
@@ -96,10 +96,10 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 //	cout << "El mensaje Hola Mundo ocupará " << w << " píxeles de ancho"
 //			<< " y " << h << " de alto." << endl;
 	SDL_Surface * rectangulo;
-	SDL_Color color;
-	color.r = 25;
-	color.g = 150;
-	color.b = 180;
+//	SDL_Color color;
+//	color.r = 0;
+//	color.g = 0;
+//	color.b = 0;
 	rectangulo = TTF_RenderText_Blended(fuente, texto, color);
 	SDL_Rect dest;
 	dest.x = x;

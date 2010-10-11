@@ -27,7 +27,7 @@ public:
 	void actualizarPantalla(int x, int y, int w, int h);
 	void dibujarBitMapDesdePosCircular(BitMap bitmap,int x,int y);
 	void dibujarBitMapDesdePos(BitMap bitmap,int x,int y);
-	void escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente);
+	void escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente,SDL_Color color);
 	virtual ~Pantalla();
 };
 
