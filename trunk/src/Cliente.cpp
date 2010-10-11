@@ -32,7 +32,7 @@ Cliente::Cliente(unsigned int puerto, string IP){
 	//info del server
 	estructuraDeDireccion.sin_family = AF_INET;//para lo de family QUE SEA LOCAL
 	estructuraDeDireccion.sin_port = htons(puerto);
-	estructuraDeDireccion.sin_addr.s_addr = INADDR_ANY;//INADDR_ANY coloca nuestra direccion IP automaticamente
+	estructuraDeDireccion.sin_addr.s_addr = inet_addr(IP.c_str());//INADDR_ANY coloca nuestra direccion IP automaticamente
 
 	for (int i = 0; i < 8; i++) {
 		estructuraDeDireccion.sin_zero[i] = 0;
