@@ -47,9 +47,6 @@ bool ParserCliente::comprobarSintaxis(){
 		delete cadenaArchivo;
 		return false;
 		}
-	else {
-		cout << "soy feliz" << endl;
-	}
 	this->construirGrafo();
 	list<Nodo*>* nodosActuales = (this->grafoTags->getNodoPorClave(0))->getNodosHijos();
 	while(true){
@@ -310,9 +307,47 @@ int* ParserCliente::getAltoYAnchoDeConfig(){
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
+	this->archivo->close();
 	return altoYancho;
 }
-int* ParserCliente::getPuertoYIP(){
+string* ParserCliente::getPuertoYIP(){
+	string* cadenaArchivo = new string;
+	string xml = "";
+	while (this->archivo->eof() == false) {
+		std::getline(*(this->archivo), *cadenaArchivo);
+		xml += *cadenaArchivo;
+	}
+	delete cadenaArchivo;
+	char* xmlAux = new char[xml.size()];
+	for (unsigned int i = 0; i < xml.size(); i++) {
+		xmlAux[i] = xml[i];
+	}
+	char* buffer = strtok(xmlAux, "\n\t<>");
+	buffer = strtok(NULL, "<>");
+	buffer = strtok(NULL, "<>");
+	string* puertoYIP = new string[2];
+	while (buffer != NULL) {
+		if (strcmp(buffer, "nombre") == 0) {
+			buffer = strtok(NULL, "\t <>=\"");
+			if (strcmp(buffer, "puerto") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				puertoYIP[0] = buffer;
+			} else if (strcmp(buffer, "ip") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				puertoYIP[1] = buffer;
+			}
+
+			buffer = strtok(NULL, ">\n\t");
+			//cout << buffer << endl;
+		}
+		buffer = strtok(NULL, " \t<>=");
+	}
+	this->archivo->close();
+	return puertoYIP;
+
+}
+
+informacionConfiguracion* ParserCliente::getInformacionConfig(){
 	string* cadenaArchivo = new string;
 	string xml = "";
 	while (this->archivo->eof() == false) {
@@ -328,26 +363,32 @@ int* ParserCliente::getPuertoYIP(){
 	char* buffer = strtok(xmlAux, "\n\t<>");
 	buffer = strtok(NULL, "<>");
 	buffer = strtok(NULL, "<>");
-	int* puertoYIP = new int[2];
+	informacionConfiguracion* infoconfig = new informacionConfiguracion;
 	while (buffer != NULL) {
 		if (strcmp(buffer, "nombre") == 0) {
 			buffer = strtok(NULL, "\t <>=\"");
 			if (strcmp(buffer, "puerto") == 0) {
 				buffer = strtok(NULL, ">\n\t");
-				puertoYIP[0] = atoi(buffer);
+				infoconfig->puerto = atoi(buffer);
 			} else if (strcmp(buffer, "ip") == 0) {
 				buffer = strtok(NULL, ">\n\t");
-				puertoYIP[1] = atoi(buffer);
+				infoconfig->ip = buffer;
+			} else if (strcmp(buffer, "alto") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				infoconfig->alto = atoi(buffer);
+			} else if (strcmp(buffer, "ancho") == 0) {
+				buffer = strtok(NULL, ">\n\t");
+				infoconfig->ancho = atoi(buffer);
 			}
 			buffer = strtok(NULL, ">\n\t");
 			//cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
-	return puertoYIP;
+	this->archivo->close();
+	return infoconfig;
 
 }
-
 
 ParserCliente::~ParserCliente() {
 	if(this->seCreoPath)	delete pathArchivo;

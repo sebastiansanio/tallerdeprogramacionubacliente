@@ -12,10 +12,20 @@ Juego::Juego() {
 //		cout << altoYancho[0] << endl;
 //		cout << altoYancho[1] << endl;
 //		delete []altoYancho;
-//		int* puertoYIP = parserAux->getPuertoYIP();
+//		string* puertoYIP = parserAux->getPuertoYIP();
 //		cout << "puerto e ip" << endl;
 //		cout << puertoYIP[0] << endl;
 //		cout << puertoYIP[1] << endl;
+//		delete []puertoYIP;
+
+		informacionConfiguracion* infoconfig = parserAux->getInformacionConfig();
+		cout << "alto y ancho" << endl;
+		cout << infoconfig->alto << endl;
+		cout << infoconfig->ancho << endl;
+		cout << "puerto e ip" << endl;
+		cout << infoconfig->puerto << endl;
+		cout << infoconfig->ip << endl;
+		delete infoconfig;
 	}
 	else {
 		cout << "Sintaxis incorrecta" << endl;
