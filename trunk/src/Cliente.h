@@ -29,6 +29,7 @@ private:
 public:
 	Cliente();
 	Cliente(string archivoConfig);
+	Cliente(unsigned int puerto, string IP);
 	void conectar();
 	void enviar(char data[]);
 	char * recibirRespuesta();

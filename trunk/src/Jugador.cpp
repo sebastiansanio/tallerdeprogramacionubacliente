@@ -7,14 +7,18 @@
 
 #include "Jugador.h"
 
-Jugador::Jugador(string path,string nombre, string plata) {
+Jugador::Jugador(string path,string nombre, string plata, int id) {
 	this->nombre=nombre;
 	this->plata=plata;
 	this->path=path;
+	this->id = id;
 }
 
 string Jugador::getNombre(){
 	return this->nombre;
+}
+int Jugador::getId(){
+	return this->id;
 }
 
 string Jugador::getPath(){
