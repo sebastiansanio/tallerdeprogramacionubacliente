@@ -68,7 +68,7 @@ string Juego::pedirEscenario(){
 string Juego::pedirImagenJugador(Jugador * jugador){
 	string ruta=jugador->getNombre() + ".bmp";
 	jugador->setPath(ruta);
-	//Pido el escenario
+	//Pido la imagen del jugador
 	string idOperacion="I";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
@@ -166,7 +166,7 @@ list<Jugador>* Juego::pedirJugadores(){
 }
 
 void Juego::dibujarCarta(Carta cartaADibujar){
-	BitMap* carta = new BitMap("Cartas/"+cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
+	BitMap* carta = new BitMap(cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
 	//BitMap* carta = new BitMap("quilmes.bmp");
 	if (carta->esUnaImagenCorrecta()) {
 		int tamImagen = this->infoconfig->ancho / 22;
@@ -216,18 +216,12 @@ list<Carta>* Juego::pedirCartas(){
 	}
 	this->cartas = cartas;
 	return cartas;
-//	list<string>::iterator it;
-//	it = cartas->begin();
-//	for (unsigned int i = 0; i < cartas->size(); i++) {
-//		cout << *it << endl;
-//		it++;
-//	}
 }
 
 void Juego::dibujarBoton(string textoBoton, int pos){
 	BitMap* boton = new BitMap("quilmes.bmp");
 	if (boton->esUnaImagenCorrecta()) {
-		int tamImagenancho = this->infoconfig->ancho / 6.3;
+		int tamImagenancho = this->infoconfig->ancho / 7.0;
 		int tamImagenalto = this->infoconfig->alto / 5;
 		int tamfuente = this->infoconfig->ancho / 42;
 		int factor = this->infoconfig->ancho / 100;
