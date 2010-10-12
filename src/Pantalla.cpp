@@ -34,15 +34,16 @@ void Pantalla::dibujarPixel(int x, int y, SDL_Color* color){
 	// p es un puntero al pixel que vamos a pintar
 	//pitch es la cantidad de bytes que ocupa una linea de la pantalla
 	Uint8 *p = (Uint8*)pantalla->pixels + (y*pantalla->pitch) + (x*(pantalla->format->BytesPerPixel));
-
-	if (SDL_BYTEORDER==SDL_BIG_ENDIAN) {
-		p[0]=color->r;
-		p[1]=color->g;
-		p[2]=color->b;
-	} else {
-		p[0]=color->b;
-		p[1]=color->g;
-		p[2]=color->r;
+	if(!((color->r==0)and(color->g==255)and(color->b==0))){
+		if (SDL_BYTEORDER==SDL_BIG_ENDIAN) {
+			p[0]=color->r;
+			p[1]=color->g;
+			p[2]=color->b;
+		} else {
+			p[0]=color->b;
+			p[1]=color->g;
+			p[2]=color->r;
+		}
 	}
 	if ( SDL_MUSTLOCK(pantalla) ){
 		SDL_UnlockSurface(pantalla);

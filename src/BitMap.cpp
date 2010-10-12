@@ -53,15 +53,19 @@ BitMap::BitMap(string path) {
 						verde=(Uint8)color[1];
 						azul=(Uint8)color[0];
 						//Corroboro que el color no sea 0 255 0, que es lo que usamos para transparencia
-						if((rojo==0)and(verde==255)and(azul==0)){
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=(Uint8)0;
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=(Uint8)254;
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=(Uint8)0;
-						}else{
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=rojo;
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=verde;
-							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
-						}
+						//Por ahora si la imagen tiene el color de la transprencia lo deja así
+//						if((rojo==0)and(verde==255)and(azul==0)){
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=(Uint8)0;
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=(Uint8)254;
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=(Uint8)0;
+//						}else{
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=rojo;
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=verde;
+//							this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
+//						}
+						this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].r=rojo;
+						this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].g=verde;
+						this->matrizDePixeles[this->informacionImagen->altoEnPixels -1 - i][j].b=azul;
 					}
 					//Quito los bytes de relleno
 					for(int i=0;i<resto;i++){
