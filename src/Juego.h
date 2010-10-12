@@ -3,8 +3,6 @@
 
 #define PATHARCHIVOCONF "config.ini"
 #define PATHESCENARIO "pantalla.bmp"
-#define ANCHO 800
-#define ALTO 600
 #include "Pantalla.h"
 #include "Cliente.h"
 #include "ParserCliente.h"
@@ -37,6 +35,7 @@ public:
 	void pedirCartasComunitarias();
 	void pedirPoso();
 	void actualizarPantalla();
+	void informarError(string idOperacion, string tipoError, string mensaje);
 	virtual ~Juego();
 };
 

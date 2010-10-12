@@ -36,6 +36,14 @@ int main(){
 	bool terminar=false;
 	while(!terminar){
 		while(SDL_PollEvent(&evento)) {
+			char c ;
+			cout << "Presione S para salir" << endl;
+			cin >> c;
+			if((c=='S') || (c=='s')){
+				cout << "Gracias, vuelva pronto" << endl;
+				sleep(1);
+				exit(0);
+			}
 			if((evento.type == SDL_QUIT)){
 				terminar=true;
 			}

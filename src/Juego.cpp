@@ -1,32 +1,26 @@
 #include "Juego.h"
 
 Juego::Juego() {
-	this->parser=new ParserCliente();
+	this->parser=new ParserCliente(PATHARCHIVOCONF);
 	this->parserResultado=new ParserResultadoCliente();
-	ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
+	//ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
 
-	if(parserAux->comprobarSintaxis()){
+	if(this->parser->comprobarSintaxis()){
 
-		this->infoconfig = parserAux->getInformacionConfig();
+		this->infoconfig = this->parser->getInformacionConfig();
 		cout << "alto y ancho" << endl;
 		cout << this->infoconfig->alto << endl;
 		cout << this->infoconfig->ancho << endl;
-
 		if(!this->verificarResolucion(this->infoconfig->alto,this->infoconfig->ancho)){
-			list<string>* mensajesError = new list<string>();
-			mensajesError->push_back("E");
-			string mensaje = "Resolucion invalida en el archivo config.ini";
-			mensajesError->push_back(mensaje);
-			parserAux->registrarError("G", mensajesError);
-			cout << mensaje << endl;
-			sleep(4);
-			exit(0);
+			this->informarError("G","V","Resolucion invalida en el archivo config.ini");
 		}
-
 		this->pantalla = new Pantalla(this->infoconfig->alto, this->infoconfig->ancho);
 		cout << "puerto e ip" << endl;
 		cout << this->infoconfig->puerto << endl;
 		cout << this->infoconfig->ip << endl;
+		if(this->infoconfig->puerto != 54340){
+			this->informarError("G","V","Puerto invalido en el archivo config.ini, tiene que ser el 54340");
+		}
 		this->cliente=new Cliente(this->infoconfig->puerto, this->infoconfig->ip);
 		//this->cliente = new Cliente();
 		cliente->conectar();
@@ -34,7 +28,7 @@ Juego::Juego() {
 	else {
 		cout << "Sintaxis incorrecta" << endl;
 	}
-	delete parserAux;
+	//delete parserAux;
 }
 
 bool Juego::verificarResolucion(unsigned int alto,unsigned  int ancho){
@@ -42,6 +36,17 @@ bool Juego::verificarResolucion(unsigned int alto,unsigned  int ancho){
 		return true;
 	else
 		return false;
+
+}
+
+void Juego::informarError(string idOperacion, string tipoError, string mensaje){
+	list<string>* mensajesError = new list<string> ();
+	mensajesError->push_back(tipoError);
+	mensajesError->push_back(mensaje);
+	this->parser->registrarError(idOperacion, mensajesError);
+	cout << mensaje << endl;
+	sleep(3);
+	exit(0);
 
 }
 
@@ -62,7 +67,7 @@ string Juego::pedirEscenario(){
 	delete operandos;
 	cliente->enviar(xml);
 	cliente->recibirArchivo(ruta);
-	return PATHESCENARIO;
+	return ruta;
 }
 
 string Juego::pedirImagenJugador(Jugador * jugador){
@@ -88,6 +93,7 @@ void Juego::dibujarEscenario(string path){
 		escenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
 		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
 	}else{
+
 		cout<<"No es una imagen corecta"<<endl;
 	}
 }
@@ -138,8 +144,8 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
 		}
-		//pantalla->dibujarBitMapDesdePos((*jugador),x,y);
 	} else {
+		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
 		cout<<"No es una imagen corecta"<<endl;
 	}
 }
@@ -170,11 +176,11 @@ list<Jugador>* Juego::pedirJugadores(){
 }
 
 void Juego::dibujarCarta(Carta cartaADibujar){
-	BitMap* carta = new BitMap("Cartas/" + cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
+	BitMap* carta = new BitMap(cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
 	//BitMap* carta = new BitMap("quilmes.bmp");
 	if (carta->esUnaImagenCorrecta()) {
 		int tamImagen = this->infoconfig->ancho / 22;
-		carta->resizeTo(3 * tamImagen,2.25*tamImagen);
+		carta->resizeTo(2.5 * tamImagen,2*tamImagen);
 		int id = cartaADibujar.getId();
 		if (id == 1) {
 			pantalla->dibujarBitMapDesdePos(*carta,
@@ -193,6 +199,7 @@ void Juego::dibujarCarta(Carta cartaADibujar){
 					this->infoconfig->ancho / 1.66, (this->infoconfig->alto / 2.3));
 		}
 	}else {
+		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
 		cout<<"No es una imagen corecta"<<endl;
 	}
 
@@ -246,6 +253,7 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
 		}
 	} else {
+		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
 		cout << "No es una imagen corecta" << endl;
 	}
 
