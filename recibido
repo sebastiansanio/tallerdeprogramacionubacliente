@@ -1,8 +1,8 @@
 <respuesta>
-	</operacion id="S"/>
+	</operacion id="P"/>
 	<resultados>
-		<resultado nombre="sum">
-		4
+		<resultado nombre="bote">
+		500
 		</resultado>
 	</resultados>
 </respuesta>
