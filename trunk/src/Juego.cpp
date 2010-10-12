@@ -172,7 +172,7 @@ list<Jugador>* Juego::pedirJugadores(){
 }
 
 void Juego::dibujarCarta(Carta cartaADibujar){
-	BitMap* carta = new BitMap(cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
+	BitMap* carta = new BitMap("Cartas/" + cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
 	//BitMap* carta = new BitMap("quilmes.bmp");
 	if ((carta->esUnaImagenCorrecta())and(carta->getAlto()>1)and(carta->getAncho()>1)) {
 		int tamImagen = this->infoconfig->ancho / 22;
