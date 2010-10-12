@@ -45,9 +45,6 @@ void Juego::informarError(string idOperacion, string tipoError, string mensaje){
 	mensajesError->push_back(mensaje);
 	this->parser->registrarError(idOperacion, mensajesError);
 	cout << mensaje << endl;
-	sleep(3);
-	exit(0);
-
 }
 
 Juego::~Juego() {
@@ -89,12 +86,12 @@ string Juego::pedirImagenJugador(Jugador * jugador){
 
 void Juego::dibujarEscenario(string path){
 	BitMap* escenario=new BitMap(path);
-	if(escenario->esUnaImagenCorrecta()){
+	if((escenario->esUnaImagenCorrecta())and(escenario->getAlto()>1)and(escenario->getAncho()>1)){
 		escenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
 		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
 	}else{
 
-		cout<<"No es una imagen corecta"<<endl;
+		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
 	}
 }
 
@@ -106,7 +103,7 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 	color.b=55;
 	color.g=200;
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
-	if (jugador->esUnaImagenCorrecta()) {
+	if ((jugador->esUnaImagenCorrecta())and(jugador->getAlto()>1)and(jugador->getAncho()>1)) {
 		int tamImagen = this->infoconfig->ancho / 10;
 		jugador->resizeTo(tamImagen, tamImagen);
 		const char* nombre = jugadorADibujar.getNombre().c_str();
@@ -145,9 +142,8 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
 		}
 	} else {
-		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
-		cout<<"No es una imagen corecta"<<endl;
-	}
+		this->informarError("B","E","El jugador " + jugadorADibujar.getNombre()+ " no es una imagen BMP o esta corrupta");
+			}
 }
 
 
@@ -178,7 +174,7 @@ list<Jugador>* Juego::pedirJugadores(){
 void Juego::dibujarCarta(Carta cartaADibujar){
 	BitMap* carta = new BitMap(cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
 	//BitMap* carta = new BitMap("quilmes.bmp");
-	if (carta->esUnaImagenCorrecta()) {
+	if ((carta->esUnaImagenCorrecta())and(carta->getAlto()>1)and(carta->getAncho()>1)) {
 		int tamImagen = this->infoconfig->ancho / 22;
 		carta->resizeTo(2.5 * tamImagen,2*tamImagen);
 		int id = cartaADibujar.getId();
@@ -199,9 +195,8 @@ void Juego::dibujarCarta(Carta cartaADibujar){
 					this->infoconfig->ancho / 1.66, (this->infoconfig->alto / 2.3));
 		}
 	}else {
-		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
-		cout<<"No es una imagen corecta"<<endl;
-	}
+		this->informarError("B","E","La carta " + cartaADibujar.getNumero() + " de " + cartaADibujar.getPalo() +	" no tiene un imagen BMP o esta corrupta");
+		}
 
 }
 
@@ -235,7 +230,7 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 	color.r=255;
 	color.g=255;
 	color.b=255;
-	if (boton->esUnaImagenCorrecta()) {
+	if ((boton->esUnaImagenCorrecta())and(boton->getAlto()>1)and(boton->getAncho()>1)) {
 		int tamImagenancho = this->infoconfig->ancho / 7.0;
 		int tamImagenalto = this->infoconfig->alto / 5;
 		int tamfuente = this->infoconfig->ancho / 42;
@@ -253,9 +248,8 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
 		}
 	} else {
-		this->informarError("B","E","La imagen no es una imagen BMP o esta corrupta");
-		cout << "No es una imagen corecta" << endl;
-	}
+		this->informarError("B","E","Uno de los botones no es una imagen BMP o esta corrupta");
+		}
 
 }
 

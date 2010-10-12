@@ -8,12 +8,12 @@ using namespace std;
 
 int main(){
 	Juego* juego = new Juego();
-	string path;
-	path = juego->pedirEscenario();
-	juego->dibujarEscenario(path);
+	string path,pathEscenario;
+	pathEscenario = juego->pedirEscenario();
 	list<Carta>* cartas = juego->pedirCartas();
 	list<Jugador>* jugadores = juego->pedirJugadores();
 	juego->pedirPoso();
+	juego->dibujarEscenario(pathEscenario);
 	list<Jugador>::iterator it = jugadores->begin();
 	while (it != jugadores->end()) {
 		path = juego->pedirImagenJugador(&(*it));
@@ -36,14 +36,6 @@ int main(){
 	bool terminar=false;
 	while(!terminar){
 		while(SDL_PollEvent(&evento)) {
-			char c ;
-			cout << "Presione S para salir" << endl;
-			cin >> c;
-			if((c=='S') || (c=='s')){
-				cout << "Gracias, vuelva pronto" << endl;
-				sleep(1);
-				exit(0);
-			}
 			if((evento.type == SDL_QUIT)){
 				terminar=true;
 			}
