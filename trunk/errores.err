@@ -1,8 +1,0 @@
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		El escenario no es una imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
