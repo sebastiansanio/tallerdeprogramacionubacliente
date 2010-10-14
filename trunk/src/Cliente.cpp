@@ -41,17 +41,12 @@ Cliente::Cliente(unsigned int puerto, string IP){
 
 }
 
-void Cliente::conectar(){
+bool Cliente::conectar(){
         socklen_t length=sizeof(sockaddr);
 
         //Conectar
         int valorConectar=connect(descriptorSocket,(struct sockaddr*)&estructuraDeDireccion,length);
-        if(valorConectar==-1){
-                cout<<"Mal conectado"<<endl;
-                cout<<"Se cerrará la aplicación"<<endl;
-                sleep(2);
-                exit(0);
-        }
+        return (valorConectar!=-1);
 }
 
 void Cliente::enviar(char* data){

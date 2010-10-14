@@ -13,20 +13,30 @@ Juego::Juego() {
 		cout << this->infoconfig->ancho << endl;
 		if(!this->verificarResolucion(this->infoconfig->alto,this->infoconfig->ancho)){
 			this->informarError("G","V","Resolucion invalida en el archivo config.ini");
+			exit(0);
 		}
-		this->pantalla = new Pantalla(this->infoconfig->alto, this->infoconfig->ancho);
 		cout << "puerto e ip" << endl;
 		cout << this->infoconfig->puerto << endl;
 		cout << this->infoconfig->ip << endl;
-		if(this->infoconfig->puerto != 54340){
-			this->informarError("G","V","Puerto invalido en el archivo config.ini, tiene que ser el 54340");
-		}
+//		if(this->infoconfig->puerto != 54340){
+//			this->informarError("G","V","Puerto invalido en el archivo config.ini, tiene que ser el 54340");
+//			exit(0);
+//		}
 		this->cliente=new Cliente(this->infoconfig->puerto, this->infoconfig->ip);
 		//this->cliente = new Cliente();
-		cliente->conectar();
+		if(!(cliente->conectar())){
+			this->informarError("G","V","Puerto y/o ip invalido en el archivo config.ini");
+			cout<<"Se cerrara la apliacion..."<<endl;
+			sleep(1);
+			exit(0);
+		}
+		this->pantalla = new Pantalla(this->infoconfig->alto, this->infoconfig->ancho);
 	}
 	else {
-		cout << "Sintaxis incorrecta" << endl;
+		cout<<"Error de Sintaxis en el archivo config.ini"<<endl;
+		cout<<"Se cerrara la aplicacion..."<<endl;
+		sleep(2);
+		exit(0);
 	}
 	//delete parserAux;
 }

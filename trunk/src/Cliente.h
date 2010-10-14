@@ -30,7 +30,7 @@ public:
 	Cliente();
 	Cliente(string archivoConfig);
 	Cliente(unsigned int puerto, string IP);
-	void conectar();
+	bool conectar();
 	void enviar(char data[]);
 	char * recibirRespuesta();
 	string recibirArchivo(string path);//Devuelve el path donde lo guardo

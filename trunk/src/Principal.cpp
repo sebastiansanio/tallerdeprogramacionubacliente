@@ -5,6 +5,8 @@ using namespace std;
 #include <unistd.h>
 #include "Juego.h"
 #include "math.h"
+#include "Jugador.h"
+#include "Carta.h"
 
 int main(){
 	Juego* juego = new Juego();
@@ -20,10 +22,22 @@ int main(){
 		juego->dibujarJugador(*it);
 		it++;
 	}
+	if(jugadores->size()<6){
+		for(int i=(jugadores->size() + 1);i<7;i++){
+			Jugador jugador("ImagenVacio.bmp"," "," ",i);
+			juego->dibujarJugador(jugador);
+		}
+	}
 	list<Carta>::iterator it2 = cartas->begin();
 	while (it2 != cartas->end()) {
 		juego->dibujarCarta(*it2);
 		it2++;
+	}
+	if(cartas->size()<5){
+		for(int i=(cartas->size()+1);i<6;i++){
+			Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
+			juego->dibujarCarta(carta);
+		}
 	}
 	//Dibujamos los botones
 	juego->dibujarBoton("No Ir",1);
