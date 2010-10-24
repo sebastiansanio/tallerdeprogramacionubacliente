@@ -9,7 +9,29 @@ using namespace std;
 #include "Carta.h"
 
 int main(){
+	bool usuarioValido=false;
+		//empieza la interacción usuario - cliente - servidor
 	Juego* juego = new Juego();
+
+	while(!usuarioValido){
+
+		system("clear");
+		cout<<"Ingrese usuario: ";
+		string user;
+		string pass;
+
+		cin>>user;
+		cout<<"Ingrese password: ";
+		cin>>pass;
+
+		if((user!="" )&&(pass!="")){
+			usuarioValido=juego->validarJugador(user, pass);
+		}
+		 if (!usuarioValido){
+			 exit(0);
+		 }
+
+	}
 	string path,pathEscenario;
 	pathEscenario = juego->pedirEscenario();
 	list<Carta>* cartas = juego->pedirCartas();
