@@ -234,6 +234,28 @@ list<Carta>* Juego::pedirCartas(){
 	return cartas;
 }
 
+bool Juego::validarJugador(string usuario, string pass){
+	string idOperacion="U";
+	list<string>* operandos=new list<string>();
+	list<string>::iterator it=operandos->begin();
+		it=operandos->insert(it,"usuario");
+		it++;
+		it=operandos->insert(it,usuario);
+		it++;
+		it=operandos->insert(it,"password");
+		it++;
+		it=operandos->insert(it,pass);
+
+		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+			delete operandos;
+			cliente->enviar(xml);
+			char * respuesta = cliente->recibirRespuesta();
+			return true;
+
+
+
+}
+
 void Juego::dibujarBoton(string textoBoton, int pos){
 	BitMap* boton = new BitMap("boton.bmp");
 	SDL_Color color;
