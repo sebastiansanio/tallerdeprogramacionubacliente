@@ -25,7 +25,7 @@ public:
 	list<string> * getJugadores(char xml[]);//Le pasamos el xml de la operacion J y nos da los jugadores que no paso el servidor que estaban
 	list<string> * getCartas(char xml[]);
 	string getPoso(char xml[]);
-	void DecodificaResultado(char* xml);
+	bool DecodificaResultado(char* xml);
 	virtual ~ParserResultadoCliente();
 	void registrarResultado(char xml [],string operacion, string tipo, const char* archivo);
 };
