@@ -247,13 +247,10 @@ bool Juego::validarJugador(string usuario, string pass){
 		it=operandos->insert(it,pass);
 
 		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-			delete operandos;
-			cliente->enviar(xml);
-			char * respuesta = cliente->recibirRespuesta();
-			return true;
-
-
-
+		delete operandos;
+		cliente->enviar(xml);
+		char * respuesta = cliente->recibirRespuesta();
+		return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
 void Juego::dibujarBoton(string textoBoton, int pos){

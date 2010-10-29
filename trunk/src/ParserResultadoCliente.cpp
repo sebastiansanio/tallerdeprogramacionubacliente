@@ -5,8 +5,8 @@ ParserResultadoCliente::ParserResultadoCliente() {
 
 }
 
-void ParserResultadoCliente::DecodificaResultado(char xml []){
-
+bool ParserResultadoCliente::DecodificaResultado(char xml []){
+	bool resultadoOk;
 	ostringstream sstream;
 	sstream << xml;
 	string paraVerCuantoPesa = sstream.str();
@@ -25,10 +25,12 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 		tipo = "El resultado de ";
 		palabraclave = "nombre";
 		this->registrarResultado(xmlAux,operacion,"resultados","resultados");
+		resultadoOk=true;
 	} else {
 		tipo = "El error de tipo ";
 		palabraclave = "tipo";
 		this->registrarResultado(xmlAux,operacion,"errores","errores.err");
+		resultadoOk=false;
 	}
 	//Reinicio el buffer para imprimir por pantalla los errores o resultados
 	buffer = strtok(xmlAux2,"<>");
@@ -44,7 +46,7 @@ void ParserResultadoCliente::DecodificaResultado(char xml []){
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
-
+	return resultadoOk;
 }
 
 void ParserResultadoCliente::registrarResultado(char xml [],string operacion, string tipo, const char* archivo){

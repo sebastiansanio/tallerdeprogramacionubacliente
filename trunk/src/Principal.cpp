@@ -27,10 +27,6 @@ int main(){
 		if((user!="" )&&(pass!="")){
 			usuarioValido=juego->validarJugador(user, pass);
 		}
-		 if (!usuarioValido){
-			 exit(0);
-		 }
-
 	}
 	string path,pathEscenario;
 	pathEscenario = juego->pedirEscenario();
