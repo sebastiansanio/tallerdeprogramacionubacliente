@@ -320,4 +320,34 @@ void Juego::dibujarPantallaPrincipal(){
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
 	this->actualizarPantalla();
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				cout<<"quit"<<endl;
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				cout<<"boton"<<endl;
+				if(evento.button.button==1){
+					if(evento.button.x>=5 and evento.button.x<=155){
+						if(evento.button.y>=10 and evento.button.y<=65){
+							this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
+							this->actualizarPantalla();
+						}
+						else if(evento.button.y>=100 and evento.button.y<=155){
+							this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
+							this->actualizarPantalla();
+						}
+						else if(evento.button.y>=190 and evento.button.y<=245){
+							this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
+							this->actualizarPantalla();
+						}
+					}
+				}
+			}
+		}
+	}
+	this->actualizarPantalla();
 }
