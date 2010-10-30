@@ -22,6 +22,7 @@ private:
 	informacionConfiguracion* infoconfig;
 public:
 	Juego();
+	void dibujarPantallaPrincipal();
 	void dibujarEscenario(string path);
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
