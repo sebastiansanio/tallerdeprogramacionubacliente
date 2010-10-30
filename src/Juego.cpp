@@ -306,3 +306,18 @@ void Juego::pedirPoso(){
 void Juego::actualizarPantalla(){
 	this->pantalla->actualizarPantalla(0,0,0,0);
 }
+
+void Juego::dibujarPantallaPrincipal(){
+	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
+	this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
+	this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
+	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
+	this->actualizarPantalla();
+}

@@ -24,6 +24,7 @@ bool Pantalla::comprobarPantalla(){
 }
 
 void Pantalla::dibujarPixel(int x, int y, SDL_Color* color){
+	if(x>(this->getAncho()) or y>(this->getAlto())) return;
 	//Si hay que bloquear la pantalla la bloquea, al final de la función la desbloquea
 	if ( SDL_MUSTLOCK(pantalla) ){
 		if ( SDL_LockSurface(pantalla) < 0 ){
@@ -110,6 +111,32 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 	// Mostramos el texto por pantalla
 	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
 //	SDL_Flip(pantalla);
+}
+
+void Pantalla::dibujarRectangulo(int x, int y, int ancho, int alto, int r, int g, int b){
+	if(ancho==0){
+		ancho=getAncho()-x;
+	}
+	if(alto==0){
+			alto=getAlto()-y;
+	}
+	SDL_Color color;
+	color.r=r;
+	color.g=g;
+	color.b=b;
+	for(int i=0;i<alto;i++){
+		for(int j=0;j<ancho;j++){
+			this->dibujarPixel(j + x,i + y,&color);
+		}
+	}
+}
+
+int Pantalla::getAncho(){
+	return pantalla->w;
+}
+
+int Pantalla::getAlto(){
+	return pantalla->h;
 }
 
 Pantalla::~Pantalla() {
