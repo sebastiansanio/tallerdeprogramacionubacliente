@@ -326,28 +326,82 @@ void Juego::dibujarPantallaPrincipal(){
 		if(SDL_PollEvent(&evento)) {
 			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
 			if(evento.type == SDL_QUIT){
-				cout<<"quit"<<endl;
 				exit(0);
 			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
-				cout<<"boton"<<endl;
 				if(evento.button.button==1){
 					if(evento.button.x>=5 and evento.button.x<=155){
 						if(evento.button.y>=10 and evento.button.y<=65){
-							this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
-							this->actualizarPantalla();
+							this->dibujarPantallaLogin(false,0);
+							terminar=true;
 						}
 						else if(evento.button.y>=100 and evento.button.y<=155){
 							this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
 							this->actualizarPantalla();
+							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
 							this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
 							this->actualizarPantalla();
+							terminar=true;
 						}
 					}
 				}
 			}
 		}
 	}
-	this->actualizarPantalla();
+}
+
+void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
+	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+		SDL_Color blanco;
+		blanco.r=255;
+		blanco.g=255;
+		blanco.b=255;
+		SDL_Color negro;
+		negro.r=0;
+		negro.g=0;
+		negro.b=0;
+		this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
+		this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
+		this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+		this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+		this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
+		this->pantalla->escribirTextoDesdePos("Contrasena",10,120,40,blanco);
+		string usuarioTexto("sdfsdasdfsd");
+		string contrasenaTexto("***");
+		CasilleroTexto casillero=NINGUNO;
+		this->pantalla->escribirTextoDesdePos(usuarioTexto.c_str(),13,50,25,negro);
+		this->pantalla->escribirTextoDesdePos(contrasenaTexto.c_str(),13,160,25,negro);
+		this->actualizarPantalla();
+		bool terminar=false;
+		SDL_Event evento;
+		while(!terminar){
+			if(SDL_PollEvent(&evento)) {
+				//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+				if(evento.type == SDL_QUIT){
+					exit(0);
+				} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+					if(evento.button.button==1){
+						if(evento.button.x>=8 and evento.button.x<=152){
+							if(evento.button.y>=55 and evento.button.y<=75){
+								this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+								this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+								this->pantalla->escribirTextoDesdePos(usuarioTexto.c_str(),13,50,25,negro);
+								this->pantalla->escribirTextoDesdePos(contrasenaTexto.c_str(),13,160,25,negro);
+								casillero=USUARIO;
+								this->actualizarPantalla();
+							}
+							else if(evento.button.y>=165 and evento.button.y<=185){
+								this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+								this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
+								this->pantalla->escribirTextoDesdePos(usuarioTexto.c_str(),13,50,25,negro);
+								this->pantalla->escribirTextoDesdePos(contrasenaTexto.c_str(),13,160,25,negro);
+								casillero=CONTRASENA;
+								this->actualizarPantalla();
+							}
+						}
+					}
+				}
+			}
+		}
 }

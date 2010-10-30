@@ -10,6 +10,12 @@
 #include "Jugador.h"
 #include "Carta.h"
 
+typedef enum{
+	NINGUNO,
+	USUARIO,
+	CONTRASENA,
+} CasilleroTexto;
+
 class Juego {
 private:
 	Pantalla* pantalla;
@@ -23,6 +29,7 @@ private:
 public:
 	Juego();
 	void dibujarPantallaPrincipal();
+	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos);
 	void dibujarEscenario(string path);
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
