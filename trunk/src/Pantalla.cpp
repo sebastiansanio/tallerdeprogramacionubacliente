@@ -13,6 +13,7 @@ Pantalla::Pantalla(int alto, int ancho) {
 		cerr << SDL_GetError() << endl;
 		exit(1);
 	}
+	SDL_EnableUNICODE(1);
 }
 
 bool Pantalla::comprobarPantalla(){
@@ -111,6 +112,16 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 	// Mostramos el texto por pantalla
 	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
 //	SDL_Flip(pantalla);
+}
+
+void Pantalla::escribirStringDesdePos(string * texto, int x, int y, int tamaniofuente,int r, int g, int b){
+	if(texto->size()!=0){
+		SDL_Color color;
+		color.r=r;
+		color.g=g;
+		color.b=b;
+		escribirTextoDesdePos(texto->c_str(),x,y,tamaniofuente,color);
+	}
 }
 
 void Pantalla::dibujarRectangulo(int x, int y, int ancho, int alto, int r, int g, int b){
