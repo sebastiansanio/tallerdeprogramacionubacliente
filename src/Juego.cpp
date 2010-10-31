@@ -340,8 +340,9 @@ void Juego::dibujarPantallaPrincipal(){
 							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
-							this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
-							this->actualizarPantalla();
+//							this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
+//							this->actualizarPantalla();
+							this->dibujarPantallaObservacion();
 							terminar=true;
 						}
 					}
@@ -448,4 +449,41 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 			}
 		}
 	}
+}
+void Juego::dibujarPantallaObservacion(){
+	string path,pathEscenario;
+	pathEscenario = this->pedirEscenario();
+	list<Carta>* cartas = this->pedirCartas();
+	list<Jugador>* jugadores = this->pedirJugadores();
+	this->pedirPoso();
+	this->dibujarEscenario(pathEscenario);
+	list<Jugador>::iterator it = jugadores->begin();
+	while (it != jugadores->end()) {
+		path = this->pedirImagenJugador(&(*it));
+		this->dibujarJugador(*it);
+		it++;
+	}
+	if(jugadores->size()<6){
+		for(int i=(jugadores->size() + 1);i<7;i++){
+			Jugador jugador("ImagenVacio.bmp"," "," ",i);
+			this->dibujarJugador(jugador);
+		}
+	}
+	list<Carta>::iterator it2 = cartas->begin();
+	while (it2 != cartas->end()) {
+		this->dibujarCarta(*it2);
+		it2++;
+	}
+	if(cartas->size()<5){
+		for(int i=(cartas->size()+1);i<6;i++){
+			Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
+			this->dibujarCarta(carta);
+		}
+	}
+//	//Dibujamos los botones
+//	this->dibujarBoton("No Ir",1);
+//	this->dibujarBoton("Igualar",2);
+//	this->dibujarBoton("Subir el doble",3);
+	this->dibujarPoso();
+	this->actualizarPantalla();
 }

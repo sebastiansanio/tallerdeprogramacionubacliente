@@ -2,7 +2,31 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 10 de corazones no tiene un imagen BMP o esta corrupta
+		El escenario no es una imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="G"/>
+	<errores>
+		<error tipo="V">
+		Puerto y/o ip invalido en el archivo config.ini
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="G"/>
+	<errores>
+		<error tipo="V">
+		Puerto y/o ip invalido en el archivo config.ini
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta 10 de treboles no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -26,7 +50,7 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 1 de corazones no tiene un imagen BMP o esta corrupta
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -34,7 +58,7 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 8 de treboles no tiene un imagen BMP o esta corrupta
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -42,47 +66,7 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 10 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 2 de picas no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 6 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 1 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 8 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 10 de corazones no tiene un imagen BMP o esta corrupta
+		La carta 10 de treboles no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -106,7 +90,7 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 1 de corazones no tiene un imagen BMP o esta corrupta
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -114,95 +98,7 @@
 	<operacion id="B"/>
 	<errores>
 		<error tipo="E">
-		La carta 8 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 10 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 2 de picas no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 6 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 1 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 8 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	</operacion id="U"/>
-		<errores>
-			<error tipo="V">
-			Usuario invalido
-			</error>
-		</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 10 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 2 de picas no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 6 de treboles no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 1 de corazones no tiene un imagen BMP o esta corrupta
-		</error>
-	</errores>
-</respuesta>
-<respuesta>
-	<operacion id="B"/>
-	<errores>
-		<error tipo="E">
-		La carta 8 de treboles no tiene un imagen BMP o esta corrupta
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
 		</error>
 	</errores>
 </respuesta>
@@ -221,4 +117,1716 @@
 			Usuario invalido
 			</error>
 		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
 </respuesta>

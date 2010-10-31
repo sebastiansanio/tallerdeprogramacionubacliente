@@ -30,6 +30,7 @@ public:
 	Juego();
 	void dibujarPantallaPrincipal();
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos);
+	void dibujarPantallaObservacion();
 	void dibujarEscenario(string path);
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
