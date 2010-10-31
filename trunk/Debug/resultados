@@ -1,4 +1,435 @@
 <respuesta>
+	</operacion id="S"/>
+	<resultados>
+		<resultado nombre="sum">
+		7
+		</parametro>
+	</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="S"/>
+	<resultados>
+		<resultado nombre="sum">
+		7
+		</parametro>
+	</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="S"/>
+	<resultados>
+		<resultado nombre="sum">
+		7
+		</parametro>
+	</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="S"/>
+		<resultados>
+			<resultado nombre="sum">
+			4
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			7
+			</resultado>
+			<resultado nombre="treboles">
+			13
+			</resultado>
+			<resultado nombre="corazones">
+			5
+			</resultado>
+			<resultado nombre="treboles">
+			5
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			100
+			</resultado>
+			<resultado nombre="jugador2">
+			100200
+			</resultado>
+			<resultado nombre="jugador3">
+			100200300
+			</resultado>
+			<resultado nombre="jugador4">
+			100200300400
+			</resultado>
+			<resultado nombre="jugador5">
+			100200300400500
+			</resultado>
+			<resultado nombre="jugador6">
+			100200300400500600
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			7
+			</resultado>
+			<resultado nombre="treboles">
+			13
+			</resultado>
+			<resultado nombre="corazones">
+			5
+			</resultado>
+			<resultado nombre="treboles">
+			5
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			100
+			</resultado>
+			<resultado nombre="jugador2">
+			100200
+			</resultado>
+			<resultado nombre="jugador3">
+			100200300
+			</resultado>
+			<resultado nombre="jugador4">
+			100200300400
+			</resultado>
+			<resultado nombre="jugador5">
+			100200300400500
+			</resultado>
+			<resultado nombre="jugador6">
+			100200300400500600
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			7
+			</resultado>
+			<resultado nombre="treboles">
+			13
+			</resultado>
+			<resultado nombre="corazones">
+			5
+			</resultado>
+			<resultado nombre="treboles">
+			5
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			100
+			</resultado>
+			<resultado nombre="jugador2">
+			100200
+			</resultado>
+			<resultado nombre="jugador3">
+			100200300
+			</resultado>
+			<resultado nombre="jugador4">
+			100200300400
+			</resultado>
+			<resultado nombre="jugador5">
+			100200300400500
+			</resultado>
+			<resultado nombre="jugador6">
+			100200300400500600
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			7
+			</resultado>
+			<resultado nombre="treboles">
+			13
+			</resultado>
+			<resultado nombre="corazones">
+			5
+			</resultado>
+			<resultado nombre="treboles">
+			5
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			100
+			</resultado>
+			<resultado nombre="jugador2">
+			100200
+			</resultado>
+			<resultado nombre="jugador3">
+			100200300
+			</resultado>
+			<resultado nombre="jugador4">
+			100200300400
+			</resultado>
+			<resultado nombre="jugador5">
+			100200300400500
+			</resultado>
+			<resultado nombre="jugador6">
+			100200300400500600
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
 	</operacion id="C"/>
 		<resultados>
 			<resultado nombre="corazones">
@@ -152,8 +583,54 @@
 		</resultados>
 </respuesta>
 <respuesta>
-	</operacion id="U"/>
+	</operacion id="C"/>
 		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
 		</resultados>
 </respuesta>
 <respuesta>
@@ -208,8 +685,54 @@
 		</resultados>
 </respuesta>
 <respuesta>
-	</operacion id="U"/>
+	</operacion id="C"/>
 		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
 		</resultados>
 </respuesta>
 <respuesta>
@@ -264,8 +787,54 @@
 		</resultados>
 </respuesta>
 <respuesta>
-	</operacion id="U"/>
+	</operacion id="C"/>
 		<resultados>
+			<resultado nombre="corazones">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+			<resultado nombre="corazones">
+			1
+			</resultado>
+			<resultado nombre="treboles">
+			8
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="jugador1">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+			<resultado nombre="jugador6">
+			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
 		</resultados>
 </respuesta>
 <respuesta>
@@ -320,11 +889,6 @@
 		</resultados>
 </respuesta>
 <respuesta>
-	</operacion id="U"/>
-		<resultados>
-		</resultados>
-</respuesta>
-<respuesta>
 	</operacion id="C"/>
 		<resultados>
 			<resultado nombre="corazones">
@@ -364,6 +928,4668 @@
 			</resultado>
 			<resultado nombre="jugador6">
 			586
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="P"/>
+		<resultados>
+			<resultado nombre="bote">
+			500
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="C"/>
+		<resultados>
+			<resultado nombre="treboles">
+			10
+			</resultado>
+			<resultado nombre="picas">
+			2
+			</resultado>
+			<resultado nombre="treboles">
+			6
+			</resultado>
+		</resultados>
+</respuesta>
+<respuesta>
+	</operacion id="J"/>
+		<resultados>
+			<resultado nombre="pepe">
+			123
+			</resultado>
+			<resultado nombre="jugador2">
+			2512
+			</resultado>
+			<resultado nombre="jugador3">
+			267
+			</resultado>
+			<resultado nombre="jugador4">
+			3285
+			</resultado>
+			<resultado nombre="jugador5">
+			3284
 			</resultado>
 		</resultados>
 </respuesta>
