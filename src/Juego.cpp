@@ -313,9 +313,10 @@ void Juego::dibujarPantallaPrincipal(){
 	blanco.r=255;
 	blanco.g=255;
 	blanco.b=255;
-	this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
-	this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
-	this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
+	this->dibujarEscenario("boton.bmp");
+//	this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
+//	this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
+//	this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
 	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
@@ -353,7 +354,8 @@ void Juego::dibujarPantallaPrincipal(){
 }
 
 void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
-	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+//	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	this->dibujarEscenario("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
 	blanco.g=255;
@@ -362,8 +364,8 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 	negro.r=0;
 	negro.g=0;
 	negro.b=0;
-	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
-	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
+//	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
+//	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
