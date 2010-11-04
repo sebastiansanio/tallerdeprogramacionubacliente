@@ -482,10 +482,10 @@ void Juego::dibujarPantallaObservacion(){
 			this->dibujarCarta(carta);
 		}
 	}
-//	//Dibujamos los botones
-//	this->dibujarBoton("No Ir",1);
-//	this->dibujarBoton("Igualar",2);
-//	this->dibujarBoton("Subir el doble",3);
+	//Dibujamos los botones
+	this->dibujarBoton("No Ir",1);
+	this->dibujarBoton("Igualar",2);
+	this->dibujarBoton("Subir el doble",3);
 	this->dibujarPoso();
 	this->actualizarPantalla();
 }

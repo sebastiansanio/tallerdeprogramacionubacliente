@@ -1846,3 +1846,19 @@
 		</error>
 	</errores>
 </respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>
+<respuesta>
+	<operacion id="B"/>
+	<errores>
+		<error tipo="E">
+		La carta Carta de Imagen no tiene un imagen BMP o esta corrupta
+		</error>
+	</errores>
+</respuesta>

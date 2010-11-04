@@ -1,10 +1,3 @@
-/*
- * Jugador.cpp
- *
- *  Created on: 10/10/2010
- *      Author: gaston
- */
-
 #include "Jugador.h"
 
 Jugador::Jugador(string path,string nombre, string plata, int id) {
