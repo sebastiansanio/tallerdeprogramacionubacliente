@@ -364,6 +364,10 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 	negro.r=0;
 	negro.g=0;
 	negro.b=0;
+	//Para informar errores
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,20,255,255,255);
+	if(usuarioIncorrecto)
+		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),20,negro);
 //	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
 //	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
@@ -427,9 +431,13 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 						}
 					}
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
-					bool usuarioValido=this->validarJugador(usuarioTexto,contrasenaTexto);
-					cout<<usuarioValido<<endl;;
-				//entre la a y la z o entre el 0 y el 9
+					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
+						if(cantidadIntentos>3){
+
+						}
+						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
+					}
+					//entre la a y la z o entre el 0 y el 9
 				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
 					caracterLeido=(char)evento.key.keysym.unicode;
 					if(casillero==USUARIO){
