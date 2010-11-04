@@ -366,6 +366,12 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 	negro.b=0;
 	//Para informar errores
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,20,255,255,255);
+	if(cantidadIntentos>2){
+		this->pantalla->escribirTextoDesdePos("Se Superaron los 3 intentos se cerrara la aplicacion",5,this->infoconfig->alto*(0.9),20,negro);
+		this->actualizarPantalla();
+		sleep(5);
+		exit(0);
+	}
 	if(usuarioIncorrecto)
 		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),20,negro);
 //	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
@@ -432,9 +438,6 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 					}
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
 					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
-						if(cantidadIntentos>3){
-
-						}
 						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
 					}
 					//entre la a y la z o entre el 0 y el 9
