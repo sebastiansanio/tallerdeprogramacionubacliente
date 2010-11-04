@@ -439,6 +439,8 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
 					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
 						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
+					}else{
+						this->jugar(usuarioTexto);
 					}
 					//entre la a y la z o entre el 0 y el 9
 				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
@@ -499,4 +501,8 @@ void Juego::dibujarPantallaObservacion(){
 	this->dibujarBoton("Subir el doble",3);
 	this->dibujarPoso();
 	this->actualizarPantalla();
+}
+
+void Juego::jugar(string nombreJugador){
+
 }

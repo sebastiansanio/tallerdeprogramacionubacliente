@@ -46,6 +46,7 @@ public:
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass);
+	void jugar(string nombreJugador);
 	virtual ~Juego();
 };
 

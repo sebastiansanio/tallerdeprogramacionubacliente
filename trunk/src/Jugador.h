@@ -22,6 +22,7 @@ public:
 	string getNombre();
 	string getPlata();
 	string getPath();
+	bool modificarPlataEn(int plata);
 	int getId();
 	void setPath(string path);
 	virtual ~Jugador();
