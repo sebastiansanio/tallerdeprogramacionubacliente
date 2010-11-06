@@ -522,8 +522,11 @@ void Juego::dibujarPantallaObservacion(){
 		this->dibujarPoso();
 		this->actualizarPantalla();
 		SDL_Event evento;
-		if(SDL_PollEvent(&evento)){
+		while(SDL_PollEvent(&evento)){
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			}
 		}
 	}
 }
