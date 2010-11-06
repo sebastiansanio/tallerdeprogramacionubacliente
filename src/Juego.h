@@ -28,6 +28,7 @@ private:
 	informacionConfiguracion* infoconfig;
 public:
 	Juego();
+	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void dibujarPantallaPrincipal();
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos);
 	void dibujarPantallaObservacion();

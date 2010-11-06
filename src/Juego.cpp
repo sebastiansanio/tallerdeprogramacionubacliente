@@ -465,8 +465,17 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 		}
 	}
 }
+
+void Juego::empezarPartida(){
+	string idOperacion="F";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	cliente->enviar(xml);
+}
+
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
+	this->empezarPartida();
 	pathEscenario = this->pedirEscenario();
 	list<Carta>* cartas = this->pedirCartas();
 	list<Jugador>* jugadores = this->pedirJugadores();
