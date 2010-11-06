@@ -26,6 +26,7 @@ private:
 	list<Carta> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
 	informacionConfiguracion* infoconfig;
+	string nombreJugador;
 public:
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
@@ -37,6 +38,7 @@ public:
 	void dibujarCarta(Carta cartaADibujar);
 	void dibujarBoton(string textoBoton, int pos);
 	void dibujarPoso();
+	bool esMiTurno();
 	bool verificarResolucion(unsigned int alto,unsigned  int ancho);
 	string pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
@@ -47,7 +49,7 @@ public:
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass);
-	void jugar(string nombreJugador);
+	void jugar();
 	virtual ~Juego();
 };
 

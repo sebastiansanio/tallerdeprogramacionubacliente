@@ -440,7 +440,8 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
 						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
 					}else{
-						this->jugar(usuarioTexto);
+						this->nombreJugador=usuarioTexto;
+						this->jugar();
 					}
 					//entre la a y la z o entre el 0 y el 9
 				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
@@ -473,45 +474,60 @@ void Juego::empezarPartida(){
 	cliente->enviar(xml);
 }
 
+bool Juego::esMiTurno(){
+	string idOperacion="A";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	cliente->enviar(xml);
+	char * respuesta=cliente->recibirRespuesta();
+	string jugadorTurno=parserResultado->getPoso(respuesta);
+	return jugadorTurno==this->nombreJugador;
+}
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
 	this->empezarPartida();
-	pathEscenario = this->pedirEscenario();
-	list<Carta>* cartas = this->pedirCartas();
-	list<Jugador>* jugadores = this->pedirJugadores();
-	this->pedirPoso();
-	this->dibujarEscenario(pathEscenario);
-	list<Jugador>::iterator it = jugadores->begin();
-	while (it != jugadores->end()) {
-		path = this->pedirImagenJugador(&(*it));
-		this->dibujarJugador(*it);
-		it++;
-	}
-	if(jugadores->size()<6){
-		for(int i=(jugadores->size() + 1);i<7;i++){
-			Jugador jugador("ImagenVacio.bmp"," "," ",i);
-			this->dibujarJugador(jugador);
+	while(true){
+		pathEscenario = this->pedirEscenario();
+		list<Carta>* cartas = this->pedirCartas();
+		list<Jugador>* jugadores = this->pedirJugadores();
+		this->pedirPoso();
+		this->dibujarEscenario(pathEscenario);
+		list<Jugador>::iterator it = jugadores->begin();
+		while (it != jugadores->end()) {
+			path = this->pedirImagenJugador(&(*it));
+			this->dibujarJugador(*it);
+			it++;
+		}
+		if(jugadores->size()<6){
+			for(int i=(jugadores->size() + 1);i<7;i++){
+				Jugador jugador("ImagenVacio.bmp"," "," ",i);
+				this->dibujarJugador(jugador);
+			}
+		}
+		list<Carta>::iterator it2 = cartas->begin();
+		while (it2 != cartas->end()) {
+			this->dibujarCarta(*it2);
+			it2++;
+		}
+		if(cartas->size()<5){
+			for(int i=(cartas->size()+1);i<6;i++){
+				Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
+				this->dibujarCarta(carta);
+			}
+		}
+		//Dibujamos los botones
+		this->dibujarBoton("No Ir",1);
+		this->dibujarBoton("Igualar",2);
+		this->dibujarBoton("Subir el doble",3);
+		this->dibujarPoso();
+		this->actualizarPantalla();
+		SDL_Event evento;
+		if(SDL_PollEvent(&evento)){
+			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
 		}
 	}
-	list<Carta>::iterator it2 = cartas->begin();
-	while (it2 != cartas->end()) {
-		this->dibujarCarta(*it2);
-		it2++;
-	}
-	if(cartas->size()<5){
-		for(int i=(cartas->size()+1);i<6;i++){
-			Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
-			this->dibujarCarta(carta);
-		}
-	}
-	//Dibujamos los botones
-	this->dibujarBoton("No Ir",1);
-	this->dibujarBoton("Igualar",2);
-	this->dibujarBoton("Subir el doble",3);
-	this->dibujarPoso();
-	this->actualizarPantalla();
 }
 
-void Juego::jugar(string nombreJugador){
+void Juego::jugar(){
 
 }
