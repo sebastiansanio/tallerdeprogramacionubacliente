@@ -1,8 +1,8 @@
 <respuesta>
-	</operacion id="U"/>
-	<errores>
-		<error tipo="V">
-		Usuario invalido
-		</error>
-	</errores>
+	</operacion id="P"/>
+	<resultados>
+		<resultado nombre="bote">
+		500
+		</resultado>
+	</resultados>
 </respuesta>
