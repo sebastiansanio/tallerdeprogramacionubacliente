@@ -14,6 +14,7 @@ typedef enum{
 	NINGUNO,
 	USUARIO,
 	CONTRASENA,
+	ARCHIVO,
 } CasilleroTexto;
 
 class Juego {
@@ -32,6 +33,7 @@ public:
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void dibujarPantallaPrincipal();
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos);
+	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
 	void dibujarEscenario(string path);
 	void dibujarJugador(Jugador jugadorADibujar);
@@ -49,6 +51,7 @@ public:
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass);
+	bool registrarJugador(string usuario, string pass);
 	void jugar();
 	virtual ~Juego();
 };
