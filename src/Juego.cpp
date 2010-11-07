@@ -253,6 +253,25 @@ bool Juego::validarJugador(string usuario, string pass){
 		return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
+bool Juego::registrarJugador(string usuario, string pass){
+	string idOperacion="R";
+	list<string>* operandos=new list<string>();
+	list<string>::iterator it=operandos->begin();
+		it=operandos->insert(it,"usuario");
+		it++;
+		it=operandos->insert(it,usuario);
+		it++;
+		it=operandos->insert(it,"password");
+		it++;
+		it=operandos->insert(it,pass);
+
+		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+		delete operandos;
+		cliente->enviar(xml);
+		char * respuesta = cliente->recibirRespuesta();
+		return (this->parserResultado->DecodificaResultado(respuesta));
+}
+
 void Juego::dibujarBoton(string textoBoton, int pos){
 	BitMap* boton = new BitMap("boton.bmp");
 	SDL_Color color;
@@ -336,13 +355,10 @@ void Juego::dibujarPantallaPrincipal(){
 							terminar=true;
 						}
 						else if(evento.button.y>=100 and evento.button.y<=155){
-							this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
-							this->actualizarPantalla();
+							this->dibujarPantallaRegistro(0);
 							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
-//							this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
-//							this->actualizarPantalla();
 							this->dibujarPantallaObservacion();
 							terminar=true;
 						}
@@ -364,16 +380,24 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 	negro.r=0;
 	negro.g=0;
 	negro.b=0;
+	SDL_Color rojo;
+	rojo.r=255;
+	rojo.g=0;
+	rojo.b=0;
 	//Para informar errores
-	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,20,255,255,255);
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+	if(cantidadIntentos>=1 and cantidadIntentos>=2){
+		this->pantalla->escribirTextoDesdePos("El usuario ya existe",5,this->infoconfig->alto*(0.9),24,rojo);
+		this->actualizarPantalla();
+	}
 	if(cantidadIntentos>2){
-		this->pantalla->escribirTextoDesdePos("Se Superaron los 3 intentos se cerrara la aplicacion",5,this->infoconfig->alto*(0.9),20,negro);
+		this->pantalla->escribirTextoDesdePos("Se Superaron los 3 intentos se cerrara la aplicacion",5,this->infoconfig->alto*(0.9),24,rojo);
 		this->actualizarPantalla();
 		sleep(5);
 		exit(0);
 	}
 	if(usuarioIncorrecto)
-		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),20,negro);
+		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),24,rojo);
 //	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
 //	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
@@ -441,6 +465,10 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
 					}else{
 						this->nombreJugador=usuarioTexto;
+						this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
+						this->actualizarPantalla();
+						sleep(2);
 						this->jugar();
 					}
 					//entre la a y la z o entre el 0 y el 9
@@ -459,6 +487,154 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 						contrasenaAsteriscos+="*";
 						this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
 						this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+						this->actualizarPantalla();
+					}
+				}
+			}
+		}
+	}
+}
+
+void Juego::dibujarPantallaRegistro(int cantidadIntentos){
+//	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	this->dibujarEscenario("boton.bmp");
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	SDL_Color negro;
+	negro.r=0;
+	negro.g=0;
+	negro.b=0;
+	SDL_Color rojo;
+	rojo.r=255;
+	rojo.g=0;
+	rojo.b=0;
+	//Para informar errores
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+	if(cantidadIntentos>2){
+		this->pantalla->escribirTextoDesdePos("Se Superaron los 3 intentos se cerrara la aplicacion",5,this->infoconfig->alto*(0.9),24,rojo);
+		this->actualizarPantalla();
+		sleep(5);
+		exit(0);
+	}
+	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+	this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
+	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Contrasena",10,120,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Archivo",10,230,40,blanco);
+	string usuarioTexto("");
+	string contrasenaTexto("");
+	string contrasenaAsteriscos("");
+	string archivoTexto("");
+	CasilleroTexto casillero=NINGUNO;
+	this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+	this->actualizarPantalla();
+	char caracterLeido=(char)0;
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=8 and evento.button.x<=152){
+						if(evento.button.y>=55 and evento.button.y<=75){
+							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+							this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+							this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
+							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							casillero=USUARIO;
+							this->actualizarPantalla();
+						}
+						else if(evento.button.y>=165 and evento.button.y<=185){
+							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
+							this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
+							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							casillero=CONTRASENA;
+							this->actualizarPantalla();
+						}
+						else if(evento.button.y>=275 and evento.button.y<=295){
+							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+							this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+							this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
+							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							casillero=ARCHIVO;
+							this->actualizarPantalla();
+						}
+					}
+				}
+			} else if(evento.type == SDL_KEYDOWN){
+				if(evento.key.keysym.sym==SDLK_BACKSPACE){
+					if(casillero==USUARIO){
+						int nuevoTamanio=usuarioTexto.size()-1;
+						if (nuevoTamanio>=0){
+							usuarioTexto.resize(usuarioTexto.size()-1);
+							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->actualizarPantalla();
+						}
+					} else if(casillero==CONTRASENA){
+						int nuevoTamanio=contrasenaTexto.size()-1;
+						if (nuevoTamanio>=0){
+							contrasenaTexto.resize(contrasenaTexto.size()-1);
+							contrasenaAsteriscos.resize(contrasenaAsteriscos.size()-1);
+							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
+							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->actualizarPantalla();
+						}
+					} else if(casillero==ARCHIVO){
+						int nuevoTamanio=archivoTexto.size()-1;
+						if (nuevoTamanio>=0){
+							archivoTexto.resize(archivoTexto.size()-1);
+							this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
+							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							this->actualizarPantalla();
+						}
+					}
+				} else if(evento.key.keysym.sym==SDLK_RETURN){
+					if(!this->registrarJugador(usuarioTexto,contrasenaTexto)){
+						this->dibujarPantallaRegistro(cantidadIntentos + 1);
+					}else{
+						this->nombreJugador=usuarioTexto;
+						this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+						this->pantalla->escribirTextoDesdePos("Se registro el usuario",5,this->infoconfig->alto*(0.9),24,rojo);
+						this->actualizarPantalla();
+						sleep(2);
+						this->dibujarPantallaPrincipal();
+					}
+					//entre la a y la z o entre el 0 y el 9
+				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
+					caracterLeido=(char)evento.key.keysym.unicode;
+					if(casillero==USUARIO){
+						usuarioTexto+=caracterLeido;
+						this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+						this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+						this->actualizarPantalla();
+					}
+					if(casillero==CONTRASENA){
+						contrasenaTexto+=caracterLeido;
+						contrasenaAsteriscos+="*";
+						this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
+						this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+						this->actualizarPantalla();
+					}
+					if(casillero==ARCHIVO){
+						archivoTexto+=caracterLeido;
+						this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
+						this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
 						this->actualizarPantalla();
 					}
 				}
@@ -521,6 +697,7 @@ void Juego::dibujarPantallaObservacion(){
 		this->dibujarBoton("Subir el doble",3);
 		this->dibujarPoso();
 		this->actualizarPantalla();
+		sleep(1);
 		SDL_Event evento;
 		while(SDL_PollEvent(&evento)){
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
