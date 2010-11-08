@@ -105,7 +105,7 @@ bool Juego::enviarImagenJugador(string ruta,string jugador){
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
-//	return (bool)(cliente->enviarArchivoBMP(ruta));
+	cliente->enviarArchivoBMP(ruta);
 	return true;
 }
 
@@ -279,11 +279,11 @@ bool Juego::registrarJugador(string usuario, string pass){
 		it=operandos->insert(it,"password");
 		it++;
 		it=operandos->insert(it,pass);
-
 		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 		delete operandos;
 		cliente->enviar(xml);
 		char * respuesta = cliente->recibirRespuesta();
+		cout<<respuesta<<endl;
 		string ruta("boton.bmp");
 		string jugador("jugador");
 		if(enviarImagenJugador(ruta,jugador)){
@@ -682,6 +682,7 @@ bool Juego::esMiTurno(){
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
 	this->empezarPartida();
+	this->enviarImagenJugador("boton.bmp","gaston");
 	while(true){
 		pathEscenario = this->pedirEscenario();
 		list<Carta>* cartas = this->pedirCartas();
