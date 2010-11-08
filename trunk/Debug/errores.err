@@ -2294,3 +2294,35 @@
 			</error>
 		</errores>
 </respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	<operacion id="G"/>
+	<errores>
+		<error tipo="V">
+		Puerto y/o ip invalido en el archivo config.ini
+		</error>
+	</errores>
+</respuesta>
