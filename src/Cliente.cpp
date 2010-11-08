@@ -50,26 +50,26 @@ bool Cliente::conectar(){
 }
 
 void Cliente::enviar(char* data){
-        ostringstream sstream;
-        sstream << data;
-        string paraVerCuantoPesa = sstream.str();
+    ostringstream sstream;
+    sstream << data;
+    string paraVerCuantoPesa = sstream.str();
     unsigned int valorSend;
     valorSend = send(this->descriptorSocket, data, paraVerCuantoPesa.size(), 0);
-        if(valorSend==0){
+    if(valorSend==0){
         cout<<"Se desconecto el servidor.."<<endl;
         cout<<"Se cerrará la aplicación"<<endl;
         sleep(2);
         exit(0);
-        }
+    }
     if (valorSend == -1) { cout<<"Mal enviado"<<endl;}
     delete []data;
     char* data2=new char[3];
-        memset((void*)data2,'\0',3);
+    memset((void*)data2,'\0',3);
     data2[0]='e';
-        data2[1]='o';
-        data2[2]='f';
-        valorSend=send(this->descriptorSocket,data2,3,0);
-        delete []data2;
+    data2[1]='o';
+    data2[2]='f';
+    valorSend=send(this->descriptorSocket,data2,3,0);
+    delete []data2;
 }
 
 int Cliente::enviarArchivoBMP(string path){
@@ -181,6 +181,7 @@ string Cliente::recibirArchivo(string path){
         socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
         ssize_t valorRecive;
         while(seguir){
+				cout<<"recibe"<<endl;
                 valorRecive=recv(this->descriptorSocket,data,leng,0);
                 if(valorRecive==0){
                 cout<<"Se desconecto el servidor.."<<endl;

@@ -73,6 +73,7 @@ string Juego::pedirEscenario(){
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
+	cout<<"envia escenario"<<endl;
 	cliente->recibirArchivo(ruta);
 	return ruta;
 }
@@ -682,7 +683,7 @@ bool Juego::esMiTurno(){
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
 //	this->empezarPartida();
-	this->enviarImagenJugador("boton.bmp","gaston");
+//	if(this->enviarImagenJugador("boton.bmp","gaston")) cout<<"envio imagen"<<endl;
 	while(true){
 		pathEscenario = this->pedirEscenario();
 		list<Carta>* cartas = this->pedirCartas();
