@@ -681,7 +681,7 @@ bool Juego::esMiTurno(){
 }
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
-	this->empezarPartida();
+//	this->empezarPartida();
 	this->enviarImagenJugador("boton.bmp","gaston");
 	while(true){
 		pathEscenario = this->pedirEscenario();
