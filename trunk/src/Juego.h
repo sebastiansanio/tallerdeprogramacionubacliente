@@ -44,6 +44,7 @@ public:
 	bool verificarResolucion(unsigned int alto,unsigned  int ancho);
 	string pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
+	bool enviarImagenJugador(string ruta,string jugador);
 	list<Jugador>* pedirJugadores();
 	list<Carta>* pedirCartas();
 	void pedirCartasComunitarias();

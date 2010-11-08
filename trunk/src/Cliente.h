@@ -32,6 +32,7 @@ public:
 	Cliente(unsigned int puerto, string IP);
 	bool conectar();
 	void enviar(char data[]);
+	int enviarArchivoBMP(string path);
 	char * recibirRespuesta();
 	string recibirArchivo(string path);//Devuelve el path donde lo guardo
 	virtual ~Cliente();

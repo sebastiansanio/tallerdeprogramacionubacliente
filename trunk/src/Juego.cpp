@@ -94,6 +94,21 @@ string Juego::pedirImagenJugador(Jugador * jugador){
 	return ruta;
 }
 
+bool Juego::enviarImagenJugador(string ruta,string jugador){
+	//Pido la imagen del jugador
+	string idOperacion="Z";
+	list<string>* operandos=new list<string>();
+	list<string>::iterator it=operandos->begin();
+	it=operandos->insert(it,"jugador");
+	it++;
+	it=operandos->insert(it,jugador);
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+//	return (bool)(cliente->enviarArchivoBMP(ruta));
+	return true;
+}
+
 void Juego::dibujarEscenario(string path){
 	BitMap* escenario=new BitMap(path);
 	if((escenario->esUnaImagenCorrecta())and(escenario->getAlto()>1)and(escenario->getAncho()>1)){
@@ -269,6 +284,11 @@ bool Juego::registrarJugador(string usuario, string pass){
 		delete operandos;
 		cliente->enviar(xml);
 		char * respuesta = cliente->recibirRespuesta();
+		string ruta("boton.bmp");
+		string jugador("jugador");
+		if(enviarImagenJugador(ruta,jugador)){
+			cout<<"Archivo enviado"<<endl;
+		}
 		return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
