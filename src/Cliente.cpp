@@ -72,6 +72,43 @@ void Cliente::enviar(char* data){
         delete []data2;
 }
 
+int Cliente::enviarArchivoBMP(string path){
+    // referencia al archivo
+    fstream  archivo;
+    //intenta abrir el archivo en modo lectura y binario
+    archivo.open(path.c_str(), fstream::in | fstream::binary );
+    if(!archivo.good()){
+    	cout<<"Mal imagen a enviar con path: " + path<<endl;
+    	archivo.open("ArchivoDeError.bmp", fstream::in | fstream::binary);
+    	if(!archivo.good()) cout<<"Mal archivo error bmp"<<endl;
+    }
+    char * data=new char[2];
+    archivo.read((char*)data,2);
+    int tamano;
+    archivo.read((char*)&tamano,4);
+    archivo.close();
+    archivo.open(path.c_str(), fstream::in | fstream::binary );
+	unsigned int valorSend;
+	streamsize extraidos;
+	delete []data;
+	data=new char[tamano];
+	extraidos=archivo.readsome(data,tamano);
+	valorSend = send(this->descriptorSocket, data, extraidos, 0);
+	if (valorSend == -1) {cout<<"Mal enviado a servidor"<<endl; }
+	archivo.close();
+	delete []data;
+	char* data2=new char[3];
+	memset((void*)data2,'\0',3);
+	data2[0]='e';
+	data2[1]='o';
+	data2[2]='f';
+	int auxValorSend;
+	auxValorSend=send(this->descriptorSocket,data2,3,0);
+	delete []data2;
+	return (int)auxValorSend;
+
+}
+
 char* Cliente::recibirRespuesta(){
         char* data=new char[MAXBYTESRECIBIDOS];
         memset((void*)data,'\0',MAXBYTESRECIBIDOS);
