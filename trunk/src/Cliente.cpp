@@ -181,7 +181,6 @@ string Cliente::recibirArchivo(string path){
         socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
         ssize_t valorRecive;
         while(seguir){
-				cout<<"recibe"<<endl;
                 valorRecive=recv(this->descriptorSocket,data,leng,0);
                 if(valorRecive==0){
                 cout<<"Se desconecto el servidor.."<<endl;
