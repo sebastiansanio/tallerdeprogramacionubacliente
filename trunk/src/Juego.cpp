@@ -338,12 +338,15 @@ bool Juego::registrarJugador(string usuario, string pass){
 		delete operandos;
 		cliente->enviar(xml);
 		char * respuesta = cliente->recibirRespuesta();
-		string ruta("boton");
-		string jugador("jugador");
-		if(enviarImagenJugador(ruta,jugador)){
-			cout<<"Archivo enviado"<<endl;
+		if(this->parserResultado->DecodificaResultado(respuesta)){
+			string ruta("boton");
+			string jugador(usuario);
+			if(enviarImagenJugador(ruta,jugador)){
+				cout<<"Archivo enviado"<<endl;
+			}
+			return true;
 		}
-		return (this->parserResultado->DecodificaResultado(respuesta));
+		return false;
 }
 
 void Juego::dibujarBoton(string textoBoton, int pos){
