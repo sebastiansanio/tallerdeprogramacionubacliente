@@ -2326,3 +2326,59 @@
 		</error>
 	</errores>
 </respuesta>
+<respuesta>
+	</operacion id="R"/>
+		<errores>
+			<error tipo="V">
+			Ya existe el usuario
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="R"/>
+		<errores>
+			<error tipo="V">
+			Ya existe el usuario
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="R"/>
+		<errores>
+			<error tipo="V">
+			Ya existe el usuario
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="U"/>
+		<errores>
+			<error tipo="V">
+			Usuario invalido
+			</error>
+		</errores>
+</respuesta>
+<respuesta>
+	</operacion id="R"/>
+		<errores>
+			<error tipo="V">
+			Ya existe el usuario
+			</error>
+		</errores>
+</respuesta>

@@ -96,6 +96,7 @@ string Juego::pedirImagenJugador(Jugador * jugador){
 
 bool Juego::enviarImagenJugador(string ruta,string jugador){
 	//Pido la imagen del jugador
+	ruta+=".bmp";
 	string idOperacion="Z";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
@@ -285,8 +286,7 @@ bool Juego::registrarJugador(string usuario, string pass){
 		delete operandos;
 		cliente->enviar(xml);
 		char * respuesta = cliente->recibirRespuesta();
-		cout<<respuesta<<endl;
-		string ruta("boton.bmp");
+		string ruta("boton");
 		string jugador("jugador");
 		if(enviarImagenJugador(ruta,jugador)){
 			cout<<"Archivo enviado"<<endl;
@@ -408,18 +408,16 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 	rojo.b=0;
 	//Para informar errores
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
-	if(cantidadIntentos>=1 and cantidadIntentos>=2){
-		this->pantalla->escribirTextoDesdePos("El usuario ya existe",5,this->infoconfig->alto*(0.9),24,rojo);
-		this->actualizarPantalla();
-	}
 	if(cantidadIntentos>2){
 		this->pantalla->escribirTextoDesdePos("Se Superaron los 3 intentos se cerrara la aplicacion",5,this->infoconfig->alto*(0.9),24,rojo);
 		this->actualizarPantalla();
 		sleep(5);
 		exit(0);
 	}
-	if(usuarioIncorrecto)
+	if(usuarioIncorrecto){
 		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),24,rojo);
+		this->actualizarPantalla();
+	}
 //	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
 //	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
@@ -539,6 +537,10 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 		this->actualizarPantalla();
 		sleep(5);
 		exit(0);
+	}
+	if(cantidadIntentos>=1){
+		this->pantalla->escribirTextoDesdePos("El usuario ya existe",5,this->infoconfig->alto*(0.9),24,rojo);
+		this->actualizarPantalla();
 	}
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
@@ -684,7 +686,7 @@ bool Juego::esMiTurno(){
 void Juego::dibujarPantallaObservacion(){
 	string path,pathEscenario;
 //	this->empezarPartida();
-	if(this->enviarImagenJugador("boton.bmp","gaston")) cout<<"envio imagen"<<endl;
+	if(this->enviarImagenJugador("boton","gaston")) cout<<"envio imagen"<<endl;
 	while(true){
 		pathEscenario = this->pedirEscenario();
 		list<Carta>* cartas = this->pedirCartas();
