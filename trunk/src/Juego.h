@@ -56,6 +56,7 @@ public:
 	bool validarJugador(string usuario, string pass);
 	bool registrarJugador(string usuario, string pass);
 	void jugar(bool jugador_observador, bool jugador_virtual);
+	Jugador * getJugador(int id);
 	virtual ~Juego();
 };
 
