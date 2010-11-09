@@ -32,7 +32,7 @@ public:
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void dibujarPantallaPrincipal();
-	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos);
+	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos,bool jugador_observador);
 	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
 	void dibujarEscenario(string path);
@@ -40,6 +40,7 @@ public:
 	void dibujarCarta(Carta cartaADibujar);
 	void dibujarBoton(string textoBoton, int pos);
 	void dibujarPoso();
+	void dibujarCartaJugador(Jugador * jugador);
 	bool esMiTurno();
 	bool verificarResolucion(unsigned int alto,unsigned  int ancho);
 	string pedirEscenario();
@@ -47,13 +48,14 @@ public:
 	bool enviarImagenJugador(string ruta,string jugador);
 	list<Jugador>* pedirJugadores();
 	list<Carta>* pedirCartas();
+	list<Carta>* pedirCartasJugador(Jugador * jugador);
 	void pedirCartasComunitarias();
 	void pedirPoso();
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass);
 	bool registrarJugador(string usuario, string pass);
-	void jugar();
+	void jugar(bool jugador_observador, bool jugador_virtual);
 	virtual ~Juego();
 };
 

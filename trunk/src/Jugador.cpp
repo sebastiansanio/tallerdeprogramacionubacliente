@@ -5,6 +5,7 @@ Jugador::Jugador(string path,string nombre, string plata, int id) {
 	this->plata="$"+plata;
 	this->path=path;
 	this->id = id;
+	this->cartas=NULL;
 }
 
 string Jugador::getNombre(){
@@ -24,6 +25,15 @@ string Jugador::getPlata(){
 
 void Jugador::setPath(string path){
 	this->path=path;
+}
+
+list<Carta>* Jugador::getCartas(){
+	return this->cartas;
+}
+
+void Jugador::setCartas(list<Carta> * cartasNuevas){
+	if(this->cartas!=NULL) delete this->cartas;
+	this->cartas=cartasNuevas;
 }
 
 Jugador::~Jugador() {

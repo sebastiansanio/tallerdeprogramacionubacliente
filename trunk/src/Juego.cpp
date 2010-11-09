@@ -252,23 +252,75 @@ list<Carta>* Juego::pedirCartas(){
 	return cartas;
 }
 
+list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
+	string idOperacion="B";
+	list<string>* operandos=new list<string>();
+	list<string>::iterator it_=operandos->begin();
+	it_=operandos->insert(it_,"jugador");
+	it_++;
+	it_=operandos->insert(it_,jugador->getNombre());
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	list<string>* cartasAux = parserResultado->getCartas(respuesta);
+	list<string>::iterator it;
+	list<Carta> * cartas = new list<Carta> ();
+	list<Carta>::iterator iterador = cartas->begin();
+	it = cartasAux->begin();
+	for (unsigned int i = 0; i < cartasAux->size() / 2; i++) {
+		string palo = (*it);
+		it++;
+		string numero = (*it);
+		it++;
+		iterador = cartas->insert(iterador,
+				Carta("", palo, numero, i + 1));
+		iterador++;
+	}
+	jugador->setCartas(cartas);
+	return cartas;
+}
+void Juego::dibujarCartaJugador(Jugador * jugador){
+	this->dibujarEscenario("boton.bmp");
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	this->pantalla->escribirTextoDesdePos("Cartas de:",this->infoconfig->ancho/2 - 90,2,30,blanco);
+	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
+	Carta *carta1,*carta2;
+	carta1=&jugador->getCartas()->front();
+	carta2=&jugador->getCartas()->back();
+	BitMap* imagen_carta1 = new BitMap("Cartas/" + carta1->getPalo()+"-"+carta1->getNumero()+".bmp");
+	BitMap* imagen_carta2 = new BitMap("Cartas/" + carta2->getPalo()+"-"+carta2->getNumero()+".bmp");
+	if ((imagen_carta1->esUnaImagenCorrecta())and(imagen_carta1->getAlto()>1)and(imagen_carta1->getAncho()>1)) {
+		imagen_carta1->resizeTo(this->infoconfig->alto - 70,this->infoconfig->ancho/2 -4);
+		this->pantalla->dibujarBitMapDesdePos(*imagen_carta1,0,30);
+	}
+	if ((imagen_carta2->esUnaImagenCorrecta())and(imagen_carta2->getAlto()>1)and(imagen_carta2->getAncho()>1)) {
+		imagen_carta2->resizeTo(this->infoconfig->alto - 70,this->infoconfig->ancho/2 -4);
+		this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,this->infoconfig->ancho/2 + 2,30);
+	}
+	this->actualizarPantalla();
+	sleep(5);
+
+}
+
 bool Juego::validarJugador(string usuario, string pass){
 	string idOperacion="U";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
-		it=operandos->insert(it,"usuario");
-		it++;
-		it=operandos->insert(it,usuario);
-		it++;
-		it=operandos->insert(it,"password");
-		it++;
-		it=operandos->insert(it,pass);
-
-		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-		delete operandos;
-		cliente->enviar(xml);
-		char * respuesta = cliente->recibirRespuesta();
-		return (this->parserResultado->DecodificaResultado(respuesta));
+	it=operandos->insert(it,"usuario");
+	it++;
+	it=operandos->insert(it,usuario);
+	it++;
+	it=operandos->insert(it,"password");
+	it++;
+	it=operandos->insert(it,pass);
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
 bool Juego::registrarJugador(string usuario, string pass){
@@ -355,9 +407,6 @@ void Juego::dibujarPantallaPrincipal(){
 	blanco.g=255;
 	blanco.b=255;
 	this->dibujarEscenario("boton.bmp");
-//	this->pantalla->dibujarRectangulo(5,10,150,55,0,0,0);
-//	this->pantalla->dibujarRectangulo(5,100,150,55,0,0,0);
-//	this->pantalla->dibujarRectangulo(5,190,150,55,0,0,0);
 	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
@@ -373,7 +422,7 @@ void Juego::dibujarPantallaPrincipal(){
 				if(evento.button.button==1){
 					if(evento.button.x>=5 and evento.button.x<=155){
 						if(evento.button.y>=10 and evento.button.y<=65){
-							this->dibujarPantallaLogin(false,0);
+							this->dibujarPantallaLogin(false,0,false);
 							terminar=true;
 						}
 						else if(evento.button.y>=100 and evento.button.y<=155){
@@ -381,7 +430,8 @@ void Juego::dibujarPantallaPrincipal(){
 							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
-							this->dibujarPantallaObservacion();
+//							this->dibujarPantallaLogin(false,0,true);
+							this->jugar(true,false);
 							terminar=true;
 						}
 					}
@@ -391,8 +441,7 @@ void Juego::dibujarPantallaPrincipal(){
 	}
 }
 
-void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
-//	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, bool jugador_observador){
 	this->dibujarEscenario("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
@@ -418,8 +467,6 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 		this->pantalla->escribirTextoDesdePos("Usuario Incorrecto",5,this->infoconfig->alto*(0.9),24,rojo);
 		this->actualizarPantalla();
 	}
-//	this->pantalla->dibujarRectangulo(5,10,150,80,0,0,0);
-//	this->pantalla->dibujarRectangulo(5,120,150,80,0,0,0);
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
@@ -482,14 +529,14 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos){
 					}
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
 					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
-						this->dibujarPantallaLogin(true,cantidadIntentos + 1);
+						this->dibujarPantallaLogin(true,cantidadIntentos + 1,jugador_observador);
 					}else{
 						this->nombreJugador=usuarioTexto;
 						this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
 						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
 						this->actualizarPantalla();
 						sleep(2);
-						this->jugar();
+						this->jugar(jugador_observador,false);
 					}
 					//entre la a y la z o entre el 0 y el 9
 				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
@@ -683,9 +730,9 @@ bool Juego::esMiTurno(){
 	string jugadorTurno=parserResultado->getPoso(respuesta);
 	return jugadorTurno==this->nombreJugador;
 }
-void Juego::dibujarPantallaObservacion(){
+
+void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	string path,pathEscenario;
-//	this->empezarPartida();
 	if(this->enviarImagenJugador("boton","gaston")) cout<<"envio imagen"<<endl;
 	while(true){
 		pathEscenario = this->pedirEscenario();
@@ -694,9 +741,24 @@ void Juego::dibujarPantallaObservacion(){
 		this->pedirPoso();
 		this->dibujarEscenario(pathEscenario);
 		list<Jugador>::iterator it = jugadores->begin();
+		SDL_Color blanco;
+		blanco.r=255;
+		blanco.g=255;
+		blanco.b=255;
+		int x=5, y=5;
+		this->pantalla->escribirTextoDesdePos("Pedir cartas de:",x,y,40,blanco);
+		y+=35;
+		list<Carta>::iterator it2 = cartas->begin();
+		while (it2 != cartas->end()) {
+			this->dibujarCarta(*it2);
+			it2++;
+		}
 		while (it != jugadores->end()) {
 			path = this->pedirImagenJugador(&(*it));
 			this->dibujarJugador(*it);
+			this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x,y,30,blanco);
+			y+=30;
+			(*it).setCartas(cartas);
 			it++;
 		}
 		if(jugadores->size()<6){
@@ -704,11 +766,6 @@ void Juego::dibujarPantallaObservacion(){
 				Jugador jugador("ImagenVacio.bmp"," "," ",i);
 				this->dibujarJugador(jugador);
 			}
-		}
-		list<Carta>::iterator it2 = cartas->begin();
-		while (it2 != cartas->end()) {
-			this->dibujarCarta(*it2);
-			it2++;
 		}
 		if(cartas->size()<5){
 			for(int i=(cartas->size()+1);i<6;i++){
@@ -723,6 +780,7 @@ void Juego::dibujarPantallaObservacion(){
 		this->dibujarPoso();
 		this->actualizarPantalla();
 		sleep(1);
+		this->dibujarCartaJugador(&jugadores->front());
 		SDL_Event evento;
 		while(SDL_PollEvent(&evento)){
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
@@ -731,8 +789,4 @@ void Juego::dibujarPantallaObservacion(){
 			}
 		}
 	}
-}
-
-void Juego::jugar(){
-
 }
