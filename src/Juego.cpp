@@ -301,7 +301,7 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 		this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,this->infoconfig->ancho/2 + 2,30);
 	}
 	this->actualizarPantalla();
-	sleep(5);
+	sleep(3);
 
 }
 
@@ -734,6 +734,14 @@ bool Juego::esMiTurno(){
 void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	string path,pathEscenario;
 	if(this->enviarImagenJugador("boton","gaston")) cout<<"envio imagen"<<endl;
+	SDL_Color rojo;
+	rojo.r=255;
+	rojo.g=0;
+	rojo.b=0;
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
 	while(true){
 		pathEscenario = this->pedirEscenario();
 		list<Carta>* cartas = this->pedirCartas();
@@ -741,13 +749,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->pedirPoso();
 		this->dibujarEscenario(pathEscenario);
 		list<Jugador>::iterator it = jugadores->begin();
-		SDL_Color blanco;
-		blanco.r=255;
-		blanco.g=255;
-		blanco.b=255;
-		int x=5, y=5;
-		this->pantalla->escribirTextoDesdePos("Pedir cartas de:",x,y,40,blanco);
-		y+=35;
+		int x_nombre_jugador=5, y_nombre_jugador=5;
+		this->pantalla->escribirTextoDesdePos("Pedir cartas de:",x_nombre_jugador,y_nombre_jugador,40,blanco);
+		y_nombre_jugador+=35;
 		list<Carta>::iterator it2 = cartas->begin();
 		while (it2 != cartas->end()) {
 			this->dibujarCarta(*it2);
@@ -755,9 +759,10 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		}
 		while (it != jugadores->end()) {
 			path = this->pedirImagenJugador(&(*it));
+//			this->pedirCartasJugador(&(*it));
 			this->dibujarJugador(*it);
-			this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x,y,30,blanco);
-			y+=30;
+			this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
+			y_nombre_jugador+=30;
 			(*it).setCartas(cartas);
 			it++;
 		}
@@ -778,15 +783,63 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->dibujarBoton("Igualar",2);
 		this->dibujarBoton("Subir el doble",3);
 		this->dibujarPoso();
+		this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 		this->actualizarPantalla();
-		sleep(1);
-		this->dibujarCartaJugador(&jugadores->front());
 		SDL_Event evento;
 		while(SDL_PollEvent(&evento)){
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
 			if(evento.type == SDL_QUIT){
 				exit(0);
+			}else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					cout<<"x: "<<evento.button.x<<"  y: "<<evento.button.y<<endl;
+					//Si me pidio alguna carta de algun jugador
+					if(jugador_observador){
+						if(evento.button.x>=x_nombre_jugador and evento.button.x<=(x_nombre_jugador + 140)){
+							if(evento.button.y<=(y_nombre_jugador + 30) and evento.button.y>=35){
+								if(evento.button.y>35 and evento.button.y<=65){
+									Jugador * jugador_aux=this->getJugador(1);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}else if(evento.button.y>65 and evento.button.y<=95){
+									Jugador * jugador_aux=this->getJugador(2);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}else if(evento.button.y>95 and evento.button.y<=125){
+									Jugador * jugador_aux=this->getJugador(3);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}else if(evento.button.y>125 and evento.button.y<=155){
+									Jugador * jugador_aux=this->getJugador(4);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}else if(evento.button.y>155 and evento.button.y<=185){
+									Jugador * jugador_aux=this->getJugador(5);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}else if(evento.button.y>185 and evento.button.y<=215){
+									Jugador * jugador_aux=this->getJugador(6);
+									if(jugador_aux!=NULL)
+										this->dibujarCartaJugador(jugador_aux);
+								}
+							}
+						}
+					}else{
+						this->pantalla->escribirTextoDesdePos("No es un usuario 'Observador'",5,this->infoconfig->alto*(0.95),24,rojo);
+						this->actualizarPantalla();
+						sleep(2);
+					}
+				}
 			}
 		}
 	}
+}
+
+Jugador * Juego::getJugador(int id){
+	list<Jugador>::iterator it = jugadores->begin();
+	while (it != jugadores->end()) {
+		if((*it).getId()==id) return &(*it);
+		it++;
+	}
+	return NULL;
 }
