@@ -256,7 +256,7 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 	string idOperacion="B";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it_=operandos->begin();
-	it_=operandos->insert(it_,"jugador");
+	it_=operandos->insert(it_,"usuario");
 	it_++;
 	it_=operandos->insert(it_,jugador->getNombre());
 	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
@@ -265,18 +265,20 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 	list<string>* cartasAux = parserResultado->getCartas(respuesta);
 	list<string>::iterator it;
 	list<Carta> * cartas = new list<Carta> ();
-	list<Carta>::iterator iterador = cartas->begin();
-	it = cartasAux->begin();
-	for (unsigned int i = 0; i < cartasAux->size() / 2; i++) {
-		string palo = (*it);
-		it++;
-		string numero = (*it);
-		it++;
-		iterador = cartas->insert(iterador,
-				Carta("", palo, numero, i + 1));
-		iterador++;
+	if(cartasAux->size()>0){
+		list<Carta>::iterator iterador = cartas->begin();
+		it = cartasAux->begin();
+		for (unsigned int i = 0; i < cartasAux->size() / 2; i++) {
+			string palo = (*it);
+			it++;
+			string numero = (*it);
+			it++;
+			iterador = cartas->insert(iterador,
+					Carta("", palo, numero, i + 1));
+			iterador++;
+		}
+		jugador->setCartas(cartas);
 	}
-	jugador->setCartas(cartas);
 	return cartas;
 }
 void Juego::dibujarCartaJugador(Jugador * jugador){
@@ -762,11 +764,10 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		}
 		while (it != jugadores->end()) {
 			path = this->pedirImagenJugador(&(*it));
-//			this->pedirCartasJugador(&(*it));
+			this->pedirCartasJugador(&(*it));
 			this->dibujarJugador(*it);
 			this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
 			y_nombre_jugador+=30;
-			(*it).setCartas(cartas);
 			it++;
 		}
 		if(jugadores->size()<6){
@@ -802,28 +803,58 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 							if(evento.button.y<=(y_nombre_jugador + 30) and evento.button.y>=35){
 								if(evento.button.y>35 and evento.button.y<=65){
 									Jugador * jugador_aux=this->getJugador(1);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}else if(evento.button.y>65 and evento.button.y<=95){
 									Jugador * jugador_aux=this->getJugador(2);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}else if(evento.button.y>95 and evento.button.y<=125){
 									Jugador * jugador_aux=this->getJugador(3);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}else if(evento.button.y>125 and evento.button.y<=155){
 									Jugador * jugador_aux=this->getJugador(4);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}else if(evento.button.y>155 and evento.button.y<=185){
 									Jugador * jugador_aux=this->getJugador(5);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}else if(evento.button.y>185 and evento.button.y<=215){
 									Jugador * jugador_aux=this->getJugador(6);
-									if(jugador_aux!=NULL)
-										this->dibujarCartaJugador(jugador_aux);
+									if(jugador_aux!=NULL){
+										if(jugador_aux->getCartas()!=NULL){
+											this->dibujarCartaJugador(jugador_aux);
+										}else{
+											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+										}
+									}
 								}
 							}
 						}
