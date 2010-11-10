@@ -265,7 +265,7 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 	list<string>* cartasAux = parserResultado->getCartas(respuesta);
 	list<string>::iterator it;
 	list<Carta> * cartas = new list<Carta> ();
-	if(cartasAux->size()>0){
+	if(cartasAux!=NULL){
 		list<Carta>::iterator iterador = cartas->begin();
 		it = cartasAux->begin();
 		for (unsigned int i = 0; i < cartasAux->size() / 2; i++) {
@@ -303,7 +303,7 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 		this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,this->infoconfig->ancho/2 + 2,30);
 	}
 	this->actualizarPantalla();
-	sleep(3);
+	sleep(2);
 
 }
 
@@ -808,6 +808,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}else if(evento.button.y>65 and evento.button.y<=95){
@@ -817,6 +819,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}else if(evento.button.y>95 and evento.button.y<=125){
@@ -826,6 +830,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}else if(evento.button.y>125 and evento.button.y<=155){
@@ -835,6 +841,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}else if(evento.button.y>155 and evento.button.y<=185){
@@ -844,6 +852,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}else if(evento.button.y>185 and evento.button.y<=215){
@@ -853,6 +863,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											this->dibujarCartaJugador(jugador_aux);
 										}else{
 											this->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,this->infoconfig->alto*(0.95),24,rojo);
+											this->actualizarPantalla();
+											sleep(1);
 										}
 									}
 								}
@@ -861,7 +873,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					}else{
 						this->pantalla->escribirTextoDesdePos("No es un usuario 'Observador'",5,this->infoconfig->alto*(0.95),24,rojo);
 						this->actualizarPantalla();
-						sleep(2);
+						sleep(1);
 					}
 				}
 			}
