@@ -19,16 +19,17 @@ typedef enum{
 
 class Juego {
 private:
-	Pantalla* pantalla;
+
 	Cliente* cliente;
 	ParserCliente* parser;
 	ParserResultadoCliente* parserResultado;
 	list<Jugador> * jugadores;//Nombre de los jugadores conectados para que los dibuje
 	list<Carta> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
-	informacionConfiguracion* infoconfig;
 	string nombreJugador;
 public:
+	Pantalla* pantalla;
+	informacionConfiguracion* infoconfig;
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void dibujarPantallaPrincipal();
@@ -57,6 +58,7 @@ public:
 	bool registrarJugador(string usuario, string pass);
 	void jugar(bool jugador_observador, bool jugador_virtual);
 	Jugador * getJugador(int id);
+	list<Jugador> getJugadores();
 	virtual ~Juego();
 };
 
