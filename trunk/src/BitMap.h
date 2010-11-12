@@ -42,6 +42,7 @@ public:
 	BitMap(string path);
 	SDL_Color** getMatrizDeImagen();
 	bool resizeTo(int alto, int ancho);
+	bool recortarImagen(int desdeX, int desdeY, int hastaX, int hastaY);
 	bool seLevantoBienElArchivo();
 	bool esUnaImagenCorrecta();//Se refiere a: es un bmp, si es de profundidad 24 bits y si no tiene ningun tipo de compresion
 	unsigned int getAncho();//lo devuelve en pixels

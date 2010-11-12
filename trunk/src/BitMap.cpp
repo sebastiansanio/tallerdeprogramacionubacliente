@@ -142,6 +142,31 @@ bool BitMap::resizeTo(int alto, int ancho){
 	return true;
 }
 
+bool BitMap::recortarImagen(int desdeX, int desdeY, int hastaX, int hastaY){
+	SDL_Color** matrizAuxiliar = new SDL_Color*[hastaY-desdeY];
+	unsigned int x = desdeX;
+	unsigned int y = desdeY;
+	for(unsigned int i=0;i<(hastaY-desdeY);i++){
+		matrizAuxiliar[i]=new SDL_Color[hastaX-desdeX];
+	}
+	for(unsigned int i=0;i<(hastaY-desdeY);i++){
+		x = desdeX;
+		for(unsigned int j=0;j<(hastaX-desdeX);j++){
+			matrizAuxiliar[i][j]=this->matrizDePixeles[y][x];
+			x++;
+		}
+		y++;
+	}
+	for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
+		delete []this->matrizDePixeles[i];
+	}
+	delete []this->matrizDePixeles;
+	this->informacionImagen->altoEnPixels=hastaY-desdeY;
+	this->informacionImagen->anchoEnPixels=hastaX-desdeX;
+	this->matrizDePixeles=matrizAuxiliar;
+	return true;
+}
+
 unsigned int BitMap::getAlto(){
 	return this->informacionImagen->altoEnPixels;
 }
