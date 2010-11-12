@@ -20,7 +20,7 @@ void * manejoEventos(void * juego_aux){
 				exit(0);
 			}else if(evento.type == SDL_MOUSEBUTTONDOWN){
 				if(evento.button.button==1){
-					cout<<"x: "<<evento.button.x<<"  y: "<<evento.button.y<<endl;
+					//cout<<"x: "<<evento.button.x<<"  y: "<<evento.button.y<<endl;
 					//Si me pidio alguna carta de algun jugador
 					if(jugador_observador){
 						if(evento.button.x>=x_nombre_jugador and evento.button.x<=(x_nombre_jugador + 140)){
@@ -410,11 +410,13 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	BitMap* imagen_carta1 = new BitMap("Cartas/" + carta1->getPalo()+"-"+carta1->getNumero()+".bmp");
 	BitMap* imagen_carta2 = new BitMap("Cartas/" + carta2->getPalo()+"-"+carta2->getNumero()+".bmp");
 	if ((imagen_carta1->esUnaImagenCorrecta())and(imagen_carta1->getAlto()>1)and(imagen_carta1->getAncho()>1)) {
-		imagen_carta1->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
+		//imagen_carta1->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
+		imagen_carta1->recortarImagen(13,31,38,92);
 		this->pantalla->dibujarBitMapDesdePos(*imagen_carta1,this->infoconfig->ancho/2 - 70,this->infoconfig->alto/2 + 60);
 	}
 	if ((imagen_carta2->esUnaImagenCorrecta())and(imagen_carta2->getAlto()>1)and(imagen_carta2->getAncho()>1)) {
-		imagen_carta2->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
+		//imagen_carta2->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
+		imagen_carta2->recortarImagen(13,31,38,92);
 		this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,this->infoconfig->ancho/2 - 20,this->infoconfig->alto/2 + 60);
 	}
 	this->actualizarPantalla();
