@@ -154,6 +154,7 @@ Juego::Juego() {
 		sleep(2);
 		exit(0);
 	}
+	this->escenarioPedido=false;
 	//delete parserAux;
 }
 
@@ -181,7 +182,7 @@ Juego::~Juego() {
 	delete infoconfig;
 }
 
-string Juego::pedirEscenario(){
+void Juego::pedirEscenario(){
 	string ruta=PATHESCENARIO;
 	//Pido el escenario
 	string idOperacion="E";
@@ -190,24 +191,33 @@ string Juego::pedirEscenario(){
 	delete operandos;
 	cliente->enviar(xml);
 	cliente->recibirArchivo(ruta);
-	return ruta;
+	this->escenario = ruta;
+	this->escenarioPedido = true;
 }
-
+bool Juego::escenarioFuePedido(){
+	return this->escenarioPedido;
+}
 string Juego::pedirImagenJugador(Jugador * jugador){
-	string ruta=jugador->getNombre() + ".bmp";
-	jugador->setPath(ruta);
-	//Pido la imagen del jugador
-	string idOperacion="I";
-	list<string>* operandos=new list<string>();
-	list<string>::iterator it=operandos->begin();
-	it=operandos->insert(it,"jugador");
-	it++;
-	it=operandos->insert(it,jugador->getNombre());
-	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-	delete operandos;
-	cliente->enviar(xml);
-	cliente->recibirArchivo(ruta);
-	return ruta;
+	if (jugador->imagenFuePedida()) {
+		return jugador->getPath();
+	} else {
+		string ruta = jugador->getNombre() + ".bmp";
+		jugador->setPath(ruta);
+		jugador->imagenEstablecida();
+		//Pido la imagen del jugador
+		string idOperacion = "I";
+		list<string>* operandos = new list<string> ();
+		list<string>::iterator it = operandos->begin();
+		it = operandos->insert(it, "jugador");
+		it++;
+		it = operandos->insert(it, jugador->getNombre());
+		char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+		delete operandos;
+		cliente->enviar(xml);
+		cliente->recibirArchivo(ruta);
+		return ruta;
+	}
+
 }
 
 bool Juego::enviarImagenJugador(string ruta,string jugador){
@@ -463,7 +473,7 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	}
 
 	this->actualizarPantalla();
-	sleep(0.5);
+	sleep(1);
 
 }
 
@@ -917,11 +927,12 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	while(true){
-		pathEscenario = this->pedirEscenario();
+		if(!this->escenarioFuePedido())
+			this->pedirEscenario();
 		list<Carta>* cartas = this->pedirCartas();
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
-		this->dibujarEscenario(pathEscenario);
+		this->dibujarEscenario(this->escenario);
 		list<Jugador>::iterator it = jugadores->begin();
 		int x_nombre_jugador=5, y_nombre_jugador=5;
 		y_nombre_jugador+=35;
