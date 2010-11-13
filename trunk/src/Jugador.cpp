@@ -2,7 +2,7 @@
 
 Jugador::Jugador(string path,string nombre, string plata, int id) {
 	this->nombre=nombre;
-	this->plata="$"+plata;
+	this->plata=plata;
 	this->path=path;
 	this->id = id;
 	this->cartas=NULL;
