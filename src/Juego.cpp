@@ -251,7 +251,8 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 		int tamImagen = this->infoconfig->ancho / 10;
 		jugador->resizeTo(tamImagen, tamImagen);
 		const char* nombre = jugadorADibujar.getNombre().c_str();
-		const char* plata = jugadorADibujar.getPlata().c_str();
+		string platasignada = "$"+jugadorADibujar.getPlata();
+		const char* plata = platasignada.c_str();
 		int tamfuente = this->infoconfig->ancho / 32.5;
 		int factor = this->infoconfig->alto / 110;
 		if (jugadorADibujar.getId() == 1) {
@@ -911,7 +912,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 		this->pantalla->escribirTextoDesdePos("Pedir cartas de:",5,8,40,blanco);
 		this->actualizarPantalla();
-		sleep(5);
+		sleep(2);
 	}
 }
 
