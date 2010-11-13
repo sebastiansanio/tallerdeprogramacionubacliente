@@ -27,6 +27,8 @@ private:
 	list<Carta> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
 	string nombreJugador;
+	string escenario;
+	bool escenarioPedido;
 public:
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
@@ -44,7 +46,7 @@ public:
 	void dibujarCartaJugador(Jugador * jugador);
 	bool esMiTurno();
 	bool verificarResolucion(unsigned int alto,unsigned  int ancho);
-	string pedirEscenario();
+	void pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
 	bool enviarImagenJugador(string ruta,string jugador);
 	list<Jugador>* pedirJugadores();
@@ -59,6 +61,7 @@ public:
 	void jugar(bool jugador_observador, bool jugador_virtual);
 	Jugador * getJugador(int id);
 	list<Jugador> getJugadores();
+	bool escenarioFuePedido();
 	virtual ~Juego();
 };
 

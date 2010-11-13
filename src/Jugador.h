@@ -13,6 +13,8 @@ private:
 	string plata;
 	int id;//Para saber la posicion relativa en la pantalla
 	list<Carta> * cartas;
+	bool imagenPedida;
+
 public:
 	Jugador(string path, string nombre, string plata, int id);
 	list<Carta> * getCartas();
@@ -23,6 +25,8 @@ public:
 	bool modificarPlataEn(int plata);
 	int getId();
 	void setPath(string path);
+	bool imagenFuePedida();
+	void imagenEstablecida();
 	virtual ~Jugador();
 };
 
