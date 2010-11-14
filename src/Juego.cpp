@@ -16,18 +16,17 @@ void * manejoEventos(void * juego_aux) {
 	int factor = juego->infoconfig->ancho / 42.5;
 	while (true) {
 		SDL_Event evento;
-		while (SDL_PollEvent(&evento)) {
+		if (SDL_PollEvent(&evento)) {
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
 			if (evento.type == SDL_QUIT) {
 				exit(0);
 			} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
 				if (evento.button.button == 1) {
-					if (juego->tipoJugador->jugadorObservador) {
+					if(evento.button.x < 80 and evento.button.y < 45){
+						exit(0);
+					} else if (juego->tipoJugador->jugadorObservador) {
 						if (evento.button.x > 50 and evento.button.y > 40) {
 							juego->dibujarCartasJugadores();
-						} else if (evento.button.x < 50 and evento.button.y
-								< 40) {
-							exit(0);
 						} else {
 							sleep(0.2);
 						}
@@ -56,9 +55,6 @@ void * manejoEventos(void * juego_aux) {
 								} else {
 									sleep(0.1);
 								}
-							} else if (evento.button.x < 50 and evento.button.y
-									< 40) {
-								exit(0);
 							} else {
 								sleep(0.2);
 							}
@@ -80,9 +76,6 @@ void * manejoEventos(void * juego_aux) {
 									cout << "presiono boton JUGAR " << endl;
 									//Aca se llama al metodo que resuelve las cosas para el virtual
 								}
-							} else if (evento.button.x < 50 and evento.button.y
-									< 40) {
-								exit(0);
 							} else {
 								sleep(0.2);
 							}
