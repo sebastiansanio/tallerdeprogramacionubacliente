@@ -1,153 +1,97 @@
 #include "Juego.h"
 
-void * manejoEventos(void * juego_aux){
-	Juego * juego=(Juego *)juego_aux;
-	int x_nombre_jugador=5,y_nombre_jugador=220;
+void * manejoEventos(void * juego_aux) {
+	Juego * juego = (Juego *) juego_aux;
+	int x_nombre_jugador = 5, y_nombre_jugador = 220;
 	SDL_Color rojo;
-	rojo.r=255;
-	rojo.g=0;
-	rojo.b=0;
+	rojo.r = 255;
+	rojo.g = 0;
+	rojo.b = 0;
 	SDL_Color blanco;
-	blanco.r=255;
-	blanco.g=255;
-	blanco.b=255;
-	bool jugador_observador=true;
-	while(true){
+	blanco.r = 255;
+	blanco.g = 255;
+	blanco.b = 255;
+	int inicio = juego->infoconfig->ancho / 3.3;
+	int distancia = juego->infoconfig->ancho / 6;
+	int factor = juego->infoconfig->ancho / 42.5;
+	while (true) {
 		SDL_Event evento;
-		while(SDL_PollEvent(&evento)){
+		while (SDL_PollEvent(&evento)) {
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
-			if(evento.type == SDL_QUIT){
+			if (evento.type == SDL_QUIT) {
 				exit(0);
 			} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
 				if (evento.button.button == 1) {
 					if (juego->tipoJugador->jugadorObservador) {
-						Jugador * jugador_aux;
-						if (evento.button.x > 0 and evento.button.y > 0) {
-							for (int i = 1; i < 7; i++) {
-								jugador_aux = juego->getJugador(i);
-								if (jugador_aux != NULL) {
-									if (jugador_aux->getCartas() != NULL) {
-										juego->dibujarCartaJugador(jugador_aux);
-										juego->actualizarPantalla();
-										sleep(0.3);
-									} else {
-										juego->pantalla->escribirTextoDesdePos(
-												"El jugador no posee cartas",
-												5, juego->infoconfig->alto
-														* (0.95), 24, rojo);
-										juego->actualizarPantalla();
-										sleep(1);
-									}
+						if (evento.button.x > 50 and evento.button.y > 40) {
+							juego->dibujarCartasJugadores();
+						} else if (evento.button.x < 50 and evento.button.y
+								< 40) {
+							exit(0);
+						} else {
+							sleep(0.2);
+						}
+					} else if (!juego->tipoJugador->jugadorVirtual) {
+						if (juego->esMiTurno()) {
+							if (evento.button.y > (juego->infoconfig->alto
+									/ 1.3) and evento.button.y
+									< ((juego->infoconfig->alto / 1.3)
+											+ juego->infoconfig->alto / 5.5)) {
+								if (evento.button.x > inicio
+										and evento.button.x < inicio
+												+ distancia - factor) {
+									cout << "presiono boton Pasar " << endl;
+								} else if (evento.button.x > inicio + distancia
+										and evento.button.x < inicio + 2
+												* distancia - factor) {
+									cout << "presiono boton Igualar " << endl;
+								} else if (evento.button.x > inicio + 2
+										* distancia and evento.button.x
+										< inicio + 3 * distancia - factor) {
+									cout << "presiono boton Apostar" << endl;
+								} else if (evento.button.x > inicio + 3
+										* distancia and evento.button.x
+										< inicio + 4 * distancia - factor) {
+									cout << "presiono boton No ir" << endl;
+								} else {
+									sleep(0.1);
 								}
+							} else if (evento.button.x < 50 and evento.button.y
+									< 40) {
+								exit(0);
+							} else {
+								sleep(0.2);
 							}
-
 						} else {
 							juego->pantalla->escribirTextoDesdePos(
-									"No es un usuario 'Observador'", 5,
+									"No es tu turno", 5,
 									juego->infoconfig->alto * (0.95), 24, rojo);
-							juego->actualizarPantalla();
 							sleep(1);
 						}
+					} else {
+						if (juego->esMiTurno()) {
+							if (evento.button.y > (juego->infoconfig->alto
+									/ 1.3) and evento.button.y
+									< ((juego->infoconfig->alto / 1.3)
+											+ juego->infoconfig->alto / 5.5)) {
+								if (evento.button.x > inicio
+										and evento.button.x < inicio
+												+ distancia - factor) {
+									cout << "presiono boton JUGAR " << endl;
+									//Aca se llama al metodo que resuelve las cosas para el virtual
+								}
+							} else if (evento.button.x < 50 and evento.button.y
+									< 40) {
+								exit(0);
+							} else {
+								sleep(0.2);
+							}
+						}
+
 					}
 				}
 			}
 
-//
-//			}else if(evento.type == SDL_MOUSEBUTTONDOWN){
-//				if(evento.button.button==1){
-//					//cout<<"x: "<<evento.button.x<<"  y: "<<evento.button.y<<endl;
-//					//Si me pidio alguna carta de algun jugador
-//					if(jugador_observador){
-//						if(evento.button.x>=x_nombre_jugador and evento.button.x<=(x_nombre_jugador + 140)){
-//							if(evento.button.y<=(y_nombre_jugador) and evento.button.y>=35){
-//								if(evento.button.y>35 and evento.button.y<=65){
-//									Jugador * jugador_aux=juego->getJugador(1);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,40,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}else if(evento.button.y>65 and evento.button.y<=95){
-//									Jugador * jugador_aux=juego->getJugador(2);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,70,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}else if(evento.button.y>95 and evento.button.y<=125){
-//									Jugador * jugador_aux=juego->getJugador(3);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,100,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}else if(evento.button.y>125 and evento.button.y<=155){
-//									Jugador * jugador_aux=juego->getJugador(4);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,130,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}else if(evento.button.y>155 and evento.button.y<=185){
-//									Jugador * jugador_aux=juego->getJugador(5);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,160,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}else if(evento.button.y>185 and evento.button.y<=220){
-//									Jugador * jugador_aux=juego->getJugador(6);
-//									if(jugador_aux!=NULL){
-//										if(jugador_aux->getCartas()!=NULL){
-//											juego->pantalla->escribirTextoDesdePos(jugador_aux->getNombre().c_str(),x_nombre_jugador,190,30,rojo);
-//											juego->actualizarPantalla();
-//											juego->dibujarCartaJugador(jugador_aux);
-//										}else{
-//											juego->pantalla->escribirTextoDesdePos("El jugador no posee cartas",5,juego->infoconfig->alto*(0.95),24,rojo);
-//											juego->actualizarPantalla();
-//											sleep(1);
-//										}
-//									}
-//								}
-//							}
-//						}
-//					}else{
-//						juego->pantalla->escribirTextoDesdePos("No es un usuario 'Observador'",5,juego->infoconfig->alto*(0.95),24,rojo);
-//						juego->actualizarPantalla();
-//						sleep(1);
-//					}
-//				}
-//			}
 		}
 	}
 }
@@ -449,13 +393,42 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 	delete operandos;
 	return cartas;
 }
+
+void Juego::dibujarCartasJugadores(){
+	SDL_Color rojo;
+	rojo.r = 255;
+	rojo.g = 0;
+	rojo.b = 0;
+
+	if (!jugadores->empty()) {
+		list<Jugador>::iterator it = jugadores->begin();
+		while (it != jugadores->end()) {
+			if (it->getCartas() != NULL)
+				this->dibujarCartaJugador(&(*it));
+			else {
+				this->pantalla->escribirTextoDesdePos("El jugador no posee cartas", 5,
+						this->infoconfig->alto * (0.95), 24, rojo);
+				this->actualizarPantalla();
+				sleep(1);
+			}
+			it++;
+		}
+	} else {
+		this->pantalla->escribirTextoDesdePos("No hay jugadores", 5,
+				this->infoconfig->alto * (0.95), 24, rojo);
+		this->actualizarPantalla();
+		sleep(1);
+	}
+
+}
+
 void Juego::dibujarCartaJugador(Jugador * jugador){
-	SDL_Color blanco;
-	blanco.r = 255;
-	blanco.g = 255;
-	blanco.b = 255;
-	//	this->pantalla->escribirTextoDesdePos("Cartas de:",this->infoconfig->ancho/2 - 90,2,30,blanco);
-	//	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
+//	SDL_Color blanco;
+//	blanco.r = 255;
+//	blanco.g = 255;
+//	blanco.b = 255;
+//	this->pantalla->escribirTextoDesdePos("Cartas de:",this->infoconfig->ancho/2 - 90,2,30,blanco);
+//	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
 	carta1 = &jugador->getCartas()->front();
@@ -494,23 +467,30 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 		imagen_carta2->recortarImagen(this->infoconfig->alto / 46,
 				this->infoconfig->alto / 20, this->infoconfig->alto / 15.8,
 				this->infoconfig->alto / 6.5);
-		int dist = ancho / 25;
+		int dist = ancho / 28;
 		if (id == 1) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 20.2)+dist, ancho / 2.65);
-				} else if (id == 2) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 9.88)+dist, ancho / 4);
-				} else if (id == 3) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 3.45)+dist, ancho / 4.62);
-				} else if (id == 4) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 2)+dist, ancho / 4.62);
-				} else if (id == 5) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 1.21)+dist, ancho / 4);
-				} else if (id == 6) {
-					this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 1.14)+dist, ancho / 2.65);
-				}
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+					(ancho / 20.2) + dist, ancho / 2.65);
+		} else if (id == 2) {
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+					(ancho / 9.88) + dist, ancho / 4);
+		} else if (id == 3) {
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+					(ancho / 3.45) + dist, ancho / 4.62);
+		} else if (id == 4) {
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 2)
+					+ dist, ancho / 4.62);
+		} else if (id == 5) {
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+					(ancho / 1.21) + dist, ancho / 4);
+		} else if (id == 6) {
+			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+					(ancho / 1.14) + dist, ancho / 2.65);
+		}
 	} else {
-		this->informarError("B", "E", "La carta " + carta2->getNumero() + " de "
-				+ carta2->getPalo() + " no tiene un imagen BMP o esta corrupta");
+		this->informarError("B", "E", "La carta " + carta2->getNumero()
+				+ " de " + carta2->getPalo()
+				+ " no tiene un imagen BMP o esta corrupta");
 	}
 
 	this->actualizarPantalla();
@@ -582,25 +562,43 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 	color.b=255;
 	if ((boton->esUnaImagenCorrecta())and(boton->getAlto()>1)and(boton->getAncho()>1)) {
 		int tamImagenancho = this->infoconfig->ancho / 7.0;
-		int tamImagenalto = this->infoconfig->alto / 5;
+		int tamImagenalto = this->infoconfig->alto / 5.5;
 		int tamfuente = this->infoconfig->ancho / 42;
 		int factor = this->infoconfig->ancho / 100;
+		int distancia = this->infoconfig->ancho / 6;
+		int inicio = this->infoconfig->ancho / 3.3;
 		const char* texto = textoBoton.c_str();
 		boton->resizeTo(tamImagenalto, tamImagenancho);
-		if (pos == 1) {
-			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 2, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 2)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
+		if (pos == 0) {
+			pantalla->dibujarBitMapDesdePos(*boton, inicio,
+					(this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto, inicio + factor,
+					(this->infoconfig->alto / 1.3) + (tamImagenalto / 2)
+							- (tamfuente / 2), tamfuente, color);
+		} else if (pos == 1) {
+			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+					(this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
+					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
+					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 2) {
-			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 1.5, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.5)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
+			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+					(this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
+					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
+					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 3) {
-			pantalla->dibujarBitMapDesdePosCircular(*boton, this->infoconfig->ancho / 1.18, (this->infoconfig->alto / 1.3));
-			pantalla->escribirTextoDesdePos(texto,(this->infoconfig->ancho / 1.18)+factor ,(this->infoconfig->alto / 1.3)+(tamImagenalto/2)-(tamfuente/2), tamfuente,color);
+			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+					(this->infoconfig->alto / 1.3));
+			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
+					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
+					/ 2) - (tamfuente / 2), tamfuente, color);
 		}
 	} else {
-		this->informarError("B","E","Uno de los botones no es una imagen BMP o esta corrupta");
-		}
-//	delete boton;
+		this->informarError("B", "E",
+				"Uno de los botones no es una imagen BMP o esta corrupta");
+	}
+	//	delete boton;
 }
 
 void Juego::dibujarPoso(){
@@ -950,13 +948,17 @@ void Juego::empezarPartida(){
 }
 
 bool Juego::esMiTurno(){
-	string idOperacion="A";
-	list<string>* operandos=new list<string>();
-	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-	cliente->enviar(xml);
-	char * respuesta=cliente->recibirRespuesta();
-	string jugadorTurno=parserResultado->getPoso(respuesta);
-	return jugadorTurno==this->nombreJugador;
+
+	//Aca lo dejo como true hasta que este hecha la logica del juego, despues hay que cambiarlo
+	return true;
+
+//	string idOperacion = "A";
+//	list<string>* operandos = new list<string> ();
+//	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+//	cliente->enviar(xml);
+//	char * respuesta = cliente->recibirRespuesta();
+//	string jugadorTurno = parserResultado->getPoso(respuesta);
+//	return jugadorTurno==this->nombreJugador;
 }
 
 list<Jugador> Juego::getJugadores(){
@@ -1020,8 +1022,17 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			}
 		}
 		this->dibujarPoso();
+		if(!jugador_observador and !jugador_virtual){
+			this->dibujarBoton("Pasar", 0);
+			this->dibujarBoton("Igualar", 1);
+			this->dibujarBoton("Apostar", 2);
+			this->dibujarBoton("No Ir", 3);
+		}
+		else if(jugador_virtual){
+			this->dibujarBoton("JUGAR",0);
+		}
 		this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
-		this->pantalla->escribirTextoDesdePos("Pedir cartas de:",5,8,40,blanco);
+		this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
 		this->actualizarPantalla();
 		sleep(2);
 	}
