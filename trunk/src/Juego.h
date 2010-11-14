@@ -70,6 +70,7 @@ public:
 	list<Jugador> getJugadores();
 	void cargarEscenario(string path);
 	void dibujarPantalla(string path);
+	void dibujarCartasJugadores();
 	virtual ~Juego();
 };
 
