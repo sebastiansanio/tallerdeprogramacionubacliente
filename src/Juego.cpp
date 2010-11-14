@@ -528,30 +528,40 @@ bool Juego::validarJugador(string usuario, string pass){
 	return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
-bool Juego::registrarJugador(string usuario, string pass){
+bool Juego::registrarJugador(string usuario, string pass, string ruta){
+	//Antes de registrarlo se fija si el archivo existe
+	fstream  archivo;
+	string path(ruta);
+	path+= ".bmp";
+	archivo.open(path.c_str(), fstream::in | fstream::binary );
+	if(!archivo.good()){
+		cout<<"Ingreso mal el path: " + path<<endl;
+		archivo.close();
+		return false;
+	}
+	archivo.close();
 	string idOperacion="R";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
-		it=operandos->insert(it,"usuario");
-		it++;
-		it=operandos->insert(it,usuario);
-		it++;
-		it=operandos->insert(it,"password");
-		it++;
-		it=operandos->insert(it,pass);
-		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
-		delete operandos;
-		cliente->enviar(xml);
-		char * respuesta = cliente->recibirRespuesta();
-		if(this->parserResultado->DecodificaResultado(respuesta)){
-			string ruta("boton");
-			string jugador(usuario);
-			if(enviarImagenJugador(ruta,jugador)){
-				cout<<"Archivo enviado"<<endl;
-			}
-			return true;
+	it=operandos->insert(it,"usuario");
+	it++;
+	it=operandos->insert(it,usuario);
+	it++;
+	it=operandos->insert(it,"password");
+	it++;
+	it=operandos->insert(it,pass);
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	if(this->parserResultado->DecodificaResultado(respuesta)){
+		string jugador(usuario);
+		if(enviarImagenJugador(ruta,jugador)){
+			cout<<"Archivo enviado"<<endl;
 		}
-		return false;
+		return true;
+	}
+	return false;
 }
 
 void Juego::dibujarBoton(string textoBoton, int pos){
@@ -794,7 +804,7 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 		exit(0);
 	}
 	if(cantidadIntentos>=1){
-		this->pantalla->escribirTextoDesdePos("El usuario ya existe",5,this->infoconfig->alto*(0.9),24,rojo);
+		this->pantalla->escribirTextoDesdePos("El usuario ya existe o la ruta del archivo no es la correcta",5,this->infoconfig->alto*(0.9),24,rojo);
 		this->actualizarPantalla();
 	}
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
@@ -884,7 +894,7 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 						}
 					}
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
-					if(!this->registrarJugador(usuarioTexto,contrasenaTexto)){
+					if(!this->registrarJugador(usuarioTexto,contrasenaTexto,archivoTexto)){
 						this->dibujarPantallaRegistro(cantidadIntentos + 1);
 					}else{
 						this->nombreJugador=usuarioTexto;
