@@ -20,7 +20,7 @@ void * manejoEventos(void * juego_aux){
 				exit(0);
 			} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
 				if (evento.button.button == 1) {
-					if (jugador_observador) {
+					if (juego->tipoJugador->jugadorObservador) {
 						Jugador * jugador_aux;
 						if (evento.button.x > 0 and evento.button.y > 0) {
 							for (int i = 1; i < 7; i++) {
@@ -169,10 +169,7 @@ Juego::Juego() {
 		cout << "puerto e ip" << endl;
 		cout << this->infoconfig->puerto << endl;
 		cout << this->infoconfig->ip << endl;
-//		if(this->infoconfig->puerto != 54340){
-//			this->informarError("G","V","Puerto invalido en el archivo config.ini, tiene que ser el 54340");
-//			exit(0);
-//		}
+
 		this->cliente=new Cliente(this->infoconfig->puerto, this->infoconfig->ip);
 		//this->cliente = new Cliente();
 		if(!(cliente->conectar())){
@@ -190,15 +187,12 @@ Juego::Juego() {
 		exit(0);
 	}
 	this->escenarioPedido=false;
-	//delete parserAux;
+	this->pedirEscenario();
+	this->cargarEscenario(this->escenario);
 }
 
 bool Juego::verificarResolucion(unsigned int alto,unsigned  int ancho){
-	if((alto==480&&ancho==640) || (alto==600 && ancho==800) || (alto==768 && ancho==1024) || (alto==768 && ancho==1280))
-		return true;
-	else
-		return false;
-
+	return((alto==480&&ancho==640) || (alto==600 && ancho==800) || (alto==768 && ancho==1024) || (alto==768 && ancho==1280));
 }
 
 void Juego::informarError(string idOperacion, string tipoError, string mensaje){
@@ -206,6 +200,7 @@ void Juego::informarError(string idOperacion, string tipoError, string mensaje){
 	mensajesError->push_back(tipoError);
 	mensajesError->push_back(mensaje);
 	this->parser->registrarError(idOperacion, mensajesError);
+	delete mensajesError;
 	cout << mensaje << endl;
 }
 
@@ -215,6 +210,7 @@ Juego::~Juego() {
 	delete parser;
 	delete parserResultado;
 	delete infoconfig;
+	delete imagenEscenario;
 }
 
 void Juego::pedirEscenario(){
@@ -229,27 +225,23 @@ void Juego::pedirEscenario(){
 	this->escenario = ruta;
 	this->escenarioPedido = true;
 }
-bool Juego::escenarioFuePedido(){
-	return this->escenarioPedido;
-}
+
 string Juego::pedirImagenJugador(Jugador * jugador){
-
-		string ruta = jugador->getNombre() + ".bmp";
-		jugador->setPath(ruta);
-		//jugador->imagenEstablecida();
-		//Pido la imagen del jugador
-		string idOperacion = "I";
-		list<string>* operandos = new list<string> ();
-		list<string>::iterator it = operandos->begin();
-		it = operandos->insert(it, "jugador");
-		it++;
-		it = operandos->insert(it, jugador->getNombre());
-		char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
-		delete operandos;
-		cliente->enviar(xml);
-		cliente->recibirArchivo(ruta);
-		return ruta;
-
+	string ruta = jugador->getNombre() + ".bmp";
+	jugador->setPath(ruta);
+	//jugador->imagenEstablecida();
+	//Pido la imagen del jugador
+	string idOperacion = "I";
+	list<string>* operandos = new list<string> ();
+	list<string>::iterator it = operandos->begin();
+	it = operandos->insert(it, "jugador");
+	it++;
+	it = operandos->insert(it, jugador->getNombre());
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	cliente->recibirArchivo(ruta);
+	return ruta;
 
 }
 
@@ -271,15 +263,29 @@ bool Juego::enviarImagenJugador(string ruta,string jugador){
 	return true;
 }
 
-void Juego::dibujarEscenario(string path){
-	BitMap* escenario=new BitMap(path);
-	if((escenario->esUnaImagenCorrecta())and(escenario->getAlto()>1)and(escenario->getAncho()>1)){
-		escenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
-		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
+void Juego::cargarEscenario(string path){
+	this->imagenEscenario = new BitMap(path);
+	if((this->imagenEscenario->esUnaImagenCorrecta())and(this->imagenEscenario->getAlto()>1)and(this->imagenEscenario->getAncho()>1)){
+		this->imagenEscenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
+//		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
 	}else{
-
 		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
 	}
+}
+
+void Juego::dibujarPantalla(string path){
+	BitMap* pantallaADibujar = new BitMap(path);
+	if((pantallaADibujar->esUnaImagenCorrecta())and(pantallaADibujar->getAlto()>1)and(pantallaADibujar->getAncho()>1)){
+		pantallaADibujar->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
+		pantalla->dibujarBitMapDesdePos((*pantallaADibujar),0,0);
+	}else{
+		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
+	}
+//	delete pantallaADibujar;
+}
+
+void Juego::dibujarEscenario(){
+	pantalla->dibujarBitMapDesdePos((*this->imagenEscenario),0,0);
 }
 
 
@@ -332,6 +338,7 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 	} else {
 		this->informarError("B","E","El jugador " + jugadorADibujar.getNombre()+ " no es una imagen BMP o esta corrupta");
 			}
+//	delete jugador;
 }
 
 
@@ -361,7 +368,6 @@ list<Jugador>* Juego::pedirJugadores(){
 
 void Juego::dibujarCarta(Carta cartaADibujar){
 	BitMap* carta = new BitMap("Cartas/" + cartaADibujar.getPalo()+"-"+cartaADibujar.getNumero()+".bmp");
-	//BitMap* carta = new BitMap("quilmes.bmp");
 	if ((carta->esUnaImagenCorrecta())and(carta->getAlto()>1)and(carta->getAncho()>1)) {
 		int tamImagen = this->infoconfig->ancho / 22;
 		carta->resizeTo(2.5 * tamImagen,2*tamImagen);
@@ -385,7 +391,7 @@ void Juego::dibujarCarta(Carta cartaADibujar){
 	}else {
 		this->informarError("B","E","La carta " + cartaADibujar.getNumero() + " de " + cartaADibujar.getPalo() +	" no tiene un imagen BMP o esta corrupta");
 		}
-
+//	delete carta;
 }
 
 list<Carta>* Juego::pedirCartas(){
@@ -408,6 +414,7 @@ list<Carta>* Juego::pedirCartas(){
 				Carta("", palo, numero, i + 1));
 		iterador++;
 	}
+	delete operandos;
 	this->cartas = cartas;
 	return cartas;
 }
@@ -439,6 +446,7 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 		}
 		jugador->setCartas(cartas);
 	}
+	delete operandos;
 	return cartas;
 }
 void Juego::dibujarCartaJugador(Jugador * jugador){
@@ -507,7 +515,8 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 
 	this->actualizarPantalla();
 	sleep(1);
-
+//	delete imagen_carta1;
+//	delete imagen_carta2;
 }
 
 bool Juego::validarJugador(string usuario, string pass){
@@ -561,6 +570,7 @@ bool Juego::registrarJugador(string usuario, string pass, string ruta){
 		}
 		return true;
 	}
+	delete operandos;
 	return false;
 }
 
@@ -590,7 +600,7 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 	} else {
 		this->informarError("B","E","Uno de los botones no es una imagen BMP o esta corrupta");
 		}
-
+//	delete boton;
 }
 
 void Juego::dibujarPoso(){
@@ -624,7 +634,7 @@ void Juego::dibujarPantallaPrincipal(){
 	blanco.r=255;
 	blanco.g=255;
 	blanco.b=255;
-	this->dibujarEscenario("boton.bmp");
+	this->dibujarPantalla("boton.bmp");
 	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
@@ -660,7 +670,7 @@ void Juego::dibujarPantallaPrincipal(){
 }
 
 void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, bool jugador_observador){
-	this->dibujarEscenario("boton.bmp");
+	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
 	blanco.g=255;
@@ -782,7 +792,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 
 void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 //	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
-	this->dibujarEscenario("boton.bmp");
+	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
 	blanco.g=255;
@@ -967,15 +977,20 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	blanco.r=255;
 	blanco.g=255;
 	blanco.b=255;
+	this->tipoJugador = new InfoJugador;
+	this->tipoJugador->jugadorObservador = jugador_observador;
+	this->tipoJugador->jugadorVirtual = jugador_virtual;
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	while(true){
-		if(!this->escenarioFuePedido())
+		if(!this->escenarioPedido){
 			this->pedirEscenario();
+			this->cargarEscenario(this->escenario);
+		}
 		list<Carta>* cartas = this->pedirCartas();
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
-		this->dibujarEscenario(this->escenario);
+		this->dibujarEscenario();
 		list<Jugador>::iterator it = jugadores->begin();
 		int x_nombre_jugador=5, y_nombre_jugador=5;
 		y_nombre_jugador+=35;

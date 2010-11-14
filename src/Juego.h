@@ -17,9 +17,15 @@ typedef enum{
 	ARCHIVO,
 } CasilleroTexto;
 
+typedef struct{
+	bool jugadorObservador;
+	bool jugadorVirtual;
+
+}InfoJugador;
+
 class Juego {
 private:
-
+	BitMap* imagenEscenario;
 	Cliente* cliente;
 	ParserCliente* parser;
 	ParserResultadoCliente* parserResultado;
@@ -30,6 +36,7 @@ private:
 	string escenario;
 	bool escenarioPedido;
 public:
+	InfoJugador* tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
 	Juego();
@@ -38,7 +45,7 @@ public:
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos,bool jugador_observador);
 	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
-	void dibujarEscenario(string path);
+	void dibujarEscenario();
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);
 	void dibujarBoton(string textoBoton, int pos);
@@ -61,7 +68,8 @@ public:
 	void jugar(bool jugador_observador, bool jugador_virtual);
 	Jugador * getJugador(int id);
 	list<Jugador> getJugadores();
-	bool escenarioFuePedido();
+	void cargarEscenario(string path);
+	void dibujarPantalla(string path);
 	virtual ~Juego();
 };
 
