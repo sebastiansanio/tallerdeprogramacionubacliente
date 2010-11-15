@@ -388,21 +388,11 @@ void Juego::dibujarCartasJugadores(){
 	if (!jugadores->empty()) {
 		list<Jugador>::iterator it = jugadores->begin();
 		for (int i=0;i<jugadores->size();i++){
-			if (it->getCartas() != NULL){
-				this->dibujarCartaJugador(&(*it));
-			}
-			else {
-				this->pantalla->escribirTextoDesdePos("El jugador no posee cartas", 5,
-						this->infoconfig->alto * (0.95), 24, rojo);
-				//HAY QUE SACAR ESTO, ES PORQUE AHORA LOS JUGADORES NO TIENEN CARTAS
-				this->dibujarCartaJugador(&(*it));
-				//HAY QUE SACAR ESTO
-			}
+			this->dibujarCartaJugador(&(*it));
 			it++;
 		}
 	} else {
-		this->pantalla->escribirTextoDesdePos("No hay jugadores", 5,
-				this->infoconfig->alto * (0.95), 24, rojo);
+		this->pantalla->escribirTextoDesdePos("No hay jugadores", 5, this->infoconfig->alto * (0.95), 24, rojo);
 	}
 
 }
@@ -417,12 +407,13 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
 	if((this->tipoJugador->jugadorObservador) or (id==this->idJugador)){
-		//HAY QUE VOLVER ESTO COMO ESTABA
-		carta1= new Carta("","corazones","2",1);
-		carta2= new Carta("","corazones","9",1);
-//		carta1 = &jugador->getCartas()->front();
-//		carta2 = &jugador->getCartas()->back();
-		//HAY QUE VOLVER ESTO COMO ESTABA
+        if(jugador->getCartas()!=NULL){
+            carta1 = &jugador->getCartas()->front();
+            carta2 = &jugador->getCartas()->back();
+        }else{
+            carta1= new Carta("","Imagen","Carta",1);
+            carta2= new Carta("","Imagen","Carta",1);
+        }
 	} else {
 		carta1= new Carta("","Imagen","Carta",1);
 		carta2= new Carta("","Imagen","Carta",1);
@@ -828,11 +819,14 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	}
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
+	this->pantalla->dibujarRectangulo(100,245,20,20,255,255,255);
 	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Contrasena",10,120,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Virtual",10,230,40,blanco);
 	string usuarioTexto("");
 	string contrasenaTexto("");
 	string contrasenaAsteriscos("");
+	bool jugadorVirtual=false;
 	CasilleroTexto casillero=NINGUNO;
 	this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
 	this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
@@ -862,6 +856,17 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
 							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
 							casillero=CONTRASENA;
+							this->actualizarPantalla();
+						}
+					}
+					if (evento.button.x>=100 and evento.button.x<120 and evento.button.y>=245 and evento.button.y<265){
+						if(jugadorVirtual){
+							jugadorVirtual=false;
+							this->pantalla->dibujarRectangulo(100,245,20,20,255,255,255);
+							this->actualizarPantalla();
+						} else {
+							jugadorVirtual=true;
+							this->pantalla->dibujarRectangulo(100,245,20,20,255,0,0);
 							this->actualizarPantalla();
 						}
 					}
@@ -895,7 +900,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
 						this->actualizarPantalla();
 						sleep(2);
-						this->jugar(jugador_observador,false);
+						this->jugar(jugador_observador,jugadorVirtual);
 					}
 					//entre la a y la z o entre el 0 y el 9
 				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
@@ -1118,6 +1123,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	this->pedirEscenario();
+	int iteracion=5;
 	while(true){
 		//		if(!this->escenarioPedido){
 		this->cargarEscenario(this->escenario);
@@ -1136,7 +1142,12 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			it2++;
 		}
 		while (it != jugadores->end()) {
-			path = this->pedirImagenJugador(&(*it));
+			if(iteracion==5){
+				path = this->pedirImagenJugador(&(*it));
+			} else {
+				string ruta = (*it).getNombre() + ".bmp";
+				(*it).setPath(ruta);
+			}
 			this->pedirCartasJugador(&(*it));
 			this->dibujarJugador(*it);
 			//this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
@@ -1169,7 +1180,12 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 		this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
 		this->actualizarPantalla();
-		sleep(2);
+		sleep(1);
+		if(iteracion==5){
+			iteracion=0;
+		} else {
+			iteracion++;
+		}
 	}
 }
 
