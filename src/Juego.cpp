@@ -285,6 +285,9 @@ list<Jugador>* Juego::pedirJugadores(){
 		it++;
 		string plata=(*it);
 		it++;
+		if(nombre.compare(this->nombreJugador)==0){
+			this->idJugador=i+1;
+		}
 		iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
 		iterador++;
 	}
@@ -413,12 +416,12 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 //	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
-	if(this->tipoJugador->jugadorObservador){
+	if((this->tipoJugador->jugadorObservador) or (id==this->idJugador)){
 		//HAY QUE VOLVER ESTO COMO ESTABA
 		carta1= new Carta("","corazones","2",1);
 		carta2= new Carta("","corazones","9",1);
-	//	carta1 = &jugador->getCartas()->front();
-	//	carta2 = &jugador->getCartas()->back();
+//		carta1 = &jugador->getCartas()->front();
+//		carta2 = &jugador->getCartas()->back();
 		//HAY QUE VOLVER ESTO COMO ESTABA
 	} else {
 		carta1= new Carta("","Imagen","Carta",1);
@@ -1125,8 +1128,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->pedirPoso();
 		this->dibujarEscenario();
 		list<Jugador>::iterator it = jugadores->begin();
-		int x_nombre_jugador = 5, y_nombre_jugador = 5;
-		y_nombre_jugador += 35;
+		//int x_nombre_jugador = 5, y_nombre_jugador = 5;
+		//y_nombre_jugador += 35;
 		list<Carta>::iterator it2 = cartas->begin();
 		while (it2 != cartas->end()) {
 			this->dibujarCarta(*it2);
@@ -1136,8 +1139,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			path = this->pedirImagenJugador(&(*it));
 			this->pedirCartasJugador(&(*it));
 			this->dibujarJugador(*it);
-			this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
-			y_nombre_jugador+=30;
+			//this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
+			//y_nombre_jugador+=30;
 			it++;
 		}
 		this->dibujarCartasJugadores();
