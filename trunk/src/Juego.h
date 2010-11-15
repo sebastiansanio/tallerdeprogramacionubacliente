@@ -34,6 +34,7 @@ private:
 	list<Carta> * cartas;//Las que salieron, valor y palo
 	string posoAcumulado;//Poso que esta acumulado
 	string nombreJugador;
+	int idJugador;
 	string escenario;
 	bool escenarioPedido;
 public:

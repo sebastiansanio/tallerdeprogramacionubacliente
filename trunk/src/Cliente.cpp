@@ -199,6 +199,7 @@ string Cliente::recibirArchivo(string path){
                                 for(int i=0;i<(valorRecive-3);i++) final[i]=data[i];
                                 archivoResultado->write(final,bytes);
                                 memset((void*)data,'\0',MAXBYTESRECIBIDOS);
+                                free(final);
                         }else{
                                 archivoResultado->write(data,valorRecive);
                                 memset((void*)data,'\0',MAXBYTESRECIBIDOS);
