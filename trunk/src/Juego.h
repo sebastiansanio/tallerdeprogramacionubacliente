@@ -10,6 +10,7 @@
 #include "Jugador.h"
 #include "Carta.h"
 
+
 typedef enum{
 	NINGUNO,
 	USUARIO,
@@ -71,6 +72,9 @@ public:
 	void cargarEscenario(string path);
 	void dibujarPantalla(string path);
 	void dibujarCartasJugadores();
+	void dibujarPantallaEstadistica();
+	list<Jugador>* getJugadoresRanking();
+	void dibujarPantallaRanking();
 	virtual ~Juego();
 };
 

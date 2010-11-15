@@ -624,6 +624,7 @@ void Juego::dibujarPantallaPrincipal(){
 	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Estadisticas",10,280,40,blanco);
 	this->actualizarPantalla();
 	bool terminar=false;
 	SDL_Event evento;
@@ -648,12 +649,153 @@ void Juego::dibujarPantallaPrincipal(){
 							this->jugar(true,false);
 							terminar=true;
 						}
+						else if(evento.button.y>=280 and evento.button.y<=335){
+						//							this->dibujarPantallaLogin(false,0,true);
+													this->dibujarPantallaEstadistica();
+													terminar=true;
+						}
 					}
 				}
 			}
 		}
 	}
 }
+
+
+void Juego::dibujarPantallaEstadistica(){
+	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	this->dibujarPantalla("boton.bmp");
+	this->pantalla->escribirTextoDesdePos("Evolucion por usuarios ",10,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Evolución por usuarios conectados",10,100,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Listado de los usuarios registrados",10,190,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Listado de los usuarios conectados",10,280,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Ranking de usuarios",10,370,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Volver",10,460,40,blanco);
+	//this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
+	this->actualizarPantalla();
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=5 and evento.button.x<=155){
+						if(evento.button.y>=10 and evento.button.y<=65){
+							//this->dibujarPantallaLogin(false,0,false);
+							//this->jugar(jugador_observador,false);
+							terminar=true;
+						}
+						else if(evento.button.y>=100 and evento.button.y<=155){
+							//this->dibujarPantallaEstadistica(0);
+							terminar=true;
+						}
+						else if(evento.button.y>=190 and evento.button.y<=245){
+//							this->dibujarPantallaLogin(false,0,true);
+							//this->jugar(true,false);
+							terminar=true;
+						}
+						else if(evento.button.y>=280 and evento.button.y<=335){
+						//							this->dibujarPantallaLogin(false,0,true);
+													//this->jugar(true,false);
+													terminar=true;
+						}
+						else if(evento.button.y>=370 and evento.button.y<=425){
+												this->dibujarPantallaRanking();
+													terminar=true;
+						}
+						else if(evento.button.y>=460 and evento.button.y<=515){
+							this->dibujarPantallaPrincipal();
+							terminar=true;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+list<Jugador>* Juego::getJugadoresRanking(){
+	string idOperacion="K";
+		list<string>* operandos=new list<string>();
+		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+		delete operandos;
+		cliente->enviar(xml);
+		char * respuesta=cliente->recibirRespuesta();
+		list<string>* jugadoresAux=parserResultado->getJugadores(respuesta);
+		list<string>::iterator it;
+		list <Jugador> * jugadores=new list<Jugador>();
+		list<Jugador>::iterator iterador=jugadores->begin();
+		it = jugadoresAux->begin();
+		for(unsigned int i = 0; i < jugadoresAux->size()/2; i++){
+			string nombre=(*it);
+			it++;
+			string plata=(*it);
+			it++;
+			iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
+			iterador++;
+		}
+		//this->jugadores = jugadores;
+		return jugadores;
+}
+
+void Juego::dibujarPantallaRanking(){
+	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	this->dibujarPantalla("boton.bmp");
+	list <Jugador> * jugadores=this->getJugadoresRanking();
+	cout<<jugadores->size();
+
+	list<Jugador>::iterator iterador=jugadores->begin();
+	this->pantalla->escribirTextoDesdePos("Ranking de usuarios ",30,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Usuario",30,100,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Fichas",240,100,40,blanco);
+		int j=100;
+		while(iterador != jugadores->end()){
+				j=j+70;
+
+				this->pantalla->escribirTextoDesdePos(iterador->getNombre().c_str(),30,j,40,blanco);
+				this->pantalla->escribirTextoDesdePos(iterador->getPlata().c_str(),240,j,40,blanco);
+				iterador++;
+			}
+		this->pantalla->escribirTextoDesdePos("Volver ",550,10,40,blanco);
+
+	//this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
+	this->actualizarPantalla();
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=545 and evento.button.x<=590){
+						if(evento.button.y>=10 and evento.button.y<=65){
+							this->dibujarPantallaEstadistica();
+							//this->jugar(jugador_observador,false);
+							terminar=true;
+						}
+
+					}
+				}
+			}
+		}
+	}
+}
+
+
 
 void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, bool jugador_observador){
 	this->dibujarPantalla("boton.bmp");
