@@ -2,7 +2,7 @@
 
 void * manejoEventos(void * juego_aux) {
 	Juego * juego = (Juego *) juego_aux;
-	int x_nombre_jugador = 5, y_nombre_jugador = 220;
+//	int x_nombre_jugador = 5, y_nombre_jugador = 220;
 	SDL_Color rojo;
 	rojo.r = 255;
 	rojo.g = 0;
@@ -25,8 +25,9 @@ void * manejoEventos(void * juego_aux) {
 					//Se fija si apreto el boton salir
 					if(evento.button.x < 80 and evento.button.y < 45){
 						exit(0);
-					} else if (evento.button.x > 50 and evento.button.y > 40) {
-							juego->dibujarCartasJugadores();
+					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador->jugadorObservador) {
+						//Solo se pueden dibujar todas las cartas si es un observador
+						juego->dibujarCartasJugadores();
 					} else if (!juego->tipoJugador->jugadorVirtual) {
 						if (juego->esMiTurno()) {
 							if (evento.button.y > (juego->infoconfig->alto
@@ -971,18 +972,19 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	this->tipoJugador->jugadorVirtual = jugador_virtual;
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
+	this->pedirEscenario();
 	while(true){
-		if(!this->escenarioPedido){
-			this->pedirEscenario();
-			this->cargarEscenario(this->escenario);
-		}
+		//		if(!this->escenarioPedido){
+		this->cargarEscenario(this->escenario);
+		//		}
 		list<Carta>* cartas = this->pedirCartas();
+		cout << "hola " << endl;
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
 		this->dibujarEscenario();
 		list<Jugador>::iterator it = jugadores->begin();
-		int x_nombre_jugador=5, y_nombre_jugador=5;
-		y_nombre_jugador+=35;
+		int x_nombre_jugador = 5, y_nombre_jugador = 5;
+		y_nombre_jugador += 35;
 		list<Carta>::iterator it2 = cartas->begin();
 		while (it2 != cartas->end()) {
 			this->dibujarCarta(*it2);
