@@ -25,9 +25,9 @@ void * manejoEventos(void * juego_aux) {
 					//Se fija si apreto el boton salir
 					if(evento.button.x < 80 and evento.button.y < 45){
 						exit(0);
-					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador->jugadorObservador) {
-						//Solo se pueden dibujar todas las cartas si es un observador
-						juego->dibujarCartasJugadores();
+//					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador->jugadorObservador) {
+//						//Solo se pueden dibujar todas las cartas si es un observador
+//						juego->dibujarCartasJugadores();
 					} else if (!juego->tipoJugador->jugadorVirtual) {
 						if (juego->esMiTurno()) {
 							if (evento.button.y > (juego->infoconfig->alto
@@ -391,19 +391,15 @@ void Juego::dibujarCartasJugadores(){
 			else {
 				this->pantalla->escribirTextoDesdePos("El jugador no posee cartas", 5,
 						this->infoconfig->alto * (0.95), 24, rojo);
-				this->actualizarPantalla();
 				//HAY QUE SACAR ESTO, ES PORQUE AHORA LOS JUGADORES NO TIENEN CARTAS
 				this->dibujarCartaJugador(&(*it));
 				//HAY QUE SACAR ESTO
-				sleep(1);
 			}
 			it++;
 		}
 	} else {
 		this->pantalla->escribirTextoDesdePos("No hay jugadores", 5,
 				this->infoconfig->alto * (0.95), 24, rojo);
-		this->actualizarPantalla();
-		sleep(1);
 	}
 
 }
@@ -417,12 +413,17 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 //	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
-	//HAY QUE VOLVER ESTO COMO ESTABA
-	carta1= new Carta("","corazones","2",1);
-	carta2= new Carta("","corazones","9",1);
-//	carta1 = &jugador->getCartas()->front();
-//	carta2 = &jugador->getCartas()->back();
-	//HAY QUE VOLVER ESTO COMO ESTABA
+	if(this->tipoJugador->jugadorObservador){
+		//HAY QUE VOLVER ESTO COMO ESTABA
+		carta1= new Carta("","corazones","2",1);
+		carta2= new Carta("","corazones","9",1);
+	//	carta1 = &jugador->getCartas()->front();
+	//	carta2 = &jugador->getCartas()->back();
+		//HAY QUE VOLVER ESTO COMO ESTABA
+	} else {
+		carta1= new Carta("","Imagen","Carta",1);
+		carta2= new Carta("","Imagen","Carta",1);
+	}
 	BitMap* imagen_carta1 = new BitMap("Cartas/" + carta1->getPalo() + "-"
 			+ carta1->getNumero() + ".bmp");
 	BitMap* imagen_carta2 = new BitMap("Cartas/" + carta2->getPalo() + "-"
@@ -482,7 +483,6 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 				+ " de " + carta2->getPalo()
 				+ " no tiene un imagen BMP o esta corrupta");
 	}
-	this->actualizarPantalla();
 //	delete imagen_carta1;
 //	delete imagen_carta2;
 }
@@ -998,6 +998,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			y_nombre_jugador+=30;
 			it++;
 		}
+		this->dibujarCartasJugadores();
 		if(jugadores->size()<6){
 			for(int i=(jugadores->size() + 1);i<7;i++){
 				Jugador jugador("ImagenVacio.bmp"," "," ",i);
