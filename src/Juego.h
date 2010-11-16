@@ -39,7 +39,7 @@ private:
 	bool escenarioPedido;
 public:
 	int plataJugador;
-	InfoJugador* tipoJugador;
+	InfoJugador tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
 	Juego();
