@@ -9,7 +9,7 @@
 #include "ParserResultadoCliente.h"
 #include "Jugador.h"
 #include "Carta.h"
-
+#include <stdlib.h>
 
 typedef enum{
 	NINGUNO,
@@ -38,6 +38,7 @@ private:
 	string escenario;
 	bool escenarioPedido;
 public:
+	int plataJugador;
 	InfoJugador* tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
@@ -76,6 +77,7 @@ public:
 	void dibujarPantallaEstadistica();
 	list<Jugador>* getJugadoresRanking();
 	void dibujarPantallaRanking();
+	string pedirOperacionDeJuego(string idOperacion, list<string>* operandos);
 	virtual ~Juego();
 };
 
