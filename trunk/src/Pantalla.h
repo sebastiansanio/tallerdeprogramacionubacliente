@@ -23,12 +23,12 @@ private:
 public:
 	Pantalla(int alto, int ancho);
 	bool comprobarPantalla();
-	void dibujarPixel(int x, int y,SDL_Color* color);
+	void dibujarPixel(int x, int y,SDL_Color color);
 	void actualizarPantalla(int x, int y, int w, int h);
 	void dibujarBitMapDesdePosCircular(BitMap bitmap,int x,int y);
 	void dibujarBitMapDesdePos(BitMap bitmap,int x,int y);
 	void escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente,SDL_Color color);
-	void escribirStringDesdePos(string * texto, int x, int y, int tamaniofuente,int r, int g, int b);
+	void escribirStringDesdePos(string texto, int x, int y, int tamaniofuente,int r, int g, int b);
 	void dibujarRectangulo(int x, int y, int ancho, int alto, int r, int g, int b);
 	int getAncho();
 	int getAlto();

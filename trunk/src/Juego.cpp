@@ -30,11 +30,11 @@ void * manejoEventos(void * juego_aux) {
 					//Se fija si apreto el boton salir
 					if(evento.button.x < 80 and evento.button.y < 45){
 						exit(0);
-//					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador->jugadorObservador) {
+//					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador.jugadorObservador) {
 //						//Solo se pueden dibujar todas las cartas si es un observador
 //						juego->dibujarCartasJugadores();
 
-					} else if (!juego->tipoJugador->jugadorVirtual) {
+					} else if (!juego->tipoJugador.jugadorVirtual) {
 						if (juego->esMiTurno()) {
 							idOperacion = "G";
 
@@ -472,7 +472,7 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 //	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
-	if((this->tipoJugador->jugadorObservador) or (id==this->idJugador)){
+	if((this->tipoJugador.jugadorObservador) or (id==this->idJugador)){
         if(jugador->getCartas()!=NULL){
             carta1 = &jugador->getCartas()->front();
             carta2 = &jugador->getCartas()->back();
@@ -894,8 +894,8 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	string contrasenaAsteriscos("");
 	bool jugadorVirtual=false;
 	CasilleroTexto casillero=NINGUNO;
-	this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-	this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 	this->actualizarPantalla();
 	char caracterLeido=(char)0;
 	bool terminar=false;
@@ -911,16 +911,16 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						if(evento.button.y>=55 and evento.button.y<=75){
 							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
 							this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 							casillero=USUARIO;
 							this->actualizarPantalla();
 						}
 						else if(evento.button.y>=165 and evento.button.y<=185){
 							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 							casillero=CONTRASENA;
 							this->actualizarPantalla();
 						}
@@ -944,7 +944,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						if (nuevoTamanio>=0){
 							usuarioTexto.resize(usuarioTexto.size()-1);
 							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
 							this->actualizarPantalla();
 						}
 					} else if(casillero==CONTRASENA){
@@ -953,7 +953,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 							contrasenaTexto.resize(contrasenaTexto.size()-1);
 							contrasenaAsteriscos.resize(contrasenaAsteriscos.size()-1);
 							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 							this->actualizarPantalla();
 						}
 					}
@@ -976,14 +976,14 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 //						cout<<"caracter leido/"<<caracterLeido<<"/"<<endl;
 //						cout<<usuarioTexto<<endl;
 						this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
-						this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+						this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
 						this->actualizarPantalla();
 					}
 					if(casillero==CONTRASENA){
 						contrasenaTexto+=caracterLeido;
 						contrasenaAsteriscos+="*";
 						this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
-						this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+						this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 						this->actualizarPantalla();
 					}
 				}
@@ -1030,9 +1030,9 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 	string contrasenaAsteriscos("");
 	string archivoTexto("");
 	CasilleroTexto casillero=NINGUNO;
-	this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-	this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
-	this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
+	this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 	this->actualizarPantalla();
 	char caracterLeido=(char)0;
 	bool terminar=false;
@@ -1049,9 +1049,9 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
 							this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 							this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 							casillero=USUARIO;
 							this->actualizarPantalla();
 						}
@@ -1059,9 +1059,9 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
 							this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 							casillero=CONTRASENA;
 							this->actualizarPantalla();
 						}
@@ -1069,9 +1069,9 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 							this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 							this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
-							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 							casillero=ARCHIVO;
 							this->actualizarPantalla();
 						}
@@ -1084,7 +1084,7 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 						if (nuevoTamanio>=0){
 							usuarioTexto.resize(usuarioTexto.size()-1);
 							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
 							this->actualizarPantalla();
 						}
 					} else if(casillero==CONTRASENA){
@@ -1093,7 +1093,7 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 							contrasenaTexto.resize(contrasenaTexto.size()-1);
 							contrasenaAsteriscos.resize(contrasenaAsteriscos.size()-1);
 							this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 							this->actualizarPantalla();
 						}
 					} else if(casillero==ARCHIVO){
@@ -1101,7 +1101,7 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 						if (nuevoTamanio>=0){
 							archivoTexto.resize(archivoTexto.size()-1);
 							this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
-							this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+							this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 							this->actualizarPantalla();
 						}
 					}
@@ -1122,20 +1122,20 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 					if(casillero==USUARIO){
 						usuarioTexto+=caracterLeido;
 						this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
-						this->pantalla->escribirStringDesdePos(&usuarioTexto,13,50,25,0,0,0);
+						this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
 						this->actualizarPantalla();
 					}
 					if(casillero==CONTRASENA){
 						contrasenaTexto+=caracterLeido;
 						contrasenaAsteriscos+="*";
 						this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
-						this->pantalla->escribirStringDesdePos(&contrasenaAsteriscos,13,160,25,0,0,0);
+						this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
 						this->actualizarPantalla();
 					}
 					if(casillero==ARCHIVO){
 						archivoTexto+=caracterLeido;
 						this->pantalla->dibujarRectangulo(8,275,144,20,200,200,200);
-						this->pantalla->escribirStringDesdePos(&archivoTexto,13,270,25,0,0,0);
+						this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 						this->actualizarPantalla();
 					}
 				}
@@ -1184,9 +1184,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	blanco.r=255;
 	blanco.g=255;
 	blanco.b=255;
-	this->tipoJugador = new InfoJugador;
-	this->tipoJugador->jugadorObservador = jugador_observador;
-	this->tipoJugador->jugadorVirtual = jugador_virtual;
+	this->tipoJugador.jugadorObservador = jugador_observador;
+	this->tipoJugador.jugadorVirtual = jugador_virtual;
 
 	//Hardcodeo la plata restante del jugador habria que pedirla con pedirOperacionDeJuego
 	this->plataJugador = 2000;

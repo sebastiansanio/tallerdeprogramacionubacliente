@@ -24,7 +24,7 @@ bool Pantalla::comprobarPantalla(){
 	return true;
 }
 
-void Pantalla::dibujarPixel(int x, int y, SDL_Color* color){
+void Pantalla::dibujarPixel(int x, int y, SDL_Color color){
 	if(x>(this->getAncho()) or y>(this->getAlto())) return;
 	//Si hay que bloquear la pantalla la bloquea, al final de la función la desbloquea
 	if ( SDL_MUSTLOCK(pantalla) ){
@@ -36,15 +36,15 @@ void Pantalla::dibujarPixel(int x, int y, SDL_Color* color){
 	// p es un puntero al pixel que vamos a pintar
 	//pitch es la cantidad de bytes que ocupa una linea de la pantalla
 	Uint8 *p = (Uint8*)pantalla->pixels + (y*pantalla->pitch) + (x*(pantalla->format->BytesPerPixel));
-	if(!((color->r==0)and(color->g==255)and(color->b==0))){
+	if(!((color.r==0)and(color.g==255)and(color.b==0))){
 		if (SDL_BYTEORDER==SDL_BIG_ENDIAN) {
-			p[0]=color->r;
-			p[1]=color->g;
-			p[2]=color->b;
+			p[0]=color.r;
+			p[1]=color.g;
+			p[2]=color.b;
 		} else {
-			p[0]=color->b;
-			p[1]=color->g;
-			p[2]=color->r;
+			p[0]=color.b;
+			p[1]=color.g;
+			p[2]=color.r;
 		}
 	}
 	if ( SDL_MUSTLOCK(pantalla) ){
@@ -60,7 +60,7 @@ void Pantalla::dibujarBitMapDesdePos(BitMap bitmap,int x, int y){
 	SDL_Color** matrizDelBitmap=bitmap.getMatrizDeImagen();
 	for(unsigned int i=0;i<bitmap.getAlto();i++){
 		for(unsigned int j=0;j<bitmap.getAncho();j++){
-			this->dibujarPixel(j + x,i + y,&matrizDelBitmap[i][j]);
+			this->dibujarPixel(j + x,i + y,matrizDelBitmap[i][j]);
 		}
 	}
 }
@@ -76,14 +76,14 @@ void Pantalla::dibujarBitMapDesdePosCircular(BitMap bitmap,int x, int y){
 			auxi=i-radioH;
 			auxj=j-radioV;
 			if (((auxi*auxi)/(radioH*radioH)+(auxj*auxj)/(radioV*radioV))<=1){
-					this->dibujarPixel(j + x,i + y,&matrizDelBitmap[i][j]);
+					this->dibujarPixel(j + x,i + y,matrizDelBitmap[i][j]);
 			}
 		}
 	}
 }
 
 void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente,SDL_Color color){
-
+//	const char * textoaux = strcpy(textoaux,texto);
 // Cargamos la fuente que vamos a utilizar
 	TTF_Font *fuente;
 	fuente = TTF_OpenFont("browa.ttf", tamaniofuente);
@@ -114,13 +114,13 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 //	SDL_Flip(pantalla);
 }
 
-void Pantalla::escribirStringDesdePos(string * texto, int x, int y, int tamaniofuente,int r, int g, int b){
-	if(texto->size()!=0){
+void Pantalla::escribirStringDesdePos(string texto, int x, int y, int tamaniofuente,int r, int g, int b){
+	if(texto.size()!=0){
 		SDL_Color color;
 		color.r=r;
 		color.g=g;
 		color.b=b;
-		escribirTextoDesdePos(texto->c_str(),x,y,tamaniofuente,color);
+		escribirTextoDesdePos(texto.c_str(),x,y,tamaniofuente,color);
 	}
 }
 
@@ -137,7 +137,7 @@ void Pantalla::dibujarRectangulo(int x, int y, int ancho, int alto, int r, int g
 	color.b=b;
 	for(int i=0;i<alto;i++){
 		for(int j=0;j<ancho;j++){
-			this->dibujarPixel(j + x,i + y,&color);
+			this->dibujarPixel(j + x,i + y,color);
 		}
 	}
 }
