@@ -83,7 +83,6 @@ void Pantalla::dibujarBitMapDesdePosCircular(BitMap bitmap,int x, int y){
 }
 
 void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamaniofuente,SDL_Color color){
-//	const char * textoaux = strcpy(textoaux,texto);
 // Cargamos la fuente que vamos a utilizar
 	TTF_Font *fuente;
 	fuente = TTF_OpenFont("browa.ttf", tamaniofuente);
