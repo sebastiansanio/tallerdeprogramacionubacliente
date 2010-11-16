@@ -14,6 +14,11 @@ void * manejoEventos(void * juego_aux) {
 	int inicio = juego->infoconfig->ancho / 3.3;
 	int distancia = juego->infoconfig->ancho / 6;
 	int factor = juego->infoconfig->ancho / 42.5;
+	int apuestaMax;
+	string resultado;
+	string idOperacion;
+	int contadorOportunidades = 0;
+	list<string>* operandos = new list<string> ();
 	while (true) {
 		SDL_Event evento;
 		if (SDL_PollEvent(&evento)) {
@@ -28,8 +33,16 @@ void * manejoEventos(void * juego_aux) {
 //					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador->jugadorObservador) {
 //						//Solo se pueden dibujar todas las cartas si es un observador
 //						juego->dibujarCartasJugadores();
+
 					} else if (!juego->tipoJugador->jugadorVirtual) {
 						if (juego->esMiTurno()) {
+							idOperacion = "G";
+
+							//Hardcodeo el resultado por ahora despues cuando este listo decomentar y sacar la linea q sigue
+//							resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+							resultado = "500";
+							apuestaMax = atoi(resultado.c_str());
+							if(contadorOportunidades < 10){
 							if (evento.button.y > (juego->infoconfig->alto
 									/ 1.3) and evento.button.y
 									< ((juego->infoconfig->alto / 1.3)
@@ -37,24 +50,76 @@ void * manejoEventos(void * juego_aux) {
 								if (evento.button.x > inicio
 										and evento.button.x < inicio
 												+ distancia - factor) {
-									cout << "presiono boton Pasar " << endl;
+									//PASAR
+									if(apuestaMax==0){
+										idOperacion = "F";
+										if(!operandos->empty())
+											operandos->clear();
+										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										contadorOportunidades = 0;
+									}
+									else{
+										contadorOportunidades++;
+										juego->pantalla->escribirTextoDesdePos("No puede pasar, debe igualar, apostar o no ir", 5, juego->infoconfig->alto * (0.95), 24, rojo);
+									}
+
 								} else if (evento.button.x > inicio + distancia
 										and evento.button.x < inicio + 2
 												* distancia - factor) {
-									cout << "presiono boton Igualar " << endl;
+									//IGUALAR
+									if(juego->plataJugador >= 0){
+										idOperacion = "Y";
+										if(!operandos->empty())
+											operandos->clear();
+										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										contadorOportunidades = 0;
+									}
 								} else if (evento.button.x > inicio + 2
 										* distancia and evento.button.x
 										< inicio + 3 * distancia - factor) {
-									cout << "presiono boton Apostar" << endl;
+									//APOSTAR
+									//Ingresa primero cuanto quiere apostar, ahora lo dejo como 100
+									string plataApuesta = "100";
+									int plataNumero = atoi(plataApuesta.c_str());
+									if(plataNumero <= juego->plataJugador and plataNumero > apuestaMax){
+										idOperacion = "D";
+										operandos->push_front("Poso");
+										operandos->push_back(plataApuesta);
+										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										contadorOportunidades = 0;
+										operandos->clear();
+										}
+									else if(plataNumero <= apuestaMax){
+										contadorOportunidades++;
+										juego->pantalla->escribirTextoDesdePos("No puede apostar menos o lo mismo, debe igualar o no ir", 5, juego->infoconfig->alto * (0.95), 24, rojo);
+									}
+									else{
+										contadorOportunidades++;
+										juego->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, juego->infoconfig->alto * (0.95), 24, rojo);
+									}
 								} else if (evento.button.x > inicio + 3
 										* distancia and evento.button.x
 										< inicio + 4 * distancia - factor) {
-									cout << "presiono boton No ir" << endl;
+									//NO IR
+									idOperacion = "D";
+									operandos->push_front("Poso");
+									operandos->push_back("0");
+									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+									operandos->clear();
 								}
 							}
+							}else{
+									idOperacion = "D";
+									operandos->push_front("Poso");
+									operandos->push_back("0");
+									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+									operandos->clear();
+							}
+
 						} else {
 							juego->pantalla->escribirTextoDesdePos("No es tu turno", 5,juego->infoconfig->alto * (0.95), 24, rojo);
 						}
+
 					} else {
 						if (juego->esMiTurno()) {
 							if (evento.button.y > (juego->infoconfig->alto
@@ -76,6 +141,7 @@ void * manejoEventos(void * juego_aux) {
 
 		}
 	}
+	delete operandos;
 }
 Juego::Juego() {
 	this->parser=new ParserCliente(PATHARCHIVOCONF);
@@ -1096,6 +1162,7 @@ bool Juego::esMiTurno(){
 //	cliente->enviar(xml);
 //	char * respuesta = cliente->recibirRespuesta();
 //	string jugadorTurno = parserResultado->getPoso(respuesta);
+//	delete operandos;
 //	return jugadorTurno==this->nombreJugador;
 }
 
@@ -1120,6 +1187,10 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	this->tipoJugador = new InfoJugador;
 	this->tipoJugador->jugadorObservador = jugador_observador;
 	this->tipoJugador->jugadorVirtual = jugador_virtual;
+
+	//Hardcodeo la plata restante del jugador habria que pedirla con pedirOperacionDeJuego
+	this->plataJugador = 2000;
+
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	this->pedirEscenario();
@@ -1129,7 +1200,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->cargarEscenario(this->escenario);
 		//		}
 		list<Carta>* cartas = this->pedirCartas();
-		cout << "hola " << endl;
+		//cout << "hola " << endl;
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
 		this->dibujarEscenario();
@@ -1196,4 +1267,12 @@ Jugador * Juego::getJugador(int id){
 		it++;
 	}
 	return NULL;
+}
+
+string Juego::pedirOperacionDeJuego(string idOperacion, list<string>* operandos) {
+	char* xml = this->parser->getXmlDeOperacion(idOperacion, operandos);
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	string operacion = parserResultado->getPoso(respuesta);
+	return operacion;
 }
