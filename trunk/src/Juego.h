@@ -78,6 +78,8 @@ public:
 	list<Jugador>* getJugadoresRanking();
 	void dibujarPantallaRanking();
 	string pedirOperacionDeJuego(string idOperacion, list<string>* operandos);
+	list<string>* getEstadisticas(string tipoEstadistica);
+	void dibujarPantallaListado();
 	virtual ~Juego();
 };
 

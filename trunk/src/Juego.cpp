@@ -684,7 +684,7 @@ void Juego::dibujarPantallaPrincipal(){
 	this->pantalla->escribirTextoDesdePos("Loguearse",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Registrarse",10,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
-	this->pantalla->escribirTextoDesdePos("Estadisticas",10,280,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Estadistica",10,280,40,blanco);
 	this->actualizarPantalla();
 	bool terminar=false;
 	SDL_Event evento;
@@ -757,7 +757,7 @@ void Juego::dibujarPantallaEstadistica(){
 							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
-//							this->dibujarPantallaLogin(false,0,true);
+							this->dibujarPantallaListado();
 							//this->jugar(true,false);
 							terminar=true;
 						}
@@ -782,28 +782,36 @@ void Juego::dibujarPantallaEstadistica(){
 }
 
 
-list<Jugador>* Juego::getJugadoresRanking(){
+list<string>* Juego::getEstadisticas(string tipoEstadistica){
 	string idOperacion="K";
 		list<string>* operandos=new list<string>();
+
+		list<string>::iterator it = operandos->begin();
+		it = operandos->insert(it, "tipoEstadistica");
+		it++;
+		it = operandos->insert(it, tipoEstadistica);
+
 		char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 		delete operandos;
 		cliente->enviar(xml);
 		char * respuesta=cliente->recibirRespuesta();
-		list<string>* jugadoresAux=parserResultado->getJugadores(respuesta);
-		list<string>::iterator it;
-		list <Jugador> * jugadores=new list<Jugador>();
-		list<Jugador>::iterator iterador=jugadores->begin();
-		it = jugadoresAux->begin();
-		for(unsigned int i = 0; i < jugadoresAux->size()/2; i++){
-			string nombre=(*it);
-			it++;
-			string plata=(*it);
-			it++;
-			iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
-			iterador++;
-		}
-		//this->jugadores = jugadores;
-		return jugadores;
+
+		list<string>* usuarios=parserResultado->getJugadores(respuesta);
+		return usuarios;
+//		list<string>::iterator it;
+//		list <Usuario> * usuarios=new list<Usuario>();
+//		list<Usuario>::iterator iterador=usuarios->begin();
+//		it = usuariosAux->begin();
+//		for(unsigned int i = 0; i < jugadoresAux->size()/2; i++){
+//			string nombre=(*it);
+//			it++;
+//			string plata=(*it);
+//			it++;
+//			iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
+//			iterador++;
+//		}
+//		//this->jugadores = jugadores;
+//		return jugadores;
 }
 
 void Juego::dibujarPantallaRanking(){
@@ -813,19 +821,20 @@ void Juego::dibujarPantallaRanking(){
 	blanco.g=255;
 	blanco.b=255;
 	this->dibujarPantalla("boton.bmp");
-	list <Jugador> * jugadores=this->getJugadoresRanking();
-	cout<<jugadores->size();
+	list <string> * jugadores=this->getEstadisticas("ranking");
 
-	list<Jugador>::iterator iterador=jugadores->begin();
+	list<string>::iterator iterador=jugadores->begin();
 	this->pantalla->escribirTextoDesdePos("Ranking de usuarios ",30,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Usuario",30,100,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Fichas",240,100,40,blanco);
 		int j=100;
 		while(iterador != jugadores->end()){
 				j=j+70;
-
-				this->pantalla->escribirTextoDesdePos(iterador->getNombre().c_str(),30,j,40,blanco);
-				this->pantalla->escribirTextoDesdePos(iterador->getPlata().c_str(),240,j,40,blanco);
+				string nom=(*iterador);
+				this->pantalla->escribirTextoDesdePos(nom.c_str(),30,j,40,blanco);
+				iterador++;
+				string ficha=(*iterador);
+				this->pantalla->escribirTextoDesdePos(ficha.c_str(),240,j,40,blanco);
 				iterador++;
 			}
 		this->pantalla->escribirTextoDesdePos("Volver ",550,10,40,blanco);
@@ -854,6 +863,60 @@ void Juego::dibujarPantallaRanking(){
 		}
 	}
 }
+
+void Juego::dibujarPantallaListado(){
+	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	this->dibujarPantalla("boton.bmp");
+	this->pantalla->escribirTextoDesdePos("Listado de los usuarios ",10,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Ultimo dia",10,100,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Ultimo mes",10,190,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Ultimo año",10,280,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Volver",10,460,40,blanco);
+	//this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
+	this->actualizarPantalla();
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=5 and evento.button.x<=155){
+						 if(evento.button.y>=100 and evento.button.y<=155){
+							//this->dibujarPantallaEstadistica(0);
+							terminar=true;
+						}
+						else if(evento.button.y>=190 and evento.button.y<=245){
+//							this->dibujarPantallaLogin(false,0,true);
+							//this->jugar(true,false);
+							terminar=true;
+						}
+						else if(evento.button.y>=280 and evento.button.y<=335){
+						//							this->dibujarPantallaLogin(false,0,true);
+													//this->jugar(true,false);
+													terminar=true;
+						}
+						else if(evento.button.y>=370 and evento.button.y<=425){
+												this->dibujarPantallaRanking();
+													terminar=true;
+						}
+						else if(evento.button.y>=460 and evento.button.y<=515){
+							this->dibujarPantallaPrincipal();
+							terminar=true;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 
 
 
