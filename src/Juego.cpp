@@ -259,7 +259,7 @@ void Juego::cargarEscenario(string path){
 	this->imagenEscenario = new BitMap(path);
 	if((this->imagenEscenario->esUnaImagenCorrecta())and(this->imagenEscenario->getAlto()>1)and(this->imagenEscenario->getAncho()>1)){
 		this->imagenEscenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
-//		pantalla->dibujarBitMapDesdePos((*escenario),0,0);
+//		pantalla->dibujarBitMapDesdePos(escenario),0,0);
 	}else{
 		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
 	}
@@ -269,15 +269,15 @@ void Juego::dibujarPantalla(string path){
 	BitMap* pantallaADibujar = new BitMap(path);
 	if((pantallaADibujar->esUnaImagenCorrecta())and(pantallaADibujar->getAlto()>1)and(pantallaADibujar->getAncho()>1)){
 		pantallaADibujar->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
-		pantalla->dibujarBitMapDesdePos((*pantallaADibujar),0,0);
+		pantalla->dibujarBitMapDesdePos(pantallaADibujar,0,0);
 	}else{
 		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
 	}
-//	delete pantallaADibujar;
+	delete pantallaADibujar;
 }
 
 void Juego::dibujarEscenario(){
-	pantalla->dibujarBitMapDesdePos((*this->imagenEscenario),0,0);
+	pantalla->dibujarBitMapDesdePos(this->imagenEscenario,0,0);
 }
 
 
@@ -297,32 +297,32 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 		int tamfuente = this->infoconfig->ancho / 32.5;
 		int factor = this->infoconfig->alto / 110;
 		if (jugadorADibujar.getId() == 1) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente, color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 2) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 5.45, this->infoconfig->alto / 3.2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 5.45)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente ,color);
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 5.45)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 3) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 2.65, this->infoconfig->alto / 3.9);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 2.65)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente ,color);
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.65)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente ,color);
 		} else if (jugadorADibujar.getId() == 4) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.7, this->infoconfig->alto / 3.9);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.7)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.7)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 5) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
 		} else if (jugadorADibujar.getId() == 6) {
-			pantalla->dibujarBitMapDesdePosCircular(*jugador,
+			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.3, this->infoconfig->alto / 2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
@@ -330,7 +330,7 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 	} else {
 		this->informarError("B","E","El jugador " + jugadorADibujar.getNombre()+ " no es una imagen BMP o esta corrupta");
 			}
-//	delete jugador;
+	delete jugador;
 }
 
 
@@ -368,25 +368,25 @@ void Juego::dibujarCarta(Carta cartaADibujar){
 		carta->resizeTo(2.5 * tamImagen,2*tamImagen);
 		int id = cartaADibujar.getId();
 		if (id == 1) {
-			pantalla->dibujarBitMapDesdePos(*carta,
+			pantalla->dibujarBitMapDesdePos(carta,
 					this->infoconfig->ancho / 3.15, (this->infoconfig->alto / 2.3));
 		} else if (id == 2) {
-			pantalla->dibujarBitMapDesdePos(*carta,
+			pantalla->dibujarBitMapDesdePos(carta,
 					this->infoconfig->ancho / 2.58, (this->infoconfig->alto / 2.3));
 		} else if (id == 3) {
-			pantalla->dibujarBitMapDesdePos(*carta,
+			pantalla->dibujarBitMapDesdePos(carta,
 					this->infoconfig->ancho / 2.2, (this->infoconfig->alto / 2.3));
 		} else if (id == 4) {
-			pantalla->dibujarBitMapDesdePos(*carta,
+			pantalla->dibujarBitMapDesdePos(carta,
 					this->infoconfig->ancho / 1.88, (this->infoconfig->alto / 2.3));
 		} else if (id == 5) {
-			pantalla->dibujarBitMapDesdePos(*carta,
+			pantalla->dibujarBitMapDesdePos(carta,
 					this->infoconfig->ancho / 1.66, (this->infoconfig->alto / 2.3));
 		}
 	}else {
 		this->informarError("B","E","La carta " + cartaADibujar.getNumero() + " de " + cartaADibujar.getPalo() +	" no tiene un imagen BMP o esta corrupta");
 		}
-//	delete carta;
+	delete carta;
 }
 
 list<Carta>* Juego::pedirCartas(){
@@ -496,17 +496,17 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 				this->infoconfig->alto / 20, this->infoconfig->alto / 15.8,
 				this->infoconfig->alto / 6.5);
 		if (id == 1) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 20.2, ancho / 2.65);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 20.2, ancho / 2.65);
 		} else if (id == 2) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 9.88, ancho / 4);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 9.88, ancho / 4);
 		} else if (id == 3) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 3.45, ancho / 4.62);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 3.45, ancho / 4.62);
 		} else if (id == 4) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 2, ancho / 4.62);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 2, ancho / 4.62);
 		} else if (id == 5) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 1.21, ancho / 4);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 1.21, ancho / 4);
 		} else if (id == 6) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta1, ancho / 1.14, ancho / 2.65);
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta1, ancho / 1.14, ancho / 2.65);
 		}
 	} else {
 		this->informarError("B", "E", "La carta " + carta1->getNumero() + " de "
@@ -520,22 +520,22 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 				this->infoconfig->alto / 6.5);
 		int dist = ancho / 28;
 		if (id == 1) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2,
 					(ancho / 20.2) + dist, ancho / 2.65);
 		} else if (id == 2) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2,
 					(ancho / 9.88) + dist, ancho / 4);
 		} else if (id == 3) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2,
 					(ancho / 3.45) + dist, ancho / 4.62);
 		} else if (id == 4) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2, (ancho / 2)
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2, (ancho / 2)
 					+ dist, ancho / 4.62);
 		} else if (id == 5) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2,
 					(ancho / 1.21) + dist, ancho / 4);
 		} else if (id == 6) {
-			this->pantalla->dibujarBitMapDesdePos(*imagen_carta2,
+			this->pantalla->dibujarBitMapDesdePos(imagen_carta2,
 					(ancho / 1.14) + dist, ancho / 2.65);
 		}
 	} else {
@@ -543,8 +543,8 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 				+ " de " + carta2->getPalo()
 				+ " no tiene un imagen BMP o esta corrupta");
 	}
-//	delete imagen_carta1;
-//	delete imagen_carta2;
+	delete imagen_carta1;
+	delete imagen_carta2;
 }
 
 bool Juego::validarJugador(string usuario, string pass){
@@ -618,25 +618,25 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 		const char* texto = textoBoton.c_str();
 		boton->resizeTo(tamImagenalto, tamImagenancho);
 		if (pos == 0) {
-			pantalla->dibujarBitMapDesdePos(*boton, inicio,
+			pantalla->dibujarBitMapDesdePos(boton, inicio,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + factor,
 					(this->infoconfig->alto / 1.3) + (tamImagenalto / 2)
 							- (tamfuente / 2), tamfuente, color);
 		} else if (pos == 1) {
-			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
 					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 2) {
-			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
 					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 3) {
-			pantalla->dibujarBitMapDesdePos(*boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
@@ -646,7 +646,7 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 		this->informarError("B", "E",
 				"Uno de los botones no es una imagen BMP o esta corrupta");
 	}
-	//	delete boton;
+	delete boton;
 }
 
 void Juego::dibujarPoso(){

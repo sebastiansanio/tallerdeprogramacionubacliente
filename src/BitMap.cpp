@@ -175,6 +175,7 @@ unsigned int BitMap::getAncho(){
 	return this->informacionImagen->anchoEnPixels;
 }
 BitMap::~BitMap() {
+	cout<<"Borrando"<<endl;
 	delete this->informacionImagen;
 	if(this->esUnaImagenCorrecta()){
 		for(unsigned int i=0;i<this->informacionImagen->altoEnPixels;i++){
