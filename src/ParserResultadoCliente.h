@@ -23,6 +23,7 @@ private:
 public:
 	ParserResultadoCliente();
 	list<string> * getJugadores(char xml[]);//Le pasamos el xml de la operacion J y nos da los jugadores que no paso el servidor que estaban
+	bool getPlataYCargado(char xml[],int* plata, int* cargado);
 	list<string> * getCartas(char xml[]);
 	string getPoso(char xml[]);
 	bool DecodificaResultado(char* xml);

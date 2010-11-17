@@ -45,8 +45,10 @@ public:
 	bool cerrar;
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
+	void cargarFichas(string monto);
 	void dibujarPantallaPrincipal();
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos,bool jugador_observador);
+	void dibujarPantallaComienzo(bool carga, int puedeCargar);
 	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
 	void dibujarEscenario();
@@ -67,7 +69,7 @@ public:
 	void pedirPoso();
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
-	bool validarJugador(string usuario, string pass);
+	bool validarJugador(string usuario, string pass, int* plata, int* cargado);
 	bool comenzarPartida();
 	bool registrarJugador(string usuario, string pass, string ruta);
 	void jugar(bool jugador_observador, bool jugador_virtual);
