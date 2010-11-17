@@ -68,6 +68,7 @@ public:
 	void actualizarPantalla();
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass);
+	bool comenzarPartida();
 	bool registrarJugador(string usuario, string pass, string ruta);
 	void jugar(bool jugador_observador, bool jugador_virtual);
 	Jugador * getJugador(int id);
