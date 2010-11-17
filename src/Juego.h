@@ -71,7 +71,7 @@ public:
 	void jugar(bool jugador_observador, bool jugador_virtual);
 	Jugador * getJugador(int id);
 	list<Jugador> getJugadores();
-	void cargarEscenario(string path);
+	void cargarEscenario(string path, bool cargado);
 	void dibujarPantalla(string path);
 	void dibujarCartasJugadores();
 	void dibujarPantallaEstadistica();
