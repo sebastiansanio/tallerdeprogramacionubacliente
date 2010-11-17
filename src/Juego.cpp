@@ -574,6 +574,16 @@ bool Juego::validarJugador(string usuario, string pass){
 	return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
+bool Juego::comenzarPartida(){
+	string idOperacion="M";
+	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	return (this->parserResultado->DecodificaResultado(respuesta));
+}
+
 bool Juego::registrarJugador(string usuario, string pass, string ruta){
 	//Antes de registrarlo se fija si el archivo existe
 	fstream  archivo;
@@ -1038,6 +1048,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
 						this->actualizarPantalla();
 						sleep(2);
+						this->comenzarPartida();
 						this->jugar(jugador_observador,jugadorVirtual);
 					}
 					//entre la a y la z o entre el 0 y el 9
