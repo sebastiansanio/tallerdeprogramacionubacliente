@@ -1274,6 +1274,7 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 						if(carga){
 							cantidadCarga=atoi(cantidadPlata.c_str());
 							if(cantidadCarga<=puedeCargar){
+								if(cantidadPlata.compare("")==0) cantidadPlata="0";
 								this->cargarFichas(cantidadPlata,usuario);
 								return;
 							} else {
@@ -1305,6 +1306,7 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 					if (carga){
 						cantidadCarga=atoi(cantidadPlata.c_str());
 						if(cantidadCarga<=puedeCargar){
+							if(cantidadPlata.compare("")==0) cantidadPlata="0";
 							this->cargarFichas(cantidadPlata,usuario);
 							return;
 						} else {
@@ -1500,10 +1502,6 @@ list<Carta>* Juego::cartasEnMesa(){
 }
 
 bool Juego::esMiTurno(){
-
-	//Aca lo dejo como true hasta que este hecha la logica del juego, despues hay que cambiarlo
-	return true;
-
 //	string idOperacion = "A";
 //	list<string>* operandos = new list<string> ();
 //	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
@@ -1512,6 +1510,7 @@ bool Juego::esMiTurno(){
 //	string jugadorTurno = parserResultado->getPoso(respuesta);
 //	delete operandos;
 //	return jugadorTurno==this->nombreJugador;
+	return true;
 }
 
 list<Jugador> Juego::getJugadores(){
