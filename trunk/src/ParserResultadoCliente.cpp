@@ -120,7 +120,53 @@ list<string> * ParserResultadoCliente::getJugadores(char xml[]){
 		buffer = strtok(NULL, " \t<>=");
 	}
 	return respuesta;
+}
 
+bool ParserResultadoCliente::getPlataYCargado(char xml[],int* plata, int* cargado){
+	bool resultadoOk;
+	ostringstream sstream;
+	sstream << xml;
+	string paraVerCuantoPesa = sstream.str();
+	char xmlAux[paraVerCuantoPesa.size()];
+	char xmlAux2[paraVerCuantoPesa.size()];
+	for(unsigned int i=0;i<paraVerCuantoPesa.size();i++){xmlAux[i]=xml[i];xmlAux2[i]=xml[i];}
+	char* buffer = strtok(xml,"\n\t<>");
+	buffer = strtok(NULL,"\n\t<>");
+	string operacion = buffer;
+	buffer = strtok(NULL,"\n\t<>");
+	string tipo;
+	char* palabraclave;
+
+	//Registro el resultado en el archivo correspondiente
+	if (strcmp(buffer, "resultados") == 0) {
+		tipo = "El resultado de ";
+		palabraclave = "nombre";
+		this->registrarResultado(xmlAux,operacion,"resultados","resultados");
+		resultadoOk=true;
+	} else {
+		tipo = "El error de tipo ";
+		palabraclave = "tipo";
+		this->registrarResultado(xmlAux,operacion,"errores","errores.err");
+		resultadoOk=false;
+	}
+	//Reinicio el buffer para imprimir por pantalla los errores o resultados
+	buffer = strtok(xmlAux2,"<>");
+	buffer = strtok(NULL,"<>");
+	buffer = strtok(NULL,"<>");
+	int contador=0;
+	while (buffer != NULL) {
+		if (strcmp(buffer, palabraclave) == 0) {
+			buffer = strtok(NULL, "\t <>=\"");
+			cout << tipo << buffer << " es: ";
+			buffer = strtok(NULL, ">\n\t");
+			cout << buffer << endl;
+			if(contador==2 and resultadoOk) (*plata)=atoi(buffer);
+			if(contador==3 and resultadoOk) (*cargado)=atoi(buffer);
+			contador++;
+		}
+		buffer = strtok(NULL, " \t<>=");
+	}
+	return resultadoOk;
 }
 
 list<string> * ParserResultadoCliente::getCartas(char xml[]) {

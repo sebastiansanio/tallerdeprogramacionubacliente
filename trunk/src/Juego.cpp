@@ -44,7 +44,7 @@ void * manejoEventos(void * juego_aux) {
 
 							//Hardcodeo el resultado por ahora despues cuando este listo decomentar y sacar la linea q sigue
 //							resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-							resultado = "500";
+							resultado = "10";
 							apuestaMax = atoi(resultado.c_str());
 							if(contadorOportunidades < 10){
 							if (evento.button.y > (juego->infoconfig->alto
@@ -83,7 +83,7 @@ void * manejoEventos(void * juego_aux) {
 										< inicio + 3 * distancia - factor) {
 									//APOSTAR
 									//Ingresa primero cuanto quiere apostar, ahora lo dejo como 100
-									string plataApuesta = "100";
+									string plataApuesta = "15";
 									int plataNumero = atoi(plataApuesta.c_str());
 									if(plataNumero <= juego->plataJugador and plataNumero > apuestaMax){
 										idOperacion = "D";
@@ -556,7 +556,7 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	delete imagen_carta2;
 }
 
-bool Juego::validarJugador(string usuario, string pass){
+bool Juego::validarJugador(string usuario, string pass, int *plata, int *cargado){
 	string idOperacion="U";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
@@ -571,12 +571,27 @@ bool Juego::validarJugador(string usuario, string pass){
 	delete operandos;
 	cliente->enviar(xml);
 	char * respuesta = cliente->recibirRespuesta();
-	return (this->parserResultado->DecodificaResultado(respuesta));
+	bool valido=this->parserResultado->getPlataYCargado(respuesta,plata,cargado);
+	return valido;
 }
 
 bool Juego::comenzarPartida(){
 	string idOperacion="M";
 	list<string>* operandos=new list<string>();
+	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
+	delete operandos;
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	return (this->parserResultado->DecodificaResultado(respuesta));
+}
+
+bool Juego::cargarFichas(string monto){
+	string idOperacion="F";
+	list<string>* operandos=new list<string>();
+	list<string>::iterator it=operandos->begin();
+	it=operandos->insert(it,"monto");
+	it++;
+	it=operandos->insert(it,monto);
 	char* xml=parser->getXmlDeOperacion(idOperacion,operandos);
 	delete operandos;
 	cliente->enviar(xml);
@@ -1105,6 +1120,8 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	this->actualizarPantalla();
 	char caracterLeido=(char)0;
 	bool terminar=false;
+	int plata=0;
+	int cargado=0;
 	SDL_Event evento;
 	while(!terminar){
 		if(SDL_PollEvent(&evento)) {
@@ -1164,14 +1181,15 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						}
 					}
 				} else if(evento.key.keysym.sym==SDLK_RETURN){
-					if(!this->validarJugador(usuarioTexto,contrasenaTexto)){
+					if(!this->validarJugador(usuarioTexto,contrasenaTexto,&plata,&cargado)){
 						this->dibujarPantallaLogin(true,cantidadIntentos + 1,jugador_observador);
 					}else{
 						this->nombreJugador=usuarioTexto;
 						this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
 						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
 						this->actualizarPantalla();
-						sleep(2);
+						sleep(0.5);
+						this->dibujarPantallaComienzo(plata<=100,2000-cargado);
 						this->comenzarPartida();
 						this->jugar(jugador_observador,jugadorVirtual);
 					}
@@ -1191,6 +1209,112 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						contrasenaAsteriscos+="*";
 						this->pantalla->dibujarRectangulo(8,165,144,20,200,200,200);
 						this->pantalla->escribirStringDesdePos(contrasenaAsteriscos,13,160,25,0,0,0);
+						this->actualizarPantalla();
+					}
+				}
+			}
+		}
+	}
+}
+
+void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar){
+	this->dibujarPantalla("boton.bmp");
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	SDL_Color negro;
+	negro.r=0;
+	negro.g=0;
+	negro.b=0;
+	SDL_Color rojo;
+	rojo.r=255;
+	rojo.g=0;
+	rojo.b=0;
+	int cantidadCarga;
+	string cantidadPlata("");
+	//Para informar errores
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+	if(carga){
+		string titulo("Cargar hasta $");
+		ostringstream sstream;
+		sstream << puedeCargar;
+		titulo += sstream.str();
+		this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+		this->pantalla->escribirTextoDesdePos(titulo.c_str(),10,10,40,blanco);
+		this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
+	}
+	this->pantalla->dibujarRectangulo(8,165,144,40,255,255,255);
+	this->pantalla->escribirTextoDesdePos("JUGAR",30,160,40,negro);
+	this->actualizarPantalla();
+	char caracterLeido=(char)0;
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=8 and evento.button.x<=152 and evento.button.y>=165 and evento.button.y<=245){
+						if(carga){
+							cantidadCarga=atoi(cantidadPlata.c_str());
+							if(cantidadCarga<=puedeCargar){
+								this->cargarFichas(cantidadPlata);
+								return;
+							} else {
+								cantidadPlata.resize(0);
+								this->pantalla->escribirTextoDesdePos("Supera el limite de 2000 fichas diarias",5,this->infoconfig->alto*(0.9),24,rojo);
+								this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+								this->actualizarPantalla();
+								sleep(1);
+								this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+								this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+								this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
+								this->actualizarPantalla();
+							}
+						} else {
+							return;
+						}
+					}
+				}
+			} else if(evento.type == SDL_KEYDOWN){
+				if(evento.key.keysym.sym==SDLK_BACKSPACE and carga){
+					int nuevoTamanio=cantidadPlata.size()-1;
+					if (nuevoTamanio>=0){
+						cantidadPlata.resize(cantidadPlata.size()-1);
+						this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+						this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
+						this->actualizarPantalla();
+					}
+				} else if(evento.key.keysym.sym==SDLK_RETURN){
+					if (carga){
+						cantidadCarga=atoi(cantidadPlata.c_str());
+						if(cantidadCarga<=puedeCargar){
+							this->cargarFichas(cantidadPlata);
+							return;
+						} else {
+							cantidadPlata.resize(0);
+							this->pantalla->escribirTextoDesdePos("Supera el limite de 2000 fichas diarias",5,this->infoconfig->alto*(0.9),24,rojo);
+							this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+							this->actualizarPantalla();
+							sleep(1);
+							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+							this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+							this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
+							this->actualizarPantalla();
+						}
+					} else {
+						return;
+					}
+					//entre la a y la z o entre el 0 y el 9
+				} else if((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) and carga){
+					if(cantidadPlata.size()<4){
+						caracterLeido=(char)evento.key.keysym.unicode;
+						cantidadPlata+=caracterLeido;
+						this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+						this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
 						this->actualizarPantalla();
 					}
 				}
