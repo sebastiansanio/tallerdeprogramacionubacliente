@@ -585,7 +585,7 @@ bool Juego::comenzarPartida(){
 	return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
-bool Juego::cargarFichas(string monto){
+void Juego::cargarFichas(string monto){
 	string idOperacion="F";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
@@ -596,7 +596,7 @@ bool Juego::cargarFichas(string monto){
 	delete operandos;
 	cliente->enviar(xml);
 	char * respuesta = cliente->recibirRespuesta();
-	return (this->parserResultado->DecodificaResultado(respuesta));
+	this->parserResultado->DecodificaResultado(respuesta);
 }
 
 bool Juego::registrarJugador(string usuario, string pass, string ruta){
