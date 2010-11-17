@@ -42,6 +42,7 @@ public:
 	InfoJugador tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
+	bool cerrar;
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void dibujarPantallaPrincipal();

@@ -24,12 +24,16 @@ void * manejoEventos(void * juego_aux) {
 		if (SDL_PollEvent(&evento)) {
 			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
 			if (evento.type == SDL_QUIT) {
-				exit(0);
+				juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+				juego->pantalla->actualizarPantalla(82,18,100,40);
+				break;
 			} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
 				if (evento.button.button == 1) {
 					//Se fija si apreto el boton salir
 					if(evento.button.x < 80 and evento.button.y < 45){
-						exit(0);
+						juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+						juego->pantalla->actualizarPantalla(82,18,100,40);
+						break;
 //					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador.jugadorObservador) {
 //						//Solo se pueden dibujar todas las cartas si es un observador
 //						juego->dibujarCartasJugadores();
@@ -141,6 +145,7 @@ void * manejoEventos(void * juego_aux) {
 
 		}
 	}
+	juego->cerrar=true;
 	delete operandos;
 }
 Juego::Juego() {
@@ -179,6 +184,7 @@ Juego::Juego() {
 		exit(0);
 	}
 	this->escenarioPedido=false;
+	this->cerrar=false;
 	this->pedirEscenario();
 	this->cargarEscenario(this->escenario,false);
 }
@@ -1322,6 +1328,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			iteracion=0;
 		} else {
 			iteracion++;
+		}
+		if(this->cerrar){
+			exit(0);
 		}
 	}
 }
