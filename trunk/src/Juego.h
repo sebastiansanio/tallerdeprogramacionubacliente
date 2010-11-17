@@ -81,7 +81,10 @@ public:
 	void dibujarPantallaRanking();
 	string pedirOperacionDeJuego(string idOperacion, list<string>* operandos);
 	list<string>* getEstadisticas(string tipoEstadistica);
-	void dibujarPantallaListado();
+	void dibujarPantallaListado(string listado);
+	void dibujarPantallaListadoRegistrados();
+	void dibujarPantallaListadoConectados();
+	void dibujarPantallaEvolucion(string listado, string tipo);
 	virtual ~Juego();
 };
 
