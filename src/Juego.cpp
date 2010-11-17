@@ -42,9 +42,8 @@ void * manejoEventos(void * juego_aux) {
 						if (juego->esMiTurno()) {
 							idOperacion = "G";
 
-							//Hardcodeo el resultado por ahora despues cuando este listo decomentar y sacar la linea q sigue
-//							resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-							resultado = "10";
+							resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+//							resultado = "10";
 							apuestaMax = atoi(resultado.c_str());
 							if(contadorOportunidades < 10){
 							if (evento.button.y > (juego->infoconfig->alto
@@ -59,7 +58,7 @@ void * manejoEventos(void * juego_aux) {
 										idOperacion = "F";
 										if(!operandos->empty())
 											operandos->clear();
-										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										juego->pedirOperacionDeJuego(idOperacion, operandos);
 										contadorOportunidades = 0;
 									}
 									else{
@@ -75,7 +74,7 @@ void * manejoEventos(void * juego_aux) {
 										idOperacion = "Y";
 										if(!operandos->empty())
 											operandos->clear();
-										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										juego->pedirOperacionDeJuego(idOperacion, operandos);
 										contadorOportunidades = 0;
 									}
 								} else if (evento.button.x > inicio + 2
@@ -89,7 +88,7 @@ void * manejoEventos(void * juego_aux) {
 										idOperacion = "D";
 										operandos->push_front("Poso");
 										operandos->push_back(plataApuesta);
-										resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+										juego->pedirOperacionDeJuego(idOperacion, operandos);
 										contadorOportunidades = 0;
 										operandos->clear();
 										}
@@ -108,7 +107,7 @@ void * manejoEventos(void * juego_aux) {
 									idOperacion = "D";
 									operandos->push_front("Poso");
 									operandos->push_back("0");
-									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+									juego->pedirOperacionDeJuego(idOperacion, operandos);
 									operandos->clear();
 								}
 							}
@@ -134,20 +133,30 @@ void * manejoEventos(void * juego_aux) {
 										and evento.button.x < inicio
 												+ distancia - factor) {
 									cout << "presiono boton JUGAR " << endl;
-									//Aca se llama al metodo que resuelve las cosas para el virtual
+									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+//									resultado = "10";
+									apuestaMax = atoi(resultado.c_str());
+									list<Carta>* cartasJugador = juego->pedirCartasJugador(juego->jugadorVirtualAsignado->jugadorAsignado);
+									operandos = juego->jugadorVirtualAsignado->decidirJugada(cartasJugador,juego->cartasEnMesa(),juego->plataJugador,apuestaMax);
+									idOperacion = operandos->front();
+									operandos->pop_front();
+									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
+									operandos->clear();
 								}
 							}
 						}
 
 					}
 				}
-			}
 
+			}
 		}
+
 	}
 	juego->cerrar=true;
 	delete operandos;
 }
+
 Juego::Juego() {
 	this->parser=new ParserCliente(PATHARCHIVOCONF);
 	this->parserResultado=new ParserResultadoCliente();
@@ -743,7 +752,7 @@ void Juego::dibujarPantallaPrincipal(){
 							terminar=true;
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
-//							this->dibujarPantallaLogin(false,0,true);
+							this->dibujarPantallaLogin(false,0,true);
 							this->jugar(true,false);
 							terminar=true;
 						}
@@ -1486,6 +1495,10 @@ void Juego::empezarPartida(){
 	cliente->enviar(xml);
 }
 
+list<Carta>* Juego::cartasEnMesa(){
+	return this->cartas;
+}
+
 bool Juego::esMiTurno(){
 
 	//Aca lo dejo como true hasta que este hecha la logica del juego, despues hay que cambiarlo
@@ -1530,18 +1543,19 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	this->pedirEscenario();
 	this->cargarEscenario(this->escenario,false);
 	int iteracion=5;
+	if(jugador_virtual){
+		this->jugadorVirtualAsignado = new JugadorVirtual(new Jugador("",this->nombreJugador,"",1));
+	}
 	while(true){
-		//		if(!this->escenarioPedido){
 		this->cargarEscenario(this->escenario,true);
-		//		}
 		list<Carta>* cartas = this->pedirCartas();
 		cout << "hola " << endl;
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
 		this->dibujarEscenario();
 		list<Jugador>::iterator it = jugadores->begin();
-		int x_nombre_jugador = 5, y_nombre_jugador = 5;
-		y_nombre_jugador += 35;
+//		int x_nombre_jugador = 5, y_nombre_jugador = 5;
+//		y_nombre_jugador += 35;
 		list<Carta>::iterator it2 = cartas->begin();
 		while (it2 != cartas->end()) {
 			this->dibujarCarta(*it2);
