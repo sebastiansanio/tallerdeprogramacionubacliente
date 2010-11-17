@@ -10,6 +10,7 @@
 #include "Jugador.h"
 #include "Carta.h"
 #include <stdlib.h>
+#include "JugadorVirtual.h"
 
 typedef enum{
 	NINGUNO,
@@ -39,6 +40,7 @@ private:
 	bool escenarioPedido;
 public:
 	int plataJugador;
+	JugadorVirtual* jugadorVirtualAsignado;
 	InfoJugador tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
@@ -64,6 +66,7 @@ public:
 	bool enviarImagenJugador(string ruta,string jugador);
 	list<Jugador>* pedirJugadores();
 	list<Carta>* pedirCartas();
+	list<Carta>* cartasEnMesa();
 	list<Carta>* pedirCartasJugador(Jugador * jugador);
 	void pedirCartasComunitarias();
 	void pedirPoso();
