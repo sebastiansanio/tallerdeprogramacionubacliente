@@ -45,12 +45,12 @@ public:
 	bool cerrar;
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
-	void cargarFichas(string monto);
-	void dibujarPantallaPrincipal();
+	void cargarFichas(string monto,string usuario);
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos,bool jugador_observador);
-	void dibujarPantallaComienzo(bool carga, int puedeCargar);
+	void dibujarPantallaComienzo(bool carga, int puedeCargar,string usuario);
 	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
+	void dibujarPantallaPrincipal();
 	void dibujarEscenario();
 	void dibujarJugador(Jugador jugadorADibujar);
 	void dibujarCarta(Carta cartaADibujar);

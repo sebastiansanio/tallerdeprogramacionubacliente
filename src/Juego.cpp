@@ -585,10 +585,14 @@ bool Juego::comenzarPartida(){
 	return (this->parserResultado->DecodificaResultado(respuesta));
 }
 
-void Juego::cargarFichas(string monto){
-	string idOperacion="F";
+void Juego::cargarFichas(string monto,string usuario){
+	string idOperacion="N";
 	list<string>* operandos=new list<string>();
 	list<string>::iterator it=operandos->begin();
+	it=operandos->insert(it,"usuario");
+	it++;
+	it=operandos->insert(it,usuario);
+	it++;
 	it=operandos->insert(it,"monto");
 	it++;
 	it=operandos->insert(it,monto);
@@ -1189,7 +1193,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 						this->pantalla->escribirTextoDesdePos("Se logueo con exito",5,this->infoconfig->alto*(0.9),24,rojo);
 						this->actualizarPantalla();
 						sleep(0.5);
-						this->dibujarPantallaComienzo(plata<=100,2000-cargado);
+						this->dibujarPantallaComienzo(plata<=100,2000-cargado,usuarioTexto);
 						this->comenzarPartida();
 						this->jugar(jugador_observador,jugadorVirtual);
 					}
@@ -1217,7 +1221,7 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	}
 }
 
-void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar){
+void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
@@ -1261,7 +1265,7 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar){
 						if(carga){
 							cantidadCarga=atoi(cantidadPlata.c_str());
 							if(cantidadCarga<=puedeCargar){
-								this->cargarFichas(cantidadPlata);
+								this->cargarFichas(cantidadPlata,usuario);
 								return;
 							} else {
 								cantidadPlata.resize(0);
@@ -1292,7 +1296,7 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar){
 					if (carga){
 						cantidadCarga=atoi(cantidadPlata.c_str());
 						if(cantidadCarga<=puedeCargar){
-							this->cargarFichas(cantidadPlata);
+							this->cargarFichas(cantidadPlata,usuario);
 							return;
 						} else {
 							cantidadPlata.resize(0);
