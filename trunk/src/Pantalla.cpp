@@ -111,6 +111,7 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 	// Mostramos el texto por pantalla
 	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
 //	SDL_Flip(pantalla);
+	TTF_CloseFont(fuente);
 }
 
 void Pantalla::escribirStringDesdePos(string texto, int x, int y, int tamaniofuente,int r, int g, int b){

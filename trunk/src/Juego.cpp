@@ -180,7 +180,7 @@ Juego::Juego() {
 	}
 	this->escenarioPedido=false;
 	this->pedirEscenario();
-	this->cargarEscenario(this->escenario);
+	this->cargarEscenario(this->escenario,false);
 }
 
 bool Juego::verificarResolucion(unsigned int alto,unsigned  int ancho){
@@ -255,7 +255,10 @@ bool Juego::enviarImagenJugador(string ruta,string jugador){
 	return true;
 }
 
-void Juego::cargarEscenario(string path){
+void Juego::cargarEscenario(string path,bool cargado){
+	if(cargado){
+		delete this->imagenEscenario;
+	}
 	this->imagenEscenario = new BitMap(path);
 	if((this->imagenEscenario->esUnaImagenCorrecta())and(this->imagenEscenario->getAlto()>1)and(this->imagenEscenario->getAncho()>1)){
 		this->imagenEscenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
@@ -1256,19 +1259,20 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	pthread_t thread;
 	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	this->pedirEscenario();
+	this->cargarEscenario(this->escenario,false);
 	int iteracion=5;
 	while(true){
 		//		if(!this->escenarioPedido){
-		this->cargarEscenario(this->escenario);
+		this->cargarEscenario(this->escenario,true);
 		//		}
 		list<Carta>* cartas = this->pedirCartas();
-		//cout << "hola " << endl;
+		cout << "hola " << endl;
 		list<Jugador>* jugadores = this->pedirJugadores();
 		this->pedirPoso();
 		this->dibujarEscenario();
 		list<Jugador>::iterator it = jugadores->begin();
-		//int x_nombre_jugador = 5, y_nombre_jugador = 5;
-		//y_nombre_jugador += 35;
+		int x_nombre_jugador = 5, y_nombre_jugador = 5;
+		y_nombre_jugador += 35;
 		list<Carta>::iterator it2 = cartas->begin();
 		while (it2 != cartas->end()) {
 			this->dibujarCarta(*it2);
