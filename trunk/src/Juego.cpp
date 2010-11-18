@@ -1532,6 +1532,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	while(true){
 		this->enElTurno=this->esMiTurno();
 		if(this->enElTurno){
+			sleep(1);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 			SDL_Color rojo;
 			rojo.r = 255;
