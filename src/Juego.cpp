@@ -20,138 +20,27 @@ void * manejoEventos(void * juego_aux) {
 	int contadorOportunidades = 0;
 	list<string>* operandos = new list<string> ();
 	while (true) {
-		SDL_Event evento;
-		if (SDL_PollEvent(&evento)) {
-			//Hago lo que tenga que hacer si es algo de jugar o apostar primero pregunto si es mi turno
-			if (evento.type == SDL_QUIT) {
-				juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
-				juego->pantalla->actualizarPantalla(82,18,100,40);
-				break;
-			} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
-				if (evento.button.button == 1) {
-					//Se fija si apreto el boton salir
-					if(evento.button.x < 80 and evento.button.y < 45){
-						juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
-						juego->pantalla->actualizarPantalla(82,18,100,40);
-						break;
-//					} else if (evento.button.x > 50 and evento.button.y > 40 and juego->tipoJugador.jugadorObservador) {
-//						//Solo se pueden dibujar todas las cartas si es un observador
-//						juego->dibujarCartasJugadores();
-
-					} else if (!juego->tipoJugador.jugadorVirtual) {
-						if (juego->esMiTurno()) {
-							idOperacion = "G";
-
-							resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-//							resultado = "10";
-							apuestaMax = atoi(resultado.c_str());
-							if(contadorOportunidades < 10){
-							if (evento.button.y > (juego->infoconfig->alto
-									/ 1.3) and evento.button.y
-									< ((juego->infoconfig->alto / 1.3)
-											+ juego->infoconfig->alto / 5.5)) {
-								if (evento.button.x > inicio
-										and evento.button.x < inicio
-												+ distancia - factor) {
-									//PASAR
-									if(apuestaMax==0){
-										idOperacion = "F";
-										if(!operandos->empty())
-											operandos->clear();
-										juego->pedirOperacionDeJuego(idOperacion, operandos);
-										contadorOportunidades = 0;
-									}
-									else{
-										contadorOportunidades++;
-										juego->pantalla->escribirTextoDesdePos("No puede pasar, debe igualar, apostar o no ir", 5, juego->infoconfig->alto * (0.95), 24, rojo);
-									}
-
-								} else if (evento.button.x > inicio + distancia
-										and evento.button.x < inicio + 2
-												* distancia - factor) {
-									//IGUALAR
-									if(juego->plataJugador >= 0){
-										idOperacion = "Y";
-										if(!operandos->empty())
-											operandos->clear();
-										juego->pedirOperacionDeJuego(idOperacion, operandos);
-										contadorOportunidades = 0;
-									}
-								} else if (evento.button.x > inicio + 2
-										* distancia and evento.button.x
-										< inicio + 3 * distancia - factor) {
-									//APOSTAR
-									//Ingresa primero cuanto quiere apostar, ahora lo dejo como 100
-									string plataApuesta = "15";
-									int plataNumero = atoi(plataApuesta.c_str());
-									if(plataNumero <= juego->plataJugador and plataNumero > apuestaMax){
-										idOperacion = "D";
-										operandos->push_front("Poso");
-										operandos->push_back(plataApuesta);
-										juego->pedirOperacionDeJuego(idOperacion, operandos);
-										contadorOportunidades = 0;
-										operandos->clear();
-										}
-									else if(plataNumero <= apuestaMax){
-										contadorOportunidades++;
-										juego->pantalla->escribirTextoDesdePos("No puede apostar menos o lo mismo, debe igualar o no ir", 5, juego->infoconfig->alto * (0.95), 24, rojo);
-									}
-									else{
-										contadorOportunidades++;
-										juego->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, juego->infoconfig->alto * (0.95), 24, rojo);
-									}
-								} else if (evento.button.x > inicio + 3
-										* distancia and evento.button.x
-										< inicio + 4 * distancia - factor) {
-									//NO IR
-									idOperacion = "D";
-									operandos->push_front("Poso");
-									operandos->push_back("0");
-									juego->pedirOperacionDeJuego(idOperacion, operandos);
-									operandos->clear();
-								}
-							}
-							}else{
-									idOperacion = "D";
-									operandos->push_front("Poso");
-									operandos->push_back("0");
-									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-									operandos->clear();
-							}
-
-						} else {
+		if(!juego->enElTurno){
+			SDL_Event evento;
+			if (SDL_PollEvent(&evento)) {
+				if (evento.type == SDL_QUIT) {
+					juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+					juego->pantalla->actualizarPantalla(82,18,100,40);
+					break;
+				} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
+					if (evento.button.button == 1) {
+						if(evento.button.x < 80 and evento.button.y < 45){
+							juego->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+							juego->pantalla->actualizarPantalla(82,18,100,40);
+							break;
+						} else if (!juego->tipoJugador.jugadorVirtual) {
 							juego->pantalla->escribirTextoDesdePos("No es tu turno", 5,juego->infoconfig->alto * (0.95), 24, rojo);
 						}
-
-					} else {
-						if (juego->esMiTurno()) {
-							if (evento.button.y > (juego->infoconfig->alto
-									/ 1.3) and evento.button.y
-									< ((juego->infoconfig->alto / 1.3)
-											+ juego->infoconfig->alto / 5.5)) {
-								if (evento.button.x > inicio
-										and evento.button.x < inicio
-												+ distancia - factor) {
-									cout << "presiono boton JUGAR " << endl;
-									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-//									resultado = "10";
-									apuestaMax = atoi(resultado.c_str());
-									list<Carta>* cartasJugador = juego->pedirCartasJugador(juego->jugadorVirtualAsignado->jugadorAsignado);
-									operandos = juego->jugadorVirtualAsignado->decidirJugada(cartasJugador,juego->cartasEnMesa(),juego->plataJugador,apuestaMax);
-									idOperacion = operandos->front();
-									operandos->pop_front();
-									resultado = juego->pedirOperacionDeJuego(idOperacion, operandos);
-									operandos->clear();
-								}
-							}
-						}
-
 					}
-				}
 
+				}
 			}
 		}
-
 	}
 	juego->cerrar=true;
 	delete operandos;
@@ -299,12 +188,14 @@ void Juego::dibujarEscenario(){
 }
 
 
-void Juego::dibujarJugador(Jugador jugadorADibujar){
+void Juego::dibujarJugador(Jugador jugadorADibujar,string jugadorTurno){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	SDL_Color color;
 	color.r=240;
 	color.b=55;
 	color.g=200;
+	bool esTurnoJugador=(jugadorADibujar.getNombre()==jugadorTurno);
+	const char* flecha="<";
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
 	if ((jugador->esUnaImagenCorrecta())and(jugador->getAlto()>1)and(jugador->getAncho()>1)) {
 		int tamImagen = this->infoconfig->ancho / 10;
@@ -319,31 +210,49 @@ void Juego::dibujarJugador(Jugador jugadorADibujar){
 					this->infoconfig->ancho / 8, this->infoconfig->alto / 2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente, color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 8)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 8)+tamImagen,(this->infoconfig->alto / 2)+(tamImagen/8), tamfuente*2.5, color );
+			}
 		} else if (jugadorADibujar.getId() == 2) {
 			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 5.45, this->infoconfig->alto / 3.2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 5.45)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente ,color);
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 5.45)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 5.45)+tamImagen,(this->infoconfig->alto / 3.2)+(tamImagen/8), tamfuente*2, color );
+			}
 		} else if (jugadorADibujar.getId() == 3) {
 			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 2.65, this->infoconfig->alto / 3.9);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 2.65)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente ,color);
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 2.65)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente ,color);
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 2.65)+tamImagen,(this->infoconfig->alto / 3.9)+(tamImagen/8), tamfuente*2, color );
+			}
 		} else if (jugadorADibujar.getId() == 4) {
 			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.7, this->infoconfig->alto / 3.9);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.7)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(2*tamfuente)-factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.7)+(tamImagen/4), (this->infoconfig->alto / 3.9)-(tamfuente)-factor, tamfuente,color );
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 1.7)+tamImagen,(this->infoconfig->alto / 3.9)+(tamImagen/8), tamfuente*2, color );
+			}
 		} else if (jugadorADibujar.getId() == 5) {
 			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.4, this->infoconfig->alto / 3.2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(2*tamfuente)-factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.4)+(tamImagen/4), (this->infoconfig->alto / 3.2)-(tamfuente)-factor, tamfuente,color );
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 1.4)+tamImagen,(this->infoconfig->alto / 3.2)+(tamImagen/8), tamfuente*2, color );
+			}
 		} else if (jugadorADibujar.getId() == 6) {
 			pantalla->dibujarBitMapDesdePosCircular(jugador,
 					this->infoconfig->ancho / 1.3, this->infoconfig->alto / 2);
 			pantalla->escribirTextoDesdePos(nombre, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor, tamfuente,color );
 			pantalla->escribirTextoDesdePos(plata, (this->infoconfig->ancho / 1.3)+(tamImagen/4), (this->infoconfig->alto / 2)+tamImagen+factor+tamfuente, tamfuente,color );
+			if (esTurnoJugador){
+				pantalla->escribirTextoDesdePos(flecha, (this->infoconfig->ancho / 1.3)+tamImagen,(this->infoconfig->alto / 2)+(tamImagen/8), tamfuente*2, color );
+			}
 		}
 	} else {
 		this->informarError("B","E","El jugador " + jugadorADibujar.getNombre()+ " no es una imagen BMP o esta corrupta");
@@ -1502,15 +1411,25 @@ list<Carta>* Juego::cartasEnMesa(){
 }
 
 bool Juego::esMiTurno(){
-//	string idOperacion = "A";
-//	list<string>* operandos = new list<string> ();
-//	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
-//	cliente->enviar(xml);
-//	char * respuesta = cliente->recibirRespuesta();
-//	string jugadorTurno = parserResultado->getPoso(respuesta);
-//	delete operandos;
-//	return jugadorTurno==this->nombreJugador;
-	return true;
+	string idOperacion = "A";
+	list<string>* operandos = new list<string> ();
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	string jugadorTurno = parserResultado->getPoso(respuesta);
+	delete operandos;
+	return (jugadorTurno==this->nombreJugador);
+}
+
+string Juego::getJugadorTurno(){
+	string idOperacion = "A";
+	list<string>* operandos = new list<string> ();
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	string jugadorTurno = parserResultado->getPoso(respuesta);
+	delete operandos;
+	return jugadorTurno;
 }
 
 list<Jugador> Juego::getJugadores(){
@@ -1518,6 +1437,71 @@ list<Jugador> Juego::getJugadores(){
 		return *this->jugadores;
 	list<Jugador> lista;
 	return lista;
+}
+
+void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool jugador_virtual){
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	string jugadorTurno(" ");
+	string path(" ");
+	this->cargarEscenario(this->escenario,true);
+	list<Carta>* cartas = this->pedirCartas();
+	cout << "hola " << endl;
+	list<Jugador>* jugadores = this->pedirJugadores();
+	this->pedirPoso();
+	this->dibujarEscenario();
+	list<Jugador>::iterator it = jugadores->begin();
+	list<Carta>::iterator it2 = cartas->begin();
+	while (it2 != cartas->end()) {
+		this->dibujarCarta(*it2);
+		it2++;
+	}
+	jugadorTurno=this->getJugadorTurno();
+	while (it != jugadores->end()) {
+		if(iteracion==5){
+			path = this->pedirImagenJugador(&(*it));
+		} else {
+			string ruta = (*it).getNombre() + ".bmp";
+			(*it).setPath(ruta);
+		}
+		this->pedirCartasJugador(&(*it));
+		this->dibujarJugador(*it,jugadorTurno);
+		it++;
+	}
+	this->dibujarCartasJugadores();
+	if(jugadores->size()<6){
+		for(int i=(jugadores->size() + 1);i<7;i++){
+			Jugador jugador("ImagenVacio.bmp"," "," ",i);
+			this->dibujarJugador(jugador,jugadorTurno);
+		}
+	}
+	if(cartas->size()<5){
+		for(int i=(cartas->size()+1);i<6;i++){
+			Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
+			this->dibujarCarta(carta);
+		}
+	}
+	this->dibujarPoso();
+	if(!jugador_observador and !jugador_virtual){
+		this->dibujarBoton("Pasar", 0);
+		this->dibujarBoton("Igualar", 1);
+		this->dibujarBoton("Apostar", 2);
+		this->dibujarBoton("No Ir", 3);
+	}
+	else if(jugador_virtual){
+		this->dibujarBoton("JUGAR",0);
+	}
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
+	this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
+	this->actualizarPantalla();
+	sleep(1);
+	if(iteracion==5){
+		iteracion=0;
+	} else {
+		iteracion++;
+	}
 }
 
 void Juego::jugar(bool jugador_observador, bool jugador_virtual){
@@ -1546,68 +1530,140 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 		this->jugadorVirtualAsignado = new JugadorVirtual(new Jugador("",this->nombreJugador,"",1));
 	}
 	while(true){
-		this->cargarEscenario(this->escenario,true);
-		list<Carta>* cartas = this->pedirCartas();
-		cout << "hola " << endl;
-		list<Jugador>* jugadores = this->pedirJugadores();
-		this->pedirPoso();
-		this->dibujarEscenario();
-		list<Jugador>::iterator it = jugadores->begin();
-//		int x_nombre_jugador = 5, y_nombre_jugador = 5;
-//		y_nombre_jugador += 35;
-		list<Carta>::iterator it2 = cartas->begin();
-		while (it2 != cartas->end()) {
-			this->dibujarCarta(*it2);
-			it2++;
-		}
-		while (it != jugadores->end()) {
-			if(iteracion==5){
-				path = this->pedirImagenJugador(&(*it));
-			} else {
-				string ruta = (*it).getNombre() + ".bmp";
-				(*it).setPath(ruta);
+		this->enElTurno=this->esMiTurno();
+		if(this->enElTurno){
+			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
+			SDL_Color rojo;
+			rojo.r = 255;
+			rojo.g = 0;
+			rojo.b = 0;
+			SDL_Color blanco;
+			blanco.r = 255;
+			blanco.g = 255;
+			blanco.b = 255;
+			int inicio = this->infoconfig->ancho / 3.3;
+			int distancia = this->infoconfig->ancho / 6;
+			int factor = this->infoconfig->ancho / 42.5;
+			int apuestaMax;
+			string resultado;
+			string idOperacion;
+			int contadorOportunidades = 0;
+			list<string>* operandos = new list<string> ();
+			while (true) {
+				SDL_Event evento;
+				if (SDL_PollEvent(&evento)) {
+					if (evento.type == SDL_QUIT) {
+						this->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+						this->pantalla->actualizarPantalla(82,18,100,40);
+						this->cerrar=true;
+						break;
+					} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
+						if (evento.button.button == 1) {
+							if(evento.button.x < 80 and evento.button.y < 45){
+								this->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
+								this->pantalla->actualizarPantalla(82,18,100,40);
+								this->cerrar=true;
+								break;
+							} else if (!this->tipoJugador.jugadorVirtual) {
+								idOperacion = "G";
+								resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+		//						resultado = "10";
+								apuestaMax = atoi(resultado.c_str());
+								if(contadorOportunidades < 10){
+									if (evento.button.y>(this->infoconfig->alto/1.3) and evento.button.y<((this->infoconfig->alto/1.3)+this->infoconfig->alto/5.5)){
+										if (evento.button.x>inicio and evento.button.x<inicio+distancia-factor){
+											//PASAR
+											if(apuestaMax==0){
+												idOperacion = "F";
+												if(!operandos->empty()) operandos->clear();
+												this->pedirOperacionDeJuego(idOperacion, operandos);
+												contadorOportunidades = 0;
+												//Deja de ser mi turno
+												break;
+											} else{
+												contadorOportunidades++;
+												this->pantalla->escribirTextoDesdePos("No puede pasar, debe igualar, apostar o no ir", 5, this->infoconfig->alto * (0.95), 24, rojo);
+											}
+										} else if (evento.button.x>inicio+distancia	and evento.button.x<inicio+2*distancia-factor){
+											//IGUALAR
+											if(this->plataJugador>=0){
+												idOperacion="Y";
+												if(!operandos->empty()) operandos->clear();
+												this->pedirOperacionDeJuego(idOperacion, operandos);
+												contadorOportunidades = 0;
+												//Deja de ser mi turno
+												break;
+											}
+										} else if (evento.button.x>inicio+2*distancia and evento.button.x<inicio+3*distancia-factor) {
+											//APOSTAR
+											//Ingresa primero cuanto quiere apostar, ahora lo dejo como 100
+											string plataApuesta ="15";
+											int plataNumero=atoi(plataApuesta.c_str());
+											if(plataNumero<=this->plataJugador and plataNumero>apuestaMax){
+												idOperacion = "D";
+												operandos->push_front("Poso");
+												operandos->push_back(plataApuesta);
+												this->pedirOperacionDeJuego(idOperacion, operandos);
+												contadorOportunidades = 0;
+												operandos->clear();
+												//Deja de ser mi turno
+												break;
+											} else if(plataNumero <= apuestaMax){
+												contadorOportunidades++;
+												this->pantalla->escribirTextoDesdePos("No puede apostar menos o lo mismo, debe igualar o no ir", 5, this->infoconfig->alto * (0.95), 24, rojo);
+											} else{
+												contadorOportunidades++;
+												this->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, this->infoconfig->alto * (0.95), 24, rojo);
+											}
+										} else if (evento.button.x>inicio+3*distancia and evento.button.x<inicio+4*distancia-factor){
+											//NO IR
+											idOperacion = "D";
+											operandos->push_front("Poso");
+											operandos->push_back("0");
+											this->pedirOperacionDeJuego(idOperacion, operandos);
+											operandos->clear();
+											//Deja de ser mi turno
+											break;
+										}
+									}
+								}else{
+									idOperacion = "D";
+									operandos->push_front("Poso");
+									operandos->push_back("0");
+									resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+									operandos->clear();
+								}
+							} else {
+								if (evento.button.y > (this->infoconfig->alto
+										/ 1.3) and evento.button.y
+										< ((this->infoconfig->alto / 1.3)
+												+ this->infoconfig->alto / 5.5)) {
+									if (evento.button.x > inicio
+											and evento.button.x < inicio
+													+ distancia - factor) {
+										cout << "presiono boton JUGAR " << endl;
+										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+	//									resultado = "10";
+										apuestaMax = atoi(resultado.c_str());
+										list<Carta>* cartasJugador = this->pedirCartasJugador(this->jugadorVirtualAsignado->jugadorAsignado);
+										operandos = this->jugadorVirtualAsignado->decidirJugada(cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+										idOperacion = operandos->front();
+										operandos->pop_front();
+										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+										operandos->clear();
+										//Deja de ser mi turno
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-			this->pedirCartasJugador(&(*it));
-			this->dibujarJugador(*it);
-			//this->pantalla->escribirTextoDesdePos((*it).getNombre().c_str(),x_nombre_jugador,y_nombre_jugador,30,blanco);
-			//y_nombre_jugador+=30;
-			it++;
-		}
-		this->dibujarCartasJugadores();
-		if(jugadores->size()<6){
-			for(int i=(jugadores->size() + 1);i<7;i++){
-				Jugador jugador("ImagenVacio.bmp"," "," ",i);
-				this->dibujarJugador(jugador);
-			}
-		}
-		if(cartas->size()<5){
-			for(int i=(cartas->size()+1);i<6;i++){
-				Carta carta("Imagen-Carta.bmp","Imagen","Carta",i);
-				this->dibujarCarta(carta);
-			}
-		}
-		this->dibujarPoso();
-		if(!jugador_observador and !jugador_virtual){
-			this->dibujarBoton("Pasar", 0);
-			this->dibujarBoton("Igualar", 1);
-			this->dibujarBoton("Apostar", 2);
-			this->dibujarBoton("No Ir", 3);
-		}
-		else if(jugador_virtual){
-			this->dibujarBoton("JUGAR",0);
-		}
-		this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
-		this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
-		this->actualizarPantalla();
-		sleep(1);
-		if(iteracion==5){
-			iteracion=0;
 		} else {
-			iteracion++;
+			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 		}
-		if(this->cerrar){
-			exit(0);
-		}
+		if(this->cerrar) exit(0);
 	}
 }
 

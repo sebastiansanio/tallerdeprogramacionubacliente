@@ -44,6 +44,7 @@ public:
 	InfoJugador tipoJugador;
 	Pantalla* pantalla;
 	informacionConfiguracion* infoconfig;
+	bool enElTurno;
 	bool cerrar;
 	Juego();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
@@ -54,7 +55,7 @@ public:
 	void dibujarPantallaObservacion();
 	void dibujarPantallaPrincipal();
 	void dibujarEscenario();
-	void dibujarJugador(Jugador jugadorADibujar);
+	void dibujarJugador(Jugador jugadorADibujar, string jugadorTurno);
 	void dibujarCarta(Carta cartaADibujar);
 	void dibujarBoton(string textoBoton, int pos);
 	void dibujarPoso();
@@ -71,6 +72,7 @@ public:
 	void pedirCartasComunitarias();
 	void pedirPoso();
 	void actualizarPantalla();
+	void mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool jugador_virtual);
 	void informarError(string idOperacion, string tipoError, string mensaje);
 	bool validarJugador(string usuario, string pass, int* plata, int* cargado);
 	bool comenzarPartida();
@@ -89,6 +91,7 @@ public:
 	void dibujarPantallaListado(string listado);
 	void dibujarPantallaListadoRegistrados();
 	void dibujarPantallaListadoConectados();
+	string getJugadorTurno();
 	void dibujarPantallaEvolucion(string listado, string tipo);
 	virtual ~Juego();
 };
