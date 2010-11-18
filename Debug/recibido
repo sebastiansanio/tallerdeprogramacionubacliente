@@ -1,11 +1,8 @@
 <respuesta>
-	</operacion id="B"/>
+	</operacion id="G"/>
 	<resultados>
-		<resultado nombre="treboles">
-		1
-		</resultado>
-		<resultado nombre="treboles">
-		1
+		<resultado nombre="apuestaMax">
+		0
 		</resultado>
 	</resultados>
 </respuesta>
