@@ -588,25 +588,25 @@ void Juego::dibujarBoton(string textoBoton, int pos){
 		const char* texto = textoBoton.c_str();
 		boton->resizeTo(tamImagenalto, tamImagenancho);
 		if (pos == 0) {
-			pantalla->dibujarBitMapDesdePos(boton, inicio,
+			pantalla->dibujarBitMapDesdePosCircular(boton, inicio,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + factor,
 					(this->infoconfig->alto / 1.3) + (tamImagenalto / 2)
 							- (tamfuente / 2), tamfuente, color);
 		} else if (pos == 1) {
-			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePosCircular(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
 					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 2) {
-			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePosCircular(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
 					/ 2) - (tamfuente / 2), tamfuente, color);
 		} else if (pos == 3) {
-			pantalla->dibujarBitMapDesdePos(boton, inicio + pos * distancia,
+			pantalla->dibujarBitMapDesdePosCircular(boton, inicio + pos * distancia,
 					(this->infoconfig->alto / 1.3));
 			pantalla->escribirTextoDesdePos(texto, inicio + pos * distancia
 					+ factor, (this->infoconfig->alto / 1.3) + (tamImagenalto
