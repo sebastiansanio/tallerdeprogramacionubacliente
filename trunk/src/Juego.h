@@ -38,6 +38,7 @@ private:
 	int idJugador;
 	string escenario;
 	bool escenarioPedido;
+	string ganador;
 public:
 	int plataJugador;
 	JugadorVirtual* jugadorVirtualAsignado;
@@ -47,6 +48,7 @@ public:
 	bool enElTurno;
 	bool cerrar;
 	Juego();
+	bool hayGanador();
 	void empezarPartida();//Manda una F para que sepa que se empieza la partida
 	void cargarFichas(string monto,string usuario);
 	void dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos,bool jugador_observador);
@@ -65,6 +67,7 @@ public:
 	void pedirEscenario();
 	string pedirImagenJugador(Jugador * jugador);
 	bool enviarImagenJugador(string ruta,string jugador);
+	void pedirGanador();
 	list<Jugador>* pedirJugadores();
 	list<Carta>* pedirCartas();
 	list<Carta>* cartasEnMesa();
