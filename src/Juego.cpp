@@ -46,6 +46,20 @@ void * manejoEventos(void * juego_aux) {
 	delete operandos;
 }
 
+bool Juego::hayGanador(){
+	return this->ganador!=" ";
+}
+
+void Juego::pedirGanador(){
+	string idOperacion = "H";
+	list<string>* operandos = new list<string> ();
+	char* xml = parser->getXmlDeOperacion(idOperacion, operandos);
+	cliente->enviar(xml);
+	char * respuesta = cliente->recibirRespuesta();
+	this->ganador = parserResultado->getPoso(respuesta);
+	delete operandos;
+}
+
 Juego::Juego() {
 	this->parser=new ParserCliente(PATHARCHIVOCONF);
 	this->parserResultado=new ParserResultadoCliente();
@@ -1452,6 +1466,7 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	list<Jugador>* jugadores = this->pedirJugadores();
 	this->pedirPoso();
 	this->dibujarEscenario();
+	this->pantalla->escribirTextoDesdePos("GANADOR: ",this->infoconfig->ancho - 300,10,40,blanco);
 	list<Jugador>::iterator it = jugadores->begin();
 	list<Carta>::iterator it2 = cartas->begin();
 	while (it2 != cartas->end()) {
@@ -1469,6 +1484,14 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 		this->pedirCartasJugador(&(*it));
 		this->dibujarJugador(*it,jugadorTurno);
 		it++;
+	}
+	this->pedirGanador();
+	bool eraObservador=this->tipoJugador.jugadorObservador;
+	if(this->hayGanador()){
+		this->tipoJugador.jugadorObservador=true;
+		this->pantalla->escribirTextoDesdePos(this->ganador.c_str(),this->infoconfig->ancho - 150,10,40,blanco);
+	}else{
+		this->pantalla->escribirTextoDesdePos(" ",this->infoconfig->ancho-100,10,20,blanco);
 	}
 	this->dibujarCartasJugadores();
 	if(jugadores->size()<6){
@@ -1496,7 +1519,8 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 	this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
 	this->actualizarPantalla();
-	sleep(1);
+	sleep(2);
+	this->tipoJugador.jugadorObservador=eraObservador;
 	if(iteracion==5){
 		iteracion=0;
 	} else {
@@ -1506,7 +1530,6 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 
 void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	string path,pathEscenario;
-	if(this->enviarImagenJugador("boton","gaston")) cout<<"envio imagen"<<endl;
 	SDL_Color rojo;
 	rojo.r=255;
 	rojo.g=0;
