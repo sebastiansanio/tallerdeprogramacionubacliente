@@ -33,6 +33,7 @@ private:
 	ParserResultadoCliente* parserResultado;
 	list<Jugador> * jugadores;//Nombre de los jugadores conectados para que los dibuje
 	list<Carta> * cartas;//Las que salieron, valor y palo
+	list<Carta> * cartasJugador;//Las cartas del jugador asignado
 	string posoAcumulado;//Poso que esta acumulado
 	string nombreJugador;
 	int idJugador;
@@ -72,6 +73,7 @@ public:
 	list<Carta>* pedirCartas();
 	list<Carta>* cartasEnMesa();
 	list<Carta>* pedirCartasJugador(Jugador * jugador);
+	list<Carta>* getCartasJugador();
 	void pedirCartasComunitarias();
 	void pedirPoso();
 	void actualizarPantalla();
