@@ -294,6 +294,7 @@ list<Jugador>* Juego::pedirJugadores(){
 		it++;
 		if(nombre.compare(this->nombreJugador)==0){
 			this->idJugador=i+1;
+			this->plataJugador = atoi(plata.c_str());
 		}
 		iterador=jugadores->insert(iterador,Jugador("",nombre,plata,i+1));
 		iterador++;
@@ -380,12 +381,16 @@ list<Carta>* Juego::pedirCartasJugador(Jugador * jugador){
 					Carta("", palo, numero, i + 1));
 			iterador++;
 		}
+		if(jugador->getNombre() == this->nombreJugador)
+			this->cartasJugador = cartas;
 		jugador->setCartas(cartas);
 	}
 	delete operandos;
 	return cartas;
 }
-
+list<Carta>* Juego::getCartasJugador(){
+	return this->cartasJugador;
+}
 void Juego::dibujarCartasJugadores(){
 	SDL_Color rojo;
 	rojo.r = 255;
@@ -1541,15 +1546,13 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	this->tipoJugador.jugadorObservador = jugador_observador;
 	this->tipoJugador.jugadorVirtual = jugador_virtual;
 
-	//Hardcodeo la plata restante del jugador habria que pedirla con pedirOperacionDeJuego
-	this->plataJugador = 2000;
-
 	pthread_t thread;
-	int create=pthread_create(&thread,NULL,manejoEventos,(void*)this);
+	int create = pthread_create(&thread,NULL,manejoEventos,(void*)this);
 	this->pedirEscenario();
 	this->cargarEscenario(this->escenario,false);
 	int iteracion=5;
 	if(jugador_virtual){
+		bool comenzoAJugar = false;
 		this->jugadorVirtualAsignado = new JugadorVirtual(new Jugador("",this->nombreJugador,"",1));
 	}
 	while(true){
@@ -1573,6 +1576,12 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			string idOperacion;
 			int contadorOportunidades = 0;
 			list<string>* operandos = new list<string> ();
+			//Hizo un ALL-IN por lo tanto pasa directamente
+			if (this->plataJugador == 0) {
+				idOperacion = "F";
+				this->pedirOperacionDeJuego(idOperacion, operandos);
+			}
+			else{
 			while (true) {
 				SDL_Event evento;
 				if (SDL_PollEvent(&evento)) {
@@ -1591,7 +1600,6 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 							} else if (!this->tipoJugador.jugadorVirtual) {
 								idOperacion = "G";
 								resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-		//						resultado = "10";
 								apuestaMax = atoi(resultado.c_str());
 								if(contadorOportunidades < 10){
 									if (evento.button.y>(this->infoconfig->alto/1.3) and evento.button.y<((this->infoconfig->alto/1.3)+this->infoconfig->alto/5.5)){
@@ -1620,10 +1628,44 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											}
 										} else if (evento.button.x>inicio+2*distancia and evento.button.x<inicio+3*distancia-factor) {
 											//APOSTAR
-											//Ingresa primero cuanto quiere apostar, ahora lo dejo como 100
-											string plataApuesta ="15";
-											int plataNumero=atoi(plataApuesta.c_str());
-											if(plataNumero<=this->plataJugador and plataNumero>apuestaMax){
+											//Ingresa primero cuanto quiere apostar
+											bool aposto = false;
+											string plataApuesta = "";
+//											ostringstream sstream;
+											int usuarioPlataApostada = 0;
+											while (!aposto) {
+													SDL_Event evento1;
+													if (SDL_PollEvent(&evento1)) {
+														if(evento1.type == SDL_KEYDOWN){
+															if(evento1.key.keysym.sym==SDLK_UP){
+																if(usuarioPlataApostada < this->plataJugador)
+																	usuarioPlataApostada += 10;
+																ostringstream sstream;
+																sstream << usuarioPlataApostada;
+																plataApuesta = sstream.str();
+																this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																this->actualizarPantalla();
+															}else if(evento1.key.keysym.sym==SDLK_DOWN){
+																if(usuarioPlataApostada != 0)
+																	usuarioPlataApostada -= 10;
+																ostringstream sstream;
+																sstream << usuarioPlataApostada;
+																plataApuesta = sstream.str();
+																this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																this->actualizarPantalla();
+
+															}
+															else if((evento1.key.keysym.sym==SDLK_RETURN)){
+																aposto = true;
+																}
+														}
+													}
+
+											}
+											int plataNumero = usuarioPlataApostada;
+											if(plataNumero <= this->plataJugador and plataNumero >= apuestaMax){
 												idOperacion = "D";
 												operandos->push_front("Poso");
 												operandos->push_back(plataApuesta);
@@ -1632,9 +1674,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 												operandos->clear();
 												//Deja de ser mi turno
 												break;
-											} else if(plataNumero <= apuestaMax){
+											} else if(plataNumero < apuestaMax){
 												contadorOportunidades++;
-												this->pantalla->escribirTextoDesdePos("No puede apostar menos o lo mismo, debe igualar o no ir", 5, this->infoconfig->alto * (0.95), 24, rojo);
+												this->pantalla->escribirTextoDesdePos("No puede apostar menos que la apuesta actual", 5, this->infoconfig->alto * (0.95), 24, rojo);
 											} else{
 												contadorOportunidades++;
 												this->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, this->infoconfig->alto * (0.95), 24, rojo);
@@ -1651,6 +1693,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 										}
 									}
 								}else{
+									//Pasaron las 10 chances de realizar una operacion correcta por lo tanto es un NO IR
 									idOperacion = "D";
 									operandos->push_front("Poso");
 									operandos->push_back("0");
@@ -1666,11 +1709,10 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											and evento.button.x < inicio
 													+ distancia - factor) {
 										cout << "presiono boton JUGAR " << endl;
+										idOperacion = "G";
 										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-	//									resultado = "10";
 										apuestaMax = atoi(resultado.c_str());
-										list<Carta>* cartasJugador = this->pedirCartasJugador(this->jugadorVirtualAsignado->jugadorAsignado);
-										operandos = this->jugadorVirtualAsignado->decidirJugada(cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+										operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
 										idOperacion = operandos->front();
 										operandos->pop_front();
 										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
@@ -1683,6 +1725,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 						}
 					}
 				}
+			}
 			}
 		} else {
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
