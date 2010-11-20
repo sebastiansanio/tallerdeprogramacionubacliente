@@ -1582,12 +1582,13 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			int contadorOportunidades = 0;
 			list<string>* operandos = new list<string> ();
 			tiempoInicial =  time(NULL);
-//			idOperacion = "G";
-//			resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-//			apuestaMax = atoi(resultado.c_str());
-//			string apuesta = "Ultima Apuesta $: " + resultado;
-//			const char* apuestaC = apuesta.c_str();
-//			pantalla->escribirTextoDesdePos(apuestaC, this->infoconfig->ancho / 2.8 ,(this->infoconfig->alto / 54)+tamfuente,tamfuente,blanco);
+			idOperacion = "G";
+			resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+			apuestaMax = atoi(resultado.c_str());
+			string apuesta = "Ultima Apuesta $: " + resultado;
+			const char* apuestaC = apuesta.c_str();
+			pantalla->escribirTextoDesdePos(apuestaC, this->infoconfig->ancho / 2.8 ,(this->infoconfig->alto / 54)+tamfuente,tamfuente,blanco);
+			this->actualizarPantalla();
 			//Hizo un ALL-IN por lo tanto pasa directamente
 			if (this->plataJugador == 0) {
 				idOperacion = "F";
@@ -1632,6 +1633,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											} else{
 												contadorOportunidades++;
 												this->pantalla->escribirTextoDesdePos("No puede pasar, debe igualar, apostar o no ir", 5, this->infoconfig->alto * (0.95), 24, rojo);
+												this->actualizarPantalla();
 											}
 										} else if (evento.button.x>inicio+distancia	and evento.button.x<inicio+2*distancia-factor){
 											//IGUALAR
@@ -1707,9 +1709,11 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											} else if(plataNumero < apuestaMax){
 												contadorOportunidades++;
 												this->pantalla->escribirTextoDesdePos("No puede apostar menos que la apuesta actual", 5, this->infoconfig->alto * (0.95), 24, rojo);
+												this->actualizarPantalla();
 											} else{
 												contadorOportunidades++;
 												this->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, this->infoconfig->alto * (0.95), 24, rojo);
+												this->actualizarPantalla();
 											}
 										} else if (evento.button.x>inicio+3*distancia and evento.button.x<inicio+4*distancia-factor){
 											//NO IR
@@ -1767,8 +1771,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					contadorOportunidades = 0;
 					cout << "Paso el tiempo de espera" << endl;
 					sleep(2);
-					this->cerrar = true;
-					exit(0);
+					break;
 				}
 			}
 			}
