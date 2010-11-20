@@ -11,6 +11,7 @@
 #include "Carta.h"
 #include <stdlib.h>
 #include "JugadorVirtual.h"
+#include <ctime>
 
 typedef enum{
 	NINGUNO,

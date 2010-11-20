@@ -1551,6 +1551,11 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	this->pedirEscenario();
 	this->cargarEscenario(this->escenario,false);
 	int iteracion=5;
+	int tamfuente = this->infoconfig->ancho / 33;
+	time_t tiempoInicial, tiempoActual;
+	tiempoInicial;
+	tiempoActual;
+	double diferenciaTiempo;
 	if(jugador_virtual){
 		bool comenzoAJugar = false;
 		this->jugadorVirtualAsignado = new JugadorVirtual(new Jugador("",this->nombreJugador,"",1));
@@ -1576,14 +1581,25 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			string idOperacion;
 			int contadorOportunidades = 0;
 			list<string>* operandos = new list<string> ();
+			tiempoInicial =  time(NULL);
+//			idOperacion = "G";
+//			resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+//			apuestaMax = atoi(resultado.c_str());
+//			string apuesta = "Ultima Apuesta $: " + resultado;
+//			const char* apuestaC = apuesta.c_str();
+//			pantalla->escribirTextoDesdePos(apuestaC, this->infoconfig->ancho / 2.8 ,(this->infoconfig->alto / 54)+tamfuente,tamfuente,blanco);
 			//Hizo un ALL-IN por lo tanto pasa directamente
 			if (this->plataJugador == 0) {
 				idOperacion = "F";
 				this->pedirOperacionDeJuego(idOperacion, operandos);
 			}
+			//No es un ALL-IN
 			else{
 			while (true) {
 				SDL_Event evento;
+				tiempoActual = time(NULL);
+				diferenciaTiempo = difftime(tiempoActual, tiempoInicial);
+				if(diferenciaTiempo < 15){
 				if (SDL_PollEvent(&evento)) {
 					if (evento.type == SDL_QUIT) {
 						this->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
@@ -1601,7 +1617,8 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 								idOperacion = "G";
 								resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 								apuestaMax = atoi(resultado.c_str());
-								if(contadorOportunidades < 10){
+								//Tiene 10 oportunidades para generar una opcion correcta
+								if(contadorOportunidades < 10 ){
 									if (evento.button.y>(this->infoconfig->alto/1.3) and evento.button.y<((this->infoconfig->alto/1.3)+this->infoconfig->alto/5.5)){
 										if (evento.button.x>inicio and evento.button.x<inicio+distancia-factor){
 											//PASAR
@@ -1635,34 +1652,47 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											int usuarioPlataApostada = 0;
 											while (!aposto) {
 													SDL_Event evento1;
-													if (SDL_PollEvent(&evento1)) {
-														if(evento1.type == SDL_KEYDOWN){
-															if(evento1.key.keysym.sym==SDLK_UP){
-																if(usuarioPlataApostada < this->plataJugador)
-																	usuarioPlataApostada += 10;
-																ostringstream sstream;
-																sstream << usuarioPlataApostada;
-																plataApuesta = sstream.str();
-																this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
-																this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
-																this->actualizarPantalla();
-															}else if(evento1.key.keysym.sym==SDLK_DOWN){
-																if(usuarioPlataApostada != 0)
-																	usuarioPlataApostada -= 10;
-																ostringstream sstream;
-																sstream << usuarioPlataApostada;
-																plataApuesta = sstream.str();
-																this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
-																this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
-																this->actualizarPantalla();
+													tiempoActual = time(NULL);
+													diferenciaTiempo = difftime(tiempoActual, tiempoInicial);
+													if(diferenciaTiempo < 15){
+														if (SDL_PollEvent(&evento1)) {
+															if(evento1.type == SDL_KEYDOWN){
+																if(evento1.key.keysym.sym==SDLK_UP){
+																	if(usuarioPlataApostada < this->plataJugador)
+																		usuarioPlataApostada += 10;
+																	ostringstream sstream;
+																	sstream << usuarioPlataApostada;
+																	plataApuesta = sstream.str();
+																	this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																	this->actualizarPantalla();
+																}else if(evento1.key.keysym.sym==SDLK_DOWN){
+																	if(usuarioPlataApostada != 0)
+																		usuarioPlataApostada -= 10;
+																	ostringstream sstream;
+																	sstream << usuarioPlataApostada;
+																	plataApuesta = sstream.str();
+																	this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																	this->actualizarPantalla();
 
 															}
 															else if((evento1.key.keysym.sym==SDLK_RETURN)){
 																aposto = true;
 																}
+															}
 														}
 													}
-
+													else{
+														idOperacion = "D";
+														operandos->push_front("Poso");
+														operandos->push_back("0");
+														this->pedirOperacionDeJuego(idOperacion,operandos);
+														operandos->clear();
+														contadorOportunidades = 0;
+														//Deja de ser mi turno
+														break;
+													}
 											}
 											int plataNumero = usuarioPlataApostada;
 											if(plataNumero <= this->plataJugador and plataNumero >= apuestaMax){
@@ -1688,6 +1718,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											operandos->push_back("0");
 											this->pedirOperacionDeJuego(idOperacion, operandos);
 											operandos->clear();
+											contadorOportunidades = 0;
 											//Deja de ser mi turno
 											break;
 										}
@@ -1699,6 +1730,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 									operandos->push_back("0");
 									resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 									operandos->clear();
+									contadorOportunidades = 0;
 								}
 							} else {
 								if (evento.button.y > (this->infoconfig->alto
@@ -1724,6 +1756,19 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 							}
 						}
 					}
+				}
+				}
+				else{
+					idOperacion = "D";
+					operandos->push_front("Poso");
+					operandos->push_back("0");
+					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+					operandos->clear();
+					contadorOportunidades = 0;
+					cout << "Paso el tiempo de espera" << endl;
+					sleep(2);
+					this->cerrar = true;
+					exit(0);
 				}
 			}
 			}
