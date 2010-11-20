@@ -1524,7 +1524,7 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 	this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
 	this->actualizarPantalla();
-	sleep(2);
+//	sleep(2);
 	this->tipoJugador.jugadorObservador=eraObservador;
 	if(iteracion==5){
 		iteracion=0;
@@ -1563,7 +1563,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	while(true){
 		this->enElTurno=this->esMiTurno();
 		if(this->enElTurno){
-			sleep(1);
+			sleep(0.5);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 			SDL_Color rojo;
 			rojo.r = 255;
