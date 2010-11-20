@@ -1769,8 +1769,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 					operandos->clear();
 					contadorOportunidades = 0;
-					cout << "Paso el tiempo de espera" << endl;
-					sleep(2);
+					this->pantalla->escribirTextoDesdePos("Paso el tiempo de espera", 5, this->infoconfig->alto * (0.95), 24, rojo);
+					this->actualizarPantalla();
+					sleep(1);
 					break;
 				}
 			}
