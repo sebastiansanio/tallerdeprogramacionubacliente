@@ -1681,7 +1681,7 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 		}
 	}
 	this->dibujarPoso();
-	if(!jugador_observador and !jugador_virtual){
+	if(!jugador_virtual){
 		this->dibujarBoton("Pasar", 0);
 		this->dibujarBoton("Igualar", 1);
 		this->dibujarBoton("Apostar", 2);
@@ -1784,7 +1784,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 								break;
 							} else if (!this->tipoJugador.jugadorVirtual) {
 								idOperacion = "G";
+								operandos->clear();
 								resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+								operandos->clear();
 								apuestaMax = atoi(resultado.c_str());
 								//Tiene 10 oportunidades para generar una opcion correcta
 								if(contadorOportunidades < 10 ){
@@ -1793,8 +1795,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											//PASAR
 											if(apuestaMax==0){
 												idOperacion = "F";
-												if(!operandos->empty()) operandos->clear();
+												operandos->clear();
 												this->pedirOperacionDeJuego(idOperacion, operandos);
+												operandos->clear();
 												contadorOportunidades = 0;
 												//Deja de ser mi turno
 												break;
@@ -1807,8 +1810,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 											//IGUALAR
 											if(this->plataJugador>=0){
 												idOperacion="Y";
-												if(!operandos->empty()) operandos->clear();
+												operandos->clear();
 												this->pedirOperacionDeJuego(idOperacion, operandos);
+												operandos->clear();
 												contadorOportunidades = 0;
 												//Deja de ser mi turno
 												break;
@@ -1848,7 +1852,18 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 
 															}
 															else if((evento1.key.keysym.sym==SDLK_RETURN)){
-																aposto = true;
+																if(usuarioPlataApostada < apuestaMax){
+																contadorOportunidades++;
+																this->pantalla->escribirTextoDesdePos("No puede apostar menos que la apuesta actual", 5, this->infoconfig->alto * (0.95), 24, rojo);
+																this->actualizarPantalla();
+																}else if(usuarioPlataApostada > this->plataJugador){
+																	contadorOportunidades++;
+																	this->pantalla->escribirTextoDesdePos("No puede apostar esa cantidad, no tiene fondos suficientes", 5, this->infoconfig->alto * (0.95), 24, rojo);
+																	this->actualizarPantalla();
+
+																}
+																else
+																	aposto = true;
 																}
 															}
 														}
@@ -1935,23 +1950,23 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					}
 				}
 				//Sin hacer click
-//				if(this->tipoJugador.jugadorVirtual){
-//				sleep(5);
-//				idOperacion = "G";
-//				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-//				apuestaMax = atoi(resultado.c_str());
-//				sleep(2);
-//				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
-//				if(operandos != NULL){
-//					idOperacion = operandos->front();
-//					operandos->pop_front();
-//					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-//					sleep(2);
-//					operandos->clear();
-//					}
-//					//Deja de ser mi turno
-//					break;
-//				}
+				if(this->tipoJugador.jugadorVirtual){
+				sleep(4);
+				idOperacion = "G";
+				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+				apuestaMax = atoi(resultado.c_str());
+				sleep(2);
+				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+				if(operandos != NULL){
+					idOperacion = operandos->front();
+					operandos->pop_front();
+					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+					sleep(2);
+					operandos->clear();
+					}
+					//Deja de ser mi turno
+					break;
+				}
 				}
 				else{
 					idOperacion = "D";
