@@ -1210,6 +1210,92 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	}
 }
 
+bool Juego::dibujarPantallaEnviarImagen(string usuario){
+	this->dibujarPantalla("boton.bmp");
+	SDL_Color blanco;
+	blanco.r=255;
+	blanco.g=255;
+	blanco.b=255;
+	SDL_Color negro;
+	negro.r=0;
+	negro.g=0;
+	negro.b=0;
+	SDL_Color rojo;
+	rojo.r=255;
+	rojo.g=0;
+	rojo.b=0;
+	//Para informar errores
+	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+	this->pantalla->dibujarRectangulo(8,365,80,30,255,255,255);
+	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Enviar",10,355,40,negro);
+	string archivoTexto("");
+	this->pantalla->escribirStringDesdePos(archivoTexto,13,50,25,0,0,0);
+	this->actualizarPantalla();
+	char caracterLeido=(char)0;
+	bool terminar=false;
+	SDL_Event evento;
+	while(!terminar){
+		if(SDL_PollEvent(&evento)) {
+			//Es importante probar el quit primero porque tambien es un evento de mouse o teclado
+			if(evento.type == SDL_QUIT){
+				exit(0);
+			} else if(evento.type == SDL_MOUSEBUTTONDOWN){
+				if(evento.button.button==1){
+					if(evento.button.x>=8 and evento.button.x<=88){
+						if(evento.button.y>=365 and evento.button.y<=395){
+							fstream  archivo;
+							string path(archivoTexto);
+							path+= ".bmp";
+							archivo.open(path.c_str(), fstream::in | fstream::binary );
+							if(!archivo.good()){
+								cout<<"Ingreso mal el path: " + path<<endl;
+								archivo.close();
+								return false;
+							}
+							archivo.close();
+							string jugador(usuario);
+							enviarImagenJugador(archivoTexto,jugador);
+							return true;
+						}
+					}
+				}
+			} else if(evento.type == SDL_KEYDOWN){
+				if(evento.key.keysym.sym==SDLK_BACKSPACE){
+					int nuevoTamanio=archivoTexto.size()-1;
+					if (nuevoTamanio>=0){
+						archivoTexto.resize(archivoTexto.size()-1);
+						this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+						this->pantalla->escribirStringDesdePos(archivoTexto,13,50,25,0,0,0);
+						this->actualizarPantalla();
+					}
+				} else if(evento.key.keysym.sym==SDLK_RETURN){
+					fstream  archivo;
+					string path(archivoTexto);
+					path+= ".bmp";
+					archivo.open(path.c_str(), fstream::in | fstream::binary );
+					if(!archivo.good()){
+						cout<<"Ingreso mal el path: " + path<<endl;
+						archivo.close();
+						return false;
+					}
+					archivo.close();
+					string jugador(usuario);
+					enviarImagenJugador(archivoTexto,jugador);
+					return true;
+				} else if(((evento.key.keysym.sym>=97) and (evento.key.keysym.sym<=122) )or((evento.key.keysym.sym>=48) and (evento.key.keysym.sym<=57) )){
+					caracterLeido=(char)evento.key.keysym.unicode;
+					archivoTexto+=caracterLeido;
+					this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
+					this->pantalla->escribirStringDesdePos(archivoTexto,13,50,25,0,0,0);
+					this->actualizarPantalla();
+				}
+			}
+		}
+	}
+}
+
 void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
@@ -1239,6 +1325,8 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 	}
 	this->pantalla->dibujarRectangulo(8,165,144,40,255,255,255);
 	this->pantalla->escribirTextoDesdePos("JUGAR",30,160,40,negro);
+	this->pantalla->dibujarRectangulo(160,165,155,40,255,255,255);
+	this->pantalla->escribirTextoDesdePos("Cargar Imagen",170,165,30,negro);
 	this->actualizarPantalla();
 	char caracterLeido=(char)0;
 	bool terminar=false;
@@ -1271,6 +1359,32 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 						} else {
 							return;
 						}
+					} if(evento.button.x>=160 and evento.button.x<=315 and evento.button.y>=165 and evento.button.y<=245){
+						int i=0;
+						bool imagenEnviada = false;
+						while((!imagenEnviada) and (i<3)){
+							imagenEnviada = this->dibujarPantallaEnviarImagen(usuario);
+							i++;
+						}
+						this->dibujarPantalla("boton.bmp");
+						this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
+						if(i==3){
+							this->pantalla->escribirTextoDesdePos("La imagen no fue enviada correctamente",5,this->infoconfig->alto*(0.9),24,rojo);
+						}
+						if(carga){
+							string titulo("Cargar hasta $");
+							ostringstream sstream;
+							sstream << puedeCargar;
+							titulo += sstream.str();
+							this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
+							this->pantalla->escribirTextoDesdePos(titulo.c_str(),10,10,40,blanco);
+							this->pantalla->escribirStringDesdePos(cantidadPlata,13,50,25,0,0,0);
+						}
+						this->pantalla->dibujarRectangulo(8,165,144,40,255,255,255);
+						this->pantalla->escribirTextoDesdePos("JUGAR",30,160,40,negro);
+						this->pantalla->dibujarRectangulo(160,165,155,40,255,255,255);
+						this->pantalla->escribirTextoDesdePos("Cargar Imagen",170,165,30,negro);
+						this->actualizarPantalla();
 					}
 				}
 			} else if(evento.type == SDL_KEYDOWN){
@@ -1319,7 +1433,6 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 }
 
 void Juego::dibujarPantallaRegistro(int cantidadIntentos){
-//	this->pantalla->dibujarRectangulo(0,0,0,0,255,255,255);
 	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
 	blanco.r=255;
