@@ -681,7 +681,6 @@ void Juego::dibujarPantallaPrincipal(){
 						}
 						else if(evento.button.y>=190 and evento.button.y<=245){
 							this->dibujarPantallaLogin(false,0,true);
-							this->jugar(true,false);
 							terminar=true;
 						}
 						else if(evento.button.y>=280 and evento.button.y<=335){
@@ -1095,9 +1094,11 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(100,245,20,20,255,255,255);
+	this->pantalla->dibujarRectangulo(8,365,80,30,255,255,255);
 	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Contrasena",10,120,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Virtual",10,230,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Volver",10,355,40,negro);
 	string usuarioTexto("");
 	string contrasenaTexto("");
 	string contrasenaAsteriscos("");
@@ -1145,6 +1146,10 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 							jugadorVirtual=true;
 							this->pantalla->dibujarRectangulo(100,245,20,20,255,0,0);
 							this->actualizarPantalla();
+						}
+					} if(evento.button.x>=8 and evento.button.x<=88){
+						if(evento.button.y>=365 and evento.button.y<=395){
+							this->dibujarPantallaPrincipal();
 						}
 					}
 				}
@@ -1343,9 +1348,11 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 	this->pantalla->dibujarRectangulo(8,55,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,165,144,20,255,255,255);
 	this->pantalla->dibujarRectangulo(8,275,144,20,255,255,255);
+	this->pantalla->dibujarRectangulo(8,365,80,30,255,255,255);
 	this->pantalla->escribirTextoDesdePos("Usuario",10,10,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Contrasena",10,120,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Archivo",10,230,40,blanco);
+	this->pantalla->escribirTextoDesdePos("Volver",10,355,40,negro);
 	string usuarioTexto("");
 	string contrasenaTexto("");
 	string contrasenaAsteriscos("");
@@ -1395,6 +1402,10 @@ void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 							this->pantalla->escribirStringDesdePos(archivoTexto,13,270,25,0,0,0);
 							casillero=ARCHIVO;
 							this->actualizarPantalla();
+						}
+					} if(evento.button.x>=8 and evento.button.x<=88){
+						if(evento.button.y>=365 and evento.button.y<=395){
+							this->dibujarPantallaPrincipal();
 						}
 					}
 				}
