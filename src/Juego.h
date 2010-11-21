@@ -97,6 +97,7 @@ public:
 	void dibujarPantallaListado(string listado);
 	void dibujarPantallaListadoRegistrados();
 	void dibujarPantallaListadoConectados();
+	void dibujarListaJugadores(list <string> * jugadores, int j);
 	string getJugadorTurno();
 	void dibujarPantallaEvolucion(string listado, string tipo);
 	virtual ~Juego();
