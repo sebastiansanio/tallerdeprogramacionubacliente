@@ -2,7 +2,6 @@
 
 void * manejoEventos(void * juego_aux) {
 	Juego * juego = (Juego *) juego_aux;
-//	int x_nombre_jugador = 5, y_nombre_jugador = 220;
 	SDL_Color rojo;
 	rojo.r = 255;
 	rojo.g = 0;
@@ -11,14 +10,13 @@ void * manejoEventos(void * juego_aux) {
 	blanco.r = 255;
 	blanco.g = 255;
 	blanco.b = 255;
-	int inicio = juego->infoconfig->ancho / 3.3;
-	int distancia = juego->infoconfig->ancho / 6;
-	int factor = juego->infoconfig->ancho / 42.5;
-	int apuestaMax;
+//	int inicio = juego->infoconfig->ancho / 3.3;
+//	int distancia = juego->infoconfig->ancho / 6;
+//	int factor = juego->infoconfig->ancho / 42.5;
+//	int apuestaMax;
 	string resultado;
 	string idOperacion;
-	int contadorOportunidades = 0;
-	list<string>* operandos = new list<string> ();
+//	list<string>* operandos = new list<string> ();
 	while (true) {
 		if(!juego->enElTurno){
 			SDL_Event evento;
@@ -43,7 +41,7 @@ void * manejoEventos(void * juego_aux) {
 		}
 	}
 	juego->cerrar=true;
-	delete operandos;
+//	delete operandos;
 }
 
 bool Juego::hayGanador(){
@@ -1372,7 +1370,7 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 							this->pantalla->escribirTextoDesdePos("La imagen no fue enviada correctamente",5,this->infoconfig->alto*(0.9),24,rojo);
 						}
 						if(carga){
-							string titulo("Cargar hasta $");
+							string titulo = "Cargar hasta $";
 							ostringstream sstream;
 							sstream << puedeCargar;
 							titulo += sstream.str();
@@ -1638,7 +1636,7 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	string path(" ");
 	this->cargarEscenario(this->escenario,true);
 	list<Carta>* cartas = this->pedirCartas();
-	cout << "hola " << endl;
+
 	list<Jugador>* jugadores = this->pedirJugadores();
 	this->pedirPoso();
 	this->dibujarEscenario();
@@ -1724,14 +1722,13 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	int iteracion=5;
 	int tamfuente = this->infoconfig->ancho / 33;
 	time_t tiempoInicial, tiempoActual;
-	tiempoInicial;
-	tiempoActual;
 	double diferenciaTiempo;
 	if(jugador_virtual){
 		bool comenzoAJugar = false;
-		this->jugadorVirtualAsignado = new JugadorVirtual(new Jugador("",this->nombreJugador,"",1));
+		this->jugadorVirtualAsignado = new JugadorVirtual();
 	}
 	while(true){
+		sleep(0.2);
 		this->enElTurno=this->esMiTurno();
 		if(this->enElTurno){
 			sleep(0.5);
@@ -1771,7 +1768,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 				SDL_Event evento;
 				tiempoActual = time(NULL);
 				diferenciaTiempo = difftime(tiempoActual, tiempoInicial);
-				if(diferenciaTiempo < 15){
+				if(diferenciaTiempo < 45){
 				if (SDL_PollEvent(&evento)) {
 					if (evento.type == SDL_QUIT) {
 						this->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
@@ -1908,30 +1905,53 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 									contadorOportunidades = 0;
 								}
 							} else {
-								if (evento.button.y > (this->infoconfig->alto
-										/ 1.3) and evento.button.y
-										< ((this->infoconfig->alto / 1.3)
-												+ this->infoconfig->alto / 5.5)) {
-									if (evento.button.x > inicio
-											and evento.button.x < inicio
-													+ distancia - factor) {
+//								if (evento.button.y > (this->infoconfig->alto
+//										/ 1.3) and evento.button.y
+//										< ((this->infoconfig->alto / 1.3)
+//												+ this->infoconfig->alto / 5.5)) {
+//									if (evento.button.x > inicio
+//											and evento.button.x < inicio
+//													+ distancia - factor) {
+										sleep(0.1);
 										cout << "presiono boton JUGAR " << endl;
 										idOperacion = "G";
 										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 										apuestaMax = atoi(resultado.c_str());
+										sleep(3);
 										operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+										if(operandos != NULL){
 										idOperacion = operandos->front();
 										operandos->pop_front();
 										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+										sleep(2);
 										operandos->clear();
+										}
 										//Deja de ser mi turno
 										break;
-									}
-								}
+//									}
+//								}
 							}
 						}
 					}
 				}
+				//Sin hacer click
+//				if(this->tipoJugador.jugadorVirtual){
+//				sleep(5);
+//				idOperacion = "G";
+//				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+//				apuestaMax = atoi(resultado.c_str());
+//				sleep(2);
+//				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+//				if(operandos != NULL){
+//					idOperacion = operandos->front();
+//					operandos->pop_front();
+//					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+//					sleep(2);
+//					operandos->clear();
+//					}
+//					//Deja de ser mi turno
+//					break;
+//				}
 				}
 				else{
 					idOperacion = "D";
@@ -1948,6 +1968,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			}
 			}
 		} else {
+//			sleep(0.2);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 		}
 		if(this->cerrar) exit(0);
