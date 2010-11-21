@@ -58,6 +58,7 @@ public:
 	void dibujarPantallaRegistro(int cantidadIntentos);
 	void dibujarPantallaObservacion();
 	void dibujarPantallaPrincipal();
+	bool dibujarPantallaEnviarImagen(string usuario);
 	void dibujarEscenario();
 	void dibujarJugador(Jugador jugadorADibujar, string jugadorTurno);
 	void dibujarCarta(Carta cartaADibujar);
