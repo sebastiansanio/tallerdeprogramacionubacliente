@@ -1955,8 +1955,9 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 				idOperacion = "G";
 				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 				apuestaMax = atoi(resultado.c_str());
-				sleep(2);
+				sleep(0.2);
 				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
+				sleep(1);
 				if(operandos != NULL){
 					idOperacion = operandos->front();
 					operandos->pop_front();
@@ -1983,7 +1984,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			}
 			}
 		} else {
-//			sleep(0.2);
+			sleep(1);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 		}
 		if(this->cerrar) exit(0);
