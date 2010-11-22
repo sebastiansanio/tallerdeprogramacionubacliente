@@ -18,6 +18,7 @@ public:
 	JugadorVirtual(Jugador* jugador);
 	list<string>* decidirJugada(list<Carta>* cartasJugador, list<Carta>* cartasMesa, int plata, int apuestaMax);
 	double calidadMano(list<Carta>* cartasMesa);
+	bool tieneEscalera(list<Carta>* cartasMesa);
 	virtual ~JugadorVirtual();
 };
 

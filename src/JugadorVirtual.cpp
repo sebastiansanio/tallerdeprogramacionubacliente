@@ -96,7 +96,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					id = "D";
 					int apuesto;
 					if (apuestaMax < plata)
-						apuesto = apuestaMax + ((plata-apuestaMax) / 12);
+						apuesto = apuestaMax + ((plata-apuestaMax) / 18);
 					else if(numero < 0.8)
 						//ALL IN
 						apuesto = plata;
@@ -109,7 +109,24 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					decision->push_back(sstream.str());
 					return decision;
 				}
-			} else if (calidad == 1) {
+			} else if(calidad<1){
+				double numero = drand48();
+				id = "D";
+				int apuesto;
+				if (apuestaMax < plata)
+					apuesto = apuestaMax + ((plata-apuestaMax) / 12);
+				else if(numero < 0.8)
+					//ALL IN
+					apuesto = plata;
+				else
+					apuesto = 0;
+				ostringstream sstream;
+				sstream << apuesto;
+				decision->push_front(id);
+				decision->push_back("Poso");
+				decision->push_back(sstream.str());
+				return decision;
+			}else if (calidad == 1) {
 				id = "D";
 				int apuesto;
 				if (apuestaMax < plata)
@@ -157,7 +174,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 			double calidad = this->calidadMano(cartasMesa);
 			if (calidad < 0.4) {
 				double numero = drand48();
-				if (numero < 0.6) {
+				if (numero < 0.8) {
 					if (apuestaMax != 0)
 						id = "Y";
 					else
@@ -184,6 +201,23 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					decision->push_back(sstream.str());
 					return decision;
 				}
+			}else if(calidad<1){
+				double numero = drand48();
+				id = "D";
+				int apuesto;
+				if (apuestaMax < plata)
+					apuesto = apuestaMax + ((plata-apuestaMax) / 12);
+				else if(numero < 0.8)
+					//ALL IN
+					apuesto = plata;
+				else
+					apuesto = 0;
+				ostringstream sstream;
+				sstream << apuesto;
+				decision->push_front(id);
+				decision->push_back("Poso");
+				decision->push_back(sstream.str());
+				return decision;
 			} else if (calidad == 1) {
 				id = "D";
 				int apuesto;
@@ -306,8 +340,18 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 	string palo1 = this->cartasJugador->front().getPalo();
 	string palo2 = this->cartasJugador->back().getPalo();
 	if (this->instancia == 2) {
-		if (numero1 == numero2) {
-			return 0.11 * 3;
+		list<Carta>::iterator it=cartasMesa->begin();
+		int numeroCarta1=atoi(it->getNumero().c_str());
+		it++;
+		int numeroCarta2=atoi(it->getNumero().c_str());
+		it++;
+		int numeroCarta3=atoi(it->getNumero().c_str());
+		if (numero1 == numero2 or numero1==numeroCarta1 or numero1==numeroCarta2 or numero1==numeroCarta3 or numero2==numeroCarta1 or numero2==numeroCarta2 or numero2==numeroCarta3) {
+			if(numero1>7 or numero2>7 or numero1==1 or numero2==1){
+				return 0.22 * 3;
+			}else{
+				return 0.11 * 3;
+			}
 		} else if (palo1 == palo2) {
 			return 0.11 * 3.5;
 		} else if (numero1 - numero2 == 1 or numero1 - numero2 == -1) {
@@ -321,9 +365,19 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 		it = cartasMesa->begin();
 		double acumulado = 0;
 		for(unsigned int i = 0 ; i < cartasMesa->size() ; i++){
-			if((numero1 == atoi(it->getNumero().c_str())) or (numero2 == atoi(it->getNumero().c_str())))
-				acumulado += 0.2;
-			else if(palo1 == it->getPalo() or palo2 == it->getPalo())
+			if(numero1 == atoi(it->getNumero().c_str())){
+				if(numero1>9){
+					acumulado += 0.6;
+				}else{
+					acumulado+=0.3;
+				}
+			}else if(numero2 == atoi(it->getNumero().c_str())){
+				if(numero2>9){
+					acumulado += 0.6;
+				}else{
+					acumulado+=0.3;
+				}
+			}else if(palo1 == it->getPalo() or palo2 == it->getPalo())
 				acumulado += 0.3;
 			else
 				acumulado += 0.15;
@@ -339,11 +393,22 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 		it = cartasMesa->begin();
 		double acumulado = 0;
 		for (unsigned int i = 0; i < cartasMesa->size(); i++) {
-			if ((numero1 == atoi(it->getNumero().c_str())) or (numero2 == atoi(
-					it->getNumero().c_str())))
+			if(this->tieneEscalera(cartasMesa)){
+				return 1;
+			}else if(numero1 == atoi(it->getNumero().c_str())){
+				if(numero1>9){
+					acumulado += 0.3;
+				}else{
+					acumulado+=0.2;
+				}
+			}else if(numero2 == atoi(it->getNumero().c_str())){
+				if(numero2>9){
+					acumulado += 0.3;
+				}else{
+					acumulado+=0.2;
+				}
+			}else if (palo1 == it->getPalo() or palo2 == it->getPalo())
 				acumulado += 0.3;
-			else if (palo1 == it->getPalo() or palo2 == it->getPalo())
-				acumulado += 0.4;
 			else
 				acumulado += 0.15;
 			it++;
@@ -358,7 +423,90 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 	}
 }
 
+bool JugadorVirtual::tieneEscalera(list<Carta>* cartasMesa){
+	int numero1=atoi(this->cartasJugador->front().getNumero().c_str());
+	int numero2=atoi(this->cartasJugador->back().getNumero().c_str());
+	list<Carta>::iterator it;
+	it = cartasMesa->begin();
+	int * cartasNumero=new int[cartasMesa->size() + 2];
+	cartasNumero[0]=numero1;
+	cartasNumero[1]=numero2;
+	for (unsigned int i = 2; i < cartasMesa->size() + 2; i++) {
+		cartasNumero[i]=atoi(it->getNumero().c_str());
+		it++;
+	}
+	for(int i=0;i<7;i++){
+		for(int j=i;i<7;i++){
+			if(cartasNumero[i]>cartasNumero[j]){
+				int aux=cartasNumero[i];
+				cartasNumero[i]=cartasNumero[j];
+				cartasNumero[j]=aux;
+			}
+		}
+	}
 
+	if((cartasNumero[0]+1)==(cartasNumero[1])){
+		if((cartasNumero[1]+1)==(cartasNumero[2])){
+			if((cartasNumero[2]+1)==(cartasNumero[3])){
+				if((cartasNumero[3]+1)==(cartasNumero[4])){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}else{
+			if((cartasNumero[2]+1)==(cartasNumero[3])){
+				if((cartasNumero[3]+1)==(cartasNumero[4])){
+					if((cartasNumero[4]+1)==(cartasNumero[5])){
+						if((cartasNumero[5]+1)==(cartasNumero[6])){
+							return true;
+						}else{
+							return false;
+						}
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}
+	}else{
+		if((cartasNumero[1]+1)==(cartasNumero[2])){
+					if((cartasNumero[2]+1)==(cartasNumero[3])){
+						if((cartasNumero[3]+1)==(cartasNumero[4])){
+							return true;
+						}else{
+							return false;
+						}
+					}else{
+						return false;
+					}
+				}else{
+					if((cartasNumero[2]+1)==(cartasNumero[3])){
+						if((cartasNumero[3]+1)==(cartasNumero[4])){
+							if((cartasNumero[4]+1)==(cartasNumero[5])){
+								if((cartasNumero[5]+1)==(cartasNumero[6])){
+									return true;
+								}else{
+									return false;
+								}
+							}else{
+								return false;
+							}
+						}else{
+							return false;
+						}
+					}else{
+						return false;
+					}
+				}
+	}
+}
 JugadorVirtual::~JugadorVirtual() {
 	// TODO Auto-generated destructor stub
 }
