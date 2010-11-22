@@ -254,10 +254,15 @@ char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operand
 	}
 	(aEnviar)+="	</parametros>\n</pedido>";
 //	cout << "AENVIAR" << aEnviar << endl;
-	char* data = new char[aEnviar.size()];
-	strcpy(data, aEnviar.c_str());
+//	char* data = new char[aEnviar.size()];
+//	strcpy(data, aEnviar.c_str());
 //	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
 //	cout << "DATA" << data << endl;
+	char* data=new char[aEnviar.size() + 1];
+	memset((void*)data,'\0',aEnviar.size() + 1);
+	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
+	data[aEnviar.size()]='\0';
+	cout << "DATA" << data << endl;
 	return (data);
 }
 
