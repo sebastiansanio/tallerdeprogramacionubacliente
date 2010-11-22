@@ -1937,7 +1937,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 										if(operandos != NULL){
 										idOperacion = operandos->front();
 										operandos->pop_front();
-										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+										this->pedirOperacionDeJuego(idOperacion, operandos);
 										sleep(2);
 										operandos->clear();
 										}
@@ -1951,7 +1951,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 				}
 				//Sin hacer click
 				if(this->tipoJugador.jugadorVirtual){
-				sleep(4);
+				sleep(5);
 				idOperacion = "G";
 				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 				apuestaMax = atoi(resultado.c_str());
@@ -1960,7 +1960,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 				if(operandos != NULL){
 					idOperacion = operandos->front();
 					operandos->pop_front();
-					resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+					this->pedirOperacionDeJuego(idOperacion, operandos);
 					sleep(2);
 					operandos->clear();
 					}
@@ -2003,6 +2003,7 @@ string Juego::pedirOperacionDeJuego(string idOperacion, list<string>* operandos)
 	char* xml = this->parser->getXmlDeOperacion(idOperacion, operandos);
 	cliente->enviar(xml);
 	char * respuesta = cliente->recibirRespuesta();
+//	cout << respuesta;
 	string operacion = parserResultado->getPoso(respuesta);
 	return operacion;
 }
