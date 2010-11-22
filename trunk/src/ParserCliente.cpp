@@ -262,7 +262,7 @@ char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operand
 	memset((void*)data,'\0',aEnviar.size() + 1);
 	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
 	data[aEnviar.size()]='\0';
-	cout << "DATA" << data << endl;
+//	cout << "DATA" << data << endl;
 	return (data);
 }
 
