@@ -63,7 +63,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 				id = "F";
 				decision->push_front(id);
 				return decision;
-			} else if (apuestaMax - plata < plata / 2) {
+			} else if (apuestaMax  < plata / 2.5) {
 				id = "Y";
 				decision->push_front(id);
 				return decision;
@@ -85,7 +85,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 			double calidad = this->calidadMano(cartasMesa);
 			if (calidad < 0.5) {
 				double numero = drand48();
-				if (numero < 0.9) {
+				if (numero < 0.2) {
 					if (apuestaMax != 0)
 						id = "Y";
 					else
@@ -94,23 +94,29 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					return decision;
 				} else {
 					id = "D";
+					int apuesto;
+					if (apuestaMax < plata)
+						apuesto = apuestaMax + ((plata-apuestaMax) / 12);
+					else if(numero < 0.8)
+						//ALL IN
+						apuesto = plata;
+					else
+						apuesto = 0;
+					ostringstream sstream;
+					sstream << apuesto;
 					decision->push_front(id);
 					decision->push_back("Poso");
-					decision->push_back("0");
+					decision->push_back(sstream.str());
 					return decision;
 				}
 			} else if (calidad == 1) {
 				id = "D";
 				int apuesto;
 				if (apuestaMax < plata)
-					apuesto = plata / 15;
+					apuesto =  apuestaMax + ((plata-apuestaMax) / 10);
 				else {
-					double numero = drand48();
-					//Hago All-In con cierta probabilidad
-					if (numero > 0.4)
-						apuesto = plata;
-					else
-						apuesto = 0;
+					//Hago All-In
+					apuesto = plata;
 				}
 				ostringstream sstream;
 				sstream << apuesto;
@@ -125,10 +131,9 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					id = "F";
 				decision->push_front(id);
 				return decision;
-
 			}
 		} else {
-			if (apuestaMax - plata < plata / 1.5) {
+			if (apuestaMax < plata / 2 or plata==0) {
 				if(apuestaMax != 0)
 					id = "Y";
 				else
@@ -150,9 +155,9 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 		if (!this->instancia == instanciaActual) {
 			this->instancia = instanciaActual;
 			double calidad = this->calidadMano(cartasMesa);
-			if (calidad < 0.3) {
+			if (calidad < 0.4) {
 				double numero = drand48();
-				if (numero < 0.9) {
+				if (numero < 0.6) {
 					if (apuestaMax != 0)
 						id = "Y";
 					else
@@ -161,23 +166,32 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					return decision;
 				} else {
 					id = "D";
+					int apuesto;
+					if (apuestaMax < plata)
+						apuesto = apuestaMax + ((plata - apuestaMax) / 10);
+					else {
+						double numero = drand48();
+						//Hago All-In con cierta probabilidad
+						if (numero > 0.4)
+							apuesto = plata;
+						else
+							apuesto = 0;
+					}
+					ostringstream sstream;
+					sstream << apuesto;
 					decision->push_front(id);
 					decision->push_back("Poso");
-					decision->push_back("0");
+					decision->push_back(sstream.str());
 					return decision;
 				}
 			} else if (calidad == 1) {
 				id = "D";
 				int apuesto;
 				if (apuestaMax < plata)
-					apuesto = plata / 10;
+					apuesto = apuestaMax + ((plata - apuestaMax) / 8);
 				else {
-					double numero = drand48();
-					//Hago All-In con cierta probabilidad
-					if (numero > 0.6)
-						apuesto = plata;
-					else
-						apuesto = 0;
+					//Hago All-In
+					apuesto = plata;
 				}
 				ostringstream sstream;
 				sstream << apuesto;
@@ -192,7 +206,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 
 			}
 		} else {
-			if (apuestaMax - plata < plata / 1.5) {
+			if (apuestaMax < plata or plata==0) {
 				if (apuestaMax != 0)
 					id = "Y";
 				else
@@ -214,9 +228,9 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 		if (!this->instancia == instanciaActual) {
 			this->instancia = instanciaActual;
 			double calidad = this->calidadMano(cartasMesa);
-			if (calidad < 0.2) {
+			if (calidad < 0.3) {
 				double numero = drand48();
-				if (numero < 0.75) {
+				if (numero < 0.8) {
 					if (apuestaMax != 0)
 						id = "Y";
 					else
@@ -224,24 +238,32 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					decision->push_front(id);
 					return decision;
 				} else {
-					id = "D";
+					int apuesto;
+					if (apuestaMax < plata)
+						apuesto = apuestaMax + ((plata - apuestaMax) / 10);
+					else {
+						double numero = drand48();
+						//Hago All-In con cierta probabilidad
+						if (numero > 0.3)
+							apuesto = plata;
+						else
+							apuesto = 0;
+					}
+					ostringstream sstream;
+					sstream << apuesto;
 					decision->push_front(id);
 					decision->push_back("Poso");
-					decision->push_back("0");
+					decision->push_back(sstream.str());
 					return decision;
 				}
 			} else if (calidad == 1) {
 				id = "D";
 				int apuesto;
 				if (apuestaMax < plata)
-					apuesto = plata / 10;
+					apuesto = apuestaMax + ((plata - apuestaMax) / 4);
 				else {
-					double numero = drand48();
-					//Hago All-In con cierta probabilidad
-					if (numero > 0.3)
-						apuesto = plata;
-					else
-						apuesto = 0;
+					//Hago All-In
+					apuesto = plata;
 				}
 				ostringstream sstream;
 				sstream << apuesto;
@@ -259,7 +281,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 
 			}
 		} else {
-			if (apuestaMax - plata < plata / 1.2) {
+			if (apuestaMax < plata or plata==0) {
 				if (apuestaMax != 0)
 					id = "Y";
 				else
@@ -300,11 +322,11 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 		double acumulado = 0;
 		for(unsigned int i = 0 ; i < cartasMesa->size() ; i++){
 			if((numero1 == atoi(it->getNumero().c_str())) or (numero2 == atoi(it->getNumero().c_str())))
-				acumulado += 0.15;
+				acumulado += 0.2;
 			else if(palo1 == it->getPalo() or palo2 == it->getPalo())
-				acumulado += 0.25;
+				acumulado += 0.3;
 			else
-				acumulado += 0.1;
+				acumulado += 0.15;
 			it++;
 		}
 		if(acumulado >= 1)
@@ -319,11 +341,11 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 		for (unsigned int i = 0; i < cartasMesa->size(); i++) {
 			if ((numero1 == atoi(it->getNumero().c_str())) or (numero2 == atoi(
 					it->getNumero().c_str())))
-				acumulado += 0.2;
-			else if (palo1 == it->getPalo() or palo2 == it->getPalo())
 				acumulado += 0.3;
+			else if (palo1 == it->getPalo() or palo2 == it->getPalo())
+				acumulado += 0.4;
 			else
-				acumulado += 0.1;
+				acumulado += 0.15;
 			it++;
 		}
 		if (acumulado >= 1)
@@ -332,7 +354,7 @@ double JugadorVirtual::calidadMano(list<Carta>* cartasMesa){
 			return acumulado;
 	}
 	else {
-		return 0.3 ;
+		return 0.5 ;
 	}
 }
 
