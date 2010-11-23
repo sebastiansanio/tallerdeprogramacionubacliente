@@ -17,6 +17,14 @@ Cliente::Cliente() {
 
         for(int i=0;i<8;i++){
                         estructuraDeDireccion.sin_zero[i]=0;}
+		srand(time(NULL));
+		int random=rand()%100;
+    	this->path="recibido";
+    	ostringstream sstream;
+    	sstream << random;
+    	string aux = sstream.str();
+    	this->path+=aux;
+    	cout<<path<<endl;
 }
 
 Cliente::Cliente(unsigned int puerto, string IP){
@@ -37,7 +45,14 @@ Cliente::Cliente(unsigned int puerto, string IP){
 	for (int i = 0; i < 8; i++) {
 		estructuraDeDireccion.sin_zero[i] = 0;
 	}
-
+	srand(time(NULL));
+	int random=rand()%100;
+	this->path="recibido";
+	ostringstream sstream;
+	sstream << random;
+	string aux = sstream.str();
+	this->path+=aux;
+	cout<<path<<endl;
 
 }
 
@@ -113,7 +128,7 @@ char* Cliente::recibirRespuesta(){
         char* data=new char[MAXBYTESRECIBIDOS];
         memset((void*)data,'\0',MAXBYTESRECIBIDOS);
         bool seguir=true;
-        ofstream* archivoResultado = new ofstream("recibido", ios::out);
+        ofstream* archivoResultado = new ofstream(this->path.c_str(), ios::out);
         socklen_t leng=sizeof(char[MAXBYTESRECIBIDOS]);
         ssize_t valorRecive;
         while(seguir){
@@ -160,7 +175,7 @@ char* Cliente::recibirRespuesta(){
         delete archivoResultado;
         string recibido;
         string *recibidoAux=new string;
-        ifstream* archivo=new ifstream("recibido");
+        ifstream* archivo=new ifstream(path.c_str());
         while(!archivo->eof()){
                 std::getline(*archivo,*recibidoAux);
                 recibido+=*recibidoAux;

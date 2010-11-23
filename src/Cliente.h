@@ -26,6 +26,7 @@ class Cliente{
 private:
 	sockaddr_in estructuraDeDireccion;
 	int descriptorSocket;
+	string path;
 public:
 	Cliente();
 	Cliente(string archivoConfig);
