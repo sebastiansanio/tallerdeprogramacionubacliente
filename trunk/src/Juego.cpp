@@ -10,13 +10,8 @@ void * manejoEventos(void * juego_aux) {
 	blanco.r = 255;
 	blanco.g = 255;
 	blanco.b = 255;
-//	int inicio = juego->infoconfig->ancho / 3.3;
-//	int distancia = juego->infoconfig->ancho / 6;
-//	int factor = juego->infoconfig->ancho / 42.5;
-//	int apuestaMax;
 	string resultado;
 	string idOperacion;
-//	list<string>* operandos = new list<string> ();
 	while (true) {
 		if(!juego->enElTurno){
 			SDL_Event evento;
@@ -41,7 +36,6 @@ void * manejoEventos(void * juego_aux) {
 		}
 	}
 	juego->cerrar=true;
-//	delete operandos;
 }
 
 bool Juego::hayGanador(){
@@ -61,7 +55,6 @@ void Juego::pedirGanador(){
 Juego::Juego() {
 	this->parser=new ParserCliente(PATHARCHIVOCONF);
 	this->parserResultado=new ParserResultadoCliente();
-	//ParserCliente *parserAux=new ParserCliente(PATHARCHIVOCONF);
 
 	if(this->parser->comprobarSintaxis()){
 
@@ -78,7 +71,6 @@ Juego::Juego() {
 		cout << this->infoconfig->ip << endl;
 
 		this->cliente=new Cliente(this->infoconfig->puerto, this->infoconfig->ip);
-		//this->cliente = new Cliente();
 		if(!(cliente->conectar())){
 			this->informarError("G","V","Puerto y/o ip invalido en el archivo config.ini");
 			cout<<"Se cerrara la apliacion..."<<endl;
@@ -137,7 +129,6 @@ void Juego::pedirEscenario(){
 string Juego::pedirImagenJugador(Jugador * jugador){
 	string ruta = jugador->getNombre() + ".bmp";
 	jugador->setPath(ruta);
-	//jugador->imagenEstablecida();
 	//Pido la imagen del jugador
 	string idOperacion = "I";
 	list<string>* operandos = new list<string> ();
@@ -178,7 +169,6 @@ void Juego::cargarEscenario(string path,bool cargado){
 	this->imagenEscenario = new BitMap(path);
 	if((this->imagenEscenario->esUnaImagenCorrecta())and(this->imagenEscenario->getAlto()>1)and(this->imagenEscenario->getAncho()>1)){
 		this->imagenEscenario->resizeTo(this->infoconfig->alto, this->infoconfig->ancho);
-//		pantalla->dibujarBitMapDesdePos(escenario),0,0);
 	}else{
 		this->informarError("B","E","El escenario no es una imagen BMP o esta corrupta");
 	}
@@ -203,9 +193,7 @@ void Juego::dibujarEscenario(){
 void Juego::dibujarJugador(Jugador jugadorADibujar,string jugadorTurno){
 	BitMap* jugador = new BitMap(jugadorADibujar.getPath());
 	SDL_Color color;
-	color.r=240;
-	color.b=55;
-	color.g=200;
+	color.r=240;color.b=55;color.g=200;
 	bool esTurnoJugador=(jugadorADibujar.getNombre()==jugadorTurno);
 	const char* flecha="<";
 	//dibujaria con el sdl_ttf el nombre y la plata al lado de la imagen
@@ -391,13 +379,10 @@ list<Carta>* Juego::getCartasJugador(){
 }
 void Juego::dibujarCartasJugadores(){
 	SDL_Color rojo;
-	rojo.r = 255;
-	rojo.g = 0;
-	rojo.b = 0;
-
+	rojo.r = 255;rojo.g = 0;rojo.b = 0;
 	if (!jugadores->empty()) {
 		list<Jugador>::iterator it = jugadores->begin();
-		for (int i=0;i<jugadores->size();i++){
+		for (unsigned int i=0;i<jugadores->size();i++){
 			this->dibujarCartaJugador(&(*it));
 			it++;
 		}
@@ -408,12 +393,6 @@ void Juego::dibujarCartasJugadores(){
 }
 
 void Juego::dibujarCartaJugador(Jugador * jugador){
-//	SDL_Color blanco;
-//	blanco.r = 255;
-//	blanco.g = 255;
-//	blanco.b = 255;
-//	this->pantalla->escribirTextoDesdePos("Cartas de:",this->infoconfig->ancho/2 - 90,2,30,blanco);
-//	this->pantalla->escribirTextoDesdePos(jugador->getNombre().c_str(),this->infoconfig->alto/2 + 110,2,30,blanco);
 	Carta *carta1, *carta2;
 	int id = jugador->getId();
 	if((this->tipoJugador.jugadorObservador) or (id==this->idJugador)){
@@ -435,7 +414,6 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	unsigned int ancho = this->infoconfig->ancho;
 	if ((imagen_carta1->esUnaImagenCorrecta()) and (imagen_carta1->getAlto()
 			> 1) and (imagen_carta1->getAncho() > 1)) {
-		//imagen_carta1->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
 		imagen_carta1->recortarImagen(this->infoconfig->alto / 46,
 				this->infoconfig->alto / 20, this->infoconfig->alto / 15.8,
 				this->infoconfig->alto / 6.5);
@@ -458,7 +436,6 @@ void Juego::dibujarCartaJugador(Jugador * jugador){
 	}
 	if ((imagen_carta2->esUnaImagenCorrecta()) and (imagen_carta2->getAlto()
 			> 1) and (imagen_carta2->getAncho() > 1)) {
-		//imagen_carta2->resizeTo(this->infoconfig->alto/5,this->infoconfig->ancho/5);
 		imagen_carta2->recortarImagen(this->infoconfig->alto / 46,
 				this->infoconfig->alto / 20, this->infoconfig->alto / 15.8,
 				this->infoconfig->alto / 6.5);
@@ -578,9 +555,7 @@ bool Juego::registrarJugador(string usuario, string pass, string ruta){
 void Juego::dibujarBoton(string textoBoton, int pos){
 	BitMap* boton = new BitMap("boton.bmp");
 	SDL_Color color;
-	color.r=255;
-	color.g=255;
-	color.b=255;
+	color.r=255;color.g=255;color.b=255;
 	if ((boton->esUnaImagenCorrecta())and(boton->getAlto()>1)and(boton->getAncho()>1)) {
 		int tamImagenancho = this->infoconfig->ancho / 7.0;
 		int tamImagenalto = this->infoconfig->alto / 5.5;
@@ -976,7 +951,6 @@ void Juego::dibujarPantallaListadoRegistrados(){
 	this->pantalla->escribirTextoDesdePos("Ultimo mes",10,190,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Ultimo año",10,280,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Volver",10,460,40,blanco);
-	//this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
 	this->actualizarPantalla();
 	bool terminar=false;
 	SDL_Event evento;
@@ -1025,7 +999,6 @@ void Juego::dibujarPantallaListadoConectados(){
 	this->pantalla->escribirTextoDesdePos("Ultimo mes",10,190,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Ultimo año",10,280,40,blanco);
 	this->pantalla->escribirTextoDesdePos("Volver",10,460,40,blanco);
-	//this->pantalla->escribirTextoDesdePos("Observar",10,190,40,blanco);
 	this->actualizarPantalla();
 	bool terminar=false;
 	SDL_Event evento;
@@ -1189,8 +1162,6 @@ void Juego::dibujarPantallaLogin(bool usuarioIncorrecto, int cantidadIntentos, b
 					caracterLeido=(char)evento.key.keysym.unicode;
 					if(casillero==USUARIO){
 						usuarioTexto+=caracterLeido;
-//						cout<<"caracter leido/"<<caracterLeido<<"/"<<endl;
-//						cout<<usuarioTexto<<endl;
 						this->pantalla->dibujarRectangulo(8,55,144,20,200,200,200);
 						this->pantalla->escribirStringDesdePos(usuarioTexto,13,50,25,0,0,0);
 						this->actualizarPantalla();
@@ -1433,17 +1404,11 @@ void Juego::dibujarPantallaComienzo(bool carga,int puedeCargar,string usuario){
 void Juego::dibujarPantallaRegistro(int cantidadIntentos){
 	this->dibujarPantalla("boton.bmp");
 	SDL_Color blanco;
-	blanco.r=255;
-	blanco.g=255;
-	blanco.b=255;
+	blanco.r=255;	blanco.g=255;	blanco.b=255;
 	SDL_Color negro;
-	negro.r=0;
-	negro.g=0;
-	negro.b=0;
+	negro.r=0;	negro.g=0;	negro.b=0;
 	SDL_Color rojo;
-	rojo.r=255;
-	rojo.g=0;
-	rojo.b=0;
+	rojo.r=255;	rojo.g=0;	rojo.b=0;
 	//Para informar errores
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.9),this->infoconfig->ancho,24,255,255,255);
 	if(cantidadIntentos>2){
@@ -1629,9 +1594,7 @@ list<Jugador> Juego::getJugadores(){
 
 void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool jugador_virtual){
 	SDL_Color blanco;
-	blanco.r=255;
-	blanco.g=255;
-	blanco.b=255;
+	blanco.r=255;	blanco.g=255;	blanco.b=255;
 	string jugadorTurno(" ");
 	string path(" ");
 	this->cargarEscenario(this->escenario,true);
@@ -1737,7 +1700,6 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 	time_t tiempoInicial, tiempoActual;
 	double diferenciaTiempo;
 	if(jugador_virtual){
-		bool comenzoAJugar = false;
 		this->jugadorVirtualAsignado = new JugadorVirtual();
 	}
 	while(true){
@@ -1932,39 +1894,13 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 									operandos->clear();
 									contadorOportunidades = 0;
 								}
-							} else {
-//								if (evento.button.y > (this->infoconfig->alto
-//										/ 1.3) and evento.button.y
-//										< ((this->infoconfig->alto / 1.3)
-//												+ this->infoconfig->alto / 5.5)) {
-//									if (evento.button.x > inicio
-//											and evento.button.x < inicio
-//													+ distancia - factor) {
-										sleep(0.1);
-										cout << "presiono boton JUGAR " << endl;
-										idOperacion = "G";
-										resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
-										apuestaMax = atoi(resultado.c_str());
-										sleep(3);
-										operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
-										if(operandos != NULL){
-										idOperacion = operandos->front();
-										operandos->pop_front();
-										this->pedirOperacionDeJuego(idOperacion, operandos);
-										sleep(2);
-										operandos->clear();
-										}
-										//Deja de ser mi turno
-										break;
-//									}
-//								}
 							}
 						}
 					}
 				}
 				//Sin hacer click
 				if(this->tipoJugador.jugadorVirtual){
-				sleep(5);
+				sleep(4);
 				idOperacion = "G";
 				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 				apuestaMax = atoi(resultado.c_str());
@@ -1975,7 +1911,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					idOperacion = operandos->front();
 					operandos->pop_front();
 					this->pedirOperacionDeJuego(idOperacion, operandos);
-					sleep(2);
+					sleep(1);
 					operandos->clear();
 					}
 					//Deja de ser mi turno
@@ -2017,7 +1953,7 @@ string Juego::pedirOperacionDeJuego(string idOperacion, list<string>* operandos)
 	char* xml = this->parser->getXmlDeOperacion(idOperacion, operandos);
 	cliente->enviar(xml);
 	char * respuesta = cliente->recibirRespuesta();
-//	cout << respuesta;
+	cout << respuesta;
 	string operacion = parserResultado->getPoso(respuesta);
 	return operacion;
 }

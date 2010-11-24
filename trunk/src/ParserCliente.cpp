@@ -253,11 +253,6 @@ char* ParserCliente::getXmlDeOperacion(string idOperacion, list<string>* operand
 		iterador++;
 	}
 	(aEnviar)+="	</parametros>\n</pedido>";
-//	cout << "AENVIAR" << aEnviar << endl;
-//	char* data = new char[aEnviar.size()];
-//	strcpy(data, aEnviar.c_str());
-//	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
-//	cout << "DATA" << data << endl;
 	char* data=new char[aEnviar.size() + 1];
 	memset((void*)data,'\0',aEnviar.size() + 1);
 	for(unsigned int i=0;i<aEnviar.size();i++){data[i]=aEnviar[i];}
@@ -311,7 +306,6 @@ int* ParserCliente::getAltoYAnchoDeConfig(){
 				altoYancho[1] = atoi(buffer);
 			}
 			buffer = strtok(NULL, ">\n\t");
-			//cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
@@ -346,7 +340,6 @@ string* ParserCliente::getPuertoYIP(){
 			}
 
 			buffer = strtok(NULL, ">\n\t");
-			//cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
@@ -389,7 +382,6 @@ informacionConfiguracion* ParserCliente::getInformacionConfig(){
 				infoconfig->ancho = atoi(buffer);
 			}
 			buffer = strtok(NULL, ">\n\t");
-			//cout << buffer << endl;
 		}
 		buffer = strtok(NULL, " \t<>=");
 	}
@@ -408,5 +400,4 @@ ParserCliente::~ParserCliente() {
 		(*this->archivoerrores).close();
 		delete this->archivoerrores;
 	}
-//	if(!this->fallido) delete this->grafoTags;
 }

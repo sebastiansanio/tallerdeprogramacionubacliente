@@ -109,7 +109,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					decision->push_back(sstream.str());
 					return decision;
 				}
-			} else if(calidad<1){
+			} else if(calidad<0.75){
 				double numero = drand48();
 				id = "D";
 				int apuesto;
