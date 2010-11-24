@@ -181,10 +181,11 @@ char* Cliente::recibirRespuesta(){
                 recibido+=*recibidoAux;
                 recibido+="\n";
         }
-        char* dataAux=new char[recibido.size()];
-        memset(dataAux,'\0',recibido.size());
+        char* dataAux=new char[recibido.size()+1];
+        memset(dataAux,'\0',recibido.size()+1);
         for(int i=0;i<recibido.size();i++) dataAux[i]=recibido[i];
         archivo->close();
+        cout << "Recibe" << dataAux << endl;
         return dataAux;
 
 }
