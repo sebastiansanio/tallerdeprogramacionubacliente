@@ -99,7 +99,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 						apuesto = apuestaMax + ((plata-apuestaMax) / 18);
 					else if(numero < 0.8)
 						//ALL IN
-						apuesto = plata;
+						apuesto = apuestaMax;
 					else
 						apuesto = 0;
 					ostringstream sstream;
@@ -117,7 +117,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					apuesto = apuestaMax + ((plata-apuestaMax) / 12);
 				else if(numero < 0.8)
 					//ALL IN
-					apuesto = plata;
+					apuesto = apuestaMax;
 				else
 					apuesto = 0;
 				ostringstream sstream;
@@ -133,7 +133,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					apuesto =  apuestaMax + ((plata-apuestaMax) / 10);
 				else {
 					//Hago All-In
-					apuesto = plata;
+					apuesto = apuestaMax;
 				}
 				ostringstream sstream;
 				sstream << apuesto;
@@ -190,7 +190,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 						double numero = drand48();
 						//Hago All-In con cierta probabilidad
 						if (numero > 0.4)
-							apuesto = plata;
+							apuesto = apuestaMax;
 						else
 							apuesto = 0;
 					}
@@ -209,7 +209,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					apuesto = apuestaMax + ((plata-apuestaMax) / 12);
 				else if(numero < 0.8)
 					//ALL IN
-					apuesto = plata;
+					apuesto = apuestaMax;
 				else
 					apuesto = 0;
 				ostringstream sstream;
@@ -279,7 +279,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 						double numero = drand48();
 						//Hago All-In con cierta probabilidad
 						if (numero > 0.3)
-							apuesto = plata;
+							apuesto = apuestaMax;
 						else
 							apuesto = 0;
 					}
@@ -297,7 +297,7 @@ list<string>* JugadorVirtual::decidirJugada(list<Carta>* cartasJugador, list<Car
 					apuesto = apuestaMax + ((plata - apuestaMax) / 4);
 				else {
 					//Hago All-In
-					apuesto = plata;
+					apuesto = apuestaMax;
 				}
 				ostringstream sstream;
 				sstream << apuesto;
