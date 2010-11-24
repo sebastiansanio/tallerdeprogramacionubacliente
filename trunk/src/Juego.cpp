@@ -1641,13 +1641,13 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	this->pedirPoso();
 	this->dibujarEscenario();
 	this->pantalla->escribirTextoDesdePos("GANADOR: ",this->infoconfig->ancho - 300,10,40,blanco);
-	list<Jugador>::iterator it = jugadores->begin();
 	list<Carta>::iterator it2 = cartas->begin();
 	while (it2 != cartas->end()) {
 		this->dibujarCarta(*it2);
 		it2++;
 	}
 	jugadorTurno=this->getJugadorTurno();
+	list<Jugador>::iterator it = jugadores->begin();
 	while (it != jugadores->end()) {
 		if(iteracion==5){
 			path = this->pedirImagenJugador(&(*it));
@@ -1656,6 +1656,11 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 			(*it).setPath(ruta);
 		}
 		this->pedirCartasJugador(&(*it));
+		it++;
+	}
+	this->dibujarCartasJugadores();
+	it = jugadores->begin();
+	while (it != jugadores->end()) {
 		this->dibujarJugador(*it,jugadorTurno);
 		it++;
 	}
@@ -1667,7 +1672,6 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	}else{
 		this->pantalla->escribirTextoDesdePos(" ",this->infoconfig->ancho-100,10,20,blanco);
 	}
-	this->dibujarCartasJugadores();
 	if(jugadores->size()<6){
 		for(int i=(jugadores->size() + 1);i<7;i++){
 			Jugador jugador("ImagenVacio.bmp"," "," ",i);
@@ -1692,6 +1696,15 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 	}
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
 	this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
+	string resultado;
+	string idOperacion;
+	int tamfuente = this->infoconfig->ancho / 33;
+	list<string>* operandos = new list<string> ();
+	idOperacion = "G";
+	resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
+	string apuesta = "Ultima Apuesta $: " + resultado;
+	const char* apuestaC = apuesta.c_str();
+	pantalla->escribirTextoDesdePos(apuestaC, this->infoconfig->ancho / 2.8 ,(this->infoconfig->alto / 54)+tamfuente,tamfuente,blanco);
 	this->actualizarPantalla();
 //	sleep(2);
 	this->tipoJugador.jugadorObservador=eraObservador;
