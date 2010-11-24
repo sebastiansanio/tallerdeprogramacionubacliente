@@ -1748,6 +1748,14 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 					if (evento.type == SDL_QUIT) {
 						this->pantalla->escribirTextoDesdePos("CERRANDO",82,18,25,blanco);
 						this->pantalla->actualizarPantalla(82,18,100,40);
+						//NO IR
+						idOperacion = "D";
+						operandos->clear();
+						operandos->push_front("Poso");
+						operandos->push_back("0");
+						this->pedirOperacionDeJuego(idOperacion, operandos);
+						contadorOportunidades = 0;
+						//Deja de ser mi turno
 						this->cerrar=true;
 						break;
 					} else if (evento.type == SDL_MOUSEBUTTONDOWN) {
@@ -1900,18 +1908,18 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 				}
 				//Sin hacer click
 				if(this->tipoJugador.jugadorVirtual){
-				sleep(4);
+				sleep(2);
 				idOperacion = "G";
 				resultado = this->pedirOperacionDeJuego(idOperacion, operandos);
 				apuestaMax = atoi(resultado.c_str());
-				sleep(0.2);
+
 				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
-				sleep(1);
+				sleep(0.5);
 				if(operandos != NULL){
 					idOperacion = operandos->front();
 					operandos->pop_front();
 					this->pedirOperacionDeJuego(idOperacion, operandos);
-					sleep(1);
+					sleep(0.1);
 					operandos->clear();
 					}
 					//Deja de ser mi turno
@@ -1933,7 +1941,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			}
 			}
 		} else {
-			sleep(1);
+			sleep(0.4);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 		}
 		if(this->cerrar) exit(0);
@@ -1953,7 +1961,7 @@ string Juego::pedirOperacionDeJuego(string idOperacion, list<string>* operandos)
 	char* xml = this->parser->getXmlDeOperacion(idOperacion, operandos);
 	cliente->enviar(xml);
 	char * respuesta = cliente->recibirRespuesta();
-	cout << respuesta;
+//	cout << respuesta;
 	string operacion = parserResultado->getPoso(respuesta);
 	return operacion;
 }
