@@ -86,22 +86,7 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 // Cargamos la fuente que vamos a utilizar
 	TTF_Font *fuente;
 	fuente = TTF_OpenFont("browa.ttf", tamaniofuente);
-// Mostramos información acerca de la fuente cargada
-//	cout << "El tamaño de la fuente es " << TTF_FontHeight(fuente) << endl;
-//	cout << "El ascendente de la fuente es " << TTF_FontAscent(fuente) << endl;
-//	cout << "El descendente de la fuente es " << TTF_FontDescent(fuente)
-//			<< endl;
-//	cout << "La separación entre líneas es " << TTF_FontLineSkip(fuente)
-//			<< endl;
-//	int w, h;
-//	TTF_SizeUTF8(fuente, texto, &w, &h);
-//	cout << "El mensaje Hola Mundo ocupará " << w << " píxeles de ancho"
-//			<< " y " << h << " de alto." << endl;
 	SDL_Surface * rectangulo;
-//	SDL_Color color;
-//	color.r = 0;
-//	color.g = 0;
-//	color.b = 0;
 	rectangulo = TTF_RenderText_Blended(fuente, texto, color);
 	SDL_Rect dest;
 	dest.x = x;
@@ -110,7 +95,6 @@ void Pantalla::escribirTextoDesdePos(const char* texto, int x, int y, int tamani
 	dest.w = rectangulo->w;
 	// Mostramos el texto por pantalla
 	SDL_BlitSurface(rectangulo, NULL, pantalla, &dest);
-//	SDL_Flip(pantalla);
 	TTF_CloseFont(fuente);
 }
 
