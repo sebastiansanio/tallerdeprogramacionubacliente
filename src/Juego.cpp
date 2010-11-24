@@ -1941,7 +1941,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 			}
 			}
 		} else {
-			sleep(0.4);
+			sleep(0.7);
 			mostrarYCargarDatos(iteracion, jugador_observador, jugador_virtual);
 		}
 		if(this->cerrar) exit(0);
