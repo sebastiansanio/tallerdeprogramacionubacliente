@@ -51,7 +51,8 @@ bool ParserResultadoCliente::DecodificaResultado(char xml []){
 
 void ParserResultadoCliente::registrarResultado(char xml [],string operacion, string tipo, const char* archivo){
 	(this->archivoResultado) = new ofstream(archivo, ios::out | ios::app);
-	string lineaActual = xml;
+	string lineaActual;
+	lineaActual=xml;
 	*this->archivoResultado << "<respuesta>" << endl;
 	*this->archivoResultado << "\t<" << operacion << ">" << endl;
 	*this->archivoResultado << "\t\t<" << tipo << ">" << endl;
