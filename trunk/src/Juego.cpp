@@ -1621,12 +1621,6 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 		this->pedirCartasJugador(&(*it));
 		it++;
 	}
-	this->dibujarCartasJugadores();
-	it = jugadores->begin();
-	while (it != jugadores->end()) {
-		this->dibujarJugador(*it,jugadorTurno);
-		it++;
-	}
 	this->pedirGanador();
 	bool eraObservador=this->tipoJugador.jugadorObservador;
 	if(this->hayGanador()){
@@ -1634,6 +1628,12 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 		this->pantalla->escribirTextoDesdePos(this->ganador.c_str(),this->infoconfig->ancho - 150,10,40,blanco);
 	}else{
 		this->pantalla->escribirTextoDesdePos(" ",this->infoconfig->ancho-100,10,20,blanco);
+	}
+	this->dibujarCartasJugadores();
+	it = jugadores->begin();
+	while (it != jugadores->end()) {
+		this->dibujarJugador(*it,jugadorTurno);
+		it++;
 	}
 	if(jugadores->size()<6){
 		for(int i=(jugadores->size() + 1);i<7;i++){
@@ -1658,7 +1658,7 @@ void Juego::mostrarYCargarDatos(int &iteracion, bool jugador_observador, bool ju
 		this->dibujarBoton("JUGAR",0);
 	}
 	this->pantalla->dibujarRectangulo(0,this->infoconfig->alto*(0.95),this->infoconfig->ancho,24,255,255,255);
-	this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
+	//this->pantalla->escribirTextoDesdePos("SALIR",5,5,40,blanco);
 	string resultado;
 	string idOperacion;
 	int tamfuente = this->infoconfig->ancho / 33;
@@ -1815,7 +1815,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 														if (SDL_PollEvent(&evento1)) {
 															if(evento1.type == SDL_KEYDOWN){
 																if(evento1.key.keysym.sym==SDLK_UP){
-																	if(usuarioPlataApostada < this->plataJugador)
+																	if((usuarioPlataApostada+10) <= this->plataJugador)
 																		usuarioPlataApostada += 10;
 																	ostringstream sstream;
 																	sstream << usuarioPlataApostada;
@@ -1824,7 +1824,7 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
 																	this->actualizarPantalla();
 																}else if(evento1.key.keysym.sym==SDLK_DOWN){
-																	if(usuarioPlataApostada != 0)
+																	if(usuarioPlataApostada >= 10)
 																		usuarioPlataApostada -= 10;
 																	ostringstream sstream;
 																	sstream << usuarioPlataApostada;
@@ -1832,6 +1832,25 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 																	this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
 																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
 																	this->actualizarPantalla();
+																}else if(evento1.key.keysym.sym==SDLK_LEFT){
+																	if(usuarioPlataApostada >= 100)
+																		usuarioPlataApostada -= 100;
+																	ostringstream sstream;
+																	sstream << usuarioPlataApostada;
+																	plataApuesta = sstream.str();
+																	this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																	this->actualizarPantalla();
+																}else if(evento1.key.keysym.sym==SDLK_RIGHT){
+																	if((usuarioPlataApostada+100) <= this->plataJugador)
+																		usuarioPlataApostada += 100;
+																	ostringstream sstream;
+																	sstream << usuarioPlataApostada;
+																	plataApuesta = sstream.str();
+																	this->pantalla->dibujarRectangulo(25,this->infoconfig->alto*0.825,60,25,200,200,200);
+																	this->pantalla->escribirStringDesdePos(plataApuesta,25,this->infoconfig->alto*0.8,40,0,0,0);
+																	this->actualizarPantalla();
+
 
 															}
 															else if((evento1.key.keysym.sym==SDLK_RETURN)){
@@ -1915,15 +1934,15 @@ void Juego::jugar(bool jugador_observador, bool jugador_virtual){
 
 				operandos = this->jugadorVirtualAsignado->decidirJugada(this->cartasJugador,this->cartasEnMesa(),this->plataJugador,apuestaMax);
 				sleep(0.5);
-				if(operandos != NULL){
-					idOperacion = operandos->front();
-					operandos->pop_front();
-					this->pedirOperacionDeJuego(idOperacion, operandos);
-					sleep(0.1);
-					operandos->clear();
-					}
-					//Deja de ser mi turno
-					break;
+					if(operandos != NULL){
+						idOperacion = operandos->front();
+						operandos->pop_front();
+						this->pedirOperacionDeJuego(idOperacion, operandos);
+						sleep(0.1);
+						operandos->clear();
+						}
+						//Deja de ser mi turno
+						break;
 				}
 				}
 				else{
